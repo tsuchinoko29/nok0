@@ -6,9 +6,6 @@ data:
   - icon: ':heavy_check_mark:'
     path: test/aoj-2235.test.cpp
     title: test/aoj-2235.test.cpp
-  - icon: ':x:'
-    path: test/aoj-2397.test.cpp
-    title: test/aoj-2397.test.cpp
   - icon: ':heavy_check_mark:'
     path: test/aoj-2600.test.cpp
     title: test/aoj-2600.test.cpp
@@ -18,9 +15,9 @@ data:
   - icon: ':heavy_check_mark:'
     path: test/aoj-dsl-2-b.test.cpp
     title: test/aoj-dsl-2-b.test.cpp
-  _isVerificationFailed: true
+  _isVerificationFailed: false
   _pathExtension: hpp
-  _verificationStatusIcon: ':question:'
+  _verificationStatusIcon: ':heavy_check_mark:'
   attributes:
     links: []
   bundledCode: "#line 1 \"template.hpp\"\n#include <bits/stdc++.h>\nusing namespace\
@@ -312,9 +309,8 @@ data:
   path: template.hpp
   requiredBy: []
   timestamp: '2021-09-07 20:08:56+09:00'
-  verificationStatus: LIBRARY_SOME_WA
+  verificationStatus: LIBRARY_ALL_AC
   verifiedWith:
-  - test/aoj-2397.test.cpp
   - test/aoj-2703.test.cpp
   - test/aoj-dsl-2-b.test.cpp
   - test/aoj-2235.test.cpp

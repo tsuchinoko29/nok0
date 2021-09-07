@@ -1,48 +1,52 @@
 ---
 data:
   _extendedDependsOn:
-  - icon: ':x:'
+  - icon: ':heavy_check_mark:'
     path: math/factorize.hpp
     title: math/factorize.hpp
-  - icon: ':x:'
+  - icon: ':heavy_check_mark:'
     path: multi.hpp
     title: multi.hpp
   _extendedRequiredBy: []
   _extendedVerifiedWith: []
-  _isVerificationFailed: true
+  _isVerificationFailed: false
   _pathExtension: cpp
-  _verificationStatusIcon: ':x:'
-  attributes: {}
+  _verificationStatusIcon: ':heavy_check_mark:'
+  attributes:
+    '*NOT_SPECIAL_COMMENTS*': ''
+    PROBLEM: https://judge.yosupo.jp/problem/factorize
+    links:
+    - https://judge.yosupo.jp/problem/factorize
   bundledCode: "#line 1 \"test/yosupo-factorize.test.cpp\"\n#define PROBLEM \"https://judge.yosupo.jp/problem/factorize\"\
-    \n\n#line 1 \"math/factorize.hpp\"\n#include <bits/stdc++.h>\n\n#include <atcoder/modint>\n\
-    \nnamespace inner {\nusing u32 = uint32_t;\nusing u64 = uint64_t;\nusing i64 =\
-    \ int64_t;\nusing u128 = __uint128_t;\n\nu64 gcd_impl(u64 n, u64 m) {\n\tconstexpr\
-    \ u64 K = 5;\n\tfor(u32 i = 0; i < 80; ++i) {\n\t\tu64 t = n - m;\n\t\tu64 s =\
-    \ n - m * K;\n\t\tbool q = t < m;\n\t\tbool p = t < m * K;\n\t\tn = q ? m : t;\n\
-    \t\tm = q ? t : m;\n\t\tif(m == 0) return n;\n\t\tn = p ? n : s;\n\t}\n\treturn\
-    \ gcd_impl(m, n % m);\n}\n\nu64 gcd_pre(u64 n, u64 m) {\n\tfor(u32 i = 0; i <\
-    \ 4; ++i) {\n\t\tu64 t = n - m;\n\t\tbool q = t < m;\n\t\tn = q ? m : t;\n\t\t\
-    m = q ? t : m;\n\t\tif(m == 0) return n;\n\t}\n\treturn gcd_impl(n, m);\n}\n\n\
-    u64 gcd_fast(u64 n, u64 m) { return n > m ? gcd_pre(n, m) : gcd_pre(m, n); }\n\
-    \nstruct modint64 {\n\tusing u64 = uint64_t;\n\npublic:\n\tstatic u64 mod;\n\t\
-    static u64 r, n2;\n\tstatic void set_mod(u64 m) {\n\t\tmod = m;\n\t\tn2 = -u128(m)\
-    \ % m;\n\t\tr = get_r();\n\t\tassert(r * mod == 1);\n\t}\n\tmodint64() : a(0)\
-    \ {}\n\tmodint64(const i64 &b) : a(reduce((u128(b) + mod) * n2)) {}\n\n\tmodint64\
-    \ &operator+=(const modint64 &b) {\n\t\tif(i64(a += b.a - 2 * mod) < 0) a += 2\
-    \ * mod;\n\t\treturn *this;\n\t}\n\n\tmodint64 &operator-=(const modint64 &b)\
-    \ {\n\t\tif(i64(a -= b.a) < 0) a += 2 * mod;\n\t\treturn *this;\n\t}\n\n\tmodint64\
-    \ &operator*=(const modint64 &b) {\n\t\ta = reduce(u128(a) * b.a);\n\t\treturn\
-    \ *this;\n\t}\n\n\tmodint64 operator+(const modint64 &b) const { return modint64(*this)\
-    \ += b; }\n\tmodint64 operator-(const modint64 &b) const { return modint64(*this)\
-    \ -= b; }\n\tmodint64 operator*(const modint64 &b) const { return modint64(*this)\
-    \ *= b; }\n\n\tmodint64 pow(u128 n) const {\n\t\tmodint64 ret(1), mul(*this);\n\
-    \t\twhile(n > 0) {\n\t\t\tif(n & 1) ret *= mul;\n\t\t\tmul *= mul;\n\t\t\tn >>=\
-    \ 1;\n\t\t}\n\t\treturn ret;\n\t}\n\n\tu64 val() const {\n\t\tu64 ret = reduce(a);\n\
-    \t\treturn ret >= mod ? ret - mod : ret;\n\t}\n\n\tstatic u64 get_mod() { return\
-    \ mod; }\n\nprivate:\n\tu64 a;\n\n\tstatic u64 get_r() {\n\t\tu64 ret = mod;\n\
-    \t\tfor(u32 i = 0; i < 5; i++) ret *= 2 - mod * ret;\n\t\treturn ret;\n\t}\n\n\
-    \tstatic u64 reduce(const u128 &b) {\n\t\treturn (b + u128(u64(b) * u64(-r)) *\
-    \ mod) >> 64;\n\t}\n};\ntypename modint64::u64 modint64::mod, modint64::r, modint64::n2;\n\
+    \n\n#line 1 \"math/factorize.hpp\"\n#include <bits/stdc++.h>\n\nnamespace inner\
+    \ {\nusing u32 = uint32_t;\nusing u64 = uint64_t;\nusing i64 = int64_t;\nusing\
+    \ u128 = __uint128_t;\n\nu64 gcd_impl(u64 n, u64 m) {\n\tconstexpr u64 K = 5;\n\
+    \tfor(u32 i = 0; i < 80; ++i) {\n\t\tu64 t = n - m;\n\t\tu64 s = n - m * K;\n\t\
+    \tbool q = t < m;\n\t\tbool p = t < m * K;\n\t\tn = q ? m : t;\n\t\tm = q ? t\
+    \ : m;\n\t\tif(m == 0) return n;\n\t\tn = p ? n : s;\n\t}\n\treturn gcd_impl(m,\
+    \ n % m);\n}\n\nu64 gcd_pre(u64 n, u64 m) {\n\tfor(u32 i = 0; i < 4; ++i) {\n\t\
+    \tu64 t = n - m;\n\t\tbool q = t < m;\n\t\tn = q ? m : t;\n\t\tm = q ? t : m;\n\
+    \t\tif(m == 0) return n;\n\t}\n\treturn gcd_impl(n, m);\n}\n\nu64 gcd_fast(u64\
+    \ n, u64 m) { return n > m ? gcd_pre(n, m) : gcd_pre(m, n); }\n\nstruct modint64\
+    \ {\n\tusing u64 = uint64_t;\n\npublic:\n\tstatic u64 mod;\n\tstatic u64 r, n2;\n\
+    \tstatic void set_mod(u64 m) {\n\t\tmod = m;\n\t\tn2 = -u128(m) % m;\n\t\tr =\
+    \ get_r();\n\t\tassert(r * mod == 1);\n\t}\n\tmodint64() : a(0) {}\n\tmodint64(const\
+    \ i64 &b) : a(reduce((u128(b) + mod) * n2)) {}\n\n\tmodint64 &operator+=(const\
+    \ modint64 &b) {\n\t\tif(i64(a += b.a - 2 * mod) < 0) a += 2 * mod;\n\t\treturn\
+    \ *this;\n\t}\n\n\tmodint64 &operator-=(const modint64 &b) {\n\t\tif(i64(a -=\
+    \ b.a) < 0) a += 2 * mod;\n\t\treturn *this;\n\t}\n\n\tmodint64 &operator*=(const\
+    \ modint64 &b) {\n\t\ta = reduce(u128(a) * b.a);\n\t\treturn *this;\n\t}\n\n\t\
+    modint64 operator+(const modint64 &b) const { return modint64(*this) += b; }\n\
+    \tmodint64 operator-(const modint64 &b) const { return modint64(*this) -= b; }\n\
+    \tmodint64 operator*(const modint64 &b) const { return modint64(*this) *= b; }\n\
+    \n\tmodint64 pow(u128 n) const {\n\t\tmodint64 ret(1), mul(*this);\n\t\twhile(n\
+    \ > 0) {\n\t\t\tif(n & 1) ret *= mul;\n\t\t\tmul *= mul;\n\t\t\tn >>= 1;\n\t\t\
+    }\n\t\treturn ret;\n\t}\n\n\tu64 val() const {\n\t\tu64 ret = reduce(a);\n\t\t\
+    return ret >= mod ? ret - mod : ret;\n\t}\n\n\tstatic u64 get_mod() { return mod;\
+    \ }\n\nprivate:\n\tu64 a;\n\n\tstatic u64 get_r() {\n\t\tu64 ret = mod;\n\t\t\
+    for(u32 i = 0; i < 5; i++) ret *= 2 - mod * ret;\n\t\treturn ret;\n\t}\n\n\tstatic\
+    \ u64 reduce(const u128 &b) {\n\t\treturn (b + u128(u64(b) * u64(-r)) * mod) >>\
+    \ 64;\n\t}\n};\ntypename modint64::u64 modint64::mod, modint64::r, modint64::n2;\n\
     \nu64 rnd() {\n\tstatic u64 x = 10150724397891781847ull;\n\tx ^= x << 7;\n\treturn\
     \ x ^= x >> 9;\n}\n\nconstexpr long long safe_mod(long long x, long long m) {\n\
     \tx %= m;\n\tif(x < 0) x += m;\n\treturn x;\n}\n\nconstexpr long long pow_mod_constexpr(long\
@@ -237,8 +241,8 @@ data:
   isVerificationFile: true
   path: test/yosupo-factorize.test.cpp
   requiredBy: []
-  timestamp: '2021-09-07 23:40:13+09:00'
-  verificationStatus: TEST_WRONG_ANSWER
+  timestamp: '2021-09-07 23:53:32+09:00'
+  verificationStatus: TEST_ACCEPTED
   verifiedWith: []
 documentation_of: test/yosupo-factorize.test.cpp
 layout: document

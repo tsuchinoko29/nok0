@@ -9,10 +9,10 @@ data:
     - icon: ':warning:'
       path: cftemp.hpp
       title: cftemp.hpp
-    - icon: ':x:'
+    - icon: ':heavy_check_mark:'
       path: multi.hpp
       title: multi.hpp
-    - icon: ':question:'
+    - icon: ':heavy_check_mark:'
       path: template.hpp
       title: template.hpp
   - name: data_structure
@@ -75,7 +75,7 @@ data:
     - icon: ':warning:'
       path: math/bostan_mori_ll.hpp
       title: math/bostan_mori_ll.hpp
-    - icon: ':x:'
+    - icon: ':heavy_check_mark:'
       path: math/factorize.hpp
       title: math/factorize.hpp
     - icon: ':warning:'
@@ -84,7 +84,7 @@ data:
     - icon: ':warning:'
       path: math/inversion.hpp
       title: math/inversion.hpp
-    - icon: ':x:'
+    - icon: ':warning:'
       path: math/matrix.hpp
       title: math/matrix.hpp
     - icon: ':warning:'
@@ -116,7 +116,7 @@ data:
     - icon: ':heavy_check_mark:'
       path: test/aoj-dsl-2-b.test.cpp
       title: test/aoj-dsl-2-b.test.cpp
-    - icon: ':x:'
+    - icon: ':heavy_check_mark:'
       path: test/yosupo-factorize.test.cpp
       title: test/yosupo-factorize.test.cpp
 layout: toppage

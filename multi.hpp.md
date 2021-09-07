@@ -3,12 +3,12 @@ data:
   _extendedDependsOn: []
   _extendedRequiredBy: []
   _extendedVerifiedWith:
-  - icon: ':x:'
+  - icon: ':heavy_check_mark:'
     path: test/yosupo-factorize.test.cpp
     title: test/yosupo-factorize.test.cpp
-  _isVerificationFailed: true
+  _isVerificationFailed: false
   _pathExtension: hpp
-  _verificationStatusIcon: ':x:'
+  _verificationStatusIcon: ':heavy_check_mark:'
   attributes:
     links: []
   bundledCode: "#line 1 \"multi.hpp\"\n#include <bits/stdc++.h>\nusing namespace std;\n\
@@ -300,7 +300,7 @@ data:
   path: multi.hpp
   requiredBy: []
   timestamp: '2021-09-07 20:08:56+09:00'
-  verificationStatus: LIBRARY_ALL_WA
+  verificationStatus: LIBRARY_ALL_AC
   verifiedWith:
   - test/yosupo-factorize.test.cpp
 documentation_of: multi.hpp
