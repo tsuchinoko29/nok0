@@ -6,12 +6,15 @@ data:
     - icon: ':warning:'
       path: cfmulti.hpp
       title: cfmulti.hpp
-    - icon: ':warning:'
+    - icon: ':heavy_check_mark:'
       path: cftemp.hpp
       title: cftemp.hpp
     - icon: ':heavy_check_mark:'
       path: multi.hpp
       title: multi.hpp
+    - icon: ':warning:'
+      path: submit.cpp
+      title: submit.cpp
     - icon: ':heavy_check_mark:'
       path: template.hpp
       title: template.hpp
@@ -84,7 +87,7 @@ data:
     - icon: ':warning:'
       path: math/inversion.hpp
       title: math/inversion.hpp
-    - icon: ':warning:'
+    - icon: ':heavy_check_mark:'
       path: math/matrix.hpp
       title: math/matrix.hpp
     - icon: ':warning:'
@@ -104,7 +107,7 @@ data:
     - icon: ':heavy_check_mark:'
       path: test/aoj-2235.test.cpp
       title: test/aoj-2235.test.cpp
-    - icon: ':x:'
+    - icon: ':heavy_check_mark:'
       path: test/aoj-2397.test.cpp
       title: test/aoj-2397.test.cpp
     - icon: ':heavy_check_mark:'
