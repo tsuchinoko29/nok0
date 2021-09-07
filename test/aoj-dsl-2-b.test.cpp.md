@@ -176,7 +176,7 @@ data:
     if(t == 0)\n\t\t\tbt.add(x, y);\n\t\telse\n\t\t\tcout << bt.sum(x, y) << '\\n';\n\
     \t}\n}\n"
   code: "#define PROBLEM \"http://judge.u-aizu.ac.jp/onlinejudge/description.jsp?id=DSL_2_B\"\
-    \n\n#include \"data_structure/binary_indexed_tree.hpp\"\n#include \"template.hpp\"\
+    \n\n#include \"../data_structure/binary_indexed_tree.hpp\"\n#include \"../template.hpp\"\
     \n\nvoid main_() {\n\tint n, q;\n\tcin >> n >> q;\n\tbinary_indexed_tree<int>\
     \ bt(n);\n\twhile(q--) {\n\t\tint t, x, y;\n\t\tcin >> t >> x >> y, --x;\n\t\t\
     if(t == 0)\n\t\t\tbt.add(x, y);\n\t\telse\n\t\t\tcout << bt.sum(x, y) << '\\n';\n\
@@ -187,7 +187,7 @@ data:
   isVerificationFile: true
   path: test/aoj-dsl-2-b.test.cpp
   requiredBy: []
-  timestamp: '2021-09-07 20:47:28+09:00'
+  timestamp: '2021-09-07 21:43:42+09:00'
   verificationStatus: TEST_ACCEPTED
   verifiedWith: []
 documentation_of: test/aoj-dsl-2-b.test.cpp
