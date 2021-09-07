@@ -12,7 +12,7 @@ data:
     - icon: ':warning:'
       path: multi.hpp
       title: multi.hpp
-    - icon: ':question:'
+    - icon: ':heavy_check_mark:'
       path: template.hpp
       title: template.hpp
   - name: data_structure
@@ -23,7 +23,7 @@ data:
     - icon: ':warning:'
       path: data_structure/dice.hpp
       title: data_structure/dice.hpp
-    - icon: ':x:'
+    - icon: ':heavy_check_mark:'
       path: data_structure/offline_dynamic_connectivity.hpp
       title: data_structure/offline_dynamic_connectivity.hpp
     - icon: ':warning:'
@@ -38,7 +38,7 @@ data:
     - icon: ':warning:'
       path: data_structure/trie.hpp
       title: data_structure/trie.hpp
-    - icon: ':x:'
+    - icon: ':heavy_check_mark:'
       path: data_structure/undo_uf.hpp
       title: data_structure/undo_uf.hpp
   - name: graph
@@ -93,23 +93,15 @@ data:
     - icon: ':warning:'
       path: math/osa_k.hpp
       title: math/osa_k.hpp
-    - icon: ':warning:'
-      path: math/prime_counts.hpp
-      title: math/prime_counts.hpp
   - name: random
     pages:
     - icon: ':warning:'
       path: random/xorshift.hpp
       title: random/xorshift.hpp
   verificationCategories:
-  - name: .
-    pages:
-    - icon: ':heavy_check_mark:'
-      path: example.test.cpp
-      title: example.test.cpp
   - name: test
     pages:
-    - icon: ':x:'
+    - icon: ':heavy_check_mark:'
       path: test/aoj-2235.test.cpp
       title: test/aoj-2235.test.cpp
     - icon: ':heavy_check_mark:'
