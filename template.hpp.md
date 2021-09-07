@@ -15,6 +15,12 @@ data:
   - icon: ':heavy_check_mark:'
     path: test/aoj-dsl-2-b.test.cpp
     title: test/aoj-dsl-2-b.test.cpp
+  - icon: ':heavy_check_mark:'
+    path: test/yosupo-lca.test.cpp
+    title: test/yosupo-lca.test.cpp
+  - icon: ':heavy_check_mark:'
+    path: test/yosupo-tree_diameter.test.cpp
+    title: test/yosupo-tree_diameter.test.cpp
   _isVerificationFailed: false
   _pathExtension: hpp
   _verificationStatusIcon: ':heavy_check_mark:'
@@ -311,6 +317,8 @@ data:
   timestamp: '2021-09-07 20:08:56+09:00'
   verificationStatus: LIBRARY_ALL_AC
   verifiedWith:
+  - test/yosupo-tree_diameter.test.cpp
+  - test/yosupo-lca.test.cpp
   - test/aoj-2703.test.cpp
   - test/aoj-dsl-2-b.test.cpp
   - test/aoj-2235.test.cpp

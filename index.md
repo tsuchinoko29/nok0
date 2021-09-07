@@ -49,7 +49,7 @@ data:
     - icon: ':warning:'
       path: graph/dag_mcf.hpp
       title: graph/dag_mcf.hpp
-    - icon: ':warning:'
+    - icon: ':heavy_check_mark:'
       path: graph/graph.hpp
       title: graph/graph.hpp
     - icon: ':warning:'
@@ -67,7 +67,7 @@ data:
     - icon: ':warning:'
       path: graph/scc.hpp
       title: graph/scc.hpp
-    - icon: ':warning:'
+    - icon: ':heavy_check_mark:'
       path: graph/tree_doubling.hpp
       title: graph/tree_doubling.hpp
     - icon: ':warning:'
@@ -122,5 +122,11 @@ data:
     - icon: ':heavy_check_mark:'
       path: test/yosupo-factorize.test.cpp
       title: test/yosupo-factorize.test.cpp
+    - icon: ':heavy_check_mark:'
+      path: test/yosupo-lca.test.cpp
+      title: test/yosupo-lca.test.cpp
+    - icon: ':heavy_check_mark:'
+      path: test/yosupo-tree_diameter.test.cpp
+      title: test/yosupo-tree_diameter.test.cpp
 layout: toppage
 ---

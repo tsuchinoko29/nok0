@@ -17,16 +17,22 @@ data:
   - icon: ':warning:'
     path: graph/scc.hpp
     title: graph/scc.hpp
-  - icon: ':warning:'
+  - icon: ':heavy_check_mark:'
     path: graph/tree_doubling.hpp
     title: graph/tree_doubling.hpp
   - icon: ':warning:'
     path: graph/two_edge_cc.hpp
     title: graph/two_edge_cc.hpp
-  _extendedVerifiedWith: []
+  _extendedVerifiedWith:
+  - icon: ':heavy_check_mark:'
+    path: test/yosupo-lca.test.cpp
+    title: test/yosupo-lca.test.cpp
+  - icon: ':heavy_check_mark:'
+    path: test/yosupo-tree_diameter.test.cpp
+    title: test/yosupo-tree_diameter.test.cpp
   _isVerificationFailed: false
   _pathExtension: hpp
-  _verificationStatusIcon: ':warning:'
+  _verificationStatusIcon: ':heavy_check_mark:'
   attributes:
     links: []
   bundledCode: "#line 2 \"graph/graph.hpp\"\n#include <algorithm>\n#include <cassert>\n\
@@ -347,8 +353,10 @@ data:
   - graph/namori.hpp
   - graph/scc.hpp
   timestamp: '2021-09-07 20:08:56+09:00'
-  verificationStatus: LIBRARY_NO_TESTS
-  verifiedWith: []
+  verificationStatus: LIBRARY_ALL_AC
+  verifiedWith:
+  - test/yosupo-tree_diameter.test.cpp
+  - test/yosupo-lca.test.cpp
 documentation_of: graph/graph.hpp
 layout: document
 redirect_from:
