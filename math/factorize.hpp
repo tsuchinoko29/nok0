@@ -1,7 +1,5 @@
 #include <bits/stdc++.h>
 
-#include <atcoder/modint>
-
 namespace inner {
 using u32 = uint32_t;
 using u64 = uint64_t;
