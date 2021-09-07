@@ -13,6 +13,6 @@ void main_() {
 		if(t == 0)
 			bt.add(x, y);
 		else
-			cout << bit.sum(x, y) << '\n';
+			cout << bt.sum(x, y) << '\n';
 	}
 }
