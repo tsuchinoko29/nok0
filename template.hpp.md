@@ -7,6 +7,9 @@ data:
     path: test/aoj-2235.test.cpp
     title: test/aoj-2235.test.cpp
   - icon: ':heavy_check_mark:'
+    path: test/aoj-2600.test.cpp
+    title: test/aoj-2600.test.cpp
+  - icon: ':heavy_check_mark:'
     path: test/aoj-dsl-2-b.test.cpp
     title: test/aoj-dsl-2-b.test.cpp
   _isVerificationFailed: false
@@ -307,6 +310,7 @@ data:
   verifiedWith:
   - test/aoj-dsl-2-b.test.cpp
   - test/aoj-2235.test.cpp
+  - test/aoj-2600.test.cpp
 documentation_of: template.hpp
 layout: document
 redirect_from:

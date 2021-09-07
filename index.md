@@ -29,7 +29,7 @@ data:
     - icon: ':warning:'
       path: data_structure/permutation_tree.hpp
       title: data_structure/permutation_tree.hpp
-    - icon: ':warning:'
+    - icon: ':heavy_check_mark:'
       path: data_structure/range_set.hpp
       title: data_structure/range_set.hpp
     - icon: ':warning:'
@@ -104,6 +104,9 @@ data:
     - icon: ':heavy_check_mark:'
       path: test/aoj-2235.test.cpp
       title: test/aoj-2235.test.cpp
+    - icon: ':heavy_check_mark:'
+      path: test/aoj-2600.test.cpp
+      title: test/aoj-2600.test.cpp
     - icon: ':heavy_check_mark:'
       path: test/aoj-dsl-2-b.test.cpp
       title: test/aoj-dsl-2-b.test.cpp
