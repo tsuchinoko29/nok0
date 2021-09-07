@@ -12,7 +12,7 @@ data:
     - icon: ':warning:'
       path: multi.hpp
       title: multi.hpp
-    - icon: ':heavy_check_mark:'
+    - icon: ':question:'
       path: template.hpp
       title: template.hpp
   - name: data_structure
@@ -23,7 +23,7 @@ data:
     - icon: ':warning:'
       path: data_structure/dice.hpp
       title: data_structure/dice.hpp
-    - icon: ':warning:'
+    - icon: ':x:'
       path: data_structure/offline_dynamic_connectivity.hpp
       title: data_structure/offline_dynamic_connectivity.hpp
     - icon: ':warning:'
@@ -38,7 +38,7 @@ data:
     - icon: ':warning:'
       path: data_structure/trie.hpp
       title: data_structure/trie.hpp
-    - icon: ':warning:'
+    - icon: ':x:'
       path: data_structure/undo_uf.hpp
       title: data_structure/undo_uf.hpp
   - name: graph
@@ -109,6 +109,9 @@ data:
       title: example.test.cpp
   - name: test
     pages:
+    - icon: ':x:'
+      path: test/aoj-2235.test.cpp
+      title: test/aoj-2235.test.cpp
     - icon: ':heavy_check_mark:'
       path: test/aoj-dsl-2-b.test.cpp
       title: test/aoj-dsl-2-b.test.cpp
