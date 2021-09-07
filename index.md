@@ -12,7 +12,7 @@ data:
     - icon: ':warning:'
       path: multi.hpp
       title: multi.hpp
-    - icon: ':heavy_check_mark:'
+    - icon: ':question:'
       path: template.hpp
       title: template.hpp
   - name: data_structure
@@ -84,7 +84,7 @@ data:
     - icon: ':warning:'
       path: math/inversion.hpp
       title: math/inversion.hpp
-    - icon: ':warning:'
+    - icon: ':x:'
       path: math/matrix.hpp
       title: math/matrix.hpp
     - icon: ':warning:'
@@ -104,6 +104,9 @@ data:
     - icon: ':heavy_check_mark:'
       path: test/aoj-2235.test.cpp
       title: test/aoj-2235.test.cpp
+    - icon: ':x:'
+      path: test/aoj-2397.test.cpp
+      title: test/aoj-2397.test.cpp
     - icon: ':heavy_check_mark:'
       path: test/aoj-2600.test.cpp
       title: test/aoj-2600.test.cpp
