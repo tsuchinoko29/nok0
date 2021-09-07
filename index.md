@@ -9,7 +9,7 @@ data:
     - icon: ':warning:'
       path: cftemp.hpp
       title: cftemp.hpp
-    - icon: ':warning:'
+    - icon: ':x:'
       path: multi.hpp
       title: multi.hpp
     - icon: ':question:'
@@ -20,7 +20,7 @@ data:
     - icon: ':heavy_check_mark:'
       path: data_structure/binary_indexed_tree.hpp
       title: data_structure/binary_indexed_tree.hpp
-    - icon: ':warning:'
+    - icon: ':heavy_check_mark:'
       path: data_structure/dice.hpp
       title: data_structure/dice.hpp
     - icon: ':heavy_check_mark:'
@@ -75,7 +75,7 @@ data:
     - icon: ':warning:'
       path: math/bostan_mori_ll.hpp
       title: math/bostan_mori_ll.hpp
-    - icon: ':warning:'
+    - icon: ':x:'
       path: math/factorize.hpp
       title: math/factorize.hpp
     - icon: ':warning:'
@@ -111,7 +111,13 @@ data:
       path: test/aoj-2600.test.cpp
       title: test/aoj-2600.test.cpp
     - icon: ':heavy_check_mark:'
+      path: test/aoj-2703.test.cpp
+      title: test/aoj-2703.test.cpp
+    - icon: ':heavy_check_mark:'
       path: test/aoj-dsl-2-b.test.cpp
       title: test/aoj-dsl-2-b.test.cpp
+    - icon: ':x:'
+      path: test/yosupo-factorize.test.cpp
+      title: test/yosupo-factorize.test.cpp
 layout: toppage
 ---

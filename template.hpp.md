@@ -13,6 +13,9 @@ data:
     path: test/aoj-2600.test.cpp
     title: test/aoj-2600.test.cpp
   - icon: ':heavy_check_mark:'
+    path: test/aoj-2703.test.cpp
+    title: test/aoj-2703.test.cpp
+  - icon: ':heavy_check_mark:'
     path: test/aoj-dsl-2-b.test.cpp
     title: test/aoj-dsl-2-b.test.cpp
   _isVerificationFailed: true
@@ -312,6 +315,7 @@ data:
   verificationStatus: LIBRARY_SOME_WA
   verifiedWith:
   - test/aoj-2397.test.cpp
+  - test/aoj-2703.test.cpp
   - test/aoj-dsl-2-b.test.cpp
   - test/aoj-2235.test.cpp
   - test/aoj-2600.test.cpp
