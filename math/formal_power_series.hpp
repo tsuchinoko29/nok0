@@ -5,6 +5,7 @@
 #include <vector>
 
 #include "atcoder/convolution"
+#include "math/factorial.hpp"
 
 enum Mode {
 	FAST = 1,
@@ -12,6 +13,7 @@ enum Mode {
 };
 template <class T, Mode mode = FAST>
 struct formal_power_series : std::vector<T> {
+	factorial<T> fact;
 	using std::vector<T>::vector;
 	using std::vector<T>::size;
 	using std::vector<T>::resize;
@@ -453,9 +455,73 @@ struct formal_power_series : std::vector<T> {
 		return ret;
 	}
 
-	void sparse_pow(const int n, const int d, const T c, const int k);
-	void sparse_pow_inv(const int n, const int d, const T c, const int k);
-	void stirling_first(int n);
-	void stirling_second(int n);
+	void sparse_pow(const int n, const int d, const T c, const int k) {
+		F ret(n);
+		T tmp = 1;
+		if(k >= 0) {
+			for(int i = 0; i < n; i += d) {
+				ret[i] = fact.binom(k, i / d) * tmp;
+				tmp *= c;
+			}
+		} else {
+			for(int i = 0; i < n; i += d) {
+				ret[i] = fact.binom(i / d - k - 1, -k - 1) * tmp;
+				tmp *= -c;
+			}
+		}
+		(*this) = ret;
+	}
+
+	void sparse_pow_inv(const int n, const int d, const T c, const int k) { return sparse_pow(n, d, c, -k); }
+
+	void stirling_first(int n) {
+		if(!n) {
+			*this = F{1};
+			return;
+		}
+		int m = 1;
+		F res(n + 1);
+		res[1] = 1;
+		for(int k = 30 - __builtin_clz(n); k >= 0; --k) {
+			F as(m * 2 + 1), bs(m + 1);
+			for(int i = 0; i <= m; i++)
+				as[i] = fact.fac[i] * res[i];
+
+			bs[m] = 1;
+			for(int i = m - 1; i >= 0; i--)
+				bs[i] -= bs[i + 1] * m;
+
+			for(int i = 0; i <= m; i++)
+				bs[m - i] *= fact.finv[i];
+
+			F cs = as * bs, ds(m + 1);
+			for(int i = 0; i <= m; i++)
+				ds[i] = cs[m + i] * fact.finv[i];
+
+			res *= ds;
+			m <<= 1;
+			if(n >> k & 1) {
+				F g(n + 1);
+				for(int i = 0; i <= m; i++) {
+					g[i] -= res[i] * m;
+					g[i + 1] += res[i];
+				}
+				res = g;
+				m |= 1;
+			}
+		}
+		*this = res;
+	}
+
+	void stirling_second(int n) {
+		F f(n + 1), g(n + 1);
+		for(int i = 0; i <= n; i++) {
+			f[i] = T(i).pow(n) * fact.finv[i];
+			g[i] = fact.finv[i] * (i % 2 ? -1 : 1);
+		}
+		f *= g;
+		*this = f;
+	}
+
 	std::vector<T> multipoint_evaluation(const std::vector<T> &p);
 };
