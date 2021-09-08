@@ -1,23 +1,77 @@
 ---
 data:
   _extendedDependsOn:
-  - icon: ':heavy_check_mark:'
+  - icon: ':question:'
+    path: atcoder/convolution.hpp
+    title: atcoder/convolution.hpp
+  - icon: ':question:'
+    path: atcoder/dsu.hpp
+    title: atcoder/dsu.hpp
+  - icon: ':question:'
+    path: atcoder/fenwicktree.hpp
+    title: atcoder/fenwicktree.hpp
+  - icon: ':question:'
+    path: atcoder/internal_bit.hpp
+    title: atcoder/internal_bit.hpp
+  - icon: ':question:'
+    path: atcoder/internal_csr.hpp
+    title: atcoder/internal_csr.hpp
+  - icon: ':question:'
+    path: atcoder/internal_math.hpp
+    title: atcoder/internal_math.hpp
+  - icon: ':question:'
+    path: atcoder/internal_queue.hpp
+    title: atcoder/internal_queue.hpp
+  - icon: ':question:'
+    path: atcoder/internal_scc.hpp
+    title: atcoder/internal_scc.hpp
+  - icon: ':question:'
+    path: atcoder/internal_type_traits.hpp
+    title: atcoder/internal_type_traits.hpp
+  - icon: ':question:'
+    path: atcoder/lazysegtree.hpp
+    title: atcoder/lazysegtree.hpp
+  - icon: ':question:'
+    path: atcoder/math.hpp
+    title: atcoder/math.hpp
+  - icon: ':question:'
+    path: atcoder/maxflow.hpp
+    title: atcoder/maxflow.hpp
+  - icon: ':question:'
+    path: atcoder/mincostflow.hpp
+    title: atcoder/mincostflow.hpp
+  - icon: ':question:'
+    path: atcoder/modint.hpp
+    title: atcoder/modint.hpp
+  - icon: ':question:'
+    path: atcoder/scc.hpp
+    title: atcoder/scc.hpp
+  - icon: ':question:'
+    path: atcoder/segtree.hpp
+    title: atcoder/segtree.hpp
+  - icon: ':question:'
+    path: atcoder/string.hpp
+    title: atcoder/string.hpp
+  - icon: ':question:'
+    path: atcoder/twosat.hpp
+    title: atcoder/twosat.hpp
+  - icon: ':question:'
     path: data_structure/binary_indexed_tree.hpp
     title: data_structure/binary_indexed_tree.hpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':question:'
     path: graph/graph.hpp
     title: graph/graph.hpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':question:'
     path: graph/hld.hpp
     title: graph/hld.hpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':question:'
     path: template.hpp
     title: template.hpp
   _extendedRequiredBy: []
   _extendedVerifiedWith: []
-  _isVerificationFailed: false
+  _isVerificationFailed: true
   _pathExtension: cpp
-  _verificationStatusIcon: ':heavy_check_mark:'
+  _verificationStatusIcon: ':x:'
   attributes:
     '*NOT_SPECIAL_COMMENTS*': ''
     PROBLEM: https://judge.yosupo.jp/problem/vertex_add_subtree_sum
@@ -383,11 +437,29 @@ data:
   - graph/graph.hpp
   - graph/hld.hpp
   - template.hpp
+  - atcoder/convolution.hpp
+  - atcoder/internal_bit.hpp
+  - atcoder/modint.hpp
+  - atcoder/internal_math.hpp
+  - atcoder/internal_type_traits.hpp
+  - atcoder/dsu.hpp
+  - atcoder/fenwicktree.hpp
+  - atcoder/lazysegtree.hpp
+  - atcoder/math.hpp
+  - atcoder/maxflow.hpp
+  - atcoder/internal_queue.hpp
+  - atcoder/mincostflow.hpp
+  - atcoder/internal_csr.hpp
+  - atcoder/scc.hpp
+  - atcoder/internal_scc.hpp
+  - atcoder/segtree.hpp
+  - atcoder/string.hpp
+  - atcoder/twosat.hpp
   isVerificationFile: true
   path: test/yosupo-vertex_add_subtree_sum.test.cpp
   requiredBy: []
-  timestamp: '2021-09-08 15:13:47+09:00'
-  verificationStatus: TEST_ACCEPTED
+  timestamp: '2021-09-08 15:21:46+09:00'
+  verificationStatus: TEST_WRONG_ANSWER
   verifiedWith: []
 documentation_of: test/yosupo-vertex_add_subtree_sum.test.cpp
 layout: document

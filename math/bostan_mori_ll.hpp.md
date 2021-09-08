@@ -1,6 +1,21 @@
 ---
 data:
-  _extendedDependsOn: []
+  _extendedDependsOn:
+  - icon: ':question:'
+    path: atcoder/convolution.hpp
+    title: atcoder/convolution.hpp
+  - icon: ':question:'
+    path: atcoder/internal_bit.hpp
+    title: atcoder/internal_bit.hpp
+  - icon: ':question:'
+    path: atcoder/internal_math.hpp
+    title: atcoder/internal_math.hpp
+  - icon: ':question:'
+    path: atcoder/internal_type_traits.hpp
+    title: atcoder/internal_type_traits.hpp
+  - icon: ':question:'
+    path: atcoder/modint.hpp
+    title: atcoder/modint.hpp
   _extendedRequiredBy: []
   _extendedVerifiedWith: []
   _isVerificationFailed: false
@@ -91,11 +106,16 @@ data:
     \ a) {\n\t\tauto q = Berlekamp_Massey(a);\n\t\tint d = q.size() - 1;\n\t\ta.resize(d);\n\
     \t\tfor(int i = 1; i < (int)q.size(); i++) q[i] *= -1;\n\t\ta = atcoder::convolution(a,\
     \ q);\n\t\ta.resize(d);\n\t\treturn {a, q};\n\t}\n};\n"
-  dependsOn: []
+  dependsOn:
+  - atcoder/convolution.hpp
+  - atcoder/internal_bit.hpp
+  - atcoder/modint.hpp
+  - atcoder/internal_math.hpp
+  - atcoder/internal_type_traits.hpp
   isVerificationFile: false
   path: math/bostan_mori_ll.hpp
   requiredBy: []
-  timestamp: '2021-09-07 20:08:56+09:00'
+  timestamp: '2021-09-08 15:21:46+09:00'
   verificationStatus: LIBRARY_NO_TESTS
   verifiedWith: []
 documentation_of: math/bostan_mori_ll.hpp

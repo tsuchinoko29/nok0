@@ -1,6 +1,60 @@
 ---
 data:
-  _extendedDependsOn: []
+  _extendedDependsOn:
+  - icon: ':question:'
+    path: atcoder/convolution.hpp
+    title: atcoder/convolution.hpp
+  - icon: ':question:'
+    path: atcoder/dsu.hpp
+    title: atcoder/dsu.hpp
+  - icon: ':question:'
+    path: atcoder/fenwicktree.hpp
+    title: atcoder/fenwicktree.hpp
+  - icon: ':question:'
+    path: atcoder/internal_bit.hpp
+    title: atcoder/internal_bit.hpp
+  - icon: ':question:'
+    path: atcoder/internal_csr.hpp
+    title: atcoder/internal_csr.hpp
+  - icon: ':question:'
+    path: atcoder/internal_math.hpp
+    title: atcoder/internal_math.hpp
+  - icon: ':question:'
+    path: atcoder/internal_queue.hpp
+    title: atcoder/internal_queue.hpp
+  - icon: ':question:'
+    path: atcoder/internal_scc.hpp
+    title: atcoder/internal_scc.hpp
+  - icon: ':question:'
+    path: atcoder/internal_type_traits.hpp
+    title: atcoder/internal_type_traits.hpp
+  - icon: ':question:'
+    path: atcoder/lazysegtree.hpp
+    title: atcoder/lazysegtree.hpp
+  - icon: ':question:'
+    path: atcoder/math.hpp
+    title: atcoder/math.hpp
+  - icon: ':question:'
+    path: atcoder/maxflow.hpp
+    title: atcoder/maxflow.hpp
+  - icon: ':question:'
+    path: atcoder/mincostflow.hpp
+    title: atcoder/mincostflow.hpp
+  - icon: ':question:'
+    path: atcoder/modint.hpp
+    title: atcoder/modint.hpp
+  - icon: ':question:'
+    path: atcoder/scc.hpp
+    title: atcoder/scc.hpp
+  - icon: ':question:'
+    path: atcoder/segtree.hpp
+    title: atcoder/segtree.hpp
+  - icon: ':question:'
+    path: atcoder/string.hpp
+    title: atcoder/string.hpp
+  - icon: ':question:'
+    path: atcoder/twosat.hpp
+    title: atcoder/twosat.hpp
   _extendedRequiredBy: []
   _extendedVerifiedWith:
   - icon: ':heavy_check_mark:'
@@ -78,12 +132,12 @@ data:
   - icon: ':heavy_check_mark:'
     path: test/yosupo-vertex_add_path_sum.test.cpp
     title: test/yosupo-vertex_add_path_sum.test.cpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':x:'
     path: test/yosupo-vertex_add_subtree_sum.test.cpp
     title: test/yosupo-vertex_add_subtree_sum.test.cpp
-  _isVerificationFailed: false
+  _isVerificationFailed: true
   _pathExtension: hpp
-  _verificationStatusIcon: ':heavy_check_mark:'
+  _verificationStatusIcon: ':question:'
   attributes:
     links: []
   bundledCode: "#line 1 \"template.hpp\"\n#include <bits/stdc++.h>\nusing namespace\
@@ -370,12 +424,30 @@ data:
     \tcin.tie(nullptr);\n\t\tcout << fixed << setprecision(15);\n\t}\n} fast_io_;\n\
     const int inf = 1e9;\nconst ll INF = 1e18;\n#pragma endregion\n\nvoid main_();\n\
     \nint main() {\n\tmain_();\n\treturn 0;\n}\n"
-  dependsOn: []
+  dependsOn:
+  - atcoder/convolution.hpp
+  - atcoder/internal_bit.hpp
+  - atcoder/modint.hpp
+  - atcoder/internal_math.hpp
+  - atcoder/internal_type_traits.hpp
+  - atcoder/dsu.hpp
+  - atcoder/fenwicktree.hpp
+  - atcoder/lazysegtree.hpp
+  - atcoder/math.hpp
+  - atcoder/maxflow.hpp
+  - atcoder/internal_queue.hpp
+  - atcoder/mincostflow.hpp
+  - atcoder/internal_csr.hpp
+  - atcoder/scc.hpp
+  - atcoder/internal_scc.hpp
+  - atcoder/segtree.hpp
+  - atcoder/string.hpp
+  - atcoder/twosat.hpp
   isVerificationFile: false
   path: template.hpp
   requiredBy: []
-  timestamp: '2021-09-07 20:08:56+09:00'
-  verificationStatus: LIBRARY_ALL_AC
+  timestamp: '2021-09-08 15:21:46+09:00'
+  verificationStatus: LIBRARY_SOME_WA
   verifiedWith:
   - test/yosupo-two_edge_connected_components.test.cpp
   - test/aoj-grl-3-b.test.cpp

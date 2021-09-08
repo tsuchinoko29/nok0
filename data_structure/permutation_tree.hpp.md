@@ -1,6 +1,12 @@
 ---
 data:
-  _extendedDependsOn: []
+  _extendedDependsOn:
+  - icon: ':question:'
+    path: atcoder/internal_bit.hpp
+    title: atcoder/internal_bit.hpp
+  - icon: ':question:'
+    path: atcoder/lazysegtree.hpp
+    title: atcoder/lazysegtree.hpp
   _extendedRequiredBy: []
   _extendedVerifiedWith: []
   _isVerificationFailed: false
@@ -115,11 +121,13 @@ data:
     \ i + 1, -1);\n\t\t}\n\t\tshrink();\n\t}\n\n\tvoid shrink() {\n\t\tparent.resize(sz);\n\
     \t\tchildren.resize(sz);\n\t\trange.resize(sz);\n\t\tspan.resize(sz);\n\t\ttyp.resize(sz);\n\
     \t}\n};\n"
-  dependsOn: []
+  dependsOn:
+  - atcoder/lazysegtree.hpp
+  - atcoder/internal_bit.hpp
   isVerificationFile: false
   path: data_structure/permutation_tree.hpp
   requiredBy: []
-  timestamp: '2021-09-07 20:08:56+09:00'
+  timestamp: '2021-09-08 15:21:46+09:00'
   verificationStatus: LIBRARY_NO_TESTS
   verifiedWith: []
 documentation_of: data_structure/permutation_tree.hpp

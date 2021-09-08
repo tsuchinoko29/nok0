@@ -1,10 +1,7 @@
 ---
 data:
   _extendedDependsOn: []
-  _extendedRequiredBy:
-  - icon: ':warning:'
-    path: submit.cpp
-    title: submit.cpp
+  _extendedRequiredBy: []
   _extendedVerifiedWith:
   - icon: ':heavy_check_mark:'
     path: test/aoj-2397.test.cpp
@@ -133,8 +130,7 @@ data:
   dependsOn: []
   isVerificationFile: false
   path: math/matrix.hpp
-  requiredBy:
-  - submit.cpp
+  requiredBy: []
   timestamp: '2021-09-07 20:08:56+09:00'
   verificationStatus: LIBRARY_ALL_AC
   verifiedWith:

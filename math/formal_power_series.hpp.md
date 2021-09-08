@@ -1,6 +1,21 @@
 ---
 data:
-  _extendedDependsOn: []
+  _extendedDependsOn:
+  - icon: ':question:'
+    path: atcoder/convolution.hpp
+    title: atcoder/convolution.hpp
+  - icon: ':question:'
+    path: atcoder/internal_bit.hpp
+    title: atcoder/internal_bit.hpp
+  - icon: ':question:'
+    path: atcoder/internal_math.hpp
+    title: atcoder/internal_math.hpp
+  - icon: ':question:'
+    path: atcoder/internal_type_traits.hpp
+    title: atcoder/internal_type_traits.hpp
+  - icon: ':question:'
+    path: atcoder/modint.hpp
+    title: atcoder/modint.hpp
   _extendedRequiredBy:
   - icon: ':warning:'
     path: math/multipoint_evaluation.hpp
@@ -327,12 +342,17 @@ data:
     \ k);\n\tvoid sparse_pow_inv(const int n, const int d, const T c, const int k);\n\
     \tvoid stirling_first(int n);\n\tvoid stirling_second(int n);\n\tstd::vector<T>\
     \ multipoint_evaluation(const std::vector<T> &p);\n};\n"
-  dependsOn: []
+  dependsOn:
+  - atcoder/convolution.hpp
+  - atcoder/internal_bit.hpp
+  - atcoder/modint.hpp
+  - atcoder/internal_math.hpp
+  - atcoder/internal_type_traits.hpp
   isVerificationFile: false
   path: math/formal_power_series.hpp
   requiredBy:
   - math/multipoint_evaluation.hpp
-  timestamp: '2021-09-07 20:08:56+09:00'
+  timestamp: '2021-09-08 15:21:46+09:00'
   verificationStatus: LIBRARY_NO_TESTS
   verifiedWith: []
 documentation_of: math/formal_power_series.hpp

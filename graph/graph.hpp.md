@@ -5,7 +5,7 @@ data:
   - icon: ':warning:'
     path: graph/dag_mcf.hpp
     title: graph/dag_mcf.hpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':question:'
     path: graph/hld.hpp
     title: graph/hld.hpp
   - icon: ':heavy_check_mark:'
@@ -81,12 +81,12 @@ data:
   - icon: ':heavy_check_mark:'
     path: test/yosupo-vertex_add_path_sum.test.cpp
     title: test/yosupo-vertex_add_path_sum.test.cpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':x:'
     path: test/yosupo-vertex_add_subtree_sum.test.cpp
     title: test/yosupo-vertex_add_subtree_sum.test.cpp
-  _isVerificationFailed: false
+  _isVerificationFailed: true
   _pathExtension: hpp
-  _verificationStatusIcon: ':heavy_check_mark:'
+  _verificationStatusIcon: ':question:'
   attributes:
     links: []
   bundledCode: "#line 2 \"graph/graph.hpp\"\n#include <algorithm>\n#include <cassert>\n\
@@ -407,7 +407,7 @@ data:
   - graph/namori.hpp
   - graph/scc.hpp
   timestamp: '2021-09-08 10:25:09+09:00'
-  verificationStatus: LIBRARY_ALL_AC
+  verificationStatus: LIBRARY_SOME_WA
   verifiedWith:
   - test/yosupo-two_edge_connected_components.test.cpp
   - test/aoj-grl-3-b.test.cpp

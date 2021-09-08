@@ -1,6 +1,21 @@
 ---
 data:
   _extendedDependsOn:
+  - icon: ':question:'
+    path: atcoder/convolution.hpp
+    title: atcoder/convolution.hpp
+  - icon: ':question:'
+    path: atcoder/internal_bit.hpp
+    title: atcoder/internal_bit.hpp
+  - icon: ':question:'
+    path: atcoder/internal_math.hpp
+    title: atcoder/internal_math.hpp
+  - icon: ':question:'
+    path: atcoder/internal_type_traits.hpp
+    title: atcoder/internal_type_traits.hpp
+  - icon: ':question:'
+    path: atcoder/modint.hpp
+    title: atcoder/modint.hpp
   - icon: ':warning:'
     path: math/formal_power_series.hpp
     title: math/formal_power_series.hpp
@@ -197,11 +212,16 @@ data:
     }\n\tstd::vector<T> res(m);\n\tfor(int i = 0; i < m; i++) res[i] = rem[i + n][0];\n\
     \treturn res;\n}\n"
   dependsOn:
+  - atcoder/internal_bit.hpp
   - math/formal_power_series.hpp
+  - atcoder/convolution.hpp
+  - atcoder/modint.hpp
+  - atcoder/internal_math.hpp
+  - atcoder/internal_type_traits.hpp
   isVerificationFile: false
   path: math/multipoint_evaluation.hpp
   requiredBy: []
-  timestamp: '2021-09-07 20:08:56+09:00'
+  timestamp: '2021-09-08 15:21:46+09:00'
   verificationStatus: LIBRARY_NO_TESTS
   verifiedWith: []
 documentation_of: math/multipoint_evaluation.hpp
