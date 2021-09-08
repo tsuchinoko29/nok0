@@ -8,37 +8,43 @@ data:
   - icon: ':heavy_check_mark:'
     path: graph/hld.hpp
     title: graph/hld.hpp
-  - icon: ':warning:'
+  - icon: ':heavy_check_mark:'
     path: graph/low_link.hpp
     title: graph/low_link.hpp
   - icon: ':warning:'
     path: graph/namori.hpp
     title: graph/namori.hpp
-  - icon: ':warning:'
+  - icon: ':x:'
     path: graph/scc.hpp
     title: graph/scc.hpp
   - icon: ':heavy_check_mark:'
     path: graph/tree_doubling.hpp
     title: graph/tree_doubling.hpp
-  - icon: ':warning:'
+  - icon: ':heavy_check_mark:'
     path: graph/two_edge_cc.hpp
     title: graph/two_edge_cc.hpp
   _extendedVerifiedWith:
   - icon: ':heavy_check_mark:'
     path: test/yosupo-lca.test.cpp
     title: test/yosupo-lca.test.cpp
+  - icon: ':x:'
+    path: test/yosupo-scc.test.cpp
+    title: test/yosupo-scc.test.cpp
   - icon: ':heavy_check_mark:'
     path: test/yosupo-tree_diameter.test.cpp
     title: test/yosupo-tree_diameter.test.cpp
+  - icon: ':heavy_check_mark:'
+    path: test/yosupo-two_edge_connected_components.test.cpp
+    title: test/yosupo-two_edge_connected_components.test.cpp
   - icon: ':heavy_check_mark:'
     path: test/yosupo-vertex_add_path_sum.test.cpp
     title: test/yosupo-vertex_add_path_sum.test.cpp
   - icon: ':heavy_check_mark:'
     path: test/yosupo-vertex_add_subtree_sum.test.cpp
     title: test/yosupo-vertex_add_subtree_sum.test.cpp
-  _isVerificationFailed: false
+  _isVerificationFailed: true
   _pathExtension: hpp
-  _verificationStatusIcon: ':heavy_check_mark:'
+  _verificationStatusIcon: ':question:'
   attributes:
     links: []
   bundledCode: "#line 2 \"graph/graph.hpp\"\n#include <algorithm>\n#include <cassert>\n\
@@ -359,12 +365,14 @@ data:
   - graph/namori.hpp
   - graph/scc.hpp
   timestamp: '2021-09-07 20:08:56+09:00'
-  verificationStatus: LIBRARY_ALL_AC
+  verificationStatus: LIBRARY_SOME_WA
   verifiedWith:
+  - test/yosupo-two_edge_connected_components.test.cpp
   - test/yosupo-tree_diameter.test.cpp
   - test/yosupo-lca.test.cpp
   - test/yosupo-vertex_add_path_sum.test.cpp
   - test/yosupo-vertex_add_subtree_sum.test.cpp
+  - test/yosupo-scc.test.cpp
 documentation_of: graph/graph.hpp
 layout: document
 redirect_from:

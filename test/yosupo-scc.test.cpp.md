@@ -4,23 +4,22 @@ data:
   - icon: ':question:'
     path: graph/graph.hpp
     title: graph/graph.hpp
-  - icon: ':heavy_check_mark:'
-    path: graph/tree_doubling.hpp
-    title: graph/tree_doubling.hpp
+  - icon: ':x:'
+    path: graph/scc.hpp
+    title: graph/scc.hpp
   - icon: ':question:'
     path: template.hpp
     title: template.hpp
   _extendedRequiredBy: []
   _extendedVerifiedWith: []
-  _isVerificationFailed: false
+  _isVerificationFailed: true
   _pathExtension: cpp
-  _verificationStatusIcon: ':heavy_check_mark:'
+  _verificationStatusIcon: ':x:'
   attributes:
     '*NOT_SPECIAL_COMMENTS*': ''
-    PROBLEM: https://judge.yosupo.jp/problem/lca
     links:
-    - https://judge.yosupo.jp/problem/lca
-  bundledCode: "#line 1 \"test/yosupo-lca.test.cpp\"\n#define PROBLEM \"https://judge.yosupo.jp/problem/lca\"\
+    - https://judge.yosupo.jp/problem/scc
+  bundledCode: "#line 1 \"test/yosupo-scc.test.cpp\"\n#define PROBLME \"https://judge.yosupo.jp/problem/scc\"\
     \n\n#line 2 \"graph/graph.hpp\"\n#include <algorithm>\n#include <cassert>\n#include\
     \ <deque>\n#include <iostream>\n#include <queue>\n#include <tuple>\n#include <utility>\n\
     #include <vector>\n\nstruct Edge {\n\tint to;\n\tlong long cost;\n\tEdge() = default;\n\
@@ -173,29 +172,32 @@ data:
     \ -> void {\n\t\t\tfor(auto &e : edges[now]) {\n\t\t\t\tif(chk[e.to] == 1) continue;\n\
     \t\t\t\tchk[e.to] = 1;\n\t\t\t\tres.add_edge(e.to, now, e.cost, 1, 0);\n\t\t\t\
     \tself(self, e.to);\n\t\t\t}\n\t\t};\n\t\tdfs(dfs, root);\n\t\treturn res;\n\t\
-    }\n\n\t// long long Chu_Liu_Edmonds(int root = 0) {}\n};\n#line 3 \"graph/tree_doubling.hpp\"\
-    \n\nstruct tree_doubling {\nprivate:\n\tstd::vector<std::vector<int>> parent;\n\
-    \tstd::vector<int> depth;\n\tstd::vector<long long> dist;\n\tint max_jump = 1;\n\
-    \n\tvoid build() {\n\t\tfor(int i = 0; i < max_jump - 1; i++) {\n\t\t\tfor(int\
-    \ v = 0; v < (int)dist.size(); v++) {\n\t\t\t\tif(parent[i][v] == -1)\n\t\t\t\t\
-    \tparent[i + 1][v] = -1;\n\t\t\t\telse\n\t\t\t\t\tparent[i + 1][v] = parent[i][parent[i][v]];\n\
-    \t\t\t}\n\t\t}\n\t}\n\npublic:\n\ttree_doubling() = default;\n\ttree_doubling(const\
-    \ Graph &g, const int root = 0) : dist(g.size()), depth(g.size()) {\n\t\tint n\
-    \ = g.size();\n\t\twhile((1 << max_jump) < n) max_jump++;\n\t\tparent.assign(max_jump,\
-    \ std::vector<int>(n, -1));\n\t\tauto dfs = [&](auto self, int now, int per, int\
-    \ d, long long cost) -> void {\n\t\t\tparent[0][now] = per;\n\t\t\tdepth[now]\
-    \ = d;\n\t\t\tdist[now] = cost;\n\t\t\tfor(auto &e : g[now])\n\t\t\t\tif(e.to\
-    \ != per) self(self, e.to, now, d + 1, cost + e.cost);\n\t\t};\n\t\tdfs(dfs, root,\
-    \ -1, 0, 0LL);\n\t\tbuild();\n\t}\n\n\tint lowest_common_ancestor(int u, int v)\
-    \ {\n\t\tif(depth[u] < depth[v]) std::swap(u, v);\n\t\tint k = parent.size();\n\
-    \t\tfor(int i = 0; i < k; i++)\n\t\t\tif((depth[u] - depth[v]) >> i & 1) u = parent[i][u];\n\
-    \t\tif(u == v) return u;\n\t\tfor(int i = k - 1; i >= 0; i--)\n\t\t\tif(parent[i][u]\
-    \ != parent[i][v]) u = parent[i][u], v = parent[i][v];\n\t\treturn parent[0][u];\n\
-    \t}\n\n\tlong long length_of_path(const int u, const int v) { return dist[u] +\
-    \ dist[v] - dist[lowest_common_ancestor(u, v)] * 2; }\n\n\tint level_ancestor(int\
-    \ v, int level) {\n\t\tassert(level >= 0);\n\t\tfor(int jump = 0; jump < max_jump\
-    \ and level; jump++) {\n\t\t\tif(level & 1) v = parent[jump][v];\n\t\t\tlevel\
-    \ >>= 1;\n\t\t}\n\t\treturn v;\n\t}\n};\n#line 1 \"template.hpp\"\n#include <bits/stdc++.h>\n\
+    }\n\n\t// long long Chu_Liu_Edmonds(int root = 0) {}\n};\n#line 3 \"graph/scc.hpp\"\
+    \n\nstruct strongly_connected_components {\nprivate:\n\tenum { CHECKED = -1,\n\
+    \t\t   UNCHECKED = -2 };\n\tconst Graph &graph_given;\n\tGraph graph_reversed;\n\
+    \tstd::vector<int> order, group_number; /* at the beginning of the building, 'group_number'\
+    \ is used as 'checked' */\n\n\tvoid dfs(int now) {\n\t\tif(group_number[now] !=\
+    \ UNCHECKED) return;\n\t\tgroup_number[now] = CHECKED;\n\t\tfor(auto &e : graph_given[now])\
+    \ dfs(e.to);\n\t\torder.push_back(now);\n\t}\n\n\tvoid rdfs(int now, int group_count)\
+    \ {\n\t\tif(group_number[now] != UNCHECKED) return;\n\t\tgroup_number[now] = group_count;\n\
+    \t\tfor(auto &e : graph_reversed[now]) rdfs(e.to, group_count);\n\t}\n\n\tvoid\
+    \ build(bool create_compressed_graph) {\n\t\tfor(int i = 0; i < (int)graph_given.size();\
+    \ i++) dfs(i);\n\t\treverse(order.begin(), order.end());\n\t\tgroup_number.assign(graph_given.size(),\
+    \ UNCHECKED);\n\t\tint group = 0;\n\t\tfor(auto &i : order)\n\t\t\tif(group_number[i]\
+    \ == UNCHECKED) rdfs(i, group), group++;\n\t\tgraph_compressed.resize(group);\n\
+    \t\tgroups.resize(group);\n\t\tfor(int i = 0; i < (int)graph_given.size(); i++)\
+    \ groups[group_number[i]].push_back(i);\n\t\tif(create_compressed_graph) {\n\t\
+    \t\tstd::vector<int> edges(group, -1);\n\t\t\tfor(int i = 0; i < group; i++)\n\
+    \t\t\t\tfor(auto &vertex : groups[i])\n\t\t\t\t\tfor(auto &e : graph_given[vertex])\n\
+    \t\t\t\t\t\tif(group_number[e.to] != i and edges[group_number[e.to]] != i) {\n\
+    \t\t\t\t\t\t\tedges[group_number[e.to]] = i;\n\t\t\t\t\t\t\tgraph_compressed[i].emplace_back(group_number[e.to],\
+    \ 1);\n\t\t\t\t\t\t}\n\t\t}\n\t\treturn;\n\t}\n\npublic:\n\tstd::vector<std::vector<int>>\
+    \ groups;\n\tGraph graph_compressed;\n\n\tstrongly_connected_components(const\
+    \ Graph &g_, bool create_compressed_graph = false)\n\t  : graph_given(g_), graph_reversed(g_.size()),\
+    \ group_number(g_.size(), UNCHECKED) {\n\t\tfor(size_t i = 0; i < g_.size(); i++)\n\
+    \t\t\tfor(auto &e : graph_given[i]) graph_reversed[e.to].emplace_back(i, 1);\n\
+    \t\tbuild(create_compressed_graph);\n\t}\n\n\tconst int &operator[](const int\
+    \ k) { return group_number[k]; }\n};\n#line 1 \"template.hpp\"\n#include <bits/stdc++.h>\n\
     using namespace std;\n#if __has_include(<atcoder/all>)\n#include <atcoder/all>\n\
     using namespace atcoder;\n#endif\n\n#pragma region Macros\n// rep macro\n#define\
     \ foa(v, a) for(auto &v : a)\n#define REPname(a, b, c, d, e, ...) e\n#define REP(...)\
@@ -337,29 +339,29 @@ data:
     \ others\nstruct fast_io {\n\tfast_io() {\n\t\tios::sync_with_stdio(false);\n\t\
     \tcin.tie(nullptr);\n\t\tcout << fixed << setprecision(15);\n\t}\n} fast_io_;\n\
     const int inf = 1e9;\nconst ll INF = 1e18;\n#pragma endregion\n\nvoid main_();\n\
-    \nint main() {\n\tmain_();\n\treturn 0;\n}\n#line 6 \"test/yosupo-lca.test.cpp\"\
-    \n\nvoid main_() {\n\tINT(n, q);\n\tGraph g(n);\n\tREP(i, n - 1) {\n\t\tINT(p);\n\
-    \t\tg.add_edge(i + 1, p);\n\t}\n\ttree_doubling td(g, 0);\n\twhile(q--) {\n\t\t\
-    INT(u, v);\n\t\tprint(td.lowest_common_ancestor(u, v));\n\t}\n}\n"
-  code: "#define PROBLEM \"https://judge.yosupo.jp/problem/lca\"\n\n#include \"graph/graph.hpp\"\
-    \n#include \"graph/tree_doubling.hpp\"\n#include \"template.hpp\"\n\nvoid main_()\
-    \ {\n\tINT(n, q);\n\tGraph g(n);\n\tREP(i, n - 1) {\n\t\tINT(p);\n\t\tg.add_edge(i\
-    \ + 1, p);\n\t}\n\ttree_doubling td(g, 0);\n\twhile(q--) {\n\t\tINT(u, v);\n\t\
-    \tprint(td.lowest_common_ancestor(u, v));\n\t}\n}"
+    \nint main() {\n\tmain_();\n\treturn 0;\n}\n#line 6 \"test/yosupo-scc.test.cpp\"\
+    \n\nvoid main_() {\n\tINT(n, m);\n\tGraph g(n, m, 0, 1, 0);\n\tstrongly_connected_components\
+    \ scc(g);\n\tprint(SZ(scc.groups));\n\tfoa(group, scc.groups)\n\t    print(SZ(group),\
+    \ group);\n}\n"
+  code: "#define PROBLME \"https://judge.yosupo.jp/problem/scc\"\n\n#include \"graph/graph.hpp\"\
+    \n#include \"graph/scc.hpp\"\n#include \"template.hpp\"\n\nvoid main_() {\n\t\
+    INT(n, m);\n\tGraph g(n, m, 0, 1, 0);\n\tstrongly_connected_components scc(g);\n\
+    \tprint(SZ(scc.groups));\n\tfoa(group, scc.groups)\n\t    print(SZ(group), group);\n\
+    }"
   dependsOn:
   - graph/graph.hpp
-  - graph/tree_doubling.hpp
+  - graph/scc.hpp
   - template.hpp
   isVerificationFile: true
-  path: test/yosupo-lca.test.cpp
+  path: test/yosupo-scc.test.cpp
   requiredBy: []
-  timestamp: '2021-09-08 00:32:03+09:00'
-  verificationStatus: TEST_ACCEPTED
+  timestamp: '2021-09-08 10:12:28+09:00'
+  verificationStatus: TEST_WRONG_ANSWER
   verifiedWith: []
-documentation_of: test/yosupo-lca.test.cpp
+documentation_of: test/yosupo-scc.test.cpp
 layout: document
 redirect_from:
-- /verify/test/yosupo-lca.test.cpp
-- /verify/test/yosupo-lca.test.cpp.html
-title: test/yosupo-lca.test.cpp
+- /verify/test/yosupo-scc.test.cpp
+- /verify/test/yosupo-scc.test.cpp.html
+title: test/yosupo-scc.test.cpp
 ---

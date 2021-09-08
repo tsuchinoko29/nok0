@@ -15,7 +15,7 @@ data:
     - icon: ':warning:'
       path: submit.cpp
       title: submit.cpp
-    - icon: ':heavy_check_mark:'
+    - icon: ':question:'
       path: template.hpp
       title: template.hpp
   - name: data_structure
@@ -23,6 +23,9 @@ data:
     - icon: ':heavy_check_mark:'
       path: data_structure/binary_indexed_tree.hpp
       title: data_structure/binary_indexed_tree.hpp
+    - icon: ':heavy_check_mark:'
+      path: data_structure/binary_trie.hpp
+      title: data_structure/binary_trie.hpp
     - icon: ':heavy_check_mark:'
       path: data_structure/dice.hpp
       title: data_structure/dice.hpp
@@ -49,13 +52,13 @@ data:
     - icon: ':warning:'
       path: graph/dag_mcf.hpp
       title: graph/dag_mcf.hpp
-    - icon: ':heavy_check_mark:'
+    - icon: ':question:'
       path: graph/graph.hpp
       title: graph/graph.hpp
     - icon: ':heavy_check_mark:'
       path: graph/hld.hpp
       title: graph/hld.hpp
-    - icon: ':warning:'
+    - icon: ':heavy_check_mark:'
       path: graph/low_link.hpp
       title: graph/low_link.hpp
     - icon: ':warning:'
@@ -64,13 +67,13 @@ data:
     - icon: ':warning:'
       path: graph/namori.hpp
       title: graph/namori.hpp
-    - icon: ':warning:'
+    - icon: ':x:'
       path: graph/scc.hpp
       title: graph/scc.hpp
     - icon: ':heavy_check_mark:'
       path: graph/tree_doubling.hpp
       title: graph/tree_doubling.hpp
-    - icon: ':warning:'
+    - icon: ':heavy_check_mark:'
       path: graph/two_edge_cc.hpp
       title: graph/two_edge_cc.hpp
   - name: math
@@ -125,9 +128,18 @@ data:
     - icon: ':heavy_check_mark:'
       path: test/yosupo-lca.test.cpp
       title: test/yosupo-lca.test.cpp
+    - icon: ':x:'
+      path: test/yosupo-scc.test.cpp
+      title: test/yosupo-scc.test.cpp
+    - icon: ':heavy_check_mark:'
+      path: test/yosupo-set_xor_min.test.cpp
+      title: test/yosupo-set_xor_min.test.cpp
     - icon: ':heavy_check_mark:'
       path: test/yosupo-tree_diameter.test.cpp
       title: test/yosupo-tree_diameter.test.cpp
+    - icon: ':heavy_check_mark:'
+      path: test/yosupo-two_edge_connected_components.test.cpp
+      title: test/yosupo-two_edge_connected_components.test.cpp
     - icon: ':heavy_check_mark:'
       path: test/yosupo-vertex_add_path_sum.test.cpp
       title: test/yosupo-vertex_add_path_sum.test.cpp

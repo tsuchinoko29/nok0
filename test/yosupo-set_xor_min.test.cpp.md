@@ -2,11 +2,8 @@
 data:
   _extendedDependsOn:
   - icon: ':heavy_check_mark:'
-    path: data_structure/offline_dynamic_connectivity.hpp
-    title: data_structure/offline_dynamic_connectivity.hpp
-  - icon: ':heavy_check_mark:'
-    path: data_structure/undo_uf.hpp
-    title: data_structure/undo_uf.hpp
+    path: data_structure/binary_trie.hpp
+    title: data_structure/binary_trie.hpp
   - icon: ':question:'
     path: template.hpp
     title: template.hpp
@@ -17,80 +14,100 @@ data:
   _verificationStatusIcon: ':heavy_check_mark:'
   attributes:
     '*NOT_SPECIAL_COMMENTS*': ''
-    PROBLEM: https://judge.u-aizu.ac.jp/onlinejudge/description.jsp?id=2235&lang=jp
+    PROBLEM: https://judge.yosupo.jp/problem/set_xor_min
     links:
-    - https://judge.u-aizu.ac.jp/onlinejudge/description.jsp?id=2235&lang=jp
-  bundledCode: "#line 1 \"test/aoj-2235.test.cpp\"\n#define PROBLEM \"https://judge.u-aizu.ac.jp/onlinejudge/description.jsp?id=2235&lang=jp\"\
-    \n\n#line 2 \"data_structure/offline_dynamic_connectivity.hpp\"\n#include <algorithm>\n\
-    #include <map>\n\n#line 2 \"data_structure/undo_uf.hpp\"\n#include <stack>\n#include\
-    \ <vector>\n\nstruct rollback_unionfind {\nprivate:\n\tstd::vector<int> par;\n\
-    \tstd::stack<std::pair<int, int>> history;\n\npublic:\n\trollback_unionfind()\
-    \ = default;\n\n\trollback_unionfind(size_t n) : par(n, -1) {}\n\n\tint root(int\
-    \ x) {\n\t\tif(par[x] < 0) return x;\n\t\treturn root(par[x]);\n\t}\n\n\tbool\
-    \ same(int x, int y) { return root(x) == root(y); }\n\n\tbool unite(int x, int\
-    \ y) {\n\t\tx = root(x), y = root(y);\n\t\thistory.emplace(x, par[x]);\n\t\thistory.emplace(y,\
-    \ par[y]);\n\t\tif(x == y) return false;\n\t\tif(par[x] > par[y]) std::swap(x,\
-    \ y);\n\t\tpar[x] += par[y];\n\t\tpar[y] = x;\n\t\treturn true;\n\t}\n\n\tvoid\
-    \ snapshot() {\n\t\twhile(!history.empty()) history.pop();\n\t}\n\n\tvoid undo()\
-    \ {\n\t\tfor(int i = 0; i < 2; i++) {\n\t\t\tpar[history.top().first] = history.top().second;\n\
-    \t\t\thistory.pop();\n\t\t}\n\t}\n\n\tvoid rollback() {\n\t\twhile(!history.empty())\
-    \ undo();\n\t}\n\n\tsize_t size(int x) { return -par[root(x)]; }\n};\n#line 6\
-    \ \"data_structure/offline_dynamic_connectivity.hpp\"\nstruct offline_dynamic_connectivity\
-    \ {\npublic:\n\trollback_unionfind uf;\n\n\toffline_dynamic_connectivity(int n,\
-    \ int q) : uf(n), seg(q), q(q) {}\n\n\tvoid link(int t, int u, int v) {\n\t\t\
-    std::pair e = std::minmax(u, v);\n\t\tif(!cnt[e]++) appear[e] = t;\n\t}\n\n\t\
-    void cut(int t, int u, int v) {\n\t\tstd::pair e = std::minmax(u, v);\n\t\tif(!(--cnt[e]))\
-    \ seg.set(appear[e], t, e);\n\t}\n\n\tvoid build() {\n\t\tfor(const auto &[e,\
-    \ val] : cnt)\n\t\t\tif(val) seg.set(appear[e], q, e);\n\t}\n\n\ttemplate <class\
-    \ F>\n\tvoid run(const F &f, int k = 1) {\n\t\tfor(const auto &[u, v] : seg.node[k])\n\
-    \t\t\tuf.unite(u, v);\n\t\tif(k < q)\n\t\t\trun(f, k << 1), run(f, k << 1 | 1);\n\
-    \t\telse\n\t\t\tf(k - q);\n\t\tfor(int i = 0; i < (int)seg.node[k].size(); i++)\n\
-    \t\t\tuf.undo();\n\t}\n\nprivate:\n\tint q;\n\tusing edge = std::pair<int, int>;\n\
-    \tstd::map<edge, int> appear, cnt;\n\tstd::vector<std::pair<std::pair<int, int>,\
-    \ edge>> pend;\n\n\tstruct seg {\n\tpublic:\n\t\tint n;\n\t\tstd::vector<std::vector<edge>>\
-    \ node;\n\t\tseg(int n_) : n(n_), node(n << 1) {}\n\n\t\tvoid set(int l, int r,\
-    \ edge e) {\n\t\t\tfor(l += n, r += n; l < r; l >>= 1, r >>= 1) {\n\t\t\t\tif(l\
-    \ & 1) node[l++].push_back(e);\n\t\t\t\tif(r & 1) node[--r].push_back(e);\n\t\t\
-    \t}\n\t\t}\n\t};\n\n\tseg seg;\n};\n#line 1 \"template.hpp\"\n#include <bits/stdc++.h>\n\
-    using namespace std;\n#if __has_include(<atcoder/all>)\n#include <atcoder/all>\n\
-    using namespace atcoder;\n#endif\n\n#pragma region Macros\n// rep macro\n#define\
-    \ foa(v, a) for(auto &v : a)\n#define REPname(a, b, c, d, e, ...) e\n#define REP(...)\
-    \ REPname(__VA_ARGS__, REP3, REP2, REP1, REP0)(__VA_ARGS__)\n#define REP0(x) for(int\
-    \ i = 0; i < (x); ++i)\n#define REP1(i, x) for(int i = 0; i < (x); ++i)\n#define\
-    \ REP2(i, l, r) for(int i = (l); i < (r); ++i)\n#define REP3(i, l, r, c) for(int\
-    \ i = (l); i < (r); i += (c))\n#define REPSname(a, b, c, ...) c\n#define REPS(...)\
-    \ REPSname(__VA_ARGS__, REPS1, REPS0)(__VA_ARGS__)\n#define REPS0(x) for(int i\
-    \ = 1; i <= (x); ++i)\n#define REPS1(i, x) for(int i = 1; i <= (x); ++i)\n#define\
-    \ RREPname(a, b, c, d, e, ...) e\n#define RREP(...) RREPname(__VA_ARGS__, RREP3,\
-    \ RREP2, RREP1, RREP0)(__VA_ARGS__)\n#define RREP0(x) for(int i = (x)-1; i >=\
-    \ 0; --i)\n#define RREP1(i, x) for(int i = (x)-1; i >= 0; --i)\n#define RREP2(i,\
-    \ r, l) for(int i = (r)-1; i >= (l); --i)\n#define RREP3(i, r, l, c) for(int i\
-    \ = (r)-1; i >= (l); i -= (c))\n#define RREPSname(a, b, c, ...) c\n#define RREPS(...)\
-    \ RREPSname(__VA_ARGS__, RREPS1, RREPS0)(__VA_ARGS__)\n#define RREPS0(x) for(int\
-    \ i = (x); i >= 1; --i)\n#define RREPS1(i, x) for(int i = (x); i >= 1; --i)\n\n\
-    // name macro\n#define pb push_back\n#define eb emplace_back\n#define SZ(x) ((int)(x).size())\n\
-    #define all(x) (x).begin(), (x).end()\n#define rall(x) (x).rbegin(), (x).rend()\n\
-    #define popcnt(x) __builtin_popcountll(x)\ntemplate <class T = int>\nusing V =\
-    \ std::vector<T>;\ntemplate <class T = int>\nusing VV = std::vector<std::vector<T>>;\n\
-    template <class T>\nusing pqup = std::priority_queue<T, std::vector<T>, std::greater<T>>;\n\
-    using ll = long long;\nusing ld = long double;\nusing int128 = __int128_t;\nusing\
-    \ pii = std::pair<int, int>;\nusing pll = std::pair<long long, long long>;\n\n\
-    // input macro\ntemplate <class T, class U>\nstd::istream &operator>>(std::istream\
-    \ &is, std::pair<T, U> &p) {\n\tis >> p.first >> p.second;\n\treturn is;\n}\n\
-    template <class T>\nstd::istream &operator>>(std::istream &is, std::vector<T>\
-    \ &v) {\n\tfor(T &i : v) is >> i;\n\treturn is;\n}\nstd::istream &operator>>(std::istream\
-    \ &is, __int128_t &a) {\n\tstd::string s;\n\tis >> s;\n\t__int128_t ret = 0;\n\
-    \tfor(int i = 0; i < s.length(); i++)\n\t\tif('0' <= s[i] and s[i] <= '9')\n\t\
-    \t\tret = 10 * ret + s[i] - '0';\n\ta = ret * (s[0] == '-' ? -1 : 1);\n\treturn\
-    \ is;\n}\n#if __has_include(<atcoder/all>)\nstd::istream &operator>>(std::istream\
-    \ &is, atcoder::modint998244353 &a) {\n\tlong long v;\n\tis >> v;\n\ta = v;\n\t\
-    return is;\n}\nstd::istream &operator>>(std::istream &is, atcoder::modint1000000007\
+    - https://judge.yosupo.jp/problem/set_xor_min
+  bundledCode: "#line 1 \"test/yosupo-set_xor_min.test.cpp\"\n#define PROBLEM \"https://judge.yosupo.jp/problem/set_xor_min\"\
+    \n\n#line 1 \"data_structure/binary_trie.hpp\"\n#include <algorithm>\n#include\
+    \ <cassert>\n#include <iostream>\n#include <memory>\n\ntemplate <class T, unsigned\
+    \ char BIT_SIZE = 30, bool multi = true>\nstruct binary_trie {\n\tusing u64 =\
+    \ unsigned long long int;\n\npublic:\n\tbinary_trie() : root(new node(0)) {}\n\
+    \n\tu64 count(const T x) { return count(root, x); }\n\n\tvoid insert(const T x,\
+    \ const u64 k = 1) {\n\t\tif(multi == false and count(x)) return;\n\t\tinsert(root,\
+    \ x, k);\n\t}\n\n\tvoid erase(const T x, const u64 k = 1) {\n\t\tif(!count(x))\
+    \ return;\n\t\terase(root, x, k);\n\t}\n\n\tu64 lower_bound(const T x) { return\
+    \ lower_bound(root, x); }\n\n\tu64 upper_bound(const T x) { return lower_bound(x\
+    \ + 1); }\n\n\tvoid xor_all(const T x) { root->lazy ^= x; }\n\n\tT xor_min(const\
+    \ T x) { return xor_min(root, x); }\n\n\tT xor_max(const T x) { return xor_min(x\
+    \ ^ MAX) ^ MAX; }\n\n\tT operator[](const u64 k) {\n\t\tassert(0 <= k and k <\
+    \ size());\n\t\treturn operator_func(root, k);\n\t}\n\n\tT min_element() { return\
+    \ (*this)[0]; }\n\n\tT max_element() { return (*this)[size() - 1]; }\n\n\tu64\
+    \ size() const noexcept { return cnt(root); }\n\n\tbool empty() const noexcept\
+    \ { return cnt(root) == 0; }\n\n\tvoid dump() {\n\t\tstd::cerr << \"[\";\n\t\t\
+    if(!size()) std::cerr << ']';\n\t\tfor(int i = 0; i < size(); i++)\n\t\t\tstd::cerr\
+    \ << (*this)[i] << \",]\"[i == size() - 1];\n\t\tstd::cerr << '\\n';\n\t}\n\n\
+    private:\n\tstruct node;\n\tusing node_ptr = std::unique_ptr<node>;\n\n\tstruct\
+    \ node {\n\t\tT cnt, lazy;\n\t\tnode_ptr descend[2];\n\t\tnode(T cnt) : cnt(cnt),\
+    \ lazy(0), descend{nullptr, nullptr} {}\n\t};\n\n\tnode_ptr root;\n\n\tconst T\
+    \ MAX = (1ull << BIT_SIZE) - 1;\n\n\tu64 cnt(const node_ptr &t) const { return\
+    \ t != nullptr ? t->cnt : 0; }\n\n\tu64 count(node_ptr &t, const T x, const unsigned\
+    \ char i = BIT_SIZE - 1) {\n\t\teval(t, i);\n\t\tconst T bit = x >> i & 1;\n\t\
+    \tif(t->descend[bit] != nullptr)\n\t\t\treturn (i ? count(t->descend[bit], x,\
+    \ i - 1) : cnt(t->descend[bit]));\n\t\telse\n\t\t\treturn 0;\n\t}\n\n\tvoid eval(node_ptr\
+    \ &t, const unsigned char i = BIT_SIZE - 1) {\n\t\tif(t->lazy >> i & 1) std::swap(t->descend[0],\
+    \ t->descend[1]);\n\t\tif(t->descend[0]) t->descend[0]->lazy ^= t->lazy;\n\t\t\
+    if(t->descend[1]) t->descend[1]->lazy ^= t->lazy;\n\t\tt->lazy = 0;\n\t}\n\n\t\
+    void insert(node_ptr &t, const T x, const u64 k, const unsigned char i = BIT_SIZE\
+    \ - 1) {\n\t\tt->cnt += k;\n\t\teval(t, i);\n\t\tconst T bit = x >> i & 1;\n\t\
+    \tif(!t->descend[bit]) t->descend[bit] = std::make_unique<node>(0);\n\t\tif(i)\n\
+    \t\t\tinsert(t->descend[bit], x, k, i - 1);\n\t\telse\n\t\t\tt->descend[bit]->cnt\
+    \ += k;\n\t}\n\n\tvoid erase(node_ptr &t, const T x, const u64 k, const unsigned\
+    \ char i = BIT_SIZE - 1) {\n\t\tt->cnt -= k;\n\t\teval(t, i);\n\t\tconst T bit\
+    \ = x >> i & 1;\n\t\tif(i)\n\t\t\terase(t->descend[bit], x, k, i - 1);\n\t\telse\n\
+    \t\t\tt->descend[bit]->cnt -= k;\n\t}\n\n\tu64 lower_bound(node_ptr &t, const\
+    \ T x, const unsigned char i = BIT_SIZE - 1) {\n\t\tu64 ret = 0;\n\t\teval(t,\
+    \ i);\n\t\tif(cnt(t) == 0) return ret;\n\t\tconst T bit = x >> i & 1;\n\t\tif(t->descend[bit])\
+    \ {\n\t\t\tif(bit) ret += cnt(t->descend[0]);\n\t\t\treturn ret += (i ? lower_bound(t->descend[bit],\
+    \ x, i - 1) : 0);\n\t\t} else\n\t\t\treturn bit ? ret + cnt(t->descend[0]) : ret;\n\
+    \t}\n\n\tT xor_min(node_ptr &t, const T x, const unsigned char i = BIT_SIZE -\
+    \ 1) {\n\t\teval(t, i);\n\t\tconst T bit = x >> i & 1;\n\t\tif(i == 0)\n\t\t\t\
+    return !cnt(t->descend[bit]);\n\t\tif(cnt(t->descend[bit]))\n\t\t\treturn xor_min(t->descend[bit],\
+    \ x, i - 1);\n\t\telse {\n\t\t\tif(t->descend[!bit] == nullptr) t->descend[bit]\
+    \ = std::make_unique<node>(0);\n\t\t\treturn xor_min(t->descend[!bit], x, i -\
+    \ 1) + (1ull << i);\n\t\t}\n\t}\n\n\tT operator_func(node_ptr &t, u64 k, const\
+    \ unsigned char i = BIT_SIZE - 1) {\n\t\teval(t, i);\n\t\tif(i == 0) return k\
+    \ >= cnt(t->descend[0]);\n\t\tif(k < cnt(t->descend[0]))\n\t\t\treturn operator_func(t->descend[0],\
+    \ k, i - 1);\n\t\telse {\n\t\t\tk -= cnt(t->descend[0]);\n\t\t\treturn operator_func(t->descend[1],\
+    \ k, i - 1) | (1ULL << i);\n\t\t}\n\t}\n};\n#line 1 \"template.hpp\"\n#include\
+    \ <bits/stdc++.h>\nusing namespace std;\n#if __has_include(<atcoder/all>)\n#include\
+    \ <atcoder/all>\nusing namespace atcoder;\n#endif\n\n#pragma region Macros\n//\
+    \ rep macro\n#define foa(v, a) for(auto &v : a)\n#define REPname(a, b, c, d, e,\
+    \ ...) e\n#define REP(...) REPname(__VA_ARGS__, REP3, REP2, REP1, REP0)(__VA_ARGS__)\n\
+    #define REP0(x) for(int i = 0; i < (x); ++i)\n#define REP1(i, x) for(int i = 0;\
+    \ i < (x); ++i)\n#define REP2(i, l, r) for(int i = (l); i < (r); ++i)\n#define\
+    \ REP3(i, l, r, c) for(int i = (l); i < (r); i += (c))\n#define REPSname(a, b,\
+    \ c, ...) c\n#define REPS(...) REPSname(__VA_ARGS__, REPS1, REPS0)(__VA_ARGS__)\n\
+    #define REPS0(x) for(int i = 1; i <= (x); ++i)\n#define REPS1(i, x) for(int i\
+    \ = 1; i <= (x); ++i)\n#define RREPname(a, b, c, d, e, ...) e\n#define RREP(...)\
+    \ RREPname(__VA_ARGS__, RREP3, RREP2, RREP1, RREP0)(__VA_ARGS__)\n#define RREP0(x)\
+    \ for(int i = (x)-1; i >= 0; --i)\n#define RREP1(i, x) for(int i = (x)-1; i >=\
+    \ 0; --i)\n#define RREP2(i, r, l) for(int i = (r)-1; i >= (l); --i)\n#define RREP3(i,\
+    \ r, l, c) for(int i = (r)-1; i >= (l); i -= (c))\n#define RREPSname(a, b, c,\
+    \ ...) c\n#define RREPS(...) RREPSname(__VA_ARGS__, RREPS1, RREPS0)(__VA_ARGS__)\n\
+    #define RREPS0(x) for(int i = (x); i >= 1; --i)\n#define RREPS1(i, x) for(int\
+    \ i = (x); i >= 1; --i)\n\n// name macro\n#define pb push_back\n#define eb emplace_back\n\
+    #define SZ(x) ((int)(x).size())\n#define all(x) (x).begin(), (x).end()\n#define\
+    \ rall(x) (x).rbegin(), (x).rend()\n#define popcnt(x) __builtin_popcountll(x)\n\
+    template <class T = int>\nusing V = std::vector<T>;\ntemplate <class T = int>\n\
+    using VV = std::vector<std::vector<T>>;\ntemplate <class T>\nusing pqup = std::priority_queue<T,\
+    \ std::vector<T>, std::greater<T>>;\nusing ll = long long;\nusing ld = long double;\n\
+    using int128 = __int128_t;\nusing pii = std::pair<int, int>;\nusing pll = std::pair<long\
+    \ long, long long>;\n\n// input macro\ntemplate <class T, class U>\nstd::istream\
+    \ &operator>>(std::istream &is, std::pair<T, U> &p) {\n\tis >> p.first >> p.second;\n\
+    \treturn is;\n}\ntemplate <class T>\nstd::istream &operator>>(std::istream &is,\
+    \ std::vector<T> &v) {\n\tfor(T &i : v) is >> i;\n\treturn is;\n}\nstd::istream\
+    \ &operator>>(std::istream &is, __int128_t &a) {\n\tstd::string s;\n\tis >> s;\n\
+    \t__int128_t ret = 0;\n\tfor(int i = 0; i < s.length(); i++)\n\t\tif('0' <= s[i]\
+    \ and s[i] <= '9')\n\t\t\tret = 10 * ret + s[i] - '0';\n\ta = ret * (s[0] == '-'\
+    \ ? -1 : 1);\n\treturn is;\n}\n#if __has_include(<atcoder/all>)\nstd::istream\
+    \ &operator>>(std::istream &is, atcoder::modint998244353 &a) {\n\tlong long v;\n\
+    \tis >> v;\n\ta = v;\n\treturn is;\n}\nstd::istream &operator>>(std::istream &is,\
+    \ atcoder::modint1000000007 &a) {\n\tlong long v;\n\tis >> v;\n\ta = v;\n\treturn\
+    \ is;\n}\ntemplate <int m>\nstd::istream &operator>>(std::istream &is, atcoder::static_modint<m>\
     \ &a) {\n\tlong long v;\n\tis >> v;\n\ta = v;\n\treturn is;\n}\ntemplate <int\
-    \ m>\nstd::istream &operator>>(std::istream &is, atcoder::static_modint<m> &a)\
-    \ {\n\tlong long v;\n\tis >> v;\n\ta = v;\n\treturn is;\n}\ntemplate <int m>\n\
-    std::istream &operator>>(std::istream &is, atcoder::dynamic_modint<m> &a) {\n\t\
-    long long v;\n\tis >> v;\n\ta = v;\n\treturn is;\n}\n#endif\nnamespace scanner\
-    \ {\nvoid scan(int &a) { std::cin >> a; }\nvoid scan(long long &a) { std::cin\
+    \ m>\nstd::istream &operator>>(std::istream &is, atcoder::dynamic_modint<m> &a)\
+    \ {\n\tlong long v;\n\tis >> v;\n\ta = v;\n\treturn is;\n}\n#endif\nnamespace\
+    \ scanner {\nvoid scan(int &a) { std::cin >> a; }\nvoid scan(long long &a) { std::cin\
     \ >> a; }\nvoid scan(std::string &a) { std::cin >> a; }\nvoid scan(char &a) {\
     \ std::cin >> a; }\nvoid scan(char a[]) { std::scanf(\"%s\", a); }\nvoid scan(double\
     \ &a) { std::cin >> a; }\nvoid scan(long double &a) { std::cin >> a; }\ntemplate\
@@ -193,43 +210,32 @@ data:
     \ others\nstruct fast_io {\n\tfast_io() {\n\t\tios::sync_with_stdio(false);\n\t\
     \tcin.tie(nullptr);\n\t\tcout << fixed << setprecision(15);\n\t}\n} fast_io_;\n\
     const int inf = 1e9;\nconst ll INF = 1e18;\n#pragma endregion\n\nvoid main_();\n\
-    \nint main() {\n\tmain_();\n\treturn 0;\n}\n#line 5 \"test/aoj-2235.test.cpp\"\
-    \n\nvoid main_() {\n\tINT(n, q);\n\toffline_dynamic_connectivity odc(n, q);\n\n\
-    \tvector<pii> uv(q, {-1, -1});\n\n\tint t3 = 0;\n\tvector<int> id(q, -1);\n\n\t\
-    REP(i, q) {\n\t\tint type, u, v;\n\t\tcin >> type >> u >> v;\n\t\tswitch(type)\
-    \ {\n\t\t\tcase 1:\n\t\t\t\todc.link(i, u, v);\n\t\t\t\tbreak;\n\n\t\t\tcase 2:\n\
-    \t\t\t\todc.cut(i, u, v);\n\t\t\t\tbreak;\n\n\t\t\tcase 3:\n\t\t\t\tid[i] = t3++;\n\
-    \t\t\t\tuv[i] = {u, v};\n\t\t\t\tbreak;\n\n\t\t\tdefault:\n\t\t\t\tbreak;\n\t\t\
-    }\n\t}\n\n\tvector<int> res(t3);\n\n\tauto f = [&](int t) {\n\t\tif(id[t] != -1)\
-    \ {\n\t\t\tconst auto &[u, v] = uv[t];\n\t\t\tres[id[t]] = odc.uf.same(u, v);\n\
-    \t\t}\n\t};\n\n\todc.build();\n\todc.run(f);\n\n\tfor(const auto &v : res) cout\
-    \ << (v ? \"YES\\n\" : \"NO\\n\");\n}\n"
-  code: "#define PROBLEM \"https://judge.u-aizu.ac.jp/onlinejudge/description.jsp?id=2235&lang=jp\"\
-    \n\n#include \"data_structure/offline_dynamic_connectivity.hpp\"\n#include \"\
-    template.hpp\"\n\nvoid main_() {\n\tINT(n, q);\n\toffline_dynamic_connectivity\
-    \ odc(n, q);\n\n\tvector<pii> uv(q, {-1, -1});\n\n\tint t3 = 0;\n\tvector<int>\
-    \ id(q, -1);\n\n\tREP(i, q) {\n\t\tint type, u, v;\n\t\tcin >> type >> u >> v;\n\
-    \t\tswitch(type) {\n\t\t\tcase 1:\n\t\t\t\todc.link(i, u, v);\n\t\t\t\tbreak;\n\
-    \n\t\t\tcase 2:\n\t\t\t\todc.cut(i, u, v);\n\t\t\t\tbreak;\n\n\t\t\tcase 3:\n\t\
-    \t\t\tid[i] = t3++;\n\t\t\t\tuv[i] = {u, v};\n\t\t\t\tbreak;\n\n\t\t\tdefault:\n\
-    \t\t\t\tbreak;\n\t\t}\n\t}\n\n\tvector<int> res(t3);\n\n\tauto f = [&](int t)\
-    \ {\n\t\tif(id[t] != -1) {\n\t\t\tconst auto &[u, v] = uv[t];\n\t\t\tres[id[t]]\
-    \ = odc.uf.same(u, v);\n\t\t}\n\t};\n\n\todc.build();\n\todc.run(f);\n\n\tfor(const\
-    \ auto &v : res) cout << (v ? \"YES\\n\" : \"NO\\n\");\n}"
+    \nint main() {\n\tmain_();\n\treturn 0;\n}\n#line 5 \"test/yosupo-set_xor_min.test.cpp\"\
+    \n\nvoid main_() {\n\tbinary_trie<int, 30, false> trie;\n\tINT(q);\n\twhile(q--)\
+    \ {\n\t\tINT(t, x);\n\t\tswitch(t) {\n\t\t\tcase 0:\n\t\t\t\ttrie.insert(x);\n\
+    \t\t\t\tbreak;\n\n\t\t\tcase 1:\n\t\t\t\ttrie.erase(x);\n\t\t\t\tbreak;\n\n\t\t\
+    \tcase 2:\n\t\t\t\tprint(trie.xor_min(x));\n\t\t\t\tbreak;\n\n\t\t\tdefault:\n\
+    \t\t\t\tbreak;\n\t\t}\n\t}\n}\n"
+  code: "#define PROBLEM \"https://judge.yosupo.jp/problem/set_xor_min\"\n\n#include\
+    \ \"data_structure/binary_trie.hpp\"\n#include \"template.hpp\"\n\nvoid main_()\
+    \ {\n\tbinary_trie<int, 30, false> trie;\n\tINT(q);\n\twhile(q--) {\n\t\tINT(t,\
+    \ x);\n\t\tswitch(t) {\n\t\t\tcase 0:\n\t\t\t\ttrie.insert(x);\n\t\t\t\tbreak;\n\
+    \n\t\t\tcase 1:\n\t\t\t\ttrie.erase(x);\n\t\t\t\tbreak;\n\n\t\t\tcase 2:\n\t\t\
+    \t\tprint(trie.xor_min(x));\n\t\t\t\tbreak;\n\n\t\t\tdefault:\n\t\t\t\tbreak;\n\
+    \t\t}\n\t}\n}"
   dependsOn:
-  - data_structure/offline_dynamic_connectivity.hpp
-  - data_structure/undo_uf.hpp
+  - data_structure/binary_trie.hpp
   - template.hpp
   isVerificationFile: true
-  path: test/aoj-2235.test.cpp
+  path: test/yosupo-set_xor_min.test.cpp
   requiredBy: []
-  timestamp: '2021-09-07 22:08:08+09:00'
+  timestamp: '2021-09-08 10:12:28+09:00'
   verificationStatus: TEST_ACCEPTED
   verifiedWith: []
-documentation_of: test/aoj-2235.test.cpp
+documentation_of: test/yosupo-set_xor_min.test.cpp
 layout: document
 redirect_from:
-- /verify/test/aoj-2235.test.cpp
-- /verify/test/aoj-2235.test.cpp.html
-title: test/aoj-2235.test.cpp
+- /verify/test/yosupo-set_xor_min.test.cpp
+- /verify/test/yosupo-set_xor_min.test.cpp.html
+title: test/yosupo-set_xor_min.test.cpp
 ---
