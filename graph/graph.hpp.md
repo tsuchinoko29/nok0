@@ -5,7 +5,7 @@ data:
   - icon: ':warning:'
     path: graph/dag_mcf.hpp
     title: graph/dag_mcf.hpp
-  - icon: ':x:'
+  - icon: ':heavy_check_mark:'
     path: graph/hld.hpp
     title: graph/hld.hpp
   - icon: ':warning:'
@@ -30,15 +30,15 @@ data:
   - icon: ':heavy_check_mark:'
     path: test/yosupo-tree_diameter.test.cpp
     title: test/yosupo-tree_diameter.test.cpp
-  - icon: ':x:'
+  - icon: ':heavy_check_mark:'
     path: test/yosupo-vertex_add_path_sum.test.cpp
     title: test/yosupo-vertex_add_path_sum.test.cpp
-  - icon: ':x:'
+  - icon: ':heavy_check_mark:'
     path: test/yosupo-vertex_add_subtree_sum.test.cpp
     title: test/yosupo-vertex_add_subtree_sum.test.cpp
-  _isVerificationFailed: true
+  _isVerificationFailed: false
   _pathExtension: hpp
-  _verificationStatusIcon: ':question:'
+  _verificationStatusIcon: ':heavy_check_mark:'
   attributes:
     links: []
   bundledCode: "#line 2 \"graph/graph.hpp\"\n#include <algorithm>\n#include <cassert>\n\
@@ -359,7 +359,7 @@ data:
   - graph/namori.hpp
   - graph/scc.hpp
   timestamp: '2021-09-07 20:08:56+09:00'
-  verificationStatus: LIBRARY_SOME_WA
+  verificationStatus: LIBRARY_ALL_AC
   verifiedWith:
   - test/yosupo-tree_diameter.test.cpp
   - test/yosupo-lca.test.cpp

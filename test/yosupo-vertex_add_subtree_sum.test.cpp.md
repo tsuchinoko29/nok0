@@ -1,47 +1,50 @@
 ---
 data:
   _extendedDependsOn:
-  - icon: ':question:'
+  - icon: ':heavy_check_mark:'
     path: data_structure/binary_indexed_tree.hpp
     title: data_structure/binary_indexed_tree.hpp
-  - icon: ':question:'
+  - icon: ':heavy_check_mark:'
     path: graph/graph.hpp
     title: graph/graph.hpp
-  - icon: ':x:'
+  - icon: ':heavy_check_mark:'
     path: graph/hld.hpp
     title: graph/hld.hpp
-  - icon: ':question:'
+  - icon: ':heavy_check_mark:'
     path: template.hpp
     title: template.hpp
   _extendedRequiredBy: []
   _extendedVerifiedWith: []
-  _isVerificationFailed: true
+  _isVerificationFailed: false
   _pathExtension: cpp
-  _verificationStatusIcon: ':x:'
+  _verificationStatusIcon: ':heavy_check_mark:'
   attributes:
     '*NOT_SPECIAL_COMMENTS*': ''
-    links: []
-  bundledCode: "#line 1 \"data_structure/binary_indexed_tree.hpp\"\n#include <vector>\n\
-    \ntemplate <typename T>\nstruct binary_indexed_tree {\nprivate:\n\tint n, p;\n\
-    \tstd::vector<T> d;\n\npublic:\n\tbinary_indexed_tree() = default;\n\n\tbinary_indexed_tree(int\
-    \ n) : n(n), d(n + 1) {\n\t\tp = 1;\n\t\twhile(p < n) p *= 2;\n\t}\n\n\tvoid add(int\
-    \ i, T x = 1) {\n\t\tfor(i++; i <= n; i += i & -i) d[i] += x;\n\t}\n\n\t//return\
-    \ sum[0,i)\n\tT sum(int i) {\n\t\tT res = 0;\n\t\tfor(; i; i -= i & -i) res +=\
-    \ d[i];\n\t\treturn res;\n\t}\n\n\t//return sum[l,r)\n\tT sum(int l, int r) {\
-    \ return sum(r) - sum(l); }\n\n\t//return min(x) which satisfies (v0 + v1 + ...\
-    \ + vx >= w)\n\tint lower_bound(T w) {\n\t\tif(w <= 0) return 0;\n\t\tT x = 0;\n\
-    \t\tfor(int i = p; i; i /= 2) {\n\t\t\tif(i + x <= n && d[i + x] < w) {\n\t\t\t\
-    \tw -= d[i + x];\n\t\t\t\tx += i;\n\t\t\t}\n\t\t}\n\t\treturn x;\n\t}\n};\n#line\
-    \ 2 \"graph/graph.hpp\"\n#include <algorithm>\n#include <cassert>\n#include <deque>\n\
-    #include <iostream>\n#include <queue>\n#include <tuple>\n#include <utility>\n\
-    #line 10 \"graph/graph.hpp\"\n\nstruct Edge {\n\tint to;\n\tlong long cost;\n\t\
-    Edge() = default;\n\tEdge(int to_, long long cost_) : to(to_), cost(cost_) {}\n\
-    \tbool operator<(const Edge &a) const { return cost < a.cost; }\n\tbool operator>(const\
-    \ Edge &a) const { return cost > a.cost; }\n\tfriend std::ostream &operator<<(std::ostream\
-    \ &s, Edge &a) {\n\t\ts << \"to: \" << a.to << \", cost: \" << a.cost;\n\t\treturn\
-    \ s;\n\t}\n};\n\nclass Graph {\n\tstd::vector<std::vector<Edge>> edges;\n\n\t\
-    template <class F>\n\tstruct rec_lambda {\n\t\tF f;\n\t\trec_lambda(F &&f_) :\
-    \ f(std::forward<F>(f_)) {}\n\t\ttemplate <class... Args>\n\t\tauto operator()(Args\
+    PROBLEM: https://judge.yosupo.jp/problem/vertex_add_subtree_sum
+    links:
+    - https://judge.yosupo.jp/problem/vertex_add_subtree_sum
+  bundledCode: "#line 1 \"test/yosupo-vertex_add_subtree_sum.test.cpp\"\n#define PROBLEM\
+    \ \"https://judge.yosupo.jp/problem/vertex_add_subtree_sum\"\n\n#line 1 \"data_structure/binary_indexed_tree.hpp\"\
+    \n#include <vector>\n\ntemplate <typename T>\nstruct binary_indexed_tree {\nprivate:\n\
+    \tint n, p;\n\tstd::vector<T> d;\n\npublic:\n\tbinary_indexed_tree() = default;\n\
+    \n\tbinary_indexed_tree(int n) : n(n), d(n + 1) {\n\t\tp = 1;\n\t\twhile(p < n)\
+    \ p *= 2;\n\t}\n\n\tvoid add(int i, T x = 1) {\n\t\tfor(i++; i <= n; i += i &\
+    \ -i) d[i] += x;\n\t}\n\n\t//return sum[0,i)\n\tT sum(int i) {\n\t\tT res = 0;\n\
+    \t\tfor(; i; i -= i & -i) res += d[i];\n\t\treturn res;\n\t}\n\n\t//return sum[l,r)\n\
+    \tT sum(int l, int r) { return sum(r) - sum(l); }\n\n\t//return min(x) which satisfies\
+    \ (v0 + v1 + ... + vx >= w)\n\tint lower_bound(T w) {\n\t\tif(w <= 0) return 0;\n\
+    \t\tT x = 0;\n\t\tfor(int i = p; i; i /= 2) {\n\t\t\tif(i + x <= n && d[i + x]\
+    \ < w) {\n\t\t\t\tw -= d[i + x];\n\t\t\t\tx += i;\n\t\t\t}\n\t\t}\n\t\treturn\
+    \ x;\n\t}\n};\n#line 2 \"graph/graph.hpp\"\n#include <algorithm>\n#include <cassert>\n\
+    #include <deque>\n#include <iostream>\n#include <queue>\n#include <tuple>\n#include\
+    \ <utility>\n#line 10 \"graph/graph.hpp\"\n\nstruct Edge {\n\tint to;\n\tlong\
+    \ long cost;\n\tEdge() = default;\n\tEdge(int to_, long long cost_) : to(to_),\
+    \ cost(cost_) {}\n\tbool operator<(const Edge &a) const { return cost < a.cost;\
+    \ }\n\tbool operator>(const Edge &a) const { return cost > a.cost; }\n\tfriend\
+    \ std::ostream &operator<<(std::ostream &s, Edge &a) {\n\t\ts << \"to: \" << a.to\
+    \ << \", cost: \" << a.cost;\n\t\treturn s;\n\t}\n};\n\nclass Graph {\n\tstd::vector<std::vector<Edge>>\
+    \ edges;\n\n\ttemplate <class F>\n\tstruct rec_lambda {\n\t\tF f;\n\t\trec_lambda(F\
+    \ &&f_) : f(std::forward<F>(f_)) {}\n\t\ttemplate <class... Args>\n\t\tauto operator()(Args\
     \ &&... args) const {\n\t\t\treturn f(*this, std::forward<Args>(args)...);\n\t\
     \t}\n\t};\n\npublic:\n\tinline const std::vector<Edge> &operator[](int k) const\
     \ { return edges[k]; }\n\tinline std::vector<Edge> &operator[](int k) { return\
@@ -356,7 +359,7 @@ data:
     \ others\nstruct fast_io {\n\tfast_io() {\n\t\tios::sync_with_stdio(false);\n\t\
     \tcin.tie(nullptr);\n\t\tcout << fixed << setprecision(15);\n\t}\n} fast_io_;\n\
     const int inf = 1e9;\nconst ll INF = 1e18;\n#pragma endregion\n\nvoid main_();\n\
-    \nint main() {\n\tmain_();\n\treturn 0;\n}\n#line 5 \"test/yosupo-vertex_add_subtree_sum.test.cpp\"\
+    \nint main() {\n\tmain_();\n\treturn 0;\n}\n#line 7 \"test/yosupo-vertex_add_subtree_sum.test.cpp\"\
     \n\nvoid main_() {\n\tINT(n, q);\n\tVEC(int, a, n);\n\tGraph g(n);\n\tREP(i, 1,\
     \ n) {\n\t\tINT(p);\n\t\tg.add_edge(i, p);\n\t}\n\n\theavy_light_decomposition\
     \ hld(g);\n\n\tbinary_indexed_tree<ll> bt(n);\n\tREP(i, n) { bt.add(hld.in[i],\
@@ -365,7 +368,8 @@ data:
     \tif(type == 0) {\n\t\t\tINT(v);\n\t\t\tbt.add(hld.in[u], v);\n\t\t}\n\t\tif(type\
     \ == 1) {\n\t\t\tauto [l, r] = hld.subtree(u);\n\t\t\tprint(bt.sum(l, r));\n\t\
     \t}\n\t}\n}\n"
-  code: "#include \"data_structure/binary_indexed_tree.hpp\"\n#include \"graph/graph.hpp\"\
+  code: "#define PROBLEM \"https://judge.yosupo.jp/problem/vertex_add_subtree_sum\"\
+    \n\n#include \"data_structure/binary_indexed_tree.hpp\"\n#include \"graph/graph.hpp\"\
     \n#include \"graph/hld.hpp\"\n#include \"template.hpp\"\n\nvoid main_() {\n\t\
     INT(n, q);\n\tVEC(int, a, n);\n\tGraph g(n);\n\tREP(i, 1, n) {\n\t\tINT(p);\n\t\
     \tg.add_edge(i, p);\n\t}\n\n\theavy_light_decomposition hld(g);\n\n\tbinary_indexed_tree<ll>\
@@ -382,8 +386,8 @@ data:
   isVerificationFile: true
   path: test/yosupo-vertex_add_subtree_sum.test.cpp
   requiredBy: []
-  timestamp: '2021-09-08 09:57:46+09:00'
-  verificationStatus: TEST_WRONG_ANSWER
+  timestamp: '2021-09-08 09:59:29+09:00'
+  verificationStatus: TEST_ACCEPTED
   verifiedWith: []
 documentation_of: test/yosupo-vertex_add_subtree_sum.test.cpp
 layout: document
