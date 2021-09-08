@@ -24,15 +24,15 @@ data:
     \tbool operator<(const Edge &a) const { return cost < a.cost; }\n\tbool operator>(const\
     \ Edge &a) const { return cost > a.cost; }\n\tfriend std::ostream &operator<<(std::ostream\
     \ &s, Edge &a) {\n\t\ts << \"to: \" << a.to << \", cost: \" << a.cost;\n\t\treturn\
-    \ s;\n\t}\n};\n\nclass Graph {\n\tstd::vector<std::vector<Edge>> edges;\n\n\t\
+    \ s;\n\t}\n};\n\nclass graph {\n\tstd::vector<std::vector<Edge>> edges;\n\n\t\
     template <class F>\n\tstruct rec_lambda {\n\t\tF f;\n\t\trec_lambda(F &&f_) :\
     \ f(std::forward<F>(f_)) {}\n\t\ttemplate <class... Args>\n\t\tauto operator()(Args\
     \ &&... args) const {\n\t\t\treturn f(*this, std::forward<Args>(args)...);\n\t\
     \t}\n\t};\n\npublic:\n\tinline const std::vector<Edge> &operator[](int k) const\
     \ { return edges[k]; }\n\tinline std::vector<Edge> &operator[](int k) { return\
     \ edges[k]; }\n\n\tint size() const { return edges.size(); }\n\tvoid resize(const\
-    \ int n) { edges.resize(n); }\n\n\tGraph() = default;\n\tGraph(int n) : edges(n)\
-    \ {}\n\tGraph(int n, int e, bool weight = 0, bool directed = 0, int idx = 1) :\
+    \ int n) { edges.resize(n); }\n\n\tgraph() = default;\n\tgraph(int n) : edges(n)\
+    \ {}\n\tgraph(int n, int e, bool weight = 0, bool directed = 0, int idx = 1) :\
     \ edges(n) { input(e, weight, directed, idx); }\n\tconst long long INF = 3e18;\n\
     \n\tvoid input(int e = -1, bool weight = 0, bool directed = false, int idx = 1)\
     \ {\n\t\tif(e == -1) e = size() - 1;\n\t\twhile(e--) {\n\t\t\tint u, v;\n\t\t\t\
@@ -158,19 +158,19 @@ data:
     \ is_centroid = false;\n\t\t\t\t}\n\t\t\t}\n\t\t\tif(n - sz[now] > n / 2) is_centroid\
     \ = false;\n\t\t\tif(is_centroid) centroid.push_back(now);\n\t\t};\n\t\tdfs(dfs,\
     \ 0, -1);\n\t\treturn centroid;\n\t}\n\n\t// \u039F(V+E)\n\t// directed graph\
-    \ from root to leaf\n\tGraph root_to_leaf(int root = 0) {\n\t\tGraph res(size());\n\
+    \ from root to leaf\n\tgraph root_to_leaf(int root = 0) {\n\t\tgraph res(size());\n\
     \t\tstd::vector<int> chk(size(), 0);\n\t\tchk[root] = 1;\n\t\tauto dfs = [&](auto\
     \ self, int now) -> void {\n\t\t\tfor(auto &e : edges[now]) {\n\t\t\t\tif(chk[e.to]\
     \ == 1) continue;\n\t\t\t\tchk[e.to] = 1;\n\t\t\t\tres.add_edge(now, e.to, e.cost,\
     \ 1, 0);\n\t\t\t\tself(self, e.to);\n\t\t\t}\n\t\t};\n\t\tdfs(dfs, root);\n\t\t\
     return res;\n\t}\n\n\t// \u039F(V+E)\n\t// directed graph from leaf to root\n\t\
-    Graph leaf_to_root(int root = 0) {\n\t\tGraph res(size());\n\t\tstd::vector<int>\
+    graph leaf_to_root(int root = 0) {\n\t\tgraph res(size());\n\t\tstd::vector<int>\
     \ chk(size(), 0);\n\t\tchk[root] = 1;\n\t\tauto dfs = [&](auto self, int now)\
     \ -> void {\n\t\t\tfor(auto &e : edges[now]) {\n\t\t\t\tif(chk[e.to] == 1) continue;\n\
     \t\t\t\tchk[e.to] = 1;\n\t\t\t\tres.add_edge(e.to, now, e.cost, 1, 0);\n\t\t\t\
     \tself(self, e.to);\n\t\t\t}\n\t\t};\n\t\tdfs(dfs, root);\n\t\treturn res;\n\t\
     }\n\n\t// long long Chu_Liu_Edmonds(int root = 0) {}\n};\n#line 2 \"graph/low_link.hpp\"\
-    \n\n#line 4 \"graph/low_link.hpp\"\n\nstruct low_link {\nprivate:\n\tconst Graph\
+    \n\n#line 4 \"graph/low_link.hpp\"\n\nstruct low_link {\nprivate:\n\tconst graph\
     \ &graph_given;\n\tint order_next;\n\n\tvoid build() {\n\t\tint n = graph_given.size();\n\
     \t\torder.resize(n, -1);\n\t\tlow.resize(n);\n\t\torder_next = 0;\n\t\tfor(int\
     \ i = 0; i < n; i++)\n\t\t\tif(order[i] == -1) dfs(i);\n\t}\n\n\tvoid dfs(int\
@@ -184,9 +184,9 @@ data:
     \t\tif(par == -1 and cnt < 2) is_articulation = false;\n\t\tif(is_articulation)\
     \ articulation.push_back(now);\n\t\treturn;\n\t}\n\npublic:\n\tstd::vector<int>\
     \ order, low, articulation;\n\tstd::vector<std::pair<int, int>> bridge;\n\tlow_link()\
-    \ = default;\n\tlow_link(const Graph &g_) : graph_given(g_) { build(); }\n};\n\
+    \ = default;\n\tlow_link(const graph &g_) : graph_given(g_) { build(); }\n};\n\
     #line 4 \"graph/two_edge_cc.hpp\"\n\nstruct two_edge_connected_components {\n\
-    private:\n\tconst Graph &graph_given;\n\tint group_next;\n\tlow_link li;\n\tstd::vector<int>\
+    private:\n\tconst graph &graph_given;\n\tint group_next;\n\tlow_link li;\n\tstd::vector<int>\
     \ group_number;\n\n\tvoid build(bool create_compressed_graph) {\n\t\tint n = graph_given.size();\n\
     \t\tgroup_number.resize(n, -1);\n\t\tgroup_next = 0;\n\t\tfor(int i = 0; i < n;\
     \ i++)\n\t\t\tif(group_number[i] == -1) dfs(i);\n\t\tgroups.resize(group_next);\n\
@@ -197,12 +197,12 @@ data:
     \ now, int par = -1) {\n\t\tif(par != -1 and li.order[par] >= li.low[now])\n\t\
     \t\tgroup_number[now] = group_number[par];\n\t\telse\n\t\t\tgroup_number[now]\
     \ = group_next++;\n\t\tfor(const auto &e : graph_given[now])\n\t\t\tif(group_number[e.to]\
-    \ == -1) dfs(e.to, now);\n\t}\n\npublic:\n\tGraph graph_compressed;\n\tstd::vector<std::vector<int>>\
-    \ groups;\n\ttwo_edge_connected_components(const Graph &g_, bool create_compressed_graph\
+    \ == -1) dfs(e.to, now);\n\t}\n\npublic:\n\tgraph graph_compressed;\n\tstd::vector<std::vector<int>>\
+    \ groups;\n\ttwo_edge_connected_components(const graph &g_, bool create_compressed_graph\
     \ = false)\n\t  : graph_given(g_), li(g_) {\n\t\tbuild(create_compressed_graph);\n\
     \t}\n\n\tconst int &operator[](const int k) { return group_number[k]; }\n};\n"
   code: "#pragma once\n#include \"graph/graph.hpp\"\n#include \"low_link.hpp\"\n\n\
-    struct two_edge_connected_components {\nprivate:\n\tconst Graph &graph_given;\n\
+    struct two_edge_connected_components {\nprivate:\n\tconst graph &graph_given;\n\
     \tint group_next;\n\tlow_link li;\n\tstd::vector<int> group_number;\n\n\tvoid\
     \ build(bool create_compressed_graph) {\n\t\tint n = graph_given.size();\n\t\t\
     group_number.resize(n, -1);\n\t\tgroup_next = 0;\n\t\tfor(int i = 0; i < n; i++)\n\
@@ -214,8 +214,8 @@ data:
     \ now, int par = -1) {\n\t\tif(par != -1 and li.order[par] >= li.low[now])\n\t\
     \t\tgroup_number[now] = group_number[par];\n\t\telse\n\t\t\tgroup_number[now]\
     \ = group_next++;\n\t\tfor(const auto &e : graph_given[now])\n\t\t\tif(group_number[e.to]\
-    \ == -1) dfs(e.to, now);\n\t}\n\npublic:\n\tGraph graph_compressed;\n\tstd::vector<std::vector<int>>\
-    \ groups;\n\ttwo_edge_connected_components(const Graph &g_, bool create_compressed_graph\
+    \ == -1) dfs(e.to, now);\n\t}\n\npublic:\n\tgraph graph_compressed;\n\tstd::vector<std::vector<int>>\
+    \ groups;\n\ttwo_edge_connected_components(const graph &g_, bool create_compressed_graph\
     \ = false)\n\t  : graph_given(g_), li(g_) {\n\t\tbuild(create_compressed_graph);\n\
     \t}\n\n\tconst int &operator[](const int k) { return group_number[k]; }\n};\n"
   dependsOn:
@@ -224,7 +224,7 @@ data:
   isVerificationFile: false
   path: graph/two_edge_cc.hpp
   requiredBy: []
-  timestamp: '2021-09-07 20:08:56+09:00'
+  timestamp: '2021-09-08 10:25:09+09:00'
   verificationStatus: LIBRARY_ALL_AC
   verifiedWith:
   - test/yosupo-two_edge_connected_components.test.cpp

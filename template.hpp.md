@@ -16,6 +16,9 @@ data:
     path: test/aoj-dsl-2-b.test.cpp
     title: test/aoj-dsl-2-b.test.cpp
   - icon: ':heavy_check_mark:'
+    path: test/aoj-grl-1-a.test.cpp
+    title: test/aoj-grl-1-a.test.cpp
+  - icon: ':heavy_check_mark:'
     path: test/yosupo-lca.test.cpp
     title: test/yosupo-lca.test.cpp
   - icon: ':heavy_check_mark:'
@@ -334,6 +337,7 @@ data:
   verifiedWith:
   - test/yosupo-two_edge_connected_components.test.cpp
   - test/yosupo-tree_diameter.test.cpp
+  - test/aoj-grl-1-a.test.cpp
   - test/yosupo-lca.test.cpp
   - test/aoj-2703.test.cpp
   - test/yosupo-set_xor_min.test.cpp

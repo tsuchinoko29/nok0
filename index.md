@@ -123,6 +123,9 @@ data:
       path: test/aoj-dsl-2-b.test.cpp
       title: test/aoj-dsl-2-b.test.cpp
     - icon: ':heavy_check_mark:'
+      path: test/aoj-grl-1-a.test.cpp
+      title: test/aoj-grl-1-a.test.cpp
+    - icon: ':heavy_check_mark:'
       path: test/yosupo-factorize.test.cpp
       title: test/yosupo-factorize.test.cpp
     - icon: ':heavy_check_mark:'

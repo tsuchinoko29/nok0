@@ -24,15 +24,15 @@ data:
     \tbool operator<(const Edge &a) const { return cost < a.cost; }\n\tbool operator>(const\
     \ Edge &a) const { return cost > a.cost; }\n\tfriend std::ostream &operator<<(std::ostream\
     \ &s, Edge &a) {\n\t\ts << \"to: \" << a.to << \", cost: \" << a.cost;\n\t\treturn\
-    \ s;\n\t}\n};\n\nclass Graph {\n\tstd::vector<std::vector<Edge>> edges;\n\n\t\
+    \ s;\n\t}\n};\n\nclass graph {\n\tstd::vector<std::vector<Edge>> edges;\n\n\t\
     template <class F>\n\tstruct rec_lambda {\n\t\tF f;\n\t\trec_lambda(F &&f_) :\
     \ f(std::forward<F>(f_)) {}\n\t\ttemplate <class... Args>\n\t\tauto operator()(Args\
     \ &&... args) const {\n\t\t\treturn f(*this, std::forward<Args>(args)...);\n\t\
     \t}\n\t};\n\npublic:\n\tinline const std::vector<Edge> &operator[](int k) const\
     \ { return edges[k]; }\n\tinline std::vector<Edge> &operator[](int k) { return\
     \ edges[k]; }\n\n\tint size() const { return edges.size(); }\n\tvoid resize(const\
-    \ int n) { edges.resize(n); }\n\n\tGraph() = default;\n\tGraph(int n) : edges(n)\
-    \ {}\n\tGraph(int n, int e, bool weight = 0, bool directed = 0, int idx = 1) :\
+    \ int n) { edges.resize(n); }\n\n\tgraph() = default;\n\tgraph(int n) : edges(n)\
+    \ {}\n\tgraph(int n, int e, bool weight = 0, bool directed = 0, int idx = 1) :\
     \ edges(n) { input(e, weight, directed, idx); }\n\tconst long long INF = 3e18;\n\
     \n\tvoid input(int e = -1, bool weight = 0, bool directed = false, int idx = 1)\
     \ {\n\t\tif(e == -1) e = size() - 1;\n\t\twhile(e--) {\n\t\t\tint u, v;\n\t\t\t\
@@ -158,20 +158,20 @@ data:
     \ is_centroid = false;\n\t\t\t\t}\n\t\t\t}\n\t\t\tif(n - sz[now] > n / 2) is_centroid\
     \ = false;\n\t\t\tif(is_centroid) centroid.push_back(now);\n\t\t};\n\t\tdfs(dfs,\
     \ 0, -1);\n\t\treturn centroid;\n\t}\n\n\t// \u039F(V+E)\n\t// directed graph\
-    \ from root to leaf\n\tGraph root_to_leaf(int root = 0) {\n\t\tGraph res(size());\n\
+    \ from root to leaf\n\tgraph root_to_leaf(int root = 0) {\n\t\tgraph res(size());\n\
     \t\tstd::vector<int> chk(size(), 0);\n\t\tchk[root] = 1;\n\t\tauto dfs = [&](auto\
     \ self, int now) -> void {\n\t\t\tfor(auto &e : edges[now]) {\n\t\t\t\tif(chk[e.to]\
     \ == 1) continue;\n\t\t\t\tchk[e.to] = 1;\n\t\t\t\tres.add_edge(now, e.to, e.cost,\
     \ 1, 0);\n\t\t\t\tself(self, e.to);\n\t\t\t}\n\t\t};\n\t\tdfs(dfs, root);\n\t\t\
     return res;\n\t}\n\n\t// \u039F(V+E)\n\t// directed graph from leaf to root\n\t\
-    Graph leaf_to_root(int root = 0) {\n\t\tGraph res(size());\n\t\tstd::vector<int>\
+    graph leaf_to_root(int root = 0) {\n\t\tgraph res(size());\n\t\tstd::vector<int>\
     \ chk(size(), 0);\n\t\tchk[root] = 1;\n\t\tauto dfs = [&](auto self, int now)\
     \ -> void {\n\t\t\tfor(auto &e : edges[now]) {\n\t\t\t\tif(chk[e.to] == 1) continue;\n\
     \t\t\t\tchk[e.to] = 1;\n\t\t\t\tres.add_edge(e.to, now, e.cost, 1, 0);\n\t\t\t\
     \tself(self, e.to);\n\t\t\t}\n\t\t};\n\t\tdfs(dfs, root);\n\t\treturn res;\n\t\
     }\n\n\t// long long Chu_Liu_Edmonds(int root = 0) {}\n};\n#line 3 \"graph/hld.hpp\"\
     \n\nstruct heavy_light_decomposition {\npublic:\n\tstd::vector<int> sz, in, out,\
-    \ head, rev, par;\n\nprivate:\n\tGraph &g;\n\n\tvoid dfs_sz(int v, int p = -1)\
+    \ head, rev, par;\n\nprivate:\n\tgraph &g;\n\n\tvoid dfs_sz(int v, int p = -1)\
     \ {\n\t\tpar[v] = p;\n\t\tif(!g[v].empty() and g[v].front().to == p) std::swap(g[v].front(),\
     \ g[v].back());\n\t\tfor(auto &e : g[v]) {\n\t\t\tif(e.to == p) continue;\n\t\t\
     \tdfs_sz(e.to, v);\n\t\t\tsz[v] += sz[e.to];\n\t\t\tif(sz[g[v].front().to] < sz[e.to])\
@@ -180,7 +180,7 @@ data:
     \t\t\tif(e.to == p) continue;\n\t\t\thead[e.to] = (g[v].front().to == e.to ? head[v]\
     \ : e.to);\n\t\t\tdfs_hld(e.to, t, v);\n\t\t}\n\t\tout[v] = t;\n\t}\n\n\tvoid\
     \ build(int root = 0) {\n\t\tdfs_sz(root);\n\t\tint t = 0;\n\t\thead[root] = root;\n\
-    \t\tdfs_hld(root, t);\n\t}\n\npublic:\n\theavy_light_decomposition(Graph &g_,\
+    \t\tdfs_hld(root, t);\n\t}\n\npublic:\n\theavy_light_decomposition(graph &g_,\
     \ int root = 0) : g(g_) {\n\t\tint n = g.size();\n\t\tsz.resize(n, 1);\n\t\tin.resize(n);\n\
     \t\tout.resize(n);\n\t\thead.resize(n);\n\t\trev.resize(n);\n\t\tpar.resize(n);\n\
     \t\tbuild(root);\n\t}\n\n\tint level_ancestor(int v, int level) {\n\t\twhile(true)\
@@ -202,7 +202,7 @@ data:
     \ { return std::pair<int, int>(in[v] + edge, out[v]); }\n};\n"
   code: "#pragma once\n#include \"graph/graph.hpp\"\n\nstruct heavy_light_decomposition\
     \ {\npublic:\n\tstd::vector<int> sz, in, out, head, rev, par;\n\nprivate:\n\t\
-    Graph &g;\n\n\tvoid dfs_sz(int v, int p = -1) {\n\t\tpar[v] = p;\n\t\tif(!g[v].empty()\
+    graph &g;\n\n\tvoid dfs_sz(int v, int p = -1) {\n\t\tpar[v] = p;\n\t\tif(!g[v].empty()\
     \ and g[v].front().to == p) std::swap(g[v].front(), g[v].back());\n\t\tfor(auto\
     \ &e : g[v]) {\n\t\t\tif(e.to == p) continue;\n\t\t\tdfs_sz(e.to, v);\n\t\t\t\
     sz[v] += sz[e.to];\n\t\t\tif(sz[g[v].front().to] < sz[e.to]) std::swap(g[v].front(),\
@@ -211,7 +211,7 @@ data:
     \t\t\thead[e.to] = (g[v].front().to == e.to ? head[v] : e.to);\n\t\t\tdfs_hld(e.to,\
     \ t, v);\n\t\t}\n\t\tout[v] = t;\n\t}\n\n\tvoid build(int root = 0) {\n\t\tdfs_sz(root);\n\
     \t\tint t = 0;\n\t\thead[root] = root;\n\t\tdfs_hld(root, t);\n\t}\n\npublic:\n\
-    \theavy_light_decomposition(Graph &g_, int root = 0) : g(g_) {\n\t\tint n = g.size();\n\
+    \theavy_light_decomposition(graph &g_, int root = 0) : g(g_) {\n\t\tint n = g.size();\n\
     \t\tsz.resize(n, 1);\n\t\tin.resize(n);\n\t\tout.resize(n);\n\t\thead.resize(n);\n\
     \t\trev.resize(n);\n\t\tpar.resize(n);\n\t\tbuild(root);\n\t}\n\n\tint level_ancestor(int\
     \ v, int level) {\n\t\twhile(true) {\n\t\t\tint u = head[v];\n\t\t\tif(in[v] -\
@@ -236,7 +236,7 @@ data:
   isVerificationFile: false
   path: graph/hld.hpp
   requiredBy: []
-  timestamp: '2021-09-07 20:08:56+09:00'
+  timestamp: '2021-09-08 10:25:09+09:00'
   verificationStatus: LIBRARY_ALL_AC
   verifiedWith:
   - test/yosupo-vertex_add_path_sum.test.cpp

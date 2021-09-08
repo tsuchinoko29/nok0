@@ -26,14 +26,14 @@ data:
     \ const { return cost < a.cost; }\n\tbool operator>(const Edge &a) const { return\
     \ cost > a.cost; }\n\tfriend std::ostream &operator<<(std::ostream &s, Edge &a)\
     \ {\n\t\ts << \"to: \" << a.to << \", cost: \" << a.cost;\n\t\treturn s;\n\t}\n\
-    };\n\nclass Graph {\n\tstd::vector<std::vector<Edge>> edges;\n\n\ttemplate <class\
+    };\n\nclass graph {\n\tstd::vector<std::vector<Edge>> edges;\n\n\ttemplate <class\
     \ F>\n\tstruct rec_lambda {\n\t\tF f;\n\t\trec_lambda(F &&f_) : f(std::forward<F>(f_))\
     \ {}\n\t\ttemplate <class... Args>\n\t\tauto operator()(Args &&... args) const\
     \ {\n\t\t\treturn f(*this, std::forward<Args>(args)...);\n\t\t}\n\t};\n\npublic:\n\
     \tinline const std::vector<Edge> &operator[](int k) const { return edges[k]; }\n\
     \tinline std::vector<Edge> &operator[](int k) { return edges[k]; }\n\n\tint size()\
     \ const { return edges.size(); }\n\tvoid resize(const int n) { edges.resize(n);\
-    \ }\n\n\tGraph() = default;\n\tGraph(int n) : edges(n) {}\n\tGraph(int n, int\
+    \ }\n\n\tgraph() = default;\n\tgraph(int n) : edges(n) {}\n\tgraph(int n, int\
     \ e, bool weight = 0, bool directed = 0, int idx = 1) : edges(n) { input(e, weight,\
     \ directed, idx); }\n\tconst long long INF = 3e18;\n\n\tvoid input(int e = -1,\
     \ bool weight = 0, bool directed = false, int idx = 1) {\n\t\tif(e == -1) e =\
@@ -159,13 +159,13 @@ data:
     \ is_centroid = false;\n\t\t\t\t}\n\t\t\t}\n\t\t\tif(n - sz[now] > n / 2) is_centroid\
     \ = false;\n\t\t\tif(is_centroid) centroid.push_back(now);\n\t\t};\n\t\tdfs(dfs,\
     \ 0, -1);\n\t\treturn centroid;\n\t}\n\n\t// \u039F(V+E)\n\t// directed graph\
-    \ from root to leaf\n\tGraph root_to_leaf(int root = 0) {\n\t\tGraph res(size());\n\
+    \ from root to leaf\n\tgraph root_to_leaf(int root = 0) {\n\t\tgraph res(size());\n\
     \t\tstd::vector<int> chk(size(), 0);\n\t\tchk[root] = 1;\n\t\tauto dfs = [&](auto\
     \ self, int now) -> void {\n\t\t\tfor(auto &e : edges[now]) {\n\t\t\t\tif(chk[e.to]\
     \ == 1) continue;\n\t\t\t\tchk[e.to] = 1;\n\t\t\t\tres.add_edge(now, e.to, e.cost,\
     \ 1, 0);\n\t\t\t\tself(self, e.to);\n\t\t\t}\n\t\t};\n\t\tdfs(dfs, root);\n\t\t\
     return res;\n\t}\n\n\t// \u039F(V+E)\n\t// directed graph from leaf to root\n\t\
-    Graph leaf_to_root(int root = 0) {\n\t\tGraph res(size());\n\t\tstd::vector<int>\
+    graph leaf_to_root(int root = 0) {\n\t\tgraph res(size());\n\t\tstd::vector<int>\
     \ chk(size(), 0);\n\t\tchk[root] = 1;\n\t\tauto dfs = [&](auto self, int now)\
     \ -> void {\n\t\t\tfor(auto &e : edges[now]) {\n\t\t\t\tif(chk[e.to] == 1) continue;\n\
     \t\t\t\tchk[e.to] = 1;\n\t\t\t\tres.add_edge(e.to, now, e.cost, 1, 0);\n\t\t\t\
@@ -313,11 +313,11 @@ data:
     \tcin.tie(nullptr);\n\t\tcout << fixed << setprecision(15);\n\t}\n} fast_io_;\n\
     const int inf = 1e9;\nconst ll INF = 1e18;\n#pragma endregion\n\nvoid main_();\n\
     \nint main() {\n\tmain_();\n\treturn 0;\n}\n#line 5 \"test/yosupo-tree_diameter.test.cpp\"\
-    \n\nvoid main_() {\n\tINT(n);\n\tGraph G(n, -1, 1, 0, 0);\n\tll x = G.diameter().second;\n\
+    \n\nvoid main_() {\n\tINT(n);\n\tgraph G(n, -1, 1, 0, 0);\n\tll x = G.diameter().second;\n\
     \tauto vec = G.diameter_path();\n\tprint(x, SZ(vec));\n\tprint(vec);\n}\n"
   code: "#define PROBLEM \"https://judge.yosupo.jp/problem/tree_diameter\"\n\n#include\
     \ \"graph/graph.hpp\"\n#include \"template.hpp\"\n\nvoid main_() {\n\tINT(n);\n\
-    \tGraph G(n, -1, 1, 0, 0);\n\tll x = G.diameter().second;\n\tauto vec = G.diameter_path();\n\
+    \tgraph G(n, -1, 1, 0, 0);\n\tll x = G.diameter().second;\n\tauto vec = G.diameter_path();\n\
     \tprint(x, SZ(vec));\n\tprint(vec);\n}"
   dependsOn:
   - graph/graph.hpp
@@ -325,7 +325,7 @@ data:
   isVerificationFile: true
   path: test/yosupo-tree_diameter.test.cpp
   requiredBy: []
-  timestamp: '2021-09-08 00:32:03+09:00'
+  timestamp: '2021-09-08 10:25:09+09:00'
   verificationStatus: TEST_ACCEPTED
   verifiedWith: []
 documentation_of: test/yosupo-tree_diameter.test.cpp
