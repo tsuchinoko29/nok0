@@ -86,6 +86,9 @@ data:
       path: data_structure/dice.hpp
       title: data_structure/dice.hpp
     - icon: ':heavy_check_mark:'
+      path: data_structure/li_chao_tree.hpp
+      title: data_structure/li_chao_tree.hpp
+    - icon: ':heavy_check_mark:'
       path: data_structure/offline_dynamic_connectivity.hpp
       title: data_structure/offline_dynamic_connectivity.hpp
     - icon: ':warning:'
@@ -242,6 +245,9 @@ data:
       path: test/yosupo-lca.test.cpp
       title: test/yosupo-lca.test.cpp
     - icon: ':heavy_check_mark:'
+      path: test/yosupo-line_add_get_min.test.cpp
+      title: test/yosupo-line_add_get_min.test.cpp
+    - icon: ':heavy_check_mark:'
       path: test/yosupo-log_of_formal_power_series.test.cpp
       title: test/yosupo-log_of_formal_power_series.test.cpp
     - icon: ':heavy_check_mark:'
@@ -253,6 +259,9 @@ data:
     - icon: ':heavy_check_mark:'
       path: test/yosupo-scc.test.cpp
       title: test/yosupo-scc.test.cpp
+    - icon: ':heavy_check_mark:'
+      path: test/yosupo-segment_add_get_min.test.cpp
+      title: test/yosupo-segment_add_get_min.test.cpp
     - icon: ':heavy_check_mark:'
       path: test/yosupo-set_xor_min.test.cpp
       title: test/yosupo-set_xor_min.test.cpp

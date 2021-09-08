@@ -85,6 +85,9 @@ data:
     path: test/yosupo-lca.test.cpp
     title: test/yosupo-lca.test.cpp
   - icon: ':heavy_check_mark:'
+    path: test/yosupo-line_add_get_min.test.cpp
+    title: test/yosupo-line_add_get_min.test.cpp
+  - icon: ':heavy_check_mark:'
     path: test/yosupo-log_of_formal_power_series.test.cpp
     title: test/yosupo-log_of_formal_power_series.test.cpp
   - icon: ':heavy_check_mark:'
@@ -96,6 +99,9 @@ data:
   - icon: ':heavy_check_mark:'
     path: test/yosupo-scc.test.cpp
     title: test/yosupo-scc.test.cpp
+  - icon: ':heavy_check_mark:'
+    path: test/yosupo-segment_add_get_min.test.cpp
+    title: test/yosupo-segment_add_get_min.test.cpp
   - icon: ':heavy_check_mark:'
     path: test/yosupo-set_xor_min.test.cpp
     title: test/yosupo-set_xor_min.test.cpp
@@ -190,7 +196,9 @@ data:
   - test/yosupo-two_edge_connected_components.test.cpp
   - test/aoj-grl-3-b.test.cpp
   - test/yosupo-predecessor_problem.test.cpp
+  - test/yosupo-segment_add_get_min.test.cpp
   - test/aoj-grl-4-b.test.cpp
+  - test/yosupo-line_add_get_min.test.cpp
   - test/aoj-grl-4-a.test.cpp
   - test/yosupo-tree_diameter.test.cpp
   - test/aoj-grl-1-a.test.cpp
