@@ -18,6 +18,7 @@
 "test/aoj-grl-5-c.test.cpp": "2021-09-08 15:21:46 +0900",
 "test/aoj-grl-5-d.test.cpp": "2021-09-08 15:21:46 +0900",
 "test/aoj-grl-5-e.test.cpp": "2021-09-08 15:21:46 +0900",
+"test/yosupo-division_of_polynomials.test.cpp": "2021-09-08 15:33:50 +0900",
 "test/yosupo-factorize.test.cpp": "2021-09-08 15:21:46 +0900",
 "test/yosupo-lca.test.cpp": "2021-09-08 15:21:46 +0900",
 "test/yosupo-predecessor_problem.test.cpp": "2021-09-08 15:21:46 +0900",
@@ -25,5 +26,6 @@
 "test/yosupo-set_xor_min.test.cpp": "2021-09-08 15:21:46 +0900",
 "test/yosupo-tree_diameter.test.cpp": "2021-09-08 15:21:46 +0900",
 "test/yosupo-two_edge_connected_components.test.cpp": "2021-09-08 15:21:46 +0900",
-"test/yosupo-vertex_add_path_sum.test.cpp": "2021-09-08 15:21:46 +0900"
+"test/yosupo-vertex_add_path_sum.test.cpp": "2021-09-08 15:21:46 +0900",
+"test/yosupo-vertex_add_subtree_sum.test.cpp": "2021-09-08 15:21:46 +0900"
 }
