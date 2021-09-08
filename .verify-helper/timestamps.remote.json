@@ -28,6 +28,7 @@
 "test/yosupo-predecessor_problem.test.cpp": "2021-09-08 15:21:46 +0900",
 "test/yosupo-scc.test.cpp": "2021-09-08 15:21:46 +0900",
 "test/yosupo-set_xor_min.test.cpp": "2021-09-08 15:21:46 +0900",
+"test/yosupo-sqrt_of_formal_power_series.test.cpp": "2021-09-08 15:49:05 +0900",
 "test/yosupo-tree_diameter.test.cpp": "2021-09-08 15:21:46 +0900",
 "test/yosupo-two_edge_connected_components.test.cpp": "2021-09-08 15:21:46 +0900",
 "test/yosupo-vertex_add_path_sum.test.cpp": "2021-09-08 15:21:46 +0900",
