@@ -1,3 +1,5 @@
+#define PROBLEM "https://onlinejudge.u-aizu.ac.jp/problems/ALDS1_5_D"
+
 #include "math/inversion.hpp"
 #include "template.hpp"
 
