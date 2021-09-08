@@ -2,32 +2,43 @@
 data:
   _extendedDependsOn:
   - icon: ':question:'
+    path: data_structure/binary_indexed_tree.hpp
+    title: data_structure/binary_indexed_tree.hpp
+  - icon: ':question:'
     path: graph/graph.hpp
     title: graph/graph.hpp
-  - icon: ':heavy_check_mark:'
-    path: graph/tree_doubling.hpp
-    title: graph/tree_doubling.hpp
+  - icon: ':x:'
+    path: graph/hld.hpp
+    title: graph/hld.hpp
   - icon: ':question:'
     path: template.hpp
     title: template.hpp
   _extendedRequiredBy: []
   _extendedVerifiedWith: []
-  _isVerificationFailed: false
+  _isVerificationFailed: true
   _pathExtension: cpp
-  _verificationStatusIcon: ':heavy_check_mark:'
+  _verificationStatusIcon: ':x:'
   attributes:
     '*NOT_SPECIAL_COMMENTS*': ''
-    PROBLEM: https://judge.yosupo.jp/problem/lca
-    links:
-    - https://judge.yosupo.jp/problem/lca
-  bundledCode: "#line 1 \"test/yosupo-lca.test.cpp\"\n#define PROBLEM \"https://judge.yosupo.jp/problem/lca\"\
-    \n\n#line 2 \"graph/graph.hpp\"\n#include <algorithm>\n#include <cassert>\n#include\
-    \ <deque>\n#include <iostream>\n#include <queue>\n#include <tuple>\n#include <utility>\n\
-    #include <vector>\n\nstruct Edge {\n\tint to;\n\tlong long cost;\n\tEdge() = default;\n\
-    \tEdge(int to_, long long cost_) : to(to_), cost(cost_) {}\n\tbool operator<(const\
-    \ Edge &a) const { return cost < a.cost; }\n\tbool operator>(const Edge &a) const\
-    \ { return cost > a.cost; }\n\tfriend std::ostream &operator<<(std::ostream &s,\
-    \ Edge &a) {\n\t\ts << \"to: \" << a.to << \", cost: \" << a.cost;\n\t\treturn\
+    links: []
+  bundledCode: "#line 1 \"data_structure/binary_indexed_tree.hpp\"\n#include <vector>\n\
+    \ntemplate <typename T>\nstruct binary_indexed_tree {\nprivate:\n\tint n, p;\n\
+    \tstd::vector<T> d;\n\npublic:\n\tbinary_indexed_tree() = default;\n\n\tbinary_indexed_tree(int\
+    \ n) : n(n), d(n + 1) {\n\t\tp = 1;\n\t\twhile(p < n) p *= 2;\n\t}\n\n\tvoid add(int\
+    \ i, T x = 1) {\n\t\tfor(i++; i <= n; i += i & -i) d[i] += x;\n\t}\n\n\t//return\
+    \ sum[0,i)\n\tT sum(int i) {\n\t\tT res = 0;\n\t\tfor(; i; i -= i & -i) res +=\
+    \ d[i];\n\t\treturn res;\n\t}\n\n\t//return sum[l,r)\n\tT sum(int l, int r) {\
+    \ return sum(r) - sum(l); }\n\n\t//return min(x) which satisfies (v0 + v1 + ...\
+    \ + vx >= w)\n\tint lower_bound(T w) {\n\t\tif(w <= 0) return 0;\n\t\tT x = 0;\n\
+    \t\tfor(int i = p; i; i /= 2) {\n\t\t\tif(i + x <= n && d[i + x] < w) {\n\t\t\t\
+    \tw -= d[i + x];\n\t\t\t\tx += i;\n\t\t\t}\n\t\t}\n\t\treturn x;\n\t}\n};\n#line\
+    \ 2 \"graph/graph.hpp\"\n#include <algorithm>\n#include <cassert>\n#include <deque>\n\
+    #include <iostream>\n#include <queue>\n#include <tuple>\n#include <utility>\n\
+    #line 10 \"graph/graph.hpp\"\n\nstruct Edge {\n\tint to;\n\tlong long cost;\n\t\
+    Edge() = default;\n\tEdge(int to_, long long cost_) : to(to_), cost(cost_) {}\n\
+    \tbool operator<(const Edge &a) const { return cost < a.cost; }\n\tbool operator>(const\
+    \ Edge &a) const { return cost > a.cost; }\n\tfriend std::ostream &operator<<(std::ostream\
+    \ &s, Edge &a) {\n\t\ts << \"to: \" << a.to << \", cost: \" << a.cost;\n\t\treturn\
     \ s;\n\t}\n};\n\nclass Graph {\n\tstd::vector<std::vector<Edge>> edges;\n\n\t\
     template <class F>\n\tstruct rec_lambda {\n\t\tF f;\n\t\trec_lambda(F &&f_) :\
     \ f(std::forward<F>(f_)) {}\n\t\ttemplate <class... Args>\n\t\tauto operator()(Args\
@@ -173,68 +184,76 @@ data:
     \ -> void {\n\t\t\tfor(auto &e : edges[now]) {\n\t\t\t\tif(chk[e.to] == 1) continue;\n\
     \t\t\t\tchk[e.to] = 1;\n\t\t\t\tres.add_edge(e.to, now, e.cost, 1, 0);\n\t\t\t\
     \tself(self, e.to);\n\t\t\t}\n\t\t};\n\t\tdfs(dfs, root);\n\t\treturn res;\n\t\
-    }\n\n\t// long long Chu_Liu_Edmonds(int root = 0) {}\n};\n#line 3 \"graph/tree_doubling.hpp\"\
-    \n\nstruct tree_doubling {\nprivate:\n\tstd::vector<std::vector<int>> parent;\n\
-    \tstd::vector<int> depth;\n\tstd::vector<long long> dist;\n\tint max_jump = 1;\n\
-    \n\tvoid build() {\n\t\tfor(int i = 0; i < max_jump - 1; i++) {\n\t\t\tfor(int\
-    \ v = 0; v < (int)dist.size(); v++) {\n\t\t\t\tif(parent[i][v] == -1)\n\t\t\t\t\
-    \tparent[i + 1][v] = -1;\n\t\t\t\telse\n\t\t\t\t\tparent[i + 1][v] = parent[i][parent[i][v]];\n\
-    \t\t\t}\n\t\t}\n\t}\n\npublic:\n\ttree_doubling() = default;\n\ttree_doubling(const\
-    \ Graph &g, const int root = 0) : dist(g.size()), depth(g.size()) {\n\t\tint n\
-    \ = g.size();\n\t\twhile((1 << max_jump) < n) max_jump++;\n\t\tparent.assign(max_jump,\
-    \ std::vector<int>(n, -1));\n\t\tauto dfs = [&](auto self, int now, int per, int\
-    \ d, long long cost) -> void {\n\t\t\tparent[0][now] = per;\n\t\t\tdepth[now]\
-    \ = d;\n\t\t\tdist[now] = cost;\n\t\t\tfor(auto &e : g[now])\n\t\t\t\tif(e.to\
-    \ != per) self(self, e.to, now, d + 1, cost + e.cost);\n\t\t};\n\t\tdfs(dfs, root,\
-    \ -1, 0, 0LL);\n\t\tbuild();\n\t}\n\n\tint lowest_common_ancestor(int u, int v)\
-    \ {\n\t\tif(depth[u] < depth[v]) std::swap(u, v);\n\t\tint k = parent.size();\n\
-    \t\tfor(int i = 0; i < k; i++)\n\t\t\tif((depth[u] - depth[v]) >> i & 1) u = parent[i][u];\n\
-    \t\tif(u == v) return u;\n\t\tfor(int i = k - 1; i >= 0; i--)\n\t\t\tif(parent[i][u]\
-    \ != parent[i][v]) u = parent[i][u], v = parent[i][v];\n\t\treturn parent[0][u];\n\
-    \t}\n\n\tlong long length_of_path(const int u, const int v) { return dist[u] +\
-    \ dist[v] - dist[lowest_common_ancestor(u, v)] * 2; }\n\n\tint level_ancestor(int\
-    \ v, int level) {\n\t\tassert(level >= 0);\n\t\tfor(int jump = 0; jump < max_jump\
-    \ and level; jump++) {\n\t\t\tif(level & 1) v = parent[jump][v];\n\t\t\tlevel\
-    \ >>= 1;\n\t\t}\n\t\treturn v;\n\t}\n};\n#line 1 \"template.hpp\"\n#include <bits/stdc++.h>\n\
-    using namespace std;\n#if __has_include(<atcoder/all>)\n#include <atcoder/all>\n\
-    using namespace atcoder;\n#endif\n\n#pragma region Macros\n// rep macro\n#define\
-    \ foa(v, a) for(auto &v : a)\n#define REPname(a, b, c, d, e, ...) e\n#define REP(...)\
-    \ REPname(__VA_ARGS__, REP3, REP2, REP1, REP0)(__VA_ARGS__)\n#define REP0(x) for(int\
-    \ i = 0; i < (x); ++i)\n#define REP1(i, x) for(int i = 0; i < (x); ++i)\n#define\
-    \ REP2(i, l, r) for(int i = (l); i < (r); ++i)\n#define REP3(i, l, r, c) for(int\
-    \ i = (l); i < (r); i += (c))\n#define REPSname(a, b, c, ...) c\n#define REPS(...)\
-    \ REPSname(__VA_ARGS__, REPS1, REPS0)(__VA_ARGS__)\n#define REPS0(x) for(int i\
-    \ = 1; i <= (x); ++i)\n#define REPS1(i, x) for(int i = 1; i <= (x); ++i)\n#define\
-    \ RREPname(a, b, c, d, e, ...) e\n#define RREP(...) RREPname(__VA_ARGS__, RREP3,\
-    \ RREP2, RREP1, RREP0)(__VA_ARGS__)\n#define RREP0(x) for(int i = (x)-1; i >=\
-    \ 0; --i)\n#define RREP1(i, x) for(int i = (x)-1; i >= 0; --i)\n#define RREP2(i,\
-    \ r, l) for(int i = (r)-1; i >= (l); --i)\n#define RREP3(i, r, l, c) for(int i\
-    \ = (r)-1; i >= (l); i -= (c))\n#define RREPSname(a, b, c, ...) c\n#define RREPS(...)\
-    \ RREPSname(__VA_ARGS__, RREPS1, RREPS0)(__VA_ARGS__)\n#define RREPS0(x) for(int\
-    \ i = (x); i >= 1; --i)\n#define RREPS1(i, x) for(int i = (x); i >= 1; --i)\n\n\
-    // name macro\n#define pb push_back\n#define eb emplace_back\n#define SZ(x) ((int)(x).size())\n\
-    #define all(x) (x).begin(), (x).end()\n#define rall(x) (x).rbegin(), (x).rend()\n\
-    #define popcnt(x) __builtin_popcountll(x)\ntemplate <class T = int>\nusing V =\
-    \ std::vector<T>;\ntemplate <class T = int>\nusing VV = std::vector<std::vector<T>>;\n\
-    template <class T>\nusing pqup = std::priority_queue<T, std::vector<T>, std::greater<T>>;\n\
-    using ll = long long;\nusing ld = long double;\nusing int128 = __int128_t;\nusing\
-    \ pii = std::pair<int, int>;\nusing pll = std::pair<long long, long long>;\n\n\
-    // input macro\ntemplate <class T, class U>\nstd::istream &operator>>(std::istream\
-    \ &is, std::pair<T, U> &p) {\n\tis >> p.first >> p.second;\n\treturn is;\n}\n\
-    template <class T>\nstd::istream &operator>>(std::istream &is, std::vector<T>\
-    \ &v) {\n\tfor(T &i : v) is >> i;\n\treturn is;\n}\nstd::istream &operator>>(std::istream\
-    \ &is, __int128_t &a) {\n\tstd::string s;\n\tis >> s;\n\t__int128_t ret = 0;\n\
-    \tfor(int i = 0; i < s.length(); i++)\n\t\tif('0' <= s[i] and s[i] <= '9')\n\t\
-    \t\tret = 10 * ret + s[i] - '0';\n\ta = ret * (s[0] == '-' ? -1 : 1);\n\treturn\
-    \ is;\n}\n#if __has_include(<atcoder/all>)\nstd::istream &operator>>(std::istream\
-    \ &is, atcoder::modint998244353 &a) {\n\tlong long v;\n\tis >> v;\n\ta = v;\n\t\
-    return is;\n}\nstd::istream &operator>>(std::istream &is, atcoder::modint1000000007\
+    }\n\n\t// long long Chu_Liu_Edmonds(int root = 0) {}\n};\n#line 3 \"graph/hld.hpp\"\
+    \n\nstruct heavy_light_decomposition {\npublic:\n\tstd::vector<int> sz, in, out,\
+    \ head, rev, par;\n\nprivate:\n\tGraph &g;\n\n\tvoid dfs_sz(int v, int p = -1)\
+    \ {\n\t\tpar[v] = p;\n\t\tif(!g[v].empty() and g[v].front().to == p) std::swap(g[v].front(),\
+    \ g[v].back());\n\t\tfor(auto &e : g[v]) {\n\t\t\tif(e.to == p) continue;\n\t\t\
+    \tdfs_sz(e.to, v);\n\t\t\tsz[v] += sz[e.to];\n\t\t\tif(sz[g[v].front().to] < sz[e.to])\
+    \ std::swap(g[v].front(), e);\n\t\t}\n\t}\n\n\tvoid dfs_hld(int v, int &t, int\
+    \ p = -1) {\n\t\tin[v] = t++;\n\t\trev[in[v]] = v;\n\t\tfor(auto &e : g[v]) {\n\
+    \t\t\tif(e.to == p) continue;\n\t\t\thead[e.to] = (g[v].front().to == e.to ? head[v]\
+    \ : e.to);\n\t\t\tdfs_hld(e.to, t, v);\n\t\t}\n\t\tout[v] = t;\n\t}\n\n\tvoid\
+    \ build(int root = 0) {\n\t\tdfs_sz(root);\n\t\tint t = 0;\n\t\thead[root] = root;\n\
+    \t\tdfs_hld(root, t);\n\t}\n\npublic:\n\theavy_light_decomposition(Graph &g_,\
+    \ int root = 0) : g(g_) {\n\t\tint n = g.size();\n\t\tsz.resize(n, 1);\n\t\tin.resize(n);\n\
+    \t\tout.resize(n);\n\t\thead.resize(n);\n\t\trev.resize(n);\n\t\tpar.resize(n);\n\
+    \t\tbuild(root);\n\t}\n\n\tint level_ancestor(int v, int level) {\n\t\twhile(true)\
+    \ {\n\t\t\tint u = head[v];\n\t\t\tif(in[v] - level >= in[u]) return rev[in[v]\
+    \ - level];\n\t\t\tlevel -= in[v] - in[u] + 1;\n\t\t\tv = par[u];\n\t\t}\n\t}\n\
+    \n\tint lowest_common_ancestor(int u, int v) {\n\t\tfor(;; v = par[head[v]]) {\n\
+    \t\t\tif(in[u] > in[v]) std::swap(u, v);\n\t\t\tif(head[u] == head[v]) return\
+    \ u;\n\t\t}\n\t}\n\n\t// u, v: vertex, unit: unit, q: query on a path, f: binary\
+    \ operation ((T, T) -> T)\n\ttemplate <typename T, typename Q, typename F>\n\t\
+    T query(int u, int v, const T &unit, const Q &q, const F &f, bool edge = false)\
+    \ {\n\t\tT l = unit, r = unit;\n\t\tfor(;; v = par[head[v]]) {\n\t\t\tif(in[u]\
+    \ > in[v]) std::swap(u, v), std::swap(l, r);\n\t\t\tif(head[u] == head[v]) break;\n\
+    \t\t\tl = f(q(in[head[v]], in[v] + 1), l);\n\t\t}\n\t\treturn f(f(q(in[u] + edge,\
+    \ in[v] + 1), l), r);\n\t}\n\n\t// u, v: vertex, q: update query\n\ttemplate <typename\
+    \ Q>\n\tvoid add(int u, int v, const Q &q, bool edge = false) {\n\t\tfor(;; v\
+    \ = par[head[v]]) {\n\t\t\tif(in[u] > in[v]) std::swap(u, v);\n\t\t\tif(head[u]\
+    \ == head[v]) break;\n\t\t\tq(in[head[v]], in[v] + 1);\n\t\t}\n\t\tq(in[u] + edge,\
+    \ in[v] + 1);\n\t}\n\n\tstd::pair<int, int> subtree(int v, bool edge = false)\
+    \ { return std::pair<int, int>(in[v] + edge, out[v]); }\n};\n#line 1 \"template.hpp\"\
+    \n#include <bits/stdc++.h>\nusing namespace std;\n#if __has_include(<atcoder/all>)\n\
+    #include <atcoder/all>\nusing namespace atcoder;\n#endif\n\n#pragma region Macros\n\
+    // rep macro\n#define foa(v, a) for(auto &v : a)\n#define REPname(a, b, c, d,\
+    \ e, ...) e\n#define REP(...) REPname(__VA_ARGS__, REP3, REP2, REP1, REP0)(__VA_ARGS__)\n\
+    #define REP0(x) for(int i = 0; i < (x); ++i)\n#define REP1(i, x) for(int i = 0;\
+    \ i < (x); ++i)\n#define REP2(i, l, r) for(int i = (l); i < (r); ++i)\n#define\
+    \ REP3(i, l, r, c) for(int i = (l); i < (r); i += (c))\n#define REPSname(a, b,\
+    \ c, ...) c\n#define REPS(...) REPSname(__VA_ARGS__, REPS1, REPS0)(__VA_ARGS__)\n\
+    #define REPS0(x) for(int i = 1; i <= (x); ++i)\n#define REPS1(i, x) for(int i\
+    \ = 1; i <= (x); ++i)\n#define RREPname(a, b, c, d, e, ...) e\n#define RREP(...)\
+    \ RREPname(__VA_ARGS__, RREP3, RREP2, RREP1, RREP0)(__VA_ARGS__)\n#define RREP0(x)\
+    \ for(int i = (x)-1; i >= 0; --i)\n#define RREP1(i, x) for(int i = (x)-1; i >=\
+    \ 0; --i)\n#define RREP2(i, r, l) for(int i = (r)-1; i >= (l); --i)\n#define RREP3(i,\
+    \ r, l, c) for(int i = (r)-1; i >= (l); i -= (c))\n#define RREPSname(a, b, c,\
+    \ ...) c\n#define RREPS(...) RREPSname(__VA_ARGS__, RREPS1, RREPS0)(__VA_ARGS__)\n\
+    #define RREPS0(x) for(int i = (x); i >= 1; --i)\n#define RREPS1(i, x) for(int\
+    \ i = (x); i >= 1; --i)\n\n// name macro\n#define pb push_back\n#define eb emplace_back\n\
+    #define SZ(x) ((int)(x).size())\n#define all(x) (x).begin(), (x).end()\n#define\
+    \ rall(x) (x).rbegin(), (x).rend()\n#define popcnt(x) __builtin_popcountll(x)\n\
+    template <class T = int>\nusing V = std::vector<T>;\ntemplate <class T = int>\n\
+    using VV = std::vector<std::vector<T>>;\ntemplate <class T>\nusing pqup = std::priority_queue<T,\
+    \ std::vector<T>, std::greater<T>>;\nusing ll = long long;\nusing ld = long double;\n\
+    using int128 = __int128_t;\nusing pii = std::pair<int, int>;\nusing pll = std::pair<long\
+    \ long, long long>;\n\n// input macro\ntemplate <class T, class U>\nstd::istream\
+    \ &operator>>(std::istream &is, std::pair<T, U> &p) {\n\tis >> p.first >> p.second;\n\
+    \treturn is;\n}\ntemplate <class T>\nstd::istream &operator>>(std::istream &is,\
+    \ std::vector<T> &v) {\n\tfor(T &i : v) is >> i;\n\treturn is;\n}\nstd::istream\
+    \ &operator>>(std::istream &is, __int128_t &a) {\n\tstd::string s;\n\tis >> s;\n\
+    \t__int128_t ret = 0;\n\tfor(int i = 0; i < s.length(); i++)\n\t\tif('0' <= s[i]\
+    \ and s[i] <= '9')\n\t\t\tret = 10 * ret + s[i] - '0';\n\ta = ret * (s[0] == '-'\
+    \ ? -1 : 1);\n\treturn is;\n}\n#if __has_include(<atcoder/all>)\nstd::istream\
+    \ &operator>>(std::istream &is, atcoder::modint998244353 &a) {\n\tlong long v;\n\
+    \tis >> v;\n\ta = v;\n\treturn is;\n}\nstd::istream &operator>>(std::istream &is,\
+    \ atcoder::modint1000000007 &a) {\n\tlong long v;\n\tis >> v;\n\ta = v;\n\treturn\
+    \ is;\n}\ntemplate <int m>\nstd::istream &operator>>(std::istream &is, atcoder::static_modint<m>\
     \ &a) {\n\tlong long v;\n\tis >> v;\n\ta = v;\n\treturn is;\n}\ntemplate <int\
-    \ m>\nstd::istream &operator>>(std::istream &is, atcoder::static_modint<m> &a)\
-    \ {\n\tlong long v;\n\tis >> v;\n\ta = v;\n\treturn is;\n}\ntemplate <int m>\n\
-    std::istream &operator>>(std::istream &is, atcoder::dynamic_modint<m> &a) {\n\t\
-    long long v;\n\tis >> v;\n\ta = v;\n\treturn is;\n}\n#endif\nnamespace scanner\
-    \ {\nvoid scan(int &a) { std::cin >> a; }\nvoid scan(long long &a) { std::cin\
+    \ m>\nstd::istream &operator>>(std::istream &is, atcoder::dynamic_modint<m> &a)\
+    \ {\n\tlong long v;\n\tis >> v;\n\ta = v;\n\treturn is;\n}\n#endif\nnamespace\
+    \ scanner {\nvoid scan(int &a) { std::cin >> a; }\nvoid scan(long long &a) { std::cin\
     \ >> a; }\nvoid scan(std::string &a) { std::cin >> a; }\nvoid scan(char &a) {\
     \ std::cin >> a; }\nvoid scan(char a[]) { std::scanf(\"%s\", a); }\nvoid scan(double\
     \ &a) { std::cin >> a; }\nvoid scan(long double &a) { std::cin >> a; }\ntemplate\
@@ -337,29 +356,36 @@ data:
     \ others\nstruct fast_io {\n\tfast_io() {\n\t\tios::sync_with_stdio(false);\n\t\
     \tcin.tie(nullptr);\n\t\tcout << fixed << setprecision(15);\n\t}\n} fast_io_;\n\
     const int inf = 1e9;\nconst ll INF = 1e18;\n#pragma endregion\n\nvoid main_();\n\
-    \nint main() {\n\tmain_();\n\treturn 0;\n}\n#line 6 \"test/yosupo-lca.test.cpp\"\
-    \n\nvoid main_() {\n\tINT(n, q);\n\tGraph g(n);\n\tREP(i, n - 1) {\n\t\tINT(p);\n\
-    \t\tg.add_edge(i + 1, p);\n\t}\n\ttree_doubling td(g, 0);\n\twhile(q--) {\n\t\t\
-    INT(u, v);\n\t\tprint(td.lowest_common_ancestor(u, v));\n\t}\n}\n"
-  code: "#define PROBLEM \"https://judge.yosupo.jp/problem/lca\"\n\n#include \"graph/graph.hpp\"\
-    \n#include \"graph/tree_doubling.hpp\"\n#include \"template.hpp\"\n\nvoid main_()\
-    \ {\n\tINT(n, q);\n\tGraph g(n);\n\tREP(i, n - 1) {\n\t\tINT(p);\n\t\tg.add_edge(i\
-    \ + 1, p);\n\t}\n\ttree_doubling td(g, 0);\n\twhile(q--) {\n\t\tINT(u, v);\n\t\
-    \tprint(td.lowest_common_ancestor(u, v));\n\t}\n}"
+    \nint main() {\n\tmain_();\n\treturn 0;\n}\n#line 5 \"test/yosupo-vertex_add_path_sum.test.cpp\"\
+    \n\nvoid main_() {\n\tINT(n, q);\n\tVEC(int, a, n);\n\tGraph g(n, -1, 0, 0, 0);\n\
+    \n\theavy_light_decomposition hld(g);\n\n\tbinary_indexed_tree<ll> bt(n);\n\t\
+    REP(i, n) { bt.add(hld.in[i], a[i]); }\n\n\tauto f = [](ll a, ll b) { return a\
+    \ + b; };\n\tauto query = [&](int l, int r) { return bt.sum(l, r); };\n\n\twhile(q--)\
+    \ {\n\t\tINT(type, u, v);\n\t\tif(type == 0)\n\t\t\tbt.add(hld.in[u], v);\n\t\t\
+    if(type == 1)\n\t\t\tprint(hld.query(u, v, 0ll, query, f));\n\t}\n}\n"
+  code: "#include \"data_structure/binary_indexed_tree.hpp\"\n#include \"graph/graph.hpp\"\
+    \n#include \"graph/hld.hpp\"\n#include \"template.hpp\"\n\nvoid main_() {\n\t\
+    INT(n, q);\n\tVEC(int, a, n);\n\tGraph g(n, -1, 0, 0, 0);\n\n\theavy_light_decomposition\
+    \ hld(g);\n\n\tbinary_indexed_tree<ll> bt(n);\n\tREP(i, n) { bt.add(hld.in[i],\
+    \ a[i]); }\n\n\tauto f = [](ll a, ll b) { return a + b; };\n\tauto query = [&](int\
+    \ l, int r) { return bt.sum(l, r); };\n\n\twhile(q--) {\n\t\tINT(type, u, v);\n\
+    \t\tif(type == 0)\n\t\t\tbt.add(hld.in[u], v);\n\t\tif(type == 1)\n\t\t\tprint(hld.query(u,\
+    \ v, 0ll, query, f));\n\t}\n}"
   dependsOn:
+  - data_structure/binary_indexed_tree.hpp
   - graph/graph.hpp
-  - graph/tree_doubling.hpp
+  - graph/hld.hpp
   - template.hpp
   isVerificationFile: true
-  path: test/yosupo-lca.test.cpp
+  path: test/yosupo-vertex_add_path_sum.test.cpp
   requiredBy: []
-  timestamp: '2021-09-08 00:32:03+09:00'
-  verificationStatus: TEST_ACCEPTED
+  timestamp: '2021-09-08 09:57:46+09:00'
+  verificationStatus: TEST_WRONG_ANSWER
   verifiedWith: []
-documentation_of: test/yosupo-lca.test.cpp
+documentation_of: test/yosupo-vertex_add_path_sum.test.cpp
 layout: document
 redirect_from:
-- /verify/test/yosupo-lca.test.cpp
-- /verify/test/yosupo-lca.test.cpp.html
-title: test/yosupo-lca.test.cpp
+- /verify/test/yosupo-vertex_add_path_sum.test.cpp
+- /verify/test/yosupo-vertex_add_path_sum.test.cpp.html
+title: test/yosupo-vertex_add_path_sum.test.cpp
 ---
