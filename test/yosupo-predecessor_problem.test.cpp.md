@@ -14,12 +14,15 @@ data:
   _verificationStatusIcon: ':x:'
   attributes:
     '*NOT_SPECIAL_COMMENTS*': ''
-    links: []
-  bundledCode: "#line 1 \"data_structure/binary_trie.hpp\"\n#include <algorithm>\n\
-    #include <cassert>\n#include <iostream>\n#include <memory>\n\ntemplate <class\
-    \ T, unsigned char BIT_SIZE = 30, bool multi = true>\nstruct binary_trie {\n\t\
-    using u64 = unsigned long long int;\n\npublic:\n\tbinary_trie() : root(new node(0))\
-    \ {}\n\n\tu64 count(const T x) { return count(root, x); }\n\n\tvoid insert(const\
+    PROBLEM: https://judge.yosupo.jp/problem/predecessor_problem
+    links:
+    - https://judge.yosupo.jp/problem/predecessor_problem
+  bundledCode: "#line 1 \"test/yosupo-predecessor_problem.test.cpp\"\n#define PROBLEM\
+    \ \"https://judge.yosupo.jp/problem/predecessor_problem\"\n\n#line 1 \"data_structure/binary_trie.hpp\"\
+    \n#include <algorithm>\n#include <cassert>\n#include <iostream>\n#include <memory>\n\
+    \ntemplate <class T, unsigned char BIT_SIZE = 30, bool multi = true>\nstruct binary_trie\
+    \ {\n\tusing u64 = unsigned long long int;\n\npublic:\n\tbinary_trie() : root(new\
+    \ node(0)) {}\n\n\tu64 count(const T x) { return count(root, x); }\n\n\tvoid insert(const\
     \ T x, const u64 k = 1) {\n\t\tif(multi == false and count(x)) return;\n\t\tinsert(root,\
     \ x, k);\n\t}\n\n\tvoid erase(const T x, const u64 k = 1) {\n\t\tif(!count(x))\
     \ return;\n\t\terase(root, x, k);\n\t}\n\n\tu64 lower_bound(const T x) { return\
@@ -207,7 +210,7 @@ data:
     \ others\nstruct fast_io {\n\tfast_io() {\n\t\tios::sync_with_stdio(false);\n\t\
     \tcin.tie(nullptr);\n\t\tcout << fixed << setprecision(15);\n\t}\n} fast_io_;\n\
     const int inf = 1e9;\nconst ll INF = 1e18;\n#pragma endregion\n\nvoid main_();\n\
-    \nint main() {\n\tmain_();\n\treturn 0;\n}\n#line 3 \"test/yosupo-predecessor_problem.test.cpp\"\
+    \nint main() {\n\tmain_();\n\treturn 0;\n}\n#line 5 \"test/yosupo-predecessor_problem.test.cpp\"\
     \n\nvoid main_() {\n\tINT(n, q);\n\tSTR(s);\n\tbinary_trie<int, 30, false> trie;\n\
     \tREP(i, n) {\n\t\tif(s[i] == '1') trie.insert(i);\n\t}\n\twhile(q--) {\n\t\t\
     INT(t, x);\n\t\tint d;\n\t\tswitch(t) {\n\t\t\tcase 0:\n\t\t\t\ttrie.insert(x);\n\
@@ -217,13 +220,14 @@ data:
     \ -1);\n\t\t\t\tbreak;\n\t\t\tcase 4:\n\t\t\t\td = trie.upper_bound(x) - 1;\n\t\
     \t\t\tprint(d >= 0 and d < trie.size() ? trie[d] : -1);\n\t\t\t\tbreak;\n\t\t\t\
     default:\n\t\t\t\tbreak;\n\t\t}\n\t}\n}\n"
-  code: "#include \"data_structure/binary_trie.hpp\"\n#include \"template.hpp\"\n\n\
-    void main_() {\n\tINT(n, q);\n\tSTR(s);\n\tbinary_trie<int, 30, false> trie;\n\
-    \tREP(i, n) {\n\t\tif(s[i] == '1') trie.insert(i);\n\t}\n\twhile(q--) {\n\t\t\
-    INT(t, x);\n\t\tint d;\n\t\tswitch(t) {\n\t\t\tcase 0:\n\t\t\t\ttrie.insert(x);\n\
-    \t\t\t\tbreak;\n\t\t\tcase 1:\n\t\t\t\ttrie.erase(x);\n\t\t\t\tbreak;\n\t\t\t\
-    case 2:\n\t\t\t\tprint(trie.count(x));\n\t\t\t\tbreak;\n\t\t\tcase 3:\n\t\t\t\t\
-    d = trie.lower_bound(x);\n\t\t\t\tprint(d >= 0 and d < trie.size() ? trie[d] :\
+  code: "#define PROBLEM \"https://judge.yosupo.jp/problem/predecessor_problem\"\n\
+    \n#include \"data_structure/binary_trie.hpp\"\n#include \"template.hpp\"\n\nvoid\
+    \ main_() {\n\tINT(n, q);\n\tSTR(s);\n\tbinary_trie<int, 30, false> trie;\n\t\
+    REP(i, n) {\n\t\tif(s[i] == '1') trie.insert(i);\n\t}\n\twhile(q--) {\n\t\tINT(t,\
+    \ x);\n\t\tint d;\n\t\tswitch(t) {\n\t\t\tcase 0:\n\t\t\t\ttrie.insert(x);\n\t\
+    \t\t\tbreak;\n\t\t\tcase 1:\n\t\t\t\ttrie.erase(x);\n\t\t\t\tbreak;\n\t\t\tcase\
+    \ 2:\n\t\t\t\tprint(trie.count(x));\n\t\t\t\tbreak;\n\t\t\tcase 3:\n\t\t\t\td\
+    \ = trie.lower_bound(x);\n\t\t\t\tprint(d >= 0 and d < trie.size() ? trie[d] :\
     \ -1);\n\t\t\t\tbreak;\n\t\t\tcase 4:\n\t\t\t\td = trie.upper_bound(x) - 1;\n\t\
     \t\t\tprint(d >= 0 and d < trie.size() ? trie[d] : -1);\n\t\t\t\tbreak;\n\t\t\t\
     default:\n\t\t\t\tbreak;\n\t\t}\n\t}\n}"
@@ -233,7 +237,7 @@ data:
   isVerificationFile: true
   path: test/yosupo-predecessor_problem.test.cpp
   requiredBy: []
-  timestamp: '2021-09-08 14:26:37+09:00'
+  timestamp: '2021-09-08 14:27:53+09:00'
   verificationStatus: TEST_WRONG_ANSWER
   verifiedWith: []
 documentation_of: test/yosupo-predecessor_problem.test.cpp
