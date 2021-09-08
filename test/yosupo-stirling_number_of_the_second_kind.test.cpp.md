@@ -538,70 +538,71 @@ data:
     \t\tif(n < r or n < 0 or r < 0) return T(0);\n\t\tassert(r < MAX);\n\t\tT ret\
     \ = finv[r];\n\t\tfor(int i = 1; i <= r; ++i)\n\t\t\tret *= (n + 1 - i);\n\t\t\
     return ret;\n\t}\n\n\tstatic void set_size(int n = 3000000) {\n\t\tMAX = (n >\
-    \ 1 ? n : 1) + 1;\n\t\tfac.resize(MAX);\n\t\tfinv.resize(MAX);\n\t\tinv.resize(MAX);\n\
-    \t\tconst int MOD = T::mod();\n\t\tfac[0] = fac[1] = 1;\n\t\tfinv[0] = finv[1]\
-    \ = 1;\n\t\tinv[1] = 1;\n\t\tfor(int i = 2; i < MAX; i++) {\n\t\t\tfac[i] = fac[i\
-    \ - 1] * i;\n\t\t\tinv[i] = (T)MOD - inv[MOD % i] * (MOD / i);\n\t\t\tfinv[i]\
-    \ = finv[i - 1] * inv[i];\n\t\t}\n\t}\n};\ntemplate <class T>\nint factorial<T>::MAX\
-    \ = 0;\ntemplate <class T>\nstd::vector<T> factorial<T>::fac;\ntemplate <class\
-    \ T>\nstd::vector<T> factorial<T>::finv;\ntemplate <class T>\nstd::vector<T> factorial<T>::inv;\n\
-    #line 9 \"math/formal_power_series.hpp\"\n\nenum Mode {\n\tFAST = 1,\n\tNAIVE\
-    \ = -1,\n};\ntemplate <class T, Mode mode = FAST>\nstruct formal_power_series\
-    \ : std::vector<T> {\n\tfactorial<T> fact;\n\tusing std::vector<T>::vector;\n\t\
-    using std::vector<T>::size;\n\tusing std::vector<T>::resize;\n\tusing std::vector<T>::begin;\n\
-    \tusing std::vector<T>::insert;\n\tusing std::vector<T>::erase;\n\tusing F = formal_power_series;\n\
-    \tusing S = std::vector<std::pair<int, T>>;\n\n\tF &operator+=(const F &g) {\n\
-    \t\tfor(int i = 0; i < int(std::min((*this).size(), g.size())); i++) (*this)[i]\
-    \ += g[i];\n\t\treturn *this;\n\t}\n\n\tF &operator+=(const T &t) {\n\t\tassert(int((*this).size()));\n\
-    \t\t(*this)[0] += t;\n\t\treturn *this;\n\t}\n\n\tF &operator-=(const F &g) {\n\
-    \t\tfor(int i = 0; i < int(std::min((*this).size(), g.size())); i++) (*this)[i]\
-    \ -= g[i];\n\t\treturn *this;\n\t}\n\n\tF &operator-=(const T &t) {\n\t\tassert(int((*this).size()));\n\
-    \t\t(*this)[0] -= t;\n\t\treturn *this;\n\t}\n\n\tF &operator*=(const T &t) {\n\
-    \t\tfor(int i = 0; i < int((*this).size()); ++i) (*this)[i] *= t;\n\t\treturn\
-    \ *this;\n\t}\n\n\tF &operator/=(const T &t) {\n\t\tT div = t.inv();\n\t\tfor(int\
-    \ i = 0; i < int((*this).size()); ++i) (*this)[i] *= div;\n\t\treturn *this;\n\
-    \t}\n\n\tF &operator>>=(const int sz) {\n\t\tassert(sz >= 0);\n\t\tint n = (*this).size();\n\
-    \t\t(*this).erase((*this).begin(), (*this).begin() + std::min(sz, n));\n\t\t(*this).resize(n);\n\
-    \t\treturn *this;\n\t}\n\n\tF &operator<<=(const int sz) {\n\t\tassert(sz >= 0);\n\
-    \t\tint n = (*this).size();\n\t\t(*this).insert((*this).begin(), sz, T(0));\n\t\
-    \t(*this).resize(n);\n\t\treturn *this;\n\t}\n\n\tF poly_div(const F &g) {\n\t\
-    \tif(this->size() < g.size()) {\n\t\t\tF ret(this->size());\n\t\t\treturn ret;\n\
-    \t\t}\n\t\tif(mode == FAST) {\n\t\t\tauto ret = *this;\n\t\t\tint old = this->size();\n\
-    \t\t\tint n = old - g.size() + 1;\n\t\t\tret = ((*this).rev().pre(n) * g.rev().inv(n));\n\
-    \t\t\tret.rev_inplace();\n\t\t\tret.resize(old);\n\t\t\treturn ret;\n\t\t} else\
-    \ {\n\t\t\tassert(g.back() != T(0));\n\t\t\tT igb = g.back().inv();\n\t\t\tint\
-    \ n = (*this).size(), m = g.size();\n\t\t\tF this_copy(*this);\n\t\t\tF ret(n);\n\
-    \t\t\tfor(int i = n - 1; i >= m - 1; --i) {\n\t\t\t\tT mul = this_copy[i] * igb;\n\
-    \t\t\t\tret[i - m + 1] = mul;\n\t\t\t\tfor(int j = i; j > i - m; j--)\n\t\t\t\t\
-    \tthis_copy[j] -= g[j - i + m - 1] * mul;\n\t\t\t}\n\t\t\treturn ret;\n\t\t}\n\
-    \t}\n\n\t//\u3053\u308C\u306E\u307F\u591A\u9805\u5F0F\u306E\u9664\u7B97\u3068\u3057\
-    \u3066\u6271\u3046\n\tF &operator%=(const F &g) {\n\t\treturn *this -= this->poly_div(g)\
-    \ * g;\n\t}\n\n\tF &operator=(const std::vector<T> &v) {\n\t\tint n = (*this).size();\n\
-    \t\tfor(int i = 0; i < n; ++i) (*this)[i] = v[i];\n\t\treturn *this;\n\t}\n\n\t\
-    F operator-() const {\n\t\tF ret = *this;\n\t\treturn ret * -1;\n\t}\n\n\tF &operator*=(const\
-    \ F &g) {\n\t\tif(mode == FAST) {\n\t\t\tint n = (*this).size();\n\t\t\tauto tmp\
-    \ = atcoder::convolution(*this, g);\n\t\t\tfor(int i = 0; i < n; ++i) (*this)[i]\
-    \ = tmp[i];\n\t\t\treturn *this;\n\t\t} else {\n\t\t\tint n = (*this).size(),\
-    \ m = g.size();\n\t\t\tfor(int i = n - 1; i >= 0; --i) {\n\t\t\t\t(*this)[i] *=\
-    \ g[0];\n\t\t\t\tfor(int j = 1; j < std::min(i + 1, m); j++)\n\t\t\t\t\t(*this)[i]\
-    \ += (*this)[i - j] * g[j];\n\t\t\t}\n\t\t\treturn *this;\n\t\t}\n\t}\n\n\tF &operator/=(const\
-    \ F &g) {\n\t\tif((*this).size() < g.size()) {\n\t\t\t(*this).assign((*this).size(),\
-    \ T(0));\n\t\t\treturn *this;\n\t\t}\n\t\tif(mode == FAST) {\n\t\t\t*this *= g.inv();\n\
-    \t\t\treturn *this;\n\t\t} else {\n\t\t\tassert(g[0] != T(0));\n\t\t\tT ig0 =\
-    \ g[0].inv();\n\t\t\tint n = (*this).size(), m = g.size();\n\t\t\tfor(int i =\
-    \ 0; i < n; ++i) {\n\t\t\t\tfor(int j = 1; j < std::min(i + 1, m); ++j)\n\t\t\t\
-    \t\t(*this)[i] -= (*this)[i - j] * g[j];\n\t\t\t\t(*this)[i] *= ig0;\n\t\t\t}\n\
-    \t\t\treturn *this;\n\t\t}\n\t}\n\n\tF &operator*=(S g) {\n\t\tint n = (*this).size();\n\
-    \t\tauto [d, c] = g.front();\n\t\tif(!d)\n\t\t\tg.erase(g.begin());\n\t\telse\n\
-    \t\t\tc = 0;\n\t\tfor(int i = n - 1; i >= 0; --i) {\n\t\t\t(*this)[i] *= c;\n\t\
-    \t\tfor(auto &[j, b] : g) {\n\t\t\t\tif(j > i) break;\n\t\t\t\t(*this)[i] += (*this)[i\
-    \ - j] * b;\n\t\t\t}\n\t\t}\n\t\treturn *this;\n\t}\n\n\tF &operator/=(S g) {\n\
-    \t\tint n = (*this).size();\n\t\tauto [d, c] = g.front();\n\t\tassert(!d and c\
-    \ != 0);\n\t\tT ic = c.inv();\n\t\tg.erase(g.begin());\n\t\tfor(int i = 0; i <\
-    \ n; ++i) {\n\t\t\tfor(auto &[j, b] : g) {\n\t\t\t\tif(j > i) break;\n\t\t\t\t\
-    (*this)[i] -= (*this)[i - j] * b;\n\t\t\t}\n\t\t\t(*this)[i] *= ic;\n\t\t}\n\t\
-    \treturn *this;\n\t}\n\n\tF operator+(const F &g) const { return F(*this) += g;\
-    \ }\n\n\tF operator+(const T &t) const { return F(*this) += t; }\n\n\tF operator-(const\
+    \ 1 ? n : 1) + 1;\n\t\tif((int)fac.size() >= MAX) return;\n\t\tfac.resize(MAX);\n\
+    \t\tfinv.resize(MAX);\n\t\tinv.resize(MAX);\n\t\tconst int MOD = T::mod();\n\t\
+    \tfac[0] = fac[1] = 1;\n\t\tfinv[0] = finv[1] = 1;\n\t\tinv[1] = 1;\n\t\tfor(int\
+    \ i = 2; i < MAX; i++) {\n\t\t\tfac[i] = fac[i - 1] * i;\n\t\t\tinv[i] = (T)MOD\
+    \ - inv[MOD % i] * (MOD / i);\n\t\t\tfinv[i] = finv[i - 1] * inv[i];\n\t\t}\n\t\
+    }\n};\ntemplate <class T>\nint factorial<T>::MAX = 0;\ntemplate <class T>\nstd::vector<T>\
+    \ factorial<T>::fac;\ntemplate <class T>\nstd::vector<T> factorial<T>::finv;\n\
+    template <class T>\nstd::vector<T> factorial<T>::inv;\n#line 9 \"math/formal_power_series.hpp\"\
+    \n\nenum Mode {\n\tFAST = 1,\n\tNAIVE = -1,\n};\ntemplate <class T, Mode mode\
+    \ = FAST>\nstruct formal_power_series : std::vector<T> {\n\tfactorial<T> fact;\n\
+    \tusing std::vector<T>::vector;\n\tusing std::vector<T>::size;\n\tusing std::vector<T>::resize;\n\
+    \tusing std::vector<T>::begin;\n\tusing std::vector<T>::insert;\n\tusing std::vector<T>::erase;\n\
+    \tusing F = formal_power_series;\n\tusing S = std::vector<std::pair<int, T>>;\n\
+    \n\tF &operator+=(const F &g) {\n\t\tfor(int i = 0; i < int(std::min((*this).size(),\
+    \ g.size())); i++) (*this)[i] += g[i];\n\t\treturn *this;\n\t}\n\n\tF &operator+=(const\
+    \ T &t) {\n\t\tassert(int((*this).size()));\n\t\t(*this)[0] += t;\n\t\treturn\
+    \ *this;\n\t}\n\n\tF &operator-=(const F &g) {\n\t\tfor(int i = 0; i < int(std::min((*this).size(),\
+    \ g.size())); i++) (*this)[i] -= g[i];\n\t\treturn *this;\n\t}\n\n\tF &operator-=(const\
+    \ T &t) {\n\t\tassert(int((*this).size()));\n\t\t(*this)[0] -= t;\n\t\treturn\
+    \ *this;\n\t}\n\n\tF &operator*=(const T &t) {\n\t\tfor(int i = 0; i < int((*this).size());\
+    \ ++i) (*this)[i] *= t;\n\t\treturn *this;\n\t}\n\n\tF &operator/=(const T &t)\
+    \ {\n\t\tT div = t.inv();\n\t\tfor(int i = 0; i < int((*this).size()); ++i) (*this)[i]\
+    \ *= div;\n\t\treturn *this;\n\t}\n\n\tF &operator>>=(const int sz) {\n\t\tassert(sz\
+    \ >= 0);\n\t\tint n = (*this).size();\n\t\t(*this).erase((*this).begin(), (*this).begin()\
+    \ + std::min(sz, n));\n\t\t(*this).resize(n);\n\t\treturn *this;\n\t}\n\n\tF &operator<<=(const\
+    \ int sz) {\n\t\tassert(sz >= 0);\n\t\tint n = (*this).size();\n\t\t(*this).insert((*this).begin(),\
+    \ sz, T(0));\n\t\t(*this).resize(n);\n\t\treturn *this;\n\t}\n\n\tF poly_div(const\
+    \ F &g) {\n\t\tif(this->size() < g.size()) {\n\t\t\tF ret(this->size());\n\t\t\
+    \treturn ret;\n\t\t}\n\t\tif(mode == FAST) {\n\t\t\tauto ret = *this;\n\t\t\t\
+    int old = this->size();\n\t\t\tint n = old - g.size() + 1;\n\t\t\tret = ((*this).rev().pre(n)\
+    \ * g.rev().inv(n));\n\t\t\tret.rev_inplace();\n\t\t\tret.resize(old);\n\t\t\t\
+    return ret;\n\t\t} else {\n\t\t\tassert(g.back() != T(0));\n\t\t\tT igb = g.back().inv();\n\
+    \t\t\tint n = (*this).size(), m = g.size();\n\t\t\tF this_copy(*this);\n\t\t\t\
+    F ret(n);\n\t\t\tfor(int i = n - 1; i >= m - 1; --i) {\n\t\t\t\tT mul = this_copy[i]\
+    \ * igb;\n\t\t\t\tret[i - m + 1] = mul;\n\t\t\t\tfor(int j = i; j > i - m; j--)\n\
+    \t\t\t\t\tthis_copy[j] -= g[j - i + m - 1] * mul;\n\t\t\t}\n\t\t\treturn ret;\n\
+    \t\t}\n\t}\n\n\t//\u3053\u308C\u306E\u307F\u591A\u9805\u5F0F\u306E\u9664\u7B97\
+    \u3068\u3057\u3066\u6271\u3046\n\tF &operator%=(const F &g) {\n\t\treturn *this\
+    \ -= this->poly_div(g) * g;\n\t}\n\n\tF &operator=(const std::vector<T> &v) {\n\
+    \t\tint n = (*this).size();\n\t\tfor(int i = 0; i < n; ++i) (*this)[i] = v[i];\n\
+    \t\treturn *this;\n\t}\n\n\tF operator-() const {\n\t\tF ret = *this;\n\t\treturn\
+    \ ret * -1;\n\t}\n\n\tF &operator*=(const F &g) {\n\t\tif(mode == FAST) {\n\t\t\
+    \tint n = (*this).size();\n\t\t\tauto tmp = atcoder::convolution(*this, g);\n\t\
+    \t\tfor(int i = 0; i < n; ++i) (*this)[i] = tmp[i];\n\t\t\treturn *this;\n\t\t\
+    } else {\n\t\t\tint n = (*this).size(), m = g.size();\n\t\t\tfor(int i = n - 1;\
+    \ i >= 0; --i) {\n\t\t\t\t(*this)[i] *= g[0];\n\t\t\t\tfor(int j = 1; j < std::min(i\
+    \ + 1, m); j++)\n\t\t\t\t\t(*this)[i] += (*this)[i - j] * g[j];\n\t\t\t}\n\t\t\
+    \treturn *this;\n\t\t}\n\t}\n\n\tF &operator/=(const F &g) {\n\t\tif((*this).size()\
+    \ < g.size()) {\n\t\t\t(*this).assign((*this).size(), T(0));\n\t\t\treturn *this;\n\
+    \t\t}\n\t\tif(mode == FAST) {\n\t\t\t*this *= g.inv();\n\t\t\treturn *this;\n\t\
+    \t} else {\n\t\t\tassert(g[0] != T(0));\n\t\t\tT ig0 = g[0].inv();\n\t\t\tint\
+    \ n = (*this).size(), m = g.size();\n\t\t\tfor(int i = 0; i < n; ++i) {\n\t\t\t\
+    \tfor(int j = 1; j < std::min(i + 1, m); ++j)\n\t\t\t\t\t(*this)[i] -= (*this)[i\
+    \ - j] * g[j];\n\t\t\t\t(*this)[i] *= ig0;\n\t\t\t}\n\t\t\treturn *this;\n\t\t\
+    }\n\t}\n\n\tF &operator*=(S g) {\n\t\tint n = (*this).size();\n\t\tauto [d, c]\
+    \ = g.front();\n\t\tif(!d)\n\t\t\tg.erase(g.begin());\n\t\telse\n\t\t\tc = 0;\n\
+    \t\tfor(int i = n - 1; i >= 0; --i) {\n\t\t\t(*this)[i] *= c;\n\t\t\tfor(auto\
+    \ &[j, b] : g) {\n\t\t\t\tif(j > i) break;\n\t\t\t\t(*this)[i] += (*this)[i -\
+    \ j] * b;\n\t\t\t}\n\t\t}\n\t\treturn *this;\n\t}\n\n\tF &operator/=(S g) {\n\t\
+    \tint n = (*this).size();\n\t\tauto [d, c] = g.front();\n\t\tassert(!d and c !=\
+    \ 0);\n\t\tT ic = c.inv();\n\t\tg.erase(g.begin());\n\t\tfor(int i = 0; i < n;\
+    \ ++i) {\n\t\t\tfor(auto &[j, b] : g) {\n\t\t\t\tif(j > i) break;\n\t\t\t\t(*this)[i]\
+    \ -= (*this)[i - j] * b;\n\t\t\t}\n\t\t\t(*this)[i] *= ic;\n\t\t}\n\t\treturn\
+    \ *this;\n\t}\n\n\tF operator+(const F &g) const { return F(*this) += g; }\n\n\
+    \tF operator+(const T &t) const { return F(*this) += t; }\n\n\tF operator-(const\
     \ F &g) const { return F(*this) -= g; }\n\n\tF operator-(const T &t) const { return\
     \ F(*this) -= t; }\n\n\tF operator*(const F &g) const { return F(*this) *= g;\
     \ }\n\n\tF operator*(const T &t) const { return F(*this) *= t; }\n\n\tF operator/(const\
@@ -750,7 +751,7 @@ data:
   isVerificationFile: true
   path: test/yosupo-stirling_number_of_the_second_kind.test.cpp
   requiredBy: []
-  timestamp: '2021-09-08 17:42:52+09:00'
+  timestamp: '2021-09-08 23:53:30+09:00'
   verificationStatus: TEST_ACCEPTED
   verifiedWith: []
 documentation_of: test/yosupo-stirling_number_of_the_second_kind.test.cpp
