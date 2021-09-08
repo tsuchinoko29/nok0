@@ -26,8 +26,7 @@ public:
 	}
 
 	static void set_size(int n) {
-		assert(n >= 1);
-		MAX = n + 1;
+		MAX = (n > 1 ? n : 1) + 1;
 		fac.resize(MAX);
 		finv.resize(MAX);
 		inv.resize(MAX);
