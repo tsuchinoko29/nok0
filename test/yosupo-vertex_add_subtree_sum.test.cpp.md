@@ -1,23 +1,23 @@
 ---
 data:
   _extendedDependsOn:
-  - icon: ':question:'
+  - icon: ':heavy_check_mark:'
     path: data_structure/binary_indexed_tree.hpp
     title: data_structure/binary_indexed_tree.hpp
-  - icon: ':question:'
+  - icon: ':heavy_check_mark:'
     path: graph/graph.hpp
     title: graph/graph.hpp
-  - icon: ':question:'
+  - icon: ':heavy_check_mark:'
     path: graph/hld.hpp
     title: graph/hld.hpp
-  - icon: ':question:'
+  - icon: ':heavy_check_mark:'
     path: template.hpp
     title: template.hpp
   _extendedRequiredBy: []
   _extendedVerifiedWith: []
-  _isVerificationFailed: true
+  _isVerificationFailed: false
   _pathExtension: cpp
-  _verificationStatusIcon: ':x:'
+  _verificationStatusIcon: ':heavy_check_mark:'
   attributes:
     '*NOT_SPECIAL_COMMENTS*': ''
     PROBLEM: https://judge.yosupo.jp/problem/vertex_add_subtree_sum
@@ -365,7 +365,7 @@ data:
     \ hld(g);\n\n\tbinary_indexed_tree<ll> bt(n);\n\tREP(i, n) { bt.add(hld.in[i],\
     \ a[i]); }\n\n\tauto f = [](ll a, ll b) { return a + b; };\n\tauto query = [&](int\
     \ l, int r) { return bt.sum(l, r); };\n\n\twhile(q--) {\n\t\tINT(type, u);\n\t\
-    \tif(type == 0) {\n\t\t\tINT(v);\n\t\t\tbt.add(hld.in[u], v);\n\t\t}\n\t\tif(type\
+    \tif(type == 0) {\n\t\t\tINT(x);\n\t\t\tbt.add(hld.in[u], x);\n\t\t}\n\t\tif(type\
     \ == 1) {\n\t\t\tauto [l, r] = hld.subtree(u);\n\t\t\tprint(bt.sum(l, r));\n\t\
     \t}\n\t}\n}\n"
   code: "#define PROBLEM \"https://judge.yosupo.jp/problem/vertex_add_subtree_sum\"\
@@ -375,8 +375,8 @@ data:
     \tg.add_edge(i, p);\n\t}\n\n\theavy_light_decomposition hld(g);\n\n\tbinary_indexed_tree<ll>\
     \ bt(n);\n\tREP(i, n) { bt.add(hld.in[i], a[i]); }\n\n\tauto f = [](ll a, ll b)\
     \ { return a + b; };\n\tauto query = [&](int l, int r) { return bt.sum(l, r);\
-    \ };\n\n\twhile(q--) {\n\t\tINT(type, u);\n\t\tif(type == 0) {\n\t\t\tINT(v);\n\
-    \t\t\tbt.add(hld.in[u], v);\n\t\t}\n\t\tif(type == 1) {\n\t\t\tauto [l, r] = hld.subtree(u);\n\
+    \ };\n\n\twhile(q--) {\n\t\tINT(type, u);\n\t\tif(type == 0) {\n\t\t\tINT(x);\n\
+    \t\t\tbt.add(hld.in[u], x);\n\t\t}\n\t\tif(type == 1) {\n\t\t\tauto [l, r] = hld.subtree(u);\n\
     \t\t\tprint(bt.sum(l, r));\n\t\t}\n\t}\n}"
   dependsOn:
   - data_structure/binary_indexed_tree.hpp
@@ -386,8 +386,8 @@ data:
   isVerificationFile: true
   path: test/yosupo-vertex_add_subtree_sum.test.cpp
   requiredBy: []
-  timestamp: '2021-09-08 10:25:09+09:00'
-  verificationStatus: TEST_WRONG_ANSWER
+  timestamp: '2021-09-08 15:13:47+09:00'
+  verificationStatus: TEST_ACCEPTED
   verifiedWith: []
 documentation_of: test/yosupo-vertex_add_subtree_sum.test.cpp
 layout: document

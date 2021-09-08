@@ -15,12 +15,12 @@ data:
     - icon: ':warning:'
       path: submit.cpp
       title: submit.cpp
-    - icon: ':question:'
+    - icon: ':heavy_check_mark:'
       path: template.hpp
       title: template.hpp
   - name: data_structure
     pages:
-    - icon: ':question:'
+    - icon: ':heavy_check_mark:'
       path: data_structure/binary_indexed_tree.hpp
       title: data_structure/binary_indexed_tree.hpp
     - icon: ':heavy_check_mark:'
@@ -52,10 +52,10 @@ data:
     - icon: ':warning:'
       path: graph/dag_mcf.hpp
       title: graph/dag_mcf.hpp
-    - icon: ':question:'
+    - icon: ':heavy_check_mark:'
       path: graph/graph.hpp
       title: graph/graph.hpp
-    - icon: ':question:'
+    - icon: ':heavy_check_mark:'
       path: graph/hld.hpp
       title: graph/hld.hpp
     - icon: ':heavy_check_mark:'
@@ -188,7 +188,7 @@ data:
     - icon: ':heavy_check_mark:'
       path: test/yosupo-vertex_add_path_sum.test.cpp
       title: test/yosupo-vertex_add_path_sum.test.cpp
-    - icon: ':x:'
+    - icon: ':heavy_check_mark:'
       path: test/yosupo-vertex_add_subtree_sum.test.cpp
       title: test/yosupo-vertex_add_subtree_sum.test.cpp
 layout: toppage
