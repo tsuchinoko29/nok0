@@ -47,7 +47,7 @@ public:
 	}
 
 private:
-	Graph g;
+	graph g;
 	atcoder::mcf_graph<Cap, Cost> mcf;
 	struct edge {
 		int from, to;

@@ -21,7 +21,7 @@ private:
 
 public:
 	tree_doubling() = default;
-	tree_doubling(const Graph &g, const int root = 0) : dist(g.size()), depth(g.size()) {
+	tree_doubling(const graph &g, const int root = 0) : dist(g.size()), depth(g.size()) {
 		int n = g.size();
 		while((1 << max_jump) < n) max_jump++;
 		parent.assign(max_jump, std::vector<int>(n, -1));

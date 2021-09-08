@@ -8,7 +8,7 @@
 void main_() {
 	INT(n, q);
 	VEC(int, a, n);
-	Graph g(n, -1, 0, 0, 0);
+	graph g(n, -1, 0, 0, 0);
 
 	heavy_light_decomposition hld(g);
 

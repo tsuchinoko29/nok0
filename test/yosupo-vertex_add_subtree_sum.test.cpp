@@ -8,7 +8,7 @@
 void main_() {
 	INT(n, q);
 	VEC(int, a, n);
-	Graph g(n);
+	graph g(n);
 	REP(i, 1, n) {
 		INT(p);
 		g.add_edge(i, p);

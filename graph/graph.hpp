@@ -21,7 +21,7 @@ struct Edge {
 	}
 };
 
-class Graph {
+class graph {
 	std::vector<std::vector<Edge>> edges;
 
 	template <class F>
@@ -41,9 +41,9 @@ public:
 	int size() const { return edges.size(); }
 	void resize(const int n) { edges.resize(n); }
 
-	Graph() = default;
-	Graph(int n) : edges(n) {}
-	Graph(int n, int e, bool weight = 0, bool directed = 0, int idx = 1) : edges(n) { input(e, weight, directed, idx); }
+	graph() = default;
+	graph(int n) : edges(n) {}
+	graph(int n, int e, bool weight = 0, bool directed = 0, int idx = 1) : edges(n) { input(e, weight, directed, idx); }
 	const long long INF = 3e18;
 
 	void input(int e = -1, bool weight = 0, bool directed = false, int idx = 1) {
@@ -381,8 +381,8 @@ public:
 
 	// Ο(V+E)
 	// directed graph from root to leaf
-	Graph root_to_leaf(int root = 0) {
-		Graph res(size());
+	graph root_to_leaf(int root = 0) {
+		graph res(size());
 		std::vector<int> chk(size(), 0);
 		chk[root] = 1;
 		auto dfs = [&](auto self, int now) -> void {
@@ -399,8 +399,8 @@ public:
 
 	// Ο(V+E)
 	// directed graph from leaf to root
-	Graph leaf_to_root(int root = 0) {
-		Graph res(size());
+	graph leaf_to_root(int root = 0) {
+		graph res(size());
 		std::vector<int> chk(size(), 0);
 		chk[root] = 1;
 		auto dfs = [&](auto self, int now) -> void {

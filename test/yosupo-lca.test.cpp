@@ -6,7 +6,7 @@
 
 void main_() {
 	INT(n, q);
-	Graph g(n);
+	graph g(n);
 	REP(i, n - 1) {
 		INT(p);
 		g.add_edge(i + 1, p);

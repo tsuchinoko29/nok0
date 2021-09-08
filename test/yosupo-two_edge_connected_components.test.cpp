@@ -6,7 +6,7 @@
 
 void main_() {
 	INT(n, m);
-	Graph g(n, m, 0, 0, 0);
+	graph g(n, m, 0, 0, 0);
 
 	two_edge_connected_components tecc(g);
 	print(SZ(tecc.groups));

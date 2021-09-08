@@ -6,7 +6,7 @@ public:
 	std::vector<int> sz, in, out, head, rev, par;
 
 private:
-	Graph &g;
+	graph &g;
 
 	void dfs_sz(int v, int p = -1) {
 		par[v] = p;
@@ -38,7 +38,7 @@ private:
 	}
 
 public:
-	heavy_light_decomposition(Graph &g_, int root = 0) : g(g_) {
+	heavy_light_decomposition(graph &g_, int root = 0) : g(g_) {
 		int n = g.size();
 		sz.resize(n, 1);
 		in.resize(n);

@@ -4,7 +4,7 @@
 
 struct two_edge_connected_components {
 private:
-	const Graph &graph_given;
+	const graph &graph_given;
 	int group_next;
 	low_link li;
 	std::vector<int> group_number;
@@ -37,9 +37,9 @@ private:
 	}
 
 public:
-	Graph graph_compressed;
+	graph graph_compressed;
 	std::vector<std::vector<int>> groups;
-	two_edge_connected_components(const Graph &g_, bool create_compressed_graph = false)
+	two_edge_connected_components(const graph &g_, bool create_compressed_graph = false)
 	  : graph_given(g_), li(g_) {
 		build(create_compressed_graph);
 	}

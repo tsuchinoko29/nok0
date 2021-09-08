@@ -5,8 +5,8 @@ struct strongly_connected_components {
 private:
 	enum { CHECKED = -1,
 		   UNCHECKED = -2 };
-	const Graph &graph_given;
-	Graph graph_reversed;
+	const graph &graph_given;
+	graph graph_reversed;
 	std::vector<int> order, group_number; /* at the beginning of the building, 'group_number' is used as 'checked' */
 
 	void dfs(int now) {
@@ -47,9 +47,9 @@ private:
 
 public:
 	std::vector<std::vector<int>> groups;
-	Graph graph_compressed;
+	graph graph_compressed;
 
-	strongly_connected_components(const Graph &g_, bool create_compressed_graph = false)
+	strongly_connected_components(const graph &g_, bool create_compressed_graph = false)
 	  : graph_given(g_), graph_reversed(g_.size()), group_number(g_.size(), UNCHECKED) {
 		for(size_t i = 0; i < g_.size(); i++)
 			for(auto &e : graph_given[i]) graph_reversed[e.to].emplace_back(i, 1);

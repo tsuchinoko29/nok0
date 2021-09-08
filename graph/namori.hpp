@@ -5,14 +5,14 @@ struct namori {
 public:
 	std::vector<std::vector<int>> cycles;
 	std::vector<int> cycle_number, root;
-	namori(Graph &g) : n(g.size()), g(g) { build(); }
+	namori(graph &g) : n(g.size()), g(g) { build(); }
 
 private:
 	int n;
 	std::vector<bool> dfs_used, dfs_now;
 	std::vector<int> dfs_ver;
-	Graph &g;
-	Graph forest;
+	graph &g;
+	graph forest;
 	void build() {
 		forest.resize(n);
 		dfs_used.assign(n, false);

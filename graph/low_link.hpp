@@ -4,7 +4,7 @@
 
 struct low_link {
 private:
-	const Graph &graph_given;
+	const graph &graph_given;
 	int order_next;
 
 	void build() {
@@ -41,5 +41,5 @@ public:
 	std::vector<int> order, low, articulation;
 	std::vector<std::pair<int, int>> bridge;
 	low_link() = default;
-	low_link(const Graph &g_) : graph_given(g_) { build(); }
+	low_link(const graph &g_) : graph_given(g_) { build(); }
 };
