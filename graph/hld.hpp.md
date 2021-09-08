@@ -7,6 +7,12 @@ data:
   _extendedRequiredBy: []
   _extendedVerifiedWith:
   - icon: ':heavy_check_mark:'
+    path: test/aoj-grl-5-d.test.cpp
+    title: test/aoj-grl-5-d.test.cpp
+  - icon: ':heavy_check_mark:'
+    path: test/aoj-grl-5-e.test.cpp
+    title: test/aoj-grl-5-e.test.cpp
+  - icon: ':heavy_check_mark:'
     path: test/yosupo-vertex_add_path_sum.test.cpp
     title: test/yosupo-vertex_add_path_sum.test.cpp
   - icon: ':heavy_check_mark:'
@@ -239,7 +245,9 @@ data:
   timestamp: '2021-09-08 10:25:09+09:00'
   verificationStatus: LIBRARY_ALL_AC
   verifiedWith:
+  - test/aoj-grl-5-e.test.cpp
   - test/yosupo-vertex_add_path_sum.test.cpp
+  - test/aoj-grl-5-d.test.cpp
   - test/yosupo-vertex_add_subtree_sum.test.cpp
 documentation_of: graph/hld.hpp
 layout: document

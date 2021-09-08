@@ -10,6 +10,12 @@ data:
     title: graph/two_edge_cc.hpp
   _extendedVerifiedWith:
   - icon: ':heavy_check_mark:'
+    path: test/aoj-grl-3-a.test.cpp
+    title: test/aoj-grl-3-a.test.cpp
+  - icon: ':heavy_check_mark:'
+    path: test/aoj-grl-3-b.test.cpp
+    title: test/aoj-grl-3-b.test.cpp
+  - icon: ':heavy_check_mark:'
     path: test/yosupo-two_edge_connected_components.test.cpp
     title: test/yosupo-two_edge_connected_components.test.cpp
   _isVerificationFailed: false
@@ -211,6 +217,8 @@ data:
   verificationStatus: LIBRARY_ALL_AC
   verifiedWith:
   - test/yosupo-two_edge_connected_components.test.cpp
+  - test/aoj-grl-3-b.test.cpp
+  - test/aoj-grl-3-a.test.cpp
 documentation_of: graph/low_link.hpp
 layout: document
 redirect_from:

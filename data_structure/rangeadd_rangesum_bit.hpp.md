@@ -2,10 +2,13 @@
 data:
   _extendedDependsOn: []
   _extendedRequiredBy: []
-  _extendedVerifiedWith: []
+  _extendedVerifiedWith:
+  - icon: ':heavy_check_mark:'
+    path: test/aoj-grl-5-e.test.cpp
+    title: test/aoj-grl-5-e.test.cpp
   _isVerificationFailed: false
   _pathExtension: hpp
-  _verificationStatusIcon: ':warning:'
+  _verificationStatusIcon: ':heavy_check_mark:'
   attributes:
     links: []
   bundledCode: "#line 1 \"data_structure/rangeadd_rangesum_bit.hpp\"\n#include <vector>\n\
@@ -36,8 +39,9 @@ data:
   path: data_structure/rangeadd_rangesum_bit.hpp
   requiredBy: []
   timestamp: '2021-09-07 20:08:56+09:00'
-  verificationStatus: LIBRARY_NO_TESTS
-  verifiedWith: []
+  verificationStatus: LIBRARY_ALL_AC
+  verifiedWith:
+  - test/aoj-grl-5-e.test.cpp
 documentation_of: data_structure/rangeadd_rangesum_bit.hpp
 layout: document
 redirect_from:

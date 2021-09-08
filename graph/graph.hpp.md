@@ -28,6 +28,45 @@ data:
     path: test/aoj-grl-1-a.test.cpp
     title: test/aoj-grl-1-a.test.cpp
   - icon: ':heavy_check_mark:'
+    path: test/aoj-grl-1-b.test.cpp
+    title: test/aoj-grl-1-b.test.cpp
+  - icon: ':heavy_check_mark:'
+    path: test/aoj-grl-1-c.test.cpp
+    title: test/aoj-grl-1-c.test.cpp
+  - icon: ':heavy_check_mark:'
+    path: test/aoj-grl-2-a.test.cpp
+    title: test/aoj-grl-2-a.test.cpp
+  - icon: ':heavy_check_mark:'
+    path: test/aoj-grl-3-a.test.cpp
+    title: test/aoj-grl-3-a.test.cpp
+  - icon: ':heavy_check_mark:'
+    path: test/aoj-grl-3-b.test.cpp
+    title: test/aoj-grl-3-b.test.cpp
+  - icon: ':heavy_check_mark:'
+    path: test/aoj-grl-3-c.test.cpp
+    title: test/aoj-grl-3-c.test.cpp
+  - icon: ':heavy_check_mark:'
+    path: test/aoj-grl-4-a.test.cpp
+    title: test/aoj-grl-4-a.test.cpp
+  - icon: ':heavy_check_mark:'
+    path: test/aoj-grl-4-b.test.cpp
+    title: test/aoj-grl-4-b.test.cpp
+  - icon: ':heavy_check_mark:'
+    path: test/aoj-grl-5-a.test.cpp
+    title: test/aoj-grl-5-a.test.cpp
+  - icon: ':heavy_check_mark:'
+    path: test/aoj-grl-5-b.test.cpp
+    title: test/aoj-grl-5-b.test.cpp
+  - icon: ':heavy_check_mark:'
+    path: test/aoj-grl-5-c.test.cpp
+    title: test/aoj-grl-5-c.test.cpp
+  - icon: ':heavy_check_mark:'
+    path: test/aoj-grl-5-d.test.cpp
+    title: test/aoj-grl-5-d.test.cpp
+  - icon: ':heavy_check_mark:'
+    path: test/aoj-grl-5-e.test.cpp
+    title: test/aoj-grl-5-e.test.cpp
+  - icon: ':heavy_check_mark:'
     path: test/yosupo-lca.test.cpp
     title: test/yosupo-lca.test.cpp
   - icon: ':heavy_check_mark:'
@@ -371,11 +410,24 @@ data:
   verificationStatus: LIBRARY_ALL_AC
   verifiedWith:
   - test/yosupo-two_edge_connected_components.test.cpp
+  - test/aoj-grl-3-b.test.cpp
+  - test/aoj-grl-4-b.test.cpp
+  - test/aoj-grl-4-a.test.cpp
   - test/yosupo-tree_diameter.test.cpp
   - test/aoj-grl-1-a.test.cpp
   - test/yosupo-lca.test.cpp
+  - test/aoj-grl-3-c.test.cpp
+  - test/aoj-grl-5-e.test.cpp
+  - test/aoj-grl-5-a.test.cpp
+  - test/aoj-grl-5-c.test.cpp
+  - test/aoj-grl-1-b.test.cpp
   - test/yosupo-vertex_add_path_sum.test.cpp
+  - test/aoj-grl-3-a.test.cpp
+  - test/aoj-grl-1-c.test.cpp
+  - test/aoj-grl-5-d.test.cpp
+  - test/aoj-grl-5-b.test.cpp
   - test/yosupo-vertex_add_subtree_sum.test.cpp
+  - test/aoj-grl-2-a.test.cpp
   - test/yosupo-scc.test.cpp
 documentation_of: graph/graph.hpp
 layout: document

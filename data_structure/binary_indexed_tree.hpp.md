@@ -7,6 +7,9 @@ data:
     path: test/aoj-dsl-2-b.test.cpp
     title: test/aoj-dsl-2-b.test.cpp
   - icon: ':heavy_check_mark:'
+    path: test/aoj-grl-5-d.test.cpp
+    title: test/aoj-grl-5-d.test.cpp
+  - icon: ':heavy_check_mark:'
     path: test/yosupo-vertex_add_path_sum.test.cpp
     title: test/yosupo-vertex_add_path_sum.test.cpp
   - icon: ':heavy_check_mark:'
@@ -48,6 +51,7 @@ data:
   verifiedWith:
   - test/yosupo-vertex_add_path_sum.test.cpp
   - test/aoj-dsl-2-b.test.cpp
+  - test/aoj-grl-5-d.test.cpp
   - test/yosupo-vertex_add_subtree_sum.test.cpp
 documentation_of: data_structure/binary_indexed_tree.hpp
 layout: document
