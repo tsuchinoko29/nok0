@@ -261,14 +261,14 @@ data:
     return fac[n] * finv[r] * finv[n - r];\n\t}\n\n\tT large_binom(int n, int r) {\n\
     \t\tif(n < r or n < 0 or r < 0) return T(0);\n\t\tassert(r < MAX);\n\t\tT ret\
     \ = finv[r];\n\t\tfor(int i = 1; i <= r; ++i)\n\t\t\tret *= (n + 1 - i);\n\t\t\
-    return ret;\n\t}\n\n\tstatic void set_size(int n) {\n\t\tMAX = (n > 1 ? n : 1)\
-    \ + 1;\n\t\tfac.resize(MAX);\n\t\tfinv.resize(MAX);\n\t\tinv.resize(MAX);\n\t\t\
-    const int MOD = T::mod();\n\t\tfac[0] = fac[1] = 1;\n\t\tfinv[0] = finv[1] = 1;\n\
-    \t\tinv[1] = 1;\n\t\tfor(int i = 2; i < MAX; i++) {\n\t\t\tfac[i] = fac[i - 1]\
-    \ * i;\n\t\t\tinv[i] = (T)MOD - inv[MOD % i] * (MOD / i);\n\t\t\tfinv[i] = finv[i\
-    \ - 1] * inv[i];\n\t\t}\n\t}\n};\ntemplate <class T>\nint factorial<T>::MAX =\
-    \ 0;\ntemplate <class T>\nstd::vector<T> factorial<T>::fac;\ntemplate <class T>\n\
-    std::vector<T> factorial<T>::finv;\ntemplate <class T>\nstd::vector<T> factorial<T>::inv;\n"
+    return ret;\n\t}\n\n\tstatic void set_size(int n = 3000000) {\n\t\tMAX = (n >\
+    \ 1 ? n : 1) + 1;\n\t\tfac.resize(MAX);\n\t\tfinv.resize(MAX);\n\t\tinv.resize(MAX);\n\
+    \t\tconst int MOD = T::mod();\n\t\tfac[0] = fac[1] = 1;\n\t\tfinv[0] = finv[1]\
+    \ = 1;\n\t\tinv[1] = 1;\n\t\tfor(int i = 2; i < MAX; i++) {\n\t\t\tfac[i] = fac[i\
+    \ - 1] * i;\n\t\t\tinv[i] = (T)MOD - inv[MOD % i] * (MOD / i);\n\t\t\tfinv[i]\
+    \ = finv[i - 1] * inv[i];\n\t\t}\n\t}\n};\ntemplate <class T>\nint factorial<T>::MAX\
+    \ = 0;\ntemplate <class T>\nstd::vector<T> factorial<T>::fac;\ntemplate <class\
+    \ T>\nstd::vector<T> factorial<T>::finv;\ntemplate <class T>\nstd::vector<T> factorial<T>::inv;\n"
   code: "#include <cassert>\n#include <vector>\n\n#include \"atcoder/modint\"\n\n\
     template <class T>\nstruct factorial {\npublic:\n\tstatic int MAX;\n\tstatic std::vector<T>\
     \ fac, finv, inv;\n\n\tfactorial() {}\n\n\tT binom(int n, int r) {\n\t\tif(n <\
@@ -276,14 +276,14 @@ data:
     \ finv[r] * finv[n - r];\n\t}\n\n\tT large_binom(int n, int r) {\n\t\tif(n < r\
     \ or n < 0 or r < 0) return T(0);\n\t\tassert(r < MAX);\n\t\tT ret = finv[r];\n\
     \t\tfor(int i = 1; i <= r; ++i)\n\t\t\tret *= (n + 1 - i);\n\t\treturn ret;\n\t\
-    }\n\n\tstatic void set_size(int n) {\n\t\tMAX = (n > 1 ? n : 1) + 1;\n\t\tfac.resize(MAX);\n\
-    \t\tfinv.resize(MAX);\n\t\tinv.resize(MAX);\n\t\tconst int MOD = T::mod();\n\t\
-    \tfac[0] = fac[1] = 1;\n\t\tfinv[0] = finv[1] = 1;\n\t\tinv[1] = 1;\n\t\tfor(int\
-    \ i = 2; i < MAX; i++) {\n\t\t\tfac[i] = fac[i - 1] * i;\n\t\t\tinv[i] = (T)MOD\
-    \ - inv[MOD % i] * (MOD / i);\n\t\t\tfinv[i] = finv[i - 1] * inv[i];\n\t\t}\n\t\
-    }\n};\ntemplate <class T>\nint factorial<T>::MAX = 0;\ntemplate <class T>\nstd::vector<T>\
-    \ factorial<T>::fac;\ntemplate <class T>\nstd::vector<T> factorial<T>::finv;\n\
-    template <class T>\nstd::vector<T> factorial<T>::inv;\n"
+    }\n\n\tstatic void set_size(int n = 3000000) {\n\t\tMAX = (n > 1 ? n : 1) + 1;\n\
+    \t\tfac.resize(MAX);\n\t\tfinv.resize(MAX);\n\t\tinv.resize(MAX);\n\t\tconst int\
+    \ MOD = T::mod();\n\t\tfac[0] = fac[1] = 1;\n\t\tfinv[0] = finv[1] = 1;\n\t\t\
+    inv[1] = 1;\n\t\tfor(int i = 2; i < MAX; i++) {\n\t\t\tfac[i] = fac[i - 1] * i;\n\
+    \t\t\tinv[i] = (T)MOD - inv[MOD % i] * (MOD / i);\n\t\t\tfinv[i] = finv[i - 1]\
+    \ * inv[i];\n\t\t}\n\t}\n};\ntemplate <class T>\nint factorial<T>::MAX = 0;\n\
+    template <class T>\nstd::vector<T> factorial<T>::fac;\ntemplate <class T>\nstd::vector<T>\
+    \ factorial<T>::finv;\ntemplate <class T>\nstd::vector<T> factorial<T>::inv;\n"
   dependsOn:
   - atcoder/modint.hpp
   - atcoder/internal_math.hpp
@@ -293,7 +293,7 @@ data:
   requiredBy:
   - math/formal_power_series.hpp
   - math/multipoint_evaluation.hpp
-  timestamp: '2021-09-08 17:33:28+09:00'
+  timestamp: '2021-09-08 17:42:52+09:00'
   verificationStatus: LIBRARY_ALL_AC
   verifiedWith:
   - test/yosupo-stirling_number_of_the_second_kind.test.cpp
