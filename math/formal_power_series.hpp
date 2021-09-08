@@ -1,23 +1,24 @@
 #pragma once
-#include <atcoder/convolution>
 #include <cassert>
 #include <iostream>
 #include <random>
 #include <vector>
+
+#include "atcoder/convolution"
 
 enum Mode {
 	FAST = 1,
 	NAIVE = -1,
 };
 template <class T, Mode mode = FAST>
-struct FormalPowerSeries : std::vector<T> {
+struct formal_power_series : std::vector<T> {
 	using std::vector<T>::vector;
 	using std::vector<T>::size;
 	using std::vector<T>::resize;
 	using std::vector<T>::begin;
 	using std::vector<T>::insert;
 	using std::vector<T>::erase;
-	using F = FormalPowerSeries;
+	using F = formal_power_series;
 	using S = std::vector<std::pair<int, T>>;
 
 	F &operator+=(const F &g) {

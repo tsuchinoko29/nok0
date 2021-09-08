@@ -5,8 +5,8 @@
 #include "math/formal_power_series.hpp"
 
 template <class T, Mode mode>
-std::vector<T> FormalPowerSeries<T, mode>::multipoint_evaluation(const std::vector<T> &p) {
-	using fps = FormalPowerSeries<T, mode>;
+std::vector<T> formal_power_series<T, mode>::multipoint_evaluation(const std::vector<T> &p) {
+	using fps = formal_power_series<T, mode>;
 	int m = p.size();
 	int n = 1 << atcoder::internal::ceil_pow2(m);
 	std::vector<fps> subproducts(2 * n, F{1}), rem(2 * n);
