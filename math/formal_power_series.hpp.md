@@ -1,21 +1,24 @@
 ---
 data:
   _extendedDependsOn:
-  - icon: ':heavy_check_mark:'
+  - icon: ':question:'
     path: atcoder/convolution.hpp
     title: atcoder/convolution.hpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':question:'
     path: atcoder/internal_bit.hpp
     title: atcoder/internal_bit.hpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':question:'
     path: atcoder/internal_math.hpp
     title: atcoder/internal_math.hpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':question:'
     path: atcoder/internal_type_traits.hpp
     title: atcoder/internal_type_traits.hpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':question:'
     path: atcoder/modint.hpp
     title: atcoder/modint.hpp
+  - icon: ':question:'
+    path: math/factorial.hpp
+    title: math/factorial.hpp
   _extendedRequiredBy:
   - icon: ':warning:'
     path: math/multipoint_evaluation.hpp
@@ -39,9 +42,15 @@ data:
   - icon: ':heavy_check_mark:'
     path: test/yosupo-sqrt_of_formal_power_series.test.cpp
     title: test/yosupo-sqrt_of_formal_power_series.test.cpp
-  _isVerificationFailed: false
+  - icon: ':x:'
+    path: test/yosupo-stirling_number_of_the_first_kind.test.cpp
+    title: test/yosupo-stirling_number_of_the_first_kind.test.cpp
+  - icon: ':x:'
+    path: test/yosupo-stirling_number_of_the_second_kind.test.cpp
+    title: test/yosupo-stirling_number_of_the_second_kind.test.cpp
+  _isVerificationFailed: true
   _pathExtension: hpp
-  _verificationStatusIcon: ':heavy_check_mark:'
+  _verificationStatusIcon: ':question:'
   attributes:
     links: []
   bundledCode: "#line 2 \"math/formal_power_series.hpp\"\n#include <cassert>\n#include\
@@ -409,9 +418,24 @@ data:
     \     if (diff < 0) diff += MOD1;\n        static constexpr unsigned long long\
     \ offset[5] = {\n            0, 0, M1M2M3, 2 * M1M2M3, 3 * M1M2M3};\n        x\
     \ -= offset[diff % 5];\n        c[i] = x;\n    }\n\n    return c;\n}\n\n}  //\
-    \ namespace atcoder\n\n\n#line 8 \"math/formal_power_series.hpp\"\n\nenum Mode\
-    \ {\n\tFAST = 1,\n\tNAIVE = -1,\n};\ntemplate <class T, Mode mode = FAST>\nstruct\
-    \ formal_power_series : std::vector<T> {\n\tusing std::vector<T>::vector;\n\t\
+    \ namespace atcoder\n\n\n#line 1 \"math/factorial.hpp\"\n#include <atcoder/modint>\n\
+    #line 4 \"math/factorial.hpp\"\n\ntemplate <class T>\nstruct factorial {\npublic:\n\
+    \tstatic int MAX;\n\tstatic std::vector<T> fac, finv, inv;\n\n\tfactorial() {}\n\
+    \n\tT binom(int n, int r) {\n\t\tif(n < r or n < 0 or r < 0) return T(0);\n\t\t\
+    assert(n < MAX);\n\t\treturn fac[n] * finv[r] * finv[n - r];\n\t}\n\n\tT large_binom(int\
+    \ n, int r) {\n\t\tif(n < r or n < 0 or r < 0) return T(0);\n\t\tassert(r < MAX);\n\
+    \t\tT ret = finv[r];\n\t\tfor(int i = 1; i <= r; ++i)\n\t\t\tret *= (n + 1 - i);\n\
+    \t\treturn ret;\n\t}\n\n\tstatic void set_size(int n) {\n\t\tassert(n >= 1);\n\
+    \t\tMAX = n + 1;\n\t\tfac.resize(MAX);\n\t\tfinv.resize(MAX);\n\t\tinv.resize(MAX);\n\
+    \t\tconst int MOD = T::mod();\n\t\tfac[0] = fac[1] = 1;\n\t\tfinv[0] = finv[1]\
+    \ = 1;\n\t\tinv[1] = 1;\n\t\tfor(int i = 2; i < MAX; i++) {\n\t\t\tfac[i] = fac[i\
+    \ - 1] * i;\n\t\t\tinv[i] = (T)MOD - inv[MOD % i] * (MOD / i);\n\t\t\tfinv[i]\
+    \ = finv[i - 1] * inv[i];\n\t\t}\n\t}\n};\ntemplate <class T>\nint factorial<T>::MAX\
+    \ = 0;\ntemplate <class T>\nstd::vector<T> factorial<T>::fac;\ntemplate <class\
+    \ T>\nstd::vector<T> factorial<T>::finv;\ntemplate <class T>\nstd::vector<T> factorial<T>::inv;\n\
+    #line 9 \"math/formal_power_series.hpp\"\n\nenum Mode {\n\tFAST = 1,\n\tNAIVE\
+    \ = -1,\n};\ntemplate <class T, Mode mode = FAST>\nstruct formal_power_series\
+    \ : std::vector<T> {\n\tfactorial<T> fact;\n\tusing std::vector<T>::vector;\n\t\
     using std::vector<T>::size;\n\tusing std::vector<T>::resize;\n\tusing std::vector<T>::begin;\n\
     \tusing std::vector<T>::insert;\n\tusing std::vector<T>::erase;\n\tusing F = formal_power_series;\n\
     \tusing S = std::vector<std::pair<int, T>>;\n\n\tF &operator+=(const F &g) {\n\
@@ -563,67 +587,86 @@ data:
     \ < deg; i <<= 1) {\n\t\t\tauto u = (*this);\n\t\t\tu.resize(i << 1);\n\t\t\t\
     ret = (ret.inv(i << 1) * u + ret) * ti;\n\t\t}\n\t\tret.resize(deg);\n\t\treturn\
     \ ret;\n\t}\n\n\tvoid sparse_pow(const int n, const int d, const T c, const int\
-    \ k);\n\tvoid sparse_pow_inv(const int n, const int d, const T c, const int k);\n\
-    \tvoid stirling_first(int n);\n\tvoid stirling_second(int n);\n\tstd::vector<T>\
-    \ multipoint_evaluation(const std::vector<T> &p);\n};\n"
+    \ k) {\n\t\tF ret(n);\n\t\tT tmp = 1;\n\t\tif(k >= 0) {\n\t\t\tfor(int i = 0;\
+    \ i < n; i += d) {\n\t\t\t\tret[i] = fact.binom(k, i / d) * tmp;\n\t\t\t\ttmp\
+    \ *= c;\n\t\t\t}\n\t\t} else {\n\t\t\tfor(int i = 0; i < n; i += d) {\n\t\t\t\t\
+    ret[i] = fact.binom(i / d - k - 1, -k - 1) * tmp;\n\t\t\t\ttmp *= -c;\n\t\t\t\
+    }\n\t\t}\n\t\t(*this) = ret;\n\t}\n\n\tvoid sparse_pow_inv(const int n, const\
+    \ int d, const T c, const int k) { return sparse_pow(n, d, c, -k); }\n\n\tvoid\
+    \ stirling_first(int n) {\n\t\tif(!n) {\n\t\t\t*this = F{1};\n\t\t\treturn;\n\t\
+    \t}\n\t\tint m = 1;\n\t\tF res(n + 1);\n\t\tres[1] = 1;\n\t\tfor(int k = 30 -\
+    \ __builtin_clz(n); k >= 0; --k) {\n\t\t\tF as(m * 2 + 1), bs(m + 1);\n\t\t\t\
+    for(int i = 0; i <= m; i++)\n\t\t\t\tas[i] = fact.fac[i] * res[i];\n\n\t\t\tbs[m]\
+    \ = 1;\n\t\t\tfor(int i = m - 1; i >= 0; i--)\n\t\t\t\tbs[i] -= bs[i + 1] * m;\n\
+    \n\t\t\tfor(int i = 0; i <= m; i++)\n\t\t\t\tbs[m - i] *= fact.finv[i];\n\n\t\t\
+    \tF cs = as * bs, ds(m + 1);\n\t\t\tfor(int i = 0; i <= m; i++)\n\t\t\t\tds[i]\
+    \ = cs[m + i] * fact.finv[i];\n\n\t\t\tres *= ds;\n\t\t\tm <<= 1;\n\t\t\tif(n\
+    \ >> k & 1) {\n\t\t\t\tF g(n + 1);\n\t\t\t\tfor(int i = 0; i <= m; i++) {\n\t\t\
+    \t\t\tg[i] -= res[i] * m;\n\t\t\t\t\tg[i + 1] += res[i];\n\t\t\t\t}\n\t\t\t\t\
+    res = g;\n\t\t\t\tm |= 1;\n\t\t\t}\n\t\t}\n\t\t*this = res;\n\t}\n\n\tvoid stirling_second(int\
+    \ n) {\n\t\tF f(n + 1), g(n + 1);\n\t\tfor(int i = 0; i <= n; i++) {\n\t\t\tf[i]\
+    \ = T(i).pow(n) * fact.finv[i];\n\t\t\tg[i] = fact.finv[i] * (i % 2 ? -1 : 1);\n\
+    \t\t}\n\t\tf *= g;\n\t\t*this = f;\n\t}\n\n\tstd::vector<T> multipoint_evaluation(const\
+    \ std::vector<T> &p);\n};\n"
   code: "#pragma once\n#include <cassert>\n#include <iostream>\n#include <random>\n\
-    #include <vector>\n\n#include \"atcoder/convolution\"\n\nenum Mode {\n\tFAST =\
-    \ 1,\n\tNAIVE = -1,\n};\ntemplate <class T, Mode mode = FAST>\nstruct formal_power_series\
-    \ : std::vector<T> {\n\tusing std::vector<T>::vector;\n\tusing std::vector<T>::size;\n\
-    \tusing std::vector<T>::resize;\n\tusing std::vector<T>::begin;\n\tusing std::vector<T>::insert;\n\
-    \tusing std::vector<T>::erase;\n\tusing F = formal_power_series;\n\tusing S =\
-    \ std::vector<std::pair<int, T>>;\n\n\tF &operator+=(const F &g) {\n\t\tfor(int\
-    \ i = 0; i < int(std::min((*this).size(), g.size())); i++) (*this)[i] += g[i];\n\
-    \t\treturn *this;\n\t}\n\n\tF &operator+=(const T &t) {\n\t\tassert(int((*this).size()));\n\
-    \t\t(*this)[0] += t;\n\t\treturn *this;\n\t}\n\n\tF &operator-=(const F &g) {\n\
-    \t\tfor(int i = 0; i < int(std::min((*this).size(), g.size())); i++) (*this)[i]\
-    \ -= g[i];\n\t\treturn *this;\n\t}\n\n\tF &operator-=(const T &t) {\n\t\tassert(int((*this).size()));\n\
-    \t\t(*this)[0] -= t;\n\t\treturn *this;\n\t}\n\n\tF &operator*=(const T &t) {\n\
-    \t\tfor(int i = 0; i < int((*this).size()); ++i) (*this)[i] *= t;\n\t\treturn\
-    \ *this;\n\t}\n\n\tF &operator/=(const T &t) {\n\t\tT div = t.inv();\n\t\tfor(int\
-    \ i = 0; i < int((*this).size()); ++i) (*this)[i] *= div;\n\t\treturn *this;\n\
-    \t}\n\n\tF &operator>>=(const int sz) {\n\t\tassert(sz >= 0);\n\t\tint n = (*this).size();\n\
-    \t\t(*this).erase((*this).begin(), (*this).begin() + std::min(sz, n));\n\t\t(*this).resize(n);\n\
-    \t\treturn *this;\n\t}\n\n\tF &operator<<=(const int sz) {\n\t\tassert(sz >= 0);\n\
-    \t\tint n = (*this).size();\n\t\t(*this).insert((*this).begin(), sz, T(0));\n\t\
-    \t(*this).resize(n);\n\t\treturn *this;\n\t}\n\n\tF poly_div(const F &g) {\n\t\
-    \tif(this->size() < g.size()) {\n\t\t\tF ret(this->size());\n\t\t\treturn ret;\n\
-    \t\t}\n\t\tif(mode == FAST) {\n\t\t\tauto ret = *this;\n\t\t\tint old = this->size();\n\
-    \t\t\tint n = old - g.size() + 1;\n\t\t\tret = ((*this).rev().pre(n) * g.rev().inv(n));\n\
-    \t\t\tret.rev_inplace();\n\t\t\tret.resize(old);\n\t\t\treturn ret;\n\t\t} else\
-    \ {\n\t\t\tassert(g.back() != T(0));\n\t\t\tT igb = g.back().inv();\n\t\t\tint\
-    \ n = (*this).size(), m = g.size();\n\t\t\tF this_copy(*this);\n\t\t\tF ret(n);\n\
-    \t\t\tfor(int i = n - 1; i >= m - 1; --i) {\n\t\t\t\tT mul = this_copy[i] * igb;\n\
-    \t\t\t\tret[i - m + 1] = mul;\n\t\t\t\tfor(int j = i; j > i - m; j--)\n\t\t\t\t\
-    \tthis_copy[j] -= g[j - i + m - 1] * mul;\n\t\t\t}\n\t\t\treturn ret;\n\t\t}\n\
-    \t}\n\n\t//\u3053\u308C\u306E\u307F\u591A\u9805\u5F0F\u306E\u9664\u7B97\u3068\u3057\
-    \u3066\u6271\u3046\n\tF &operator%=(const F &g) {\n\t\treturn *this -= this->poly_div(g)\
-    \ * g;\n\t}\n\n\tF &operator=(const std::vector<T> &v) {\n\t\tint n = (*this).size();\n\
-    \t\tfor(int i = 0; i < n; ++i) (*this)[i] = v[i];\n\t\treturn *this;\n\t}\n\n\t\
-    F operator-() const {\n\t\tF ret = *this;\n\t\treturn ret * -1;\n\t}\n\n\tF &operator*=(const\
-    \ F &g) {\n\t\tif(mode == FAST) {\n\t\t\tint n = (*this).size();\n\t\t\tauto tmp\
-    \ = atcoder::convolution(*this, g);\n\t\t\tfor(int i = 0; i < n; ++i) (*this)[i]\
-    \ = tmp[i];\n\t\t\treturn *this;\n\t\t} else {\n\t\t\tint n = (*this).size(),\
-    \ m = g.size();\n\t\t\tfor(int i = n - 1; i >= 0; --i) {\n\t\t\t\t(*this)[i] *=\
-    \ g[0];\n\t\t\t\tfor(int j = 1; j < std::min(i + 1, m); j++)\n\t\t\t\t\t(*this)[i]\
-    \ += (*this)[i - j] * g[j];\n\t\t\t}\n\t\t\treturn *this;\n\t\t}\n\t}\n\n\tF &operator/=(const\
-    \ F &g) {\n\t\tif((*this).size() < g.size()) {\n\t\t\t(*this).assign((*this).size(),\
-    \ T(0));\n\t\t\treturn *this;\n\t\t}\n\t\tif(mode == FAST) {\n\t\t\t*this *= g.inv();\n\
-    \t\t\treturn *this;\n\t\t} else {\n\t\t\tassert(g[0] != T(0));\n\t\t\tT ig0 =\
-    \ g[0].inv();\n\t\t\tint n = (*this).size(), m = g.size();\n\t\t\tfor(int i =\
-    \ 0; i < n; ++i) {\n\t\t\t\tfor(int j = 1; j < std::min(i + 1, m); ++j)\n\t\t\t\
-    \t\t(*this)[i] -= (*this)[i - j] * g[j];\n\t\t\t\t(*this)[i] *= ig0;\n\t\t\t}\n\
-    \t\t\treturn *this;\n\t\t}\n\t}\n\n\tF &operator*=(S g) {\n\t\tint n = (*this).size();\n\
-    \t\tauto [d, c] = g.front();\n\t\tif(!d)\n\t\t\tg.erase(g.begin());\n\t\telse\n\
-    \t\t\tc = 0;\n\t\tfor(int i = n - 1; i >= 0; --i) {\n\t\t\t(*this)[i] *= c;\n\t\
-    \t\tfor(auto &[j, b] : g) {\n\t\t\t\tif(j > i) break;\n\t\t\t\t(*this)[i] += (*this)[i\
-    \ - j] * b;\n\t\t\t}\n\t\t}\n\t\treturn *this;\n\t}\n\n\tF &operator/=(S g) {\n\
-    \t\tint n = (*this).size();\n\t\tauto [d, c] = g.front();\n\t\tassert(!d and c\
-    \ != 0);\n\t\tT ic = c.inv();\n\t\tg.erase(g.begin());\n\t\tfor(int i = 0; i <\
-    \ n; ++i) {\n\t\t\tfor(auto &[j, b] : g) {\n\t\t\t\tif(j > i) break;\n\t\t\t\t\
-    (*this)[i] -= (*this)[i - j] * b;\n\t\t\t}\n\t\t\t(*this)[i] *= ic;\n\t\t}\n\t\
-    \treturn *this;\n\t}\n\n\tF operator+(const F &g) const { return F(*this) += g;\
-    \ }\n\n\tF operator+(const T &t) const { return F(*this) += t; }\n\n\tF operator-(const\
+    #include <vector>\n\n#include \"atcoder/convolution\"\n#include \"math/factorial.hpp\"\
+    \n\nenum Mode {\n\tFAST = 1,\n\tNAIVE = -1,\n};\ntemplate <class T, Mode mode\
+    \ = FAST>\nstruct formal_power_series : std::vector<T> {\n\tfactorial<T> fact;\n\
+    \tusing std::vector<T>::vector;\n\tusing std::vector<T>::size;\n\tusing std::vector<T>::resize;\n\
+    \tusing std::vector<T>::begin;\n\tusing std::vector<T>::insert;\n\tusing std::vector<T>::erase;\n\
+    \tusing F = formal_power_series;\n\tusing S = std::vector<std::pair<int, T>>;\n\
+    \n\tF &operator+=(const F &g) {\n\t\tfor(int i = 0; i < int(std::min((*this).size(),\
+    \ g.size())); i++) (*this)[i] += g[i];\n\t\treturn *this;\n\t}\n\n\tF &operator+=(const\
+    \ T &t) {\n\t\tassert(int((*this).size()));\n\t\t(*this)[0] += t;\n\t\treturn\
+    \ *this;\n\t}\n\n\tF &operator-=(const F &g) {\n\t\tfor(int i = 0; i < int(std::min((*this).size(),\
+    \ g.size())); i++) (*this)[i] -= g[i];\n\t\treturn *this;\n\t}\n\n\tF &operator-=(const\
+    \ T &t) {\n\t\tassert(int((*this).size()));\n\t\t(*this)[0] -= t;\n\t\treturn\
+    \ *this;\n\t}\n\n\tF &operator*=(const T &t) {\n\t\tfor(int i = 0; i < int((*this).size());\
+    \ ++i) (*this)[i] *= t;\n\t\treturn *this;\n\t}\n\n\tF &operator/=(const T &t)\
+    \ {\n\t\tT div = t.inv();\n\t\tfor(int i = 0; i < int((*this).size()); ++i) (*this)[i]\
+    \ *= div;\n\t\treturn *this;\n\t}\n\n\tF &operator>>=(const int sz) {\n\t\tassert(sz\
+    \ >= 0);\n\t\tint n = (*this).size();\n\t\t(*this).erase((*this).begin(), (*this).begin()\
+    \ + std::min(sz, n));\n\t\t(*this).resize(n);\n\t\treturn *this;\n\t}\n\n\tF &operator<<=(const\
+    \ int sz) {\n\t\tassert(sz >= 0);\n\t\tint n = (*this).size();\n\t\t(*this).insert((*this).begin(),\
+    \ sz, T(0));\n\t\t(*this).resize(n);\n\t\treturn *this;\n\t}\n\n\tF poly_div(const\
+    \ F &g) {\n\t\tif(this->size() < g.size()) {\n\t\t\tF ret(this->size());\n\t\t\
+    \treturn ret;\n\t\t}\n\t\tif(mode == FAST) {\n\t\t\tauto ret = *this;\n\t\t\t\
+    int old = this->size();\n\t\t\tint n = old - g.size() + 1;\n\t\t\tret = ((*this).rev().pre(n)\
+    \ * g.rev().inv(n));\n\t\t\tret.rev_inplace();\n\t\t\tret.resize(old);\n\t\t\t\
+    return ret;\n\t\t} else {\n\t\t\tassert(g.back() != T(0));\n\t\t\tT igb = g.back().inv();\n\
+    \t\t\tint n = (*this).size(), m = g.size();\n\t\t\tF this_copy(*this);\n\t\t\t\
+    F ret(n);\n\t\t\tfor(int i = n - 1; i >= m - 1; --i) {\n\t\t\t\tT mul = this_copy[i]\
+    \ * igb;\n\t\t\t\tret[i - m + 1] = mul;\n\t\t\t\tfor(int j = i; j > i - m; j--)\n\
+    \t\t\t\t\tthis_copy[j] -= g[j - i + m - 1] * mul;\n\t\t\t}\n\t\t\treturn ret;\n\
+    \t\t}\n\t}\n\n\t//\u3053\u308C\u306E\u307F\u591A\u9805\u5F0F\u306E\u9664\u7B97\
+    \u3068\u3057\u3066\u6271\u3046\n\tF &operator%=(const F &g) {\n\t\treturn *this\
+    \ -= this->poly_div(g) * g;\n\t}\n\n\tF &operator=(const std::vector<T> &v) {\n\
+    \t\tint n = (*this).size();\n\t\tfor(int i = 0; i < n; ++i) (*this)[i] = v[i];\n\
+    \t\treturn *this;\n\t}\n\n\tF operator-() const {\n\t\tF ret = *this;\n\t\treturn\
+    \ ret * -1;\n\t}\n\n\tF &operator*=(const F &g) {\n\t\tif(mode == FAST) {\n\t\t\
+    \tint n = (*this).size();\n\t\t\tauto tmp = atcoder::convolution(*this, g);\n\t\
+    \t\tfor(int i = 0; i < n; ++i) (*this)[i] = tmp[i];\n\t\t\treturn *this;\n\t\t\
+    } else {\n\t\t\tint n = (*this).size(), m = g.size();\n\t\t\tfor(int i = n - 1;\
+    \ i >= 0; --i) {\n\t\t\t\t(*this)[i] *= g[0];\n\t\t\t\tfor(int j = 1; j < std::min(i\
+    \ + 1, m); j++)\n\t\t\t\t\t(*this)[i] += (*this)[i - j] * g[j];\n\t\t\t}\n\t\t\
+    \treturn *this;\n\t\t}\n\t}\n\n\tF &operator/=(const F &g) {\n\t\tif((*this).size()\
+    \ < g.size()) {\n\t\t\t(*this).assign((*this).size(), T(0));\n\t\t\treturn *this;\n\
+    \t\t}\n\t\tif(mode == FAST) {\n\t\t\t*this *= g.inv();\n\t\t\treturn *this;\n\t\
+    \t} else {\n\t\t\tassert(g[0] != T(0));\n\t\t\tT ig0 = g[0].inv();\n\t\t\tint\
+    \ n = (*this).size(), m = g.size();\n\t\t\tfor(int i = 0; i < n; ++i) {\n\t\t\t\
+    \tfor(int j = 1; j < std::min(i + 1, m); ++j)\n\t\t\t\t\t(*this)[i] -= (*this)[i\
+    \ - j] * g[j];\n\t\t\t\t(*this)[i] *= ig0;\n\t\t\t}\n\t\t\treturn *this;\n\t\t\
+    }\n\t}\n\n\tF &operator*=(S g) {\n\t\tint n = (*this).size();\n\t\tauto [d, c]\
+    \ = g.front();\n\t\tif(!d)\n\t\t\tg.erase(g.begin());\n\t\telse\n\t\t\tc = 0;\n\
+    \t\tfor(int i = n - 1; i >= 0; --i) {\n\t\t\t(*this)[i] *= c;\n\t\t\tfor(auto\
+    \ &[j, b] : g) {\n\t\t\t\tif(j > i) break;\n\t\t\t\t(*this)[i] += (*this)[i -\
+    \ j] * b;\n\t\t\t}\n\t\t}\n\t\treturn *this;\n\t}\n\n\tF &operator/=(S g) {\n\t\
+    \tint n = (*this).size();\n\t\tauto [d, c] = g.front();\n\t\tassert(!d and c !=\
+    \ 0);\n\t\tT ic = c.inv();\n\t\tg.erase(g.begin());\n\t\tfor(int i = 0; i < n;\
+    \ ++i) {\n\t\t\tfor(auto &[j, b] : g) {\n\t\t\t\tif(j > i) break;\n\t\t\t\t(*this)[i]\
+    \ -= (*this)[i - j] * b;\n\t\t\t}\n\t\t\t(*this)[i] *= ic;\n\t\t}\n\t\treturn\
+    \ *this;\n\t}\n\n\tF operator+(const F &g) const { return F(*this) += g; }\n\n\
+    \tF operator+(const T &t) const { return F(*this) += t; }\n\n\tF operator-(const\
     \ F &g) const { return F(*this) -= g; }\n\n\tF operator-(const T &t) const { return\
     \ F(*this) -= t; }\n\n\tF operator*(const F &g) const { return F(*this) *= g;\
     \ }\n\n\tF operator*(const T &t) const { return F(*this) *= t; }\n\n\tF operator/(const\
@@ -721,27 +764,48 @@ data:
     \ < deg; i <<= 1) {\n\t\t\tauto u = (*this);\n\t\t\tu.resize(i << 1);\n\t\t\t\
     ret = (ret.inv(i << 1) * u + ret) * ti;\n\t\t}\n\t\tret.resize(deg);\n\t\treturn\
     \ ret;\n\t}\n\n\tvoid sparse_pow(const int n, const int d, const T c, const int\
-    \ k);\n\tvoid sparse_pow_inv(const int n, const int d, const T c, const int k);\n\
-    \tvoid stirling_first(int n);\n\tvoid stirling_second(int n);\n\tstd::vector<T>\
-    \ multipoint_evaluation(const std::vector<T> &p);\n};\n"
+    \ k) {\n\t\tF ret(n);\n\t\tT tmp = 1;\n\t\tif(k >= 0) {\n\t\t\tfor(int i = 0;\
+    \ i < n; i += d) {\n\t\t\t\tret[i] = fact.binom(k, i / d) * tmp;\n\t\t\t\ttmp\
+    \ *= c;\n\t\t\t}\n\t\t} else {\n\t\t\tfor(int i = 0; i < n; i += d) {\n\t\t\t\t\
+    ret[i] = fact.binom(i / d - k - 1, -k - 1) * tmp;\n\t\t\t\ttmp *= -c;\n\t\t\t\
+    }\n\t\t}\n\t\t(*this) = ret;\n\t}\n\n\tvoid sparse_pow_inv(const int n, const\
+    \ int d, const T c, const int k) { return sparse_pow(n, d, c, -k); }\n\n\tvoid\
+    \ stirling_first(int n) {\n\t\tif(!n) {\n\t\t\t*this = F{1};\n\t\t\treturn;\n\t\
+    \t}\n\t\tint m = 1;\n\t\tF res(n + 1);\n\t\tres[1] = 1;\n\t\tfor(int k = 30 -\
+    \ __builtin_clz(n); k >= 0; --k) {\n\t\t\tF as(m * 2 + 1), bs(m + 1);\n\t\t\t\
+    for(int i = 0; i <= m; i++)\n\t\t\t\tas[i] = fact.fac[i] * res[i];\n\n\t\t\tbs[m]\
+    \ = 1;\n\t\t\tfor(int i = m - 1; i >= 0; i--)\n\t\t\t\tbs[i] -= bs[i + 1] * m;\n\
+    \n\t\t\tfor(int i = 0; i <= m; i++)\n\t\t\t\tbs[m - i] *= fact.finv[i];\n\n\t\t\
+    \tF cs = as * bs, ds(m + 1);\n\t\t\tfor(int i = 0; i <= m; i++)\n\t\t\t\tds[i]\
+    \ = cs[m + i] * fact.finv[i];\n\n\t\t\tres *= ds;\n\t\t\tm <<= 1;\n\t\t\tif(n\
+    \ >> k & 1) {\n\t\t\t\tF g(n + 1);\n\t\t\t\tfor(int i = 0; i <= m; i++) {\n\t\t\
+    \t\t\tg[i] -= res[i] * m;\n\t\t\t\t\tg[i + 1] += res[i];\n\t\t\t\t}\n\t\t\t\t\
+    res = g;\n\t\t\t\tm |= 1;\n\t\t\t}\n\t\t}\n\t\t*this = res;\n\t}\n\n\tvoid stirling_second(int\
+    \ n) {\n\t\tF f(n + 1), g(n + 1);\n\t\tfor(int i = 0; i <= n; i++) {\n\t\t\tf[i]\
+    \ = T(i).pow(n) * fact.finv[i];\n\t\t\tg[i] = fact.finv[i] * (i % 2 ? -1 : 1);\n\
+    \t\t}\n\t\tf *= g;\n\t\t*this = f;\n\t}\n\n\tstd::vector<T> multipoint_evaluation(const\
+    \ std::vector<T> &p);\n};\n"
   dependsOn:
   - atcoder/convolution.hpp
   - atcoder/internal_bit.hpp
   - atcoder/modint.hpp
   - atcoder/internal_math.hpp
   - atcoder/internal_type_traits.hpp
+  - math/factorial.hpp
   isVerificationFile: false
   path: math/formal_power_series.hpp
   requiredBy:
   - math/multipoint_evaluation.hpp
-  timestamp: '2021-09-08 15:33:50+09:00'
-  verificationStatus: LIBRARY_ALL_AC
+  timestamp: '2021-09-08 16:43:59+09:00'
+  verificationStatus: LIBRARY_SOME_WA
   verifiedWith:
+  - test/yosupo-stirling_number_of_the_second_kind.test.cpp
   - test/yosupo-division_of_polynomials.test.cpp
   - test/yosupo-inv_of_formal_power_series.test.cpp
   - test/yosupo-log_of_formal_power_series.test.cpp
   - test/yosupo-pow_of_formal_power_series.test.cpp
   - test/yosupo-sqrt_of_formal_power_series.test.cpp
+  - test/yosupo-stirling_number_of_the_first_kind.test.cpp
   - test/yosupo-exp_of_formal_power_series.test.cpp
 documentation_of: math/formal_power_series.hpp
 layout: document

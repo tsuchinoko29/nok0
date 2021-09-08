@@ -1,7 +1,7 @@
 ---
 data:
   _extendedDependsOn:
-  - icon: ':heavy_check_mark:'
+  - icon: ':question:'
     path: atcoder/convolution.hpp
     title: atcoder/convolution.hpp
   - icon: ':heavy_check_mark:'
@@ -10,13 +10,13 @@ data:
   - icon: ':heavy_check_mark:'
     path: atcoder/fenwicktree.hpp
     title: atcoder/fenwicktree.hpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':question:'
     path: atcoder/internal_bit.hpp
     title: atcoder/internal_bit.hpp
   - icon: ':heavy_check_mark:'
     path: atcoder/internal_csr.hpp
     title: atcoder/internal_csr.hpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':question:'
     path: atcoder/internal_math.hpp
     title: atcoder/internal_math.hpp
   - icon: ':heavy_check_mark:'
@@ -25,7 +25,7 @@ data:
   - icon: ':heavy_check_mark:'
     path: atcoder/internal_scc.hpp
     title: atcoder/internal_scc.hpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':question:'
     path: atcoder/internal_type_traits.hpp
     title: atcoder/internal_type_traits.hpp
   - icon: ':heavy_check_mark:'
@@ -40,7 +40,7 @@ data:
   - icon: ':heavy_check_mark:'
     path: atcoder/mincostflow.hpp
     title: atcoder/mincostflow.hpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':question:'
     path: atcoder/modint.hpp
     title: atcoder/modint.hpp
   - icon: ':heavy_check_mark:'
@@ -55,7 +55,10 @@ data:
   - icon: ':heavy_check_mark:'
     path: atcoder/twosat.hpp
     title: atcoder/twosat.hpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':question:'
+    path: math/factorial.hpp
+    title: math/factorial.hpp
+  - icon: ':question:'
     path: math/formal_power_series.hpp
     title: math/formal_power_series.hpp
   - icon: ':heavy_check_mark:'
@@ -436,9 +439,24 @@ data:
     \     if (diff < 0) diff += MOD1;\n        static constexpr unsigned long long\
     \ offset[5] = {\n            0, 0, M1M2M3, 2 * M1M2M3, 3 * M1M2M3};\n        x\
     \ -= offset[diff % 5];\n        c[i] = x;\n    }\n\n    return c;\n}\n\n}  //\
-    \ namespace atcoder\n\n\n#line 8 \"math/formal_power_series.hpp\"\n\nenum Mode\
-    \ {\n\tFAST = 1,\n\tNAIVE = -1,\n};\ntemplate <class T, Mode mode = FAST>\nstruct\
-    \ formal_power_series : std::vector<T> {\n\tusing std::vector<T>::vector;\n\t\
+    \ namespace atcoder\n\n\n#line 1 \"math/factorial.hpp\"\n#include <atcoder/modint>\n\
+    #line 4 \"math/factorial.hpp\"\n\ntemplate <class T>\nstruct factorial {\npublic:\n\
+    \tstatic int MAX;\n\tstatic std::vector<T> fac, finv, inv;\n\n\tfactorial() {}\n\
+    \n\tT binom(int n, int r) {\n\t\tif(n < r or n < 0 or r < 0) return T(0);\n\t\t\
+    assert(n < MAX);\n\t\treturn fac[n] * finv[r] * finv[n - r];\n\t}\n\n\tT large_binom(int\
+    \ n, int r) {\n\t\tif(n < r or n < 0 or r < 0) return T(0);\n\t\tassert(r < MAX);\n\
+    \t\tT ret = finv[r];\n\t\tfor(int i = 1; i <= r; ++i)\n\t\t\tret *= (n + 1 - i);\n\
+    \t\treturn ret;\n\t}\n\n\tstatic void set_size(int n) {\n\t\tassert(n >= 1);\n\
+    \t\tMAX = n + 1;\n\t\tfac.resize(MAX);\n\t\tfinv.resize(MAX);\n\t\tinv.resize(MAX);\n\
+    \t\tconst int MOD = T::mod();\n\t\tfac[0] = fac[1] = 1;\n\t\tfinv[0] = finv[1]\
+    \ = 1;\n\t\tinv[1] = 1;\n\t\tfor(int i = 2; i < MAX; i++) {\n\t\t\tfac[i] = fac[i\
+    \ - 1] * i;\n\t\t\tinv[i] = (T)MOD - inv[MOD % i] * (MOD / i);\n\t\t\tfinv[i]\
+    \ = finv[i - 1] * inv[i];\n\t\t}\n\t}\n};\ntemplate <class T>\nint factorial<T>::MAX\
+    \ = 0;\ntemplate <class T>\nstd::vector<T> factorial<T>::fac;\ntemplate <class\
+    \ T>\nstd::vector<T> factorial<T>::finv;\ntemplate <class T>\nstd::vector<T> factorial<T>::inv;\n\
+    #line 9 \"math/formal_power_series.hpp\"\n\nenum Mode {\n\tFAST = 1,\n\tNAIVE\
+    \ = -1,\n};\ntemplate <class T, Mode mode = FAST>\nstruct formal_power_series\
+    \ : std::vector<T> {\n\tfactorial<T> fact;\n\tusing std::vector<T>::vector;\n\t\
     using std::vector<T>::size;\n\tusing std::vector<T>::resize;\n\tusing std::vector<T>::begin;\n\
     \tusing std::vector<T>::insert;\n\tusing std::vector<T>::erase;\n\tusing F = formal_power_series;\n\
     \tusing S = std::vector<std::pair<int, T>>;\n\n\tF &operator+=(const F &g) {\n\
@@ -590,48 +608,66 @@ data:
     \ < deg; i <<= 1) {\n\t\t\tauto u = (*this);\n\t\t\tu.resize(i << 1);\n\t\t\t\
     ret = (ret.inv(i << 1) * u + ret) * ti;\n\t\t}\n\t\tret.resize(deg);\n\t\treturn\
     \ ret;\n\t}\n\n\tvoid sparse_pow(const int n, const int d, const T c, const int\
-    \ k);\n\tvoid sparse_pow_inv(const int n, const int d, const T c, const int k);\n\
-    \tvoid stirling_first(int n);\n\tvoid stirling_second(int n);\n\tstd::vector<T>\
-    \ multipoint_evaluation(const std::vector<T> &p);\n};\n#line 1 \"template.hpp\"\
-    \n#include <bits/stdc++.h>\nusing namespace std;\n#if __has_include(<atcoder/all>)\n\
-    #include <atcoder/all>\nusing namespace atcoder;\n#endif\n\n#pragma region Macros\n\
-    // rep macro\n#define foa(v, a) for(auto &v : a)\n#define REPname(a, b, c, d,\
-    \ e, ...) e\n#define REP(...) REPname(__VA_ARGS__, REP3, REP2, REP1, REP0)(__VA_ARGS__)\n\
-    #define REP0(x) for(int i = 0; i < (x); ++i)\n#define REP1(i, x) for(int i = 0;\
-    \ i < (x); ++i)\n#define REP2(i, l, r) for(int i = (l); i < (r); ++i)\n#define\
-    \ REP3(i, l, r, c) for(int i = (l); i < (r); i += (c))\n#define REPSname(a, b,\
-    \ c, ...) c\n#define REPS(...) REPSname(__VA_ARGS__, REPS1, REPS0)(__VA_ARGS__)\n\
-    #define REPS0(x) for(int i = 1; i <= (x); ++i)\n#define REPS1(i, x) for(int i\
-    \ = 1; i <= (x); ++i)\n#define RREPname(a, b, c, d, e, ...) e\n#define RREP(...)\
-    \ RREPname(__VA_ARGS__, RREP3, RREP2, RREP1, RREP0)(__VA_ARGS__)\n#define RREP0(x)\
-    \ for(int i = (x)-1; i >= 0; --i)\n#define RREP1(i, x) for(int i = (x)-1; i >=\
-    \ 0; --i)\n#define RREP2(i, r, l) for(int i = (r)-1; i >= (l); --i)\n#define RREP3(i,\
-    \ r, l, c) for(int i = (r)-1; i >= (l); i -= (c))\n#define RREPSname(a, b, c,\
-    \ ...) c\n#define RREPS(...) RREPSname(__VA_ARGS__, RREPS1, RREPS0)(__VA_ARGS__)\n\
-    #define RREPS0(x) for(int i = (x); i >= 1; --i)\n#define RREPS1(i, x) for(int\
-    \ i = (x); i >= 1; --i)\n\n// name macro\n#define pb push_back\n#define eb emplace_back\n\
-    #define SZ(x) ((int)(x).size())\n#define all(x) (x).begin(), (x).end()\n#define\
-    \ rall(x) (x).rbegin(), (x).rend()\n#define popcnt(x) __builtin_popcountll(x)\n\
-    template <class T = int>\nusing V = std::vector<T>;\ntemplate <class T = int>\n\
-    using VV = std::vector<std::vector<T>>;\ntemplate <class T>\nusing pqup = std::priority_queue<T,\
-    \ std::vector<T>, std::greater<T>>;\nusing ll = long long;\nusing ld = long double;\n\
-    using int128 = __int128_t;\nusing pii = std::pair<int, int>;\nusing pll = std::pair<long\
-    \ long, long long>;\n\n// input macro\ntemplate <class T, class U>\nstd::istream\
-    \ &operator>>(std::istream &is, std::pair<T, U> &p) {\n\tis >> p.first >> p.second;\n\
-    \treturn is;\n}\ntemplate <class T>\nstd::istream &operator>>(std::istream &is,\
-    \ std::vector<T> &v) {\n\tfor(T &i : v) is >> i;\n\treturn is;\n}\nstd::istream\
-    \ &operator>>(std::istream &is, __int128_t &a) {\n\tstd::string s;\n\tis >> s;\n\
-    \t__int128_t ret = 0;\n\tfor(int i = 0; i < s.length(); i++)\n\t\tif('0' <= s[i]\
-    \ and s[i] <= '9')\n\t\t\tret = 10 * ret + s[i] - '0';\n\ta = ret * (s[0] == '-'\
-    \ ? -1 : 1);\n\treturn is;\n}\n#if __has_include(<atcoder/all>)\nstd::istream\
-    \ &operator>>(std::istream &is, atcoder::modint998244353 &a) {\n\tlong long v;\n\
-    \tis >> v;\n\ta = v;\n\treturn is;\n}\nstd::istream &operator>>(std::istream &is,\
-    \ atcoder::modint1000000007 &a) {\n\tlong long v;\n\tis >> v;\n\ta = v;\n\treturn\
-    \ is;\n}\ntemplate <int m>\nstd::istream &operator>>(std::istream &is, atcoder::static_modint<m>\
+    \ k) {\n\t\tF ret(n);\n\t\tT tmp = 1;\n\t\tif(k >= 0) {\n\t\t\tfor(int i = 0;\
+    \ i < n; i += d) {\n\t\t\t\tret[i] = fact.binom(k, i / d) * tmp;\n\t\t\t\ttmp\
+    \ *= c;\n\t\t\t}\n\t\t} else {\n\t\t\tfor(int i = 0; i < n; i += d) {\n\t\t\t\t\
+    ret[i] = fact.binom(i / d - k - 1, -k - 1) * tmp;\n\t\t\t\ttmp *= -c;\n\t\t\t\
+    }\n\t\t}\n\t\t(*this) = ret;\n\t}\n\n\tvoid sparse_pow_inv(const int n, const\
+    \ int d, const T c, const int k) { return sparse_pow(n, d, c, -k); }\n\n\tvoid\
+    \ stirling_first(int n) {\n\t\tif(!n) {\n\t\t\t*this = F{1};\n\t\t\treturn;\n\t\
+    \t}\n\t\tint m = 1;\n\t\tF res(n + 1);\n\t\tres[1] = 1;\n\t\tfor(int k = 30 -\
+    \ __builtin_clz(n); k >= 0; --k) {\n\t\t\tF as(m * 2 + 1), bs(m + 1);\n\t\t\t\
+    for(int i = 0; i <= m; i++)\n\t\t\t\tas[i] = fact.fac[i] * res[i];\n\n\t\t\tbs[m]\
+    \ = 1;\n\t\t\tfor(int i = m - 1; i >= 0; i--)\n\t\t\t\tbs[i] -= bs[i + 1] * m;\n\
+    \n\t\t\tfor(int i = 0; i <= m; i++)\n\t\t\t\tbs[m - i] *= fact.finv[i];\n\n\t\t\
+    \tF cs = as * bs, ds(m + 1);\n\t\t\tfor(int i = 0; i <= m; i++)\n\t\t\t\tds[i]\
+    \ = cs[m + i] * fact.finv[i];\n\n\t\t\tres *= ds;\n\t\t\tm <<= 1;\n\t\t\tif(n\
+    \ >> k & 1) {\n\t\t\t\tF g(n + 1);\n\t\t\t\tfor(int i = 0; i <= m; i++) {\n\t\t\
+    \t\t\tg[i] -= res[i] * m;\n\t\t\t\t\tg[i + 1] += res[i];\n\t\t\t\t}\n\t\t\t\t\
+    res = g;\n\t\t\t\tm |= 1;\n\t\t\t}\n\t\t}\n\t\t*this = res;\n\t}\n\n\tvoid stirling_second(int\
+    \ n) {\n\t\tF f(n + 1), g(n + 1);\n\t\tfor(int i = 0; i <= n; i++) {\n\t\t\tf[i]\
+    \ = T(i).pow(n) * fact.finv[i];\n\t\t\tg[i] = fact.finv[i] * (i % 2 ? -1 : 1);\n\
+    \t\t}\n\t\tf *= g;\n\t\t*this = f;\n\t}\n\n\tstd::vector<T> multipoint_evaluation(const\
+    \ std::vector<T> &p);\n};\n#line 1 \"template.hpp\"\n#include <bits/stdc++.h>\n\
+    using namespace std;\n#if __has_include(<atcoder/all>)\n#include <atcoder/all>\n\
+    using namespace atcoder;\n#endif\n\n#pragma region Macros\n// rep macro\n#define\
+    \ foa(v, a) for(auto &v : a)\n#define REPname(a, b, c, d, e, ...) e\n#define REP(...)\
+    \ REPname(__VA_ARGS__, REP3, REP2, REP1, REP0)(__VA_ARGS__)\n#define REP0(x) for(int\
+    \ i = 0; i < (x); ++i)\n#define REP1(i, x) for(int i = 0; i < (x); ++i)\n#define\
+    \ REP2(i, l, r) for(int i = (l); i < (r); ++i)\n#define REP3(i, l, r, c) for(int\
+    \ i = (l); i < (r); i += (c))\n#define REPSname(a, b, c, ...) c\n#define REPS(...)\
+    \ REPSname(__VA_ARGS__, REPS1, REPS0)(__VA_ARGS__)\n#define REPS0(x) for(int i\
+    \ = 1; i <= (x); ++i)\n#define REPS1(i, x) for(int i = 1; i <= (x); ++i)\n#define\
+    \ RREPname(a, b, c, d, e, ...) e\n#define RREP(...) RREPname(__VA_ARGS__, RREP3,\
+    \ RREP2, RREP1, RREP0)(__VA_ARGS__)\n#define RREP0(x) for(int i = (x)-1; i >=\
+    \ 0; --i)\n#define RREP1(i, x) for(int i = (x)-1; i >= 0; --i)\n#define RREP2(i,\
+    \ r, l) for(int i = (r)-1; i >= (l); --i)\n#define RREP3(i, r, l, c) for(int i\
+    \ = (r)-1; i >= (l); i -= (c))\n#define RREPSname(a, b, c, ...) c\n#define RREPS(...)\
+    \ RREPSname(__VA_ARGS__, RREPS1, RREPS0)(__VA_ARGS__)\n#define RREPS0(x) for(int\
+    \ i = (x); i >= 1; --i)\n#define RREPS1(i, x) for(int i = (x); i >= 1; --i)\n\n\
+    // name macro\n#define pb push_back\n#define eb emplace_back\n#define SZ(x) ((int)(x).size())\n\
+    #define all(x) (x).begin(), (x).end()\n#define rall(x) (x).rbegin(), (x).rend()\n\
+    #define popcnt(x) __builtin_popcountll(x)\ntemplate <class T = int>\nusing V =\
+    \ std::vector<T>;\ntemplate <class T = int>\nusing VV = std::vector<std::vector<T>>;\n\
+    template <class T>\nusing pqup = std::priority_queue<T, std::vector<T>, std::greater<T>>;\n\
+    using ll = long long;\nusing ld = long double;\nusing int128 = __int128_t;\nusing\
+    \ pii = std::pair<int, int>;\nusing pll = std::pair<long long, long long>;\n\n\
+    // input macro\ntemplate <class T, class U>\nstd::istream &operator>>(std::istream\
+    \ &is, std::pair<T, U> &p) {\n\tis >> p.first >> p.second;\n\treturn is;\n}\n\
+    template <class T>\nstd::istream &operator>>(std::istream &is, std::vector<T>\
+    \ &v) {\n\tfor(T &i : v) is >> i;\n\treturn is;\n}\nstd::istream &operator>>(std::istream\
+    \ &is, __int128_t &a) {\n\tstd::string s;\n\tis >> s;\n\t__int128_t ret = 0;\n\
+    \tfor(int i = 0; i < s.length(); i++)\n\t\tif('0' <= s[i] and s[i] <= '9')\n\t\
+    \t\tret = 10 * ret + s[i] - '0';\n\ta = ret * (s[0] == '-' ? -1 : 1);\n\treturn\
+    \ is;\n}\n#if __has_include(<atcoder/all>)\nstd::istream &operator>>(std::istream\
+    \ &is, atcoder::modint998244353 &a) {\n\tlong long v;\n\tis >> v;\n\ta = v;\n\t\
+    return is;\n}\nstd::istream &operator>>(std::istream &is, atcoder::modint1000000007\
     \ &a) {\n\tlong long v;\n\tis >> v;\n\ta = v;\n\treturn is;\n}\ntemplate <int\
-    \ m>\nstd::istream &operator>>(std::istream &is, atcoder::dynamic_modint<m> &a)\
-    \ {\n\tlong long v;\n\tis >> v;\n\ta = v;\n\treturn is;\n}\n#endif\nnamespace\
-    \ scanner {\nvoid scan(int &a) { std::cin >> a; }\nvoid scan(long long &a) { std::cin\
+    \ m>\nstd::istream &operator>>(std::istream &is, atcoder::static_modint<m> &a)\
+    \ {\n\tlong long v;\n\tis >> v;\n\ta = v;\n\treturn is;\n}\ntemplate <int m>\n\
+    std::istream &operator>>(std::istream &is, atcoder::dynamic_modint<m> &a) {\n\t\
+    long long v;\n\tis >> v;\n\ta = v;\n\treturn is;\n}\n#endif\nnamespace scanner\
+    \ {\nvoid scan(int &a) { std::cin >> a; }\nvoid scan(long long &a) { std::cin\
     \ >> a; }\nvoid scan(std::string &a) { std::cin >> a; }\nvoid scan(char &a) {\
     \ std::cin >> a; }\nvoid scan(char a[]) { std::scanf(\"%s\", a); }\nvoid scan(double\
     \ &a) { std::cin >> a; }\nvoid scan(long double &a) { std::cin >> a; }\ntemplate\
@@ -750,6 +786,7 @@ data:
   - math/formal_power_series.hpp
   - atcoder/convolution.hpp
   - atcoder/internal_bit.hpp
+  - math/factorial.hpp
   - template.hpp
   - atcoder/dsu.hpp
   - atcoder/fenwicktree.hpp
@@ -767,7 +804,7 @@ data:
   isVerificationFile: true
   path: test/yosupo-inv_of_formal_power_series.test.cpp
   requiredBy: []
-  timestamp: '2021-09-08 15:43:05+09:00'
+  timestamp: '2021-09-08 16:43:59+09:00'
   verificationStatus: TEST_ACCEPTED
   verifiedWith: []
 documentation_of: test/yosupo-inv_of_formal_power_series.test.cpp

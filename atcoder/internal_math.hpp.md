@@ -2,21 +2,27 @@
 data:
   _extendedDependsOn: []
   _extendedRequiredBy:
-  - icon: ':heavy_check_mark:'
+  - icon: ':question:'
     path: atcoder/convolution.hpp
     title: atcoder/convolution.hpp
   - icon: ':heavy_check_mark:'
     path: atcoder/math.hpp
     title: atcoder/math.hpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':question:'
     path: atcoder/modint.hpp
     title: atcoder/modint.hpp
   - icon: ':warning:'
     path: math/bostan_mori_ll.hpp
     title: math/bostan_mori_ll.hpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':question:'
+    path: math/factorial.hpp
+    title: math/factorial.hpp
+  - icon: ':question:'
     path: math/formal_power_series.hpp
     title: math/formal_power_series.hpp
+  - icon: ':x:'
+    path: math/modint_iostream.hpp
+    title: math/modint_iostream.hpp
   - icon: ':warning:'
     path: math/multipoint_evaluation.hpp
     title: math/multipoint_evaluation.hpp
@@ -117,6 +123,12 @@ data:
   - icon: ':heavy_check_mark:'
     path: test/yosupo-sqrt_of_formal_power_series.test.cpp
     title: test/yosupo-sqrt_of_formal_power_series.test.cpp
+  - icon: ':x:'
+    path: test/yosupo-stirling_number_of_the_first_kind.test.cpp
+    title: test/yosupo-stirling_number_of_the_first_kind.test.cpp
+  - icon: ':x:'
+    path: test/yosupo-stirling_number_of_the_second_kind.test.cpp
+    title: test/yosupo-stirling_number_of_the_second_kind.test.cpp
   - icon: ':heavy_check_mark:'
     path: test/yosupo-tree_diameter.test.cpp
     title: test/yosupo-tree_diameter.test.cpp
@@ -129,9 +141,9 @@ data:
   - icon: ':heavy_check_mark:'
     path: test/yosupo-vertex_add_subtree_sum.test.cpp
     title: test/yosupo-vertex_add_subtree_sum.test.cpp
-  _isVerificationFailed: false
+  _isVerificationFailed: true
   _pathExtension: hpp
-  _verificationStatusIcon: ':heavy_check_mark:'
+  _verificationStatusIcon: ':question:'
   attributes:
     links:
     - https://en.wikipedia.org/wiki/Barrett_reduction
@@ -293,14 +305,17 @@ data:
   - atcoder/convolution.hpp
   - atcoder/math.hpp
   - multi.hpp
+  - math/factorial.hpp
+  - math/modint_iostream.hpp
   - math/formal_power_series.hpp
   - math/multipoint_evaluation.hpp
   - math/bostan_mori_ll.hpp
   - template.hpp
   timestamp: '2021-09-08 15:21:46+09:00'
-  verificationStatus: LIBRARY_ALL_AC
+  verificationStatus: LIBRARY_SOME_WA
   verifiedWith:
   - test/aoj-2397.test.cpp
+  - test/yosupo-stirling_number_of_the_second_kind.test.cpp
   - test/yosupo-two_edge_connected_components.test.cpp
   - test/aoj-grl-3-b.test.cpp
   - test/yosupo-predecessor_problem.test.cpp
@@ -330,6 +345,7 @@ data:
   - test/yosupo-vertex_add_subtree_sum.test.cpp
   - test/aoj-2600.test.cpp
   - test/yosupo-sqrt_of_formal_power_series.test.cpp
+  - test/yosupo-stirling_number_of_the_first_kind.test.cpp
   - test/aoj-grl-2-a.test.cpp
   - test/yosupo-exp_of_formal_power_series.test.cpp
   - test/yosupo-factorize.test.cpp

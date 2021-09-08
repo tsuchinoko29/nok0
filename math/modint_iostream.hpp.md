@@ -7,165 +7,42 @@ data:
   - icon: ':question:'
     path: atcoder/internal_type_traits.hpp
     title: atcoder/internal_type_traits.hpp
-  _extendedRequiredBy:
   - icon: ':question:'
-    path: atcoder/convolution.hpp
-    title: atcoder/convolution.hpp
-  - icon: ':warning:'
-    path: math/bostan_mori_ll.hpp
-    title: math/bostan_mori_ll.hpp
-  - icon: ':question:'
-    path: math/factorial.hpp
-    title: math/factorial.hpp
-  - icon: ':question:'
-    path: math/formal_power_series.hpp
-    title: math/formal_power_series.hpp
-  - icon: ':x:'
-    path: math/modint_iostream.hpp
-    title: math/modint_iostream.hpp
-  - icon: ':warning:'
-    path: math/multipoint_evaluation.hpp
-    title: math/multipoint_evaluation.hpp
-  - icon: ':heavy_check_mark:'
-    path: multi.hpp
-    title: multi.hpp
-  - icon: ':heavy_check_mark:'
-    path: template.hpp
-    title: template.hpp
+    path: atcoder/modint.hpp
+    title: atcoder/modint.hpp
+  _extendedRequiredBy: []
   _extendedVerifiedWith:
-  - icon: ':heavy_check_mark:'
-    path: test/aoj-2235.test.cpp
-    title: test/aoj-2235.test.cpp
-  - icon: ':heavy_check_mark:'
-    path: test/aoj-2397.test.cpp
-    title: test/aoj-2397.test.cpp
-  - icon: ':heavy_check_mark:'
-    path: test/aoj-2600.test.cpp
-    title: test/aoj-2600.test.cpp
-  - icon: ':heavy_check_mark:'
-    path: test/aoj-2703.test.cpp
-    title: test/aoj-2703.test.cpp
-  - icon: ':heavy_check_mark:'
-    path: test/aoj-dsl-2-b.test.cpp
-    title: test/aoj-dsl-2-b.test.cpp
-  - icon: ':heavy_check_mark:'
-    path: test/aoj-grl-1-a.test.cpp
-    title: test/aoj-grl-1-a.test.cpp
-  - icon: ':heavy_check_mark:'
-    path: test/aoj-grl-1-b.test.cpp
-    title: test/aoj-grl-1-b.test.cpp
-  - icon: ':heavy_check_mark:'
-    path: test/aoj-grl-1-c.test.cpp
-    title: test/aoj-grl-1-c.test.cpp
-  - icon: ':heavy_check_mark:'
-    path: test/aoj-grl-2-a.test.cpp
-    title: test/aoj-grl-2-a.test.cpp
-  - icon: ':heavy_check_mark:'
-    path: test/aoj-grl-3-a.test.cpp
-    title: test/aoj-grl-3-a.test.cpp
-  - icon: ':heavy_check_mark:'
-    path: test/aoj-grl-3-b.test.cpp
-    title: test/aoj-grl-3-b.test.cpp
-  - icon: ':heavy_check_mark:'
-    path: test/aoj-grl-3-c.test.cpp
-    title: test/aoj-grl-3-c.test.cpp
-  - icon: ':heavy_check_mark:'
-    path: test/aoj-grl-4-a.test.cpp
-    title: test/aoj-grl-4-a.test.cpp
-  - icon: ':heavy_check_mark:'
-    path: test/aoj-grl-4-b.test.cpp
-    title: test/aoj-grl-4-b.test.cpp
-  - icon: ':heavy_check_mark:'
-    path: test/aoj-grl-5-a.test.cpp
-    title: test/aoj-grl-5-a.test.cpp
-  - icon: ':heavy_check_mark:'
-    path: test/aoj-grl-5-b.test.cpp
-    title: test/aoj-grl-5-b.test.cpp
-  - icon: ':heavy_check_mark:'
-    path: test/aoj-grl-5-c.test.cpp
-    title: test/aoj-grl-5-c.test.cpp
-  - icon: ':heavy_check_mark:'
-    path: test/aoj-grl-5-d.test.cpp
-    title: test/aoj-grl-5-d.test.cpp
-  - icon: ':heavy_check_mark:'
-    path: test/aoj-grl-5-e.test.cpp
-    title: test/aoj-grl-5-e.test.cpp
-  - icon: ':heavy_check_mark:'
-    path: test/yosupo-division_of_polynomials.test.cpp
-    title: test/yosupo-division_of_polynomials.test.cpp
-  - icon: ':heavy_check_mark:'
-    path: test/yosupo-exp_of_formal_power_series.test.cpp
-    title: test/yosupo-exp_of_formal_power_series.test.cpp
-  - icon: ':heavy_check_mark:'
-    path: test/yosupo-factorize.test.cpp
-    title: test/yosupo-factorize.test.cpp
-  - icon: ':heavy_check_mark:'
-    path: test/yosupo-inv_of_formal_power_series.test.cpp
-    title: test/yosupo-inv_of_formal_power_series.test.cpp
-  - icon: ':heavy_check_mark:'
-    path: test/yosupo-lca.test.cpp
-    title: test/yosupo-lca.test.cpp
-  - icon: ':heavy_check_mark:'
-    path: test/yosupo-log_of_formal_power_series.test.cpp
-    title: test/yosupo-log_of_formal_power_series.test.cpp
-  - icon: ':heavy_check_mark:'
-    path: test/yosupo-pow_of_formal_power_series.test.cpp
-    title: test/yosupo-pow_of_formal_power_series.test.cpp
-  - icon: ':heavy_check_mark:'
-    path: test/yosupo-predecessor_problem.test.cpp
-    title: test/yosupo-predecessor_problem.test.cpp
-  - icon: ':heavy_check_mark:'
-    path: test/yosupo-scc.test.cpp
-    title: test/yosupo-scc.test.cpp
-  - icon: ':heavy_check_mark:'
-    path: test/yosupo-set_xor_min.test.cpp
-    title: test/yosupo-set_xor_min.test.cpp
-  - icon: ':heavy_check_mark:'
-    path: test/yosupo-sqrt_of_formal_power_series.test.cpp
-    title: test/yosupo-sqrt_of_formal_power_series.test.cpp
   - icon: ':x:'
     path: test/yosupo-stirling_number_of_the_first_kind.test.cpp
     title: test/yosupo-stirling_number_of_the_first_kind.test.cpp
   - icon: ':x:'
     path: test/yosupo-stirling_number_of_the_second_kind.test.cpp
     title: test/yosupo-stirling_number_of_the_second_kind.test.cpp
-  - icon: ':heavy_check_mark:'
-    path: test/yosupo-tree_diameter.test.cpp
-    title: test/yosupo-tree_diameter.test.cpp
-  - icon: ':heavy_check_mark:'
-    path: test/yosupo-two_edge_connected_components.test.cpp
-    title: test/yosupo-two_edge_connected_components.test.cpp
-  - icon: ':heavy_check_mark:'
-    path: test/yosupo-vertex_add_path_sum.test.cpp
-    title: test/yosupo-vertex_add_path_sum.test.cpp
-  - icon: ':heavy_check_mark:'
-    path: test/yosupo-vertex_add_subtree_sum.test.cpp
-    title: test/yosupo-vertex_add_subtree_sum.test.cpp
   _isVerificationFailed: true
   _pathExtension: hpp
-  _verificationStatusIcon: ':question:'
+  _verificationStatusIcon: ':x:'
   attributes:
     links: []
-  bundledCode: "#line 1 \"atcoder/modint.hpp\"\n\n\n\n#include <cassert>\n#include\
-    \ <numeric>\n#include <type_traits>\n\n#ifdef _MSC_VER\n#include <intrin.h>\n\
-    #endif\n\n#line 1 \"atcoder/internal_math.hpp\"\n\n\n\n#include <utility>\n\n\
-    #ifdef _MSC_VER\n#include <intrin.h>\n#endif\n\nnamespace atcoder {\n\nnamespace\
-    \ internal {\n\n// @param m `1 <= m`\n// @return x mod m\nconstexpr long long\
-    \ safe_mod(long long x, long long m) {\n    x %= m;\n    if (x < 0) x += m;\n\
-    \    return x;\n}\n\n// Fast modular multiplication by barrett reduction\n// Reference:\
-    \ https://en.wikipedia.org/wiki/Barrett_reduction\n// NOTE: reconsider after Ice\
-    \ Lake\nstruct barrett {\n    unsigned int _m;\n    unsigned long long im;\n\n\
-    \    // @param m `1 <= m < 2^31`\n    explicit barrett(unsigned int m) : _m(m),\
-    \ im((unsigned long long)(-1) / m + 1) {}\n\n    // @return m\n    unsigned int\
-    \ umod() const { return _m; }\n\n    // @param a `0 <= a < m`\n    // @param b\
-    \ `0 <= b < m`\n    // @return `a * b % m`\n    unsigned int mul(unsigned int\
-    \ a, unsigned int b) const {\n        // [1] m = 1\n        // a = b = im = 0,\
-    \ so okay\n\n        // [2] m >= 2\n        // im = ceil(2^64 / m)\n        //\
-    \ -> im * m = 2^64 + r (0 <= r < m)\n        // let z = a*b = c*m + d (0 <= c,\
-    \ d < m)\n        // a*b * im = (c*m + d) * im = c*(im*m) + d*im = c*2^64 + c*r\
-    \ + d*im\n        // c*r + d*im < m * m + m * im < m * m + 2^64 + m <= 2^64 +\
-    \ m * (m + 1) < 2^64 * 2\n        // ((ab * im) >> 64) == c or c + 1\n       \
-    \ unsigned long long z = a;\n        z *= b;\n#ifdef _MSC_VER\n        unsigned\
+  bundledCode: "#line 1 \"math/modint_iostream.hpp\"\n#include <iostream>\n\n#line\
+    \ 1 \"atcoder/modint.hpp\"\n\n\n\n#include <cassert>\n#include <numeric>\n#include\
+    \ <type_traits>\n\n#ifdef _MSC_VER\n#include <intrin.h>\n#endif\n\n#line 1 \"\
+    atcoder/internal_math.hpp\"\n\n\n\n#include <utility>\n\n#ifdef _MSC_VER\n#include\
+    \ <intrin.h>\n#endif\n\nnamespace atcoder {\n\nnamespace internal {\n\n// @param\
+    \ m `1 <= m`\n// @return x mod m\nconstexpr long long safe_mod(long long x, long\
+    \ long m) {\n    x %= m;\n    if (x < 0) x += m;\n    return x;\n}\n\n// Fast\
+    \ modular multiplication by barrett reduction\n// Reference: https://en.wikipedia.org/wiki/Barrett_reduction\n\
+    // NOTE: reconsider after Ice Lake\nstruct barrett {\n    unsigned int _m;\n \
+    \   unsigned long long im;\n\n    // @param m `1 <= m < 2^31`\n    explicit barrett(unsigned\
+    \ int m) : _m(m), im((unsigned long long)(-1) / m + 1) {}\n\n    // @return m\n\
+    \    unsigned int umod() const { return _m; }\n\n    // @param a `0 <= a < m`\n\
+    \    // @param b `0 <= b < m`\n    // @return `a * b % m`\n    unsigned int mul(unsigned\
+    \ int a, unsigned int b) const {\n        // [1] m = 1\n        // a = b = im\
+    \ = 0, so okay\n\n        // [2] m >= 2\n        // im = ceil(2^64 / m)\n    \
+    \    // -> im * m = 2^64 + r (0 <= r < m)\n        // let z = a*b = c*m + d (0\
+    \ <= c, d < m)\n        // a*b * im = (c*m + d) * im = c*(im*m) + d*im = c*2^64\
+    \ + c*r + d*im\n        // c*r + d*im < m * m + m * im < m * m + 2^64 + m <= 2^64\
+    \ + m * (m + 1) < 2^64 * 2\n        // ((ab * im) >> 64) == c or c + 1\n     \
+    \   unsigned long long z = a;\n        z *= b;\n#ifdef _MSC_VER\n        unsigned\
     \ long long x;\n        _umul128(z, im, &x);\n#else\n        unsigned long long\
     \ x =\n            (unsigned long long)(((unsigned __int128)(z)*im) >> 64);\n\
     #endif\n        unsigned int v = (unsigned int)(z - x * _m);\n        if (_m <=\
@@ -352,154 +229,38 @@ data:
     \ntemplate <class> struct is_dynamic_modint : public std::false_type {};\ntemplate\
     \ <int id>\nstruct is_dynamic_modint<dynamic_modint<id>> : public std::true_type\
     \ {};\n\ntemplate <class T>\nusing is_dynamic_modint_t = std::enable_if_t<is_dynamic_modint<T>::value>;\n\
-    \n}  // namespace internal\n\n}  // namespace atcoder\n\n\n"
-  code: "#ifndef ATCODER_MODINT_HPP\n#define ATCODER_MODINT_HPP 1\n\n#include <cassert>\n\
-    #include <numeric>\n#include <type_traits>\n\n#ifdef _MSC_VER\n#include <intrin.h>\n\
-    #endif\n\n#include \"atcoder/internal_math\"\n#include \"atcoder/internal_type_traits\"\
-    \n\nnamespace atcoder {\n\nnamespace internal {\n\nstruct modint_base {};\nstruct\
-    \ static_modint_base : modint_base {};\n\ntemplate <class T> using is_modint =\
-    \ std::is_base_of<modint_base, T>;\ntemplate <class T> using is_modint_t = std::enable_if_t<is_modint<T>::value>;\n\
-    \n}  // namespace internal\n\ntemplate <int m, std::enable_if_t<(1 <= m)>* = nullptr>\n\
-    struct static_modint : internal::static_modint_base {\n    using mint = static_modint;\n\
-    \n  public:\n    static constexpr int mod() { return m; }\n    static mint raw(int\
-    \ v) {\n        mint x;\n        x._v = v;\n        return x;\n    }\n\n    static_modint()\
-    \ : _v(0) {}\n    template <class T, internal::is_signed_int_t<T>* = nullptr>\n\
-    \    static_modint(T v) {\n        long long x = (long long)(v % (long long)(umod()));\n\
-    \        if (x < 0) x += umod();\n        _v = (unsigned int)(x);\n    }\n   \
-    \ template <class T, internal::is_unsigned_int_t<T>* = nullptr>\n    static_modint(T\
-    \ v) {\n        _v = (unsigned int)(v % umod());\n    }\n\n    unsigned int val()\
-    \ const { return _v; }\n\n    mint& operator++() {\n        _v++;\n        if\
-    \ (_v == umod()) _v = 0;\n        return *this;\n    }\n    mint& operator--()\
-    \ {\n        if (_v == 0) _v = umod();\n        _v--;\n        return *this;\n\
-    \    }\n    mint operator++(int) {\n        mint result = *this;\n        ++*this;\n\
-    \        return result;\n    }\n    mint operator--(int) {\n        mint result\
-    \ = *this;\n        --*this;\n        return result;\n    }\n\n    mint& operator+=(const\
-    \ mint& rhs) {\n        _v += rhs._v;\n        if (_v >= umod()) _v -= umod();\n\
-    \        return *this;\n    }\n    mint& operator-=(const mint& rhs) {\n     \
-    \   _v -= rhs._v;\n        if (_v >= umod()) _v += umod();\n        return *this;\n\
-    \    }\n    mint& operator*=(const mint& rhs) {\n        unsigned long long z\
-    \ = _v;\n        z *= rhs._v;\n        _v = (unsigned int)(z % umod());\n    \
-    \    return *this;\n    }\n    mint& operator/=(const mint& rhs) { return *this\
-    \ = *this * rhs.inv(); }\n\n    mint operator+() const { return *this; }\n   \
-    \ mint operator-() const { return mint() - *this; }\n\n    mint pow(long long\
-    \ n) const {\n        assert(0 <= n);\n        mint x = *this, r = 1;\n      \
-    \  while (n) {\n            if (n & 1) r *= x;\n            x *= x;\n        \
-    \    n >>= 1;\n        }\n        return r;\n    }\n    mint inv() const {\n \
-    \       if (prime) {\n            assert(_v);\n            return pow(umod() -\
-    \ 2);\n        } else {\n            auto eg = internal::inv_gcd(_v, m);\n   \
-    \         assert(eg.first == 1);\n            return eg.second;\n        }\n \
-    \   }\n\n    friend mint operator+(const mint& lhs, const mint& rhs) {\n     \
-    \   return mint(lhs) += rhs;\n    }\n    friend mint operator-(const mint& lhs,\
-    \ const mint& rhs) {\n        return mint(lhs) -= rhs;\n    }\n    friend mint\
-    \ operator*(const mint& lhs, const mint& rhs) {\n        return mint(lhs) *= rhs;\n\
-    \    }\n    friend mint operator/(const mint& lhs, const mint& rhs) {\n      \
-    \  return mint(lhs) /= rhs;\n    }\n    friend bool operator==(const mint& lhs,\
-    \ const mint& rhs) {\n        return lhs._v == rhs._v;\n    }\n    friend bool\
-    \ operator!=(const mint& lhs, const mint& rhs) {\n        return lhs._v != rhs._v;\n\
-    \    }\n\n  private:\n    unsigned int _v;\n    static constexpr unsigned int\
-    \ umod() { return m; }\n    static constexpr bool prime = internal::is_prime<m>;\n\
-    };\n\ntemplate <int id> struct dynamic_modint : internal::modint_base {\n    using\
-    \ mint = dynamic_modint;\n\n  public:\n    static int mod() { return (int)(bt.umod());\
-    \ }\n    static void set_mod(int m) {\n        assert(1 <= m);\n        bt = internal::barrett(m);\n\
-    \    }\n    static mint raw(int v) {\n        mint x;\n        x._v = v;\n   \
-    \     return x;\n    }\n\n    dynamic_modint() : _v(0) {}\n    template <class\
-    \ T, internal::is_signed_int_t<T>* = nullptr>\n    dynamic_modint(T v) {\n   \
-    \     long long x = (long long)(v % (long long)(mod()));\n        if (x < 0) x\
-    \ += mod();\n        _v = (unsigned int)(x);\n    }\n    template <class T, internal::is_unsigned_int_t<T>*\
-    \ = nullptr>\n    dynamic_modint(T v) {\n        _v = (unsigned int)(v % mod());\n\
-    \    }\n\n    unsigned int val() const { return _v; }\n\n    mint& operator++()\
-    \ {\n        _v++;\n        if (_v == umod()) _v = 0;\n        return *this;\n\
-    \    }\n    mint& operator--() {\n        if (_v == 0) _v = umod();\n        _v--;\n\
-    \        return *this;\n    }\n    mint operator++(int) {\n        mint result\
-    \ = *this;\n        ++*this;\n        return result;\n    }\n    mint operator--(int)\
-    \ {\n        mint result = *this;\n        --*this;\n        return result;\n\
-    \    }\n\n    mint& operator+=(const mint& rhs) {\n        _v += rhs._v;\n   \
-    \     if (_v >= umod()) _v -= umod();\n        return *this;\n    }\n    mint&\
-    \ operator-=(const mint& rhs) {\n        _v += mod() - rhs._v;\n        if (_v\
-    \ >= umod()) _v -= umod();\n        return *this;\n    }\n    mint& operator*=(const\
-    \ mint& rhs) {\n        _v = bt.mul(_v, rhs._v);\n        return *this;\n    }\n\
-    \    mint& operator/=(const mint& rhs) { return *this = *this * rhs.inv(); }\n\
-    \n    mint operator+() const { return *this; }\n    mint operator-() const { return\
-    \ mint() - *this; }\n\n    mint pow(long long n) const {\n        assert(0 <=\
-    \ n);\n        mint x = *this, r = 1;\n        while (n) {\n            if (n\
-    \ & 1) r *= x;\n            x *= x;\n            n >>= 1;\n        }\n       \
-    \ return r;\n    }\n    mint inv() const {\n        auto eg = internal::inv_gcd(_v,\
-    \ mod());\n        assert(eg.first == 1);\n        return eg.second;\n    }\n\n\
-    \    friend mint operator+(const mint& lhs, const mint& rhs) {\n        return\
-    \ mint(lhs) += rhs;\n    }\n    friend mint operator-(const mint& lhs, const mint&\
-    \ rhs) {\n        return mint(lhs) -= rhs;\n    }\n    friend mint operator*(const\
-    \ mint& lhs, const mint& rhs) {\n        return mint(lhs) *= rhs;\n    }\n   \
-    \ friend mint operator/(const mint& lhs, const mint& rhs) {\n        return mint(lhs)\
-    \ /= rhs;\n    }\n    friend bool operator==(const mint& lhs, const mint& rhs)\
-    \ {\n        return lhs._v == rhs._v;\n    }\n    friend bool operator!=(const\
-    \ mint& lhs, const mint& rhs) {\n        return lhs._v != rhs._v;\n    }\n\n \
-    \ private:\n    unsigned int _v;\n    static internal::barrett bt;\n    static\
-    \ unsigned int umod() { return bt.umod(); }\n};\ntemplate <int id> internal::barrett\
-    \ dynamic_modint<id>::bt(998244353);\n\nusing modint998244353 = static_modint<998244353>;\n\
-    using modint1000000007 = static_modint<1000000007>;\nusing modint = dynamic_modint<-1>;\n\
-    \nnamespace internal {\n\ntemplate <class T>\nusing is_static_modint = std::is_base_of<internal::static_modint_base,\
-    \ T>;\n\ntemplate <class T>\nusing is_static_modint_t = std::enable_if_t<is_static_modint<T>::value>;\n\
-    \ntemplate <class> struct is_dynamic_modint : public std::false_type {};\ntemplate\
-    \ <int id>\nstruct is_dynamic_modint<dynamic_modint<id>> : public std::true_type\
-    \ {};\n\ntemplate <class T>\nusing is_dynamic_modint_t = std::enable_if_t<is_dynamic_modint<T>::value>;\n\
-    \n}  // namespace internal\n\n}  // namespace atcoder\n\n#endif  // ATCODER_MODINT_HPP\n"
+    \n}  // namespace internal\n\n}  // namespace atcoder\n\n\n#line 4 \"math/modint_iostream.hpp\"\
+    \ntemplate <int m>\nstd::istream &std::operator>>(std::istream &is, atcoder::static_modint<m>\
+    \ &a) {\n\tlong long v;\n\tis >> v;\n\ta = v;\n\treturn is;\n}\ntemplate <int\
+    \ m>\nstd::istream &std::operator>>(std::istream &is, atcoder::dynamic_modint<m>\
+    \ &a) {\n\tlong long v;\n\tis >> v;\n\ta = v;\n\treturn is;\n}\ntemplate <int\
+    \ m>\nstd::ostream &std::operator<<(std::ostream &os, const atcoder::static_modint<m>\
+    \ &a) { return os << a.val(); }\ntemplate <int m>\nstd::ostream &std::operator<<(std::ostream\
+    \ &os, const atcoder::dynamic_modint<m> &a) { return os << a.val(); }\n"
+  code: "#include <iostream>\n\n#include \"atcoder/modint\"\ntemplate <int m>\nstd::istream\
+    \ &std::operator>>(std::istream &is, atcoder::static_modint<m> &a) {\n\tlong long\
+    \ v;\n\tis >> v;\n\ta = v;\n\treturn is;\n}\ntemplate <int m>\nstd::istream &std::operator>>(std::istream\
+    \ &is, atcoder::dynamic_modint<m> &a) {\n\tlong long v;\n\tis >> v;\n\ta = v;\n\
+    \treturn is;\n}\ntemplate <int m>\nstd::ostream &std::operator<<(std::ostream\
+    \ &os, const atcoder::static_modint<m> &a) { return os << a.val(); }\ntemplate\
+    \ <int m>\nstd::ostream &std::operator<<(std::ostream &os, const atcoder::dynamic_modint<m>\
+    \ &a) { return os << a.val(); }\n"
   dependsOn:
+  - atcoder/modint.hpp
   - atcoder/internal_math.hpp
   - atcoder/internal_type_traits.hpp
   isVerificationFile: false
-  path: atcoder/modint.hpp
-  requiredBy:
-  - atcoder/convolution.hpp
-  - multi.hpp
-  - math/factorial.hpp
-  - math/modint_iostream.hpp
-  - math/formal_power_series.hpp
-  - math/multipoint_evaluation.hpp
-  - math/bostan_mori_ll.hpp
-  - template.hpp
-  timestamp: '2021-09-08 15:21:46+09:00'
-  verificationStatus: LIBRARY_SOME_WA
+  path: math/modint_iostream.hpp
+  requiredBy: []
+  timestamp: '2021-09-08 16:43:59+09:00'
+  verificationStatus: LIBRARY_ALL_WA
   verifiedWith:
-  - test/aoj-2397.test.cpp
   - test/yosupo-stirling_number_of_the_second_kind.test.cpp
-  - test/yosupo-two_edge_connected_components.test.cpp
-  - test/aoj-grl-3-b.test.cpp
-  - test/yosupo-predecessor_problem.test.cpp
-  - test/aoj-grl-4-b.test.cpp
-  - test/aoj-grl-4-a.test.cpp
-  - test/yosupo-tree_diameter.test.cpp
-  - test/aoj-grl-1-a.test.cpp
-  - test/yosupo-division_of_polynomials.test.cpp
-  - test/yosupo-lca.test.cpp
-  - test/yosupo-inv_of_formal_power_series.test.cpp
-  - test/aoj-grl-3-c.test.cpp
-  - test/aoj-grl-5-e.test.cpp
-  - test/aoj-2703.test.cpp
-  - test/aoj-grl-5-a.test.cpp
-  - test/aoj-grl-5-c.test.cpp
-  - test/yosupo-set_xor_min.test.cpp
-  - test/aoj-grl-1-b.test.cpp
-  - test/yosupo-log_of_formal_power_series.test.cpp
-  - test/yosupo-vertex_add_path_sum.test.cpp
-  - test/aoj-dsl-2-b.test.cpp
-  - test/aoj-2235.test.cpp
-  - test/aoj-grl-3-a.test.cpp
-  - test/aoj-grl-1-c.test.cpp
-  - test/yosupo-pow_of_formal_power_series.test.cpp
-  - test/aoj-grl-5-d.test.cpp
-  - test/aoj-grl-5-b.test.cpp
-  - test/yosupo-vertex_add_subtree_sum.test.cpp
-  - test/aoj-2600.test.cpp
-  - test/yosupo-sqrt_of_formal_power_series.test.cpp
   - test/yosupo-stirling_number_of_the_first_kind.test.cpp
-  - test/aoj-grl-2-a.test.cpp
-  - test/yosupo-exp_of_formal_power_series.test.cpp
-  - test/yosupo-factorize.test.cpp
-  - test/yosupo-scc.test.cpp
-documentation_of: atcoder/modint.hpp
+documentation_of: math/modint_iostream.hpp
 layout: document
 redirect_from:
-- /library/atcoder/modint.hpp
-- /library/atcoder/modint.hpp.html
-title: atcoder/modint.hpp
+- /library/math/modint_iostream.hpp
+- /library/math/modint_iostream.hpp.html
+title: math/modint_iostream.hpp
 ---

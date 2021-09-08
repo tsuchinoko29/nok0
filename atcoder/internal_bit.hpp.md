@@ -2,7 +2,7 @@
 data:
   _extendedDependsOn: []
   _extendedRequiredBy:
-  - icon: ':heavy_check_mark:'
+  - icon: ':question:'
     path: atcoder/convolution.hpp
     title: atcoder/convolution.hpp
   - icon: ':heavy_check_mark:'
@@ -17,7 +17,7 @@ data:
   - icon: ':warning:'
     path: math/bostan_mori_ll.hpp
     title: math/bostan_mori_ll.hpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':question:'
     path: math/formal_power_series.hpp
     title: math/formal_power_series.hpp
   - icon: ':warning:'
@@ -117,6 +117,12 @@ data:
   - icon: ':heavy_check_mark:'
     path: test/yosupo-sqrt_of_formal_power_series.test.cpp
     title: test/yosupo-sqrt_of_formal_power_series.test.cpp
+  - icon: ':x:'
+    path: test/yosupo-stirling_number_of_the_first_kind.test.cpp
+    title: test/yosupo-stirling_number_of_the_first_kind.test.cpp
+  - icon: ':x:'
+    path: test/yosupo-stirling_number_of_the_second_kind.test.cpp
+    title: test/yosupo-stirling_number_of_the_second_kind.test.cpp
   - icon: ':heavy_check_mark:'
     path: test/yosupo-tree_diameter.test.cpp
     title: test/yosupo-tree_diameter.test.cpp
@@ -129,9 +135,9 @@ data:
   - icon: ':heavy_check_mark:'
     path: test/yosupo-vertex_add_subtree_sum.test.cpp
     title: test/yosupo-vertex_add_subtree_sum.test.cpp
-  _isVerificationFailed: false
+  _isVerificationFailed: true
   _pathExtension: hpp
-  _verificationStatusIcon: ':heavy_check_mark:'
+  _verificationStatusIcon: ':question:'
   attributes:
     links: []
   bundledCode: "#line 1 \"atcoder/internal_bit.hpp\"\n\n\n\n#ifdef _MSC_VER\n#include\
@@ -171,8 +177,9 @@ data:
   - template.hpp
   - data_structure/permutation_tree.hpp
   timestamp: '2021-09-08 15:21:46+09:00'
-  verificationStatus: LIBRARY_ALL_AC
+  verificationStatus: LIBRARY_SOME_WA
   verifiedWith:
+  - test/yosupo-stirling_number_of_the_second_kind.test.cpp
   - test/yosupo-two_edge_connected_components.test.cpp
   - test/aoj-grl-3-b.test.cpp
   - test/yosupo-predecessor_problem.test.cpp
@@ -202,6 +209,7 @@ data:
   - test/yosupo-vertex_add_subtree_sum.test.cpp
   - test/aoj-2600.test.cpp
   - test/yosupo-sqrt_of_formal_power_series.test.cpp
+  - test/yosupo-stirling_number_of_the_first_kind.test.cpp
   - test/aoj-grl-2-a.test.cpp
   - test/yosupo-exp_of_formal_power_series.test.cpp
   - test/yosupo-factorize.test.cpp
