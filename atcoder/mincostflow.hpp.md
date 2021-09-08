@@ -76,11 +76,23 @@ data:
     path: test/yosupo-division_of_polynomials.test.cpp
     title: test/yosupo-division_of_polynomials.test.cpp
   - icon: ':heavy_check_mark:'
+    path: test/yosupo-exp_of_formal_power_series.test.cpp
+    title: test/yosupo-exp_of_formal_power_series.test.cpp
+  - icon: ':heavy_check_mark:'
     path: test/yosupo-factorize.test.cpp
     title: test/yosupo-factorize.test.cpp
   - icon: ':heavy_check_mark:'
+    path: test/yosupo-inv_of_formal_power_series.test.cpp
+    title: test/yosupo-inv_of_formal_power_series.test.cpp
+  - icon: ':heavy_check_mark:'
     path: test/yosupo-lca.test.cpp
     title: test/yosupo-lca.test.cpp
+  - icon: ':heavy_check_mark:'
+    path: test/yosupo-log_of_formal_power_series.test.cpp
+    title: test/yosupo-log_of_formal_power_series.test.cpp
+  - icon: ':heavy_check_mark:'
+    path: test/yosupo-pow_of_formal_power_series.test.cpp
+    title: test/yosupo-pow_of_formal_power_series.test.cpp
   - icon: ':heavy_check_mark:'
     path: test/yosupo-predecessor_problem.test.cpp
     title: test/yosupo-predecessor_problem.test.cpp
@@ -335,6 +347,7 @@ data:
   - test/aoj-grl-1-a.test.cpp
   - test/yosupo-division_of_polynomials.test.cpp
   - test/yosupo-lca.test.cpp
+  - test/yosupo-inv_of_formal_power_series.test.cpp
   - test/aoj-grl-3-c.test.cpp
   - test/aoj-grl-5-e.test.cpp
   - test/aoj-2703.test.cpp
@@ -342,16 +355,19 @@ data:
   - test/aoj-grl-5-c.test.cpp
   - test/yosupo-set_xor_min.test.cpp
   - test/aoj-grl-1-b.test.cpp
+  - test/yosupo-log_of_formal_power_series.test.cpp
   - test/yosupo-vertex_add_path_sum.test.cpp
   - test/aoj-dsl-2-b.test.cpp
   - test/aoj-2235.test.cpp
   - test/aoj-grl-3-a.test.cpp
   - test/aoj-grl-1-c.test.cpp
+  - test/yosupo-pow_of_formal_power_series.test.cpp
   - test/aoj-grl-5-d.test.cpp
   - test/aoj-grl-5-b.test.cpp
   - test/yosupo-vertex_add_subtree_sum.test.cpp
   - test/aoj-2600.test.cpp
   - test/aoj-grl-2-a.test.cpp
+  - test/yosupo-exp_of_formal_power_series.test.cpp
   - test/yosupo-factorize.test.cpp
   - test/yosupo-scc.test.cpp
 documentation_of: atcoder/mincostflow.hpp

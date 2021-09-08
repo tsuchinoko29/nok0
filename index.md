@@ -221,11 +221,23 @@ data:
       path: test/yosupo-division_of_polynomials.test.cpp
       title: test/yosupo-division_of_polynomials.test.cpp
     - icon: ':heavy_check_mark:'
+      path: test/yosupo-exp_of_formal_power_series.test.cpp
+      title: test/yosupo-exp_of_formal_power_series.test.cpp
+    - icon: ':heavy_check_mark:'
       path: test/yosupo-factorize.test.cpp
       title: test/yosupo-factorize.test.cpp
     - icon: ':heavy_check_mark:'
+      path: test/yosupo-inv_of_formal_power_series.test.cpp
+      title: test/yosupo-inv_of_formal_power_series.test.cpp
+    - icon: ':heavy_check_mark:'
       path: test/yosupo-lca.test.cpp
       title: test/yosupo-lca.test.cpp
+    - icon: ':heavy_check_mark:'
+      path: test/yosupo-log_of_formal_power_series.test.cpp
+      title: test/yosupo-log_of_formal_power_series.test.cpp
+    - icon: ':heavy_check_mark:'
+      path: test/yosupo-pow_of_formal_power_series.test.cpp
+      title: test/yosupo-pow_of_formal_power_series.test.cpp
     - icon: ':heavy_check_mark:'
       path: test/yosupo-predecessor_problem.test.cpp
       title: test/yosupo-predecessor_problem.test.cpp
