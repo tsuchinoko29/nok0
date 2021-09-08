@@ -1,4 +1,4 @@
-#define PROBLME "https://judge.yosupo.jp/problem/scc"
+#define PROBLEM "https://judge.yosupo.jp/problem/scc"
 
 #include "graph/graph.hpp"
 #include "graph/scc.hpp"
