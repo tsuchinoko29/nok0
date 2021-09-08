@@ -28,6 +28,7 @@ public:
 
 	static void set_size(int n = 3000000) {
 		MAX = (n > 1 ? n : 1) + 1;
+		if((int)fac.size() >= MAX) return;
 		fac.resize(MAX);
 		finv.resize(MAX);
 		inv.resize(MAX);
