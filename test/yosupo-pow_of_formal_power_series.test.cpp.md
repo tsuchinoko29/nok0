@@ -439,21 +439,21 @@ data:
     \     if (diff < 0) diff += MOD1;\n        static constexpr unsigned long long\
     \ offset[5] = {\n            0, 0, M1M2M3, 2 * M1M2M3, 3 * M1M2M3};\n        x\
     \ -= offset[diff % 5];\n        c[i] = x;\n    }\n\n    return c;\n}\n\n}  //\
-    \ namespace atcoder\n\n\n#line 1 \"math/factorial.hpp\"\n#include <atcoder/modint>\n\
-    #line 4 \"math/factorial.hpp\"\n\ntemplate <class T>\nstruct factorial {\npublic:\n\
-    \tstatic int MAX;\n\tstatic std::vector<T> fac, finv, inv;\n\n\tfactorial() {}\n\
-    \n\tT binom(int n, int r) {\n\t\tif(n < r or n < 0 or r < 0) return T(0);\n\t\t\
-    assert(n < MAX);\n\t\treturn fac[n] * finv[r] * finv[n - r];\n\t}\n\n\tT large_binom(int\
-    \ n, int r) {\n\t\tif(n < r or n < 0 or r < 0) return T(0);\n\t\tassert(r < MAX);\n\
-    \t\tT ret = finv[r];\n\t\tfor(int i = 1; i <= r; ++i)\n\t\t\tret *= (n + 1 - i);\n\
-    \t\treturn ret;\n\t}\n\n\tstatic void set_size(int n) {\n\t\tMAX = (n > 1 ? n\
-    \ : 1) + 1;\n\t\tfac.resize(MAX);\n\t\tfinv.resize(MAX);\n\t\tinv.resize(MAX);\n\
-    \t\tconst int MOD = T::mod();\n\t\tfac[0] = fac[1] = 1;\n\t\tfinv[0] = finv[1]\
-    \ = 1;\n\t\tinv[1] = 1;\n\t\tfor(int i = 2; i < MAX; i++) {\n\t\t\tfac[i] = fac[i\
-    \ - 1] * i;\n\t\t\tinv[i] = (T)MOD - inv[MOD % i] * (MOD / i);\n\t\t\tfinv[i]\
-    \ = finv[i - 1] * inv[i];\n\t\t}\n\t}\n};\ntemplate <class T>\nint factorial<T>::MAX\
-    \ = 0;\ntemplate <class T>\nstd::vector<T> factorial<T>::fac;\ntemplate <class\
-    \ T>\nstd::vector<T> factorial<T>::finv;\ntemplate <class T>\nstd::vector<T> factorial<T>::inv;\n\
+    \ namespace atcoder\n\n\n#line 3 \"math/factorial.hpp\"\n\n#line 5 \"math/factorial.hpp\"\
+    \n\ntemplate <class T>\nstruct factorial {\npublic:\n\tstatic int MAX;\n\tstatic\
+    \ std::vector<T> fac, finv, inv;\n\n\tfactorial() {}\n\n\tT binom(int n, int r)\
+    \ {\n\t\tif(n < r or n < 0 or r < 0) return T(0);\n\t\tassert(n < MAX);\n\t\t\
+    return fac[n] * finv[r] * finv[n - r];\n\t}\n\n\tT large_binom(int n, int r) {\n\
+    \t\tif(n < r or n < 0 or r < 0) return T(0);\n\t\tassert(r < MAX);\n\t\tT ret\
+    \ = finv[r];\n\t\tfor(int i = 1; i <= r; ++i)\n\t\t\tret *= (n + 1 - i);\n\t\t\
+    return ret;\n\t}\n\n\tstatic void set_size(int n) {\n\t\tMAX = (n > 1 ? n : 1)\
+    \ + 1;\n\t\tfac.resize(MAX);\n\t\tfinv.resize(MAX);\n\t\tinv.resize(MAX);\n\t\t\
+    const int MOD = T::mod();\n\t\tfac[0] = fac[1] = 1;\n\t\tfinv[0] = finv[1] = 1;\n\
+    \t\tinv[1] = 1;\n\t\tfor(int i = 2; i < MAX; i++) {\n\t\t\tfac[i] = fac[i - 1]\
+    \ * i;\n\t\t\tinv[i] = (T)MOD - inv[MOD % i] * (MOD / i);\n\t\t\tfinv[i] = finv[i\
+    \ - 1] * inv[i];\n\t\t}\n\t}\n};\ntemplate <class T>\nint factorial<T>::MAX =\
+    \ 0;\ntemplate <class T>\nstd::vector<T> factorial<T>::fac;\ntemplate <class T>\n\
+    std::vector<T> factorial<T>::finv;\ntemplate <class T>\nstd::vector<T> factorial<T>::inv;\n\
     #line 9 \"math/formal_power_series.hpp\"\n\nenum Mode {\n\tFAST = 1,\n\tNAIVE\
     \ = -1,\n};\ntemplate <class T, Mode mode = FAST>\nstruct formal_power_series\
     \ : std::vector<T> {\n\tfactorial<T> fact;\n\tusing std::vector<T>::vector;\n\t\
@@ -804,7 +804,7 @@ data:
   isVerificationFile: true
   path: test/yosupo-pow_of_formal_power_series.test.cpp
   requiredBy: []
-  timestamp: '2021-09-08 17:07:46+09:00'
+  timestamp: '2021-09-08 17:33:28+09:00'
   verificationStatus: TEST_ACCEPTED
   verifiedWith: []
 documentation_of: test/yosupo-pow_of_formal_power_series.test.cpp
