@@ -1,17 +1,17 @@
 ---
 data:
   _extendedDependsOn:
-  - icon: ':question:'
+  - icon: ':heavy_check_mark:'
     path: atcoder/internal_math.hpp
     title: atcoder/internal_math.hpp
-  - icon: ':question:'
+  - icon: ':heavy_check_mark:'
     path: atcoder/internal_type_traits.hpp
     title: atcoder/internal_type_traits.hpp
-  - icon: ':question:'
+  - icon: ':heavy_check_mark:'
     path: atcoder/modint.hpp
     title: atcoder/modint.hpp
   _extendedRequiredBy:
-  - icon: ':question:'
+  - icon: ':heavy_check_mark:'
     path: math/formal_power_series.hpp
     title: math/formal_power_series.hpp
   - icon: ':warning:'
@@ -36,15 +36,15 @@ data:
   - icon: ':heavy_check_mark:'
     path: test/yosupo-sqrt_of_formal_power_series.test.cpp
     title: test/yosupo-sqrt_of_formal_power_series.test.cpp
-  - icon: ':x:'
+  - icon: ':heavy_check_mark:'
     path: test/yosupo-stirling_number_of_the_first_kind.test.cpp
     title: test/yosupo-stirling_number_of_the_first_kind.test.cpp
-  - icon: ':x:'
+  - icon: ':heavy_check_mark:'
     path: test/yosupo-stirling_number_of_the_second_kind.test.cpp
     title: test/yosupo-stirling_number_of_the_second_kind.test.cpp
-  _isVerificationFailed: true
+  _isVerificationFailed: false
   _pathExtension: hpp
-  _verificationStatusIcon: ':question:'
+  _verificationStatusIcon: ':heavy_check_mark:'
   attributes:
     links: []
   bundledCode: "#line 1 \"math/factorial.hpp\"\n#include <atcoder/modint>\n#include\
@@ -54,8 +54,8 @@ data:
     assert(n < MAX);\n\t\treturn fac[n] * finv[r] * finv[n - r];\n\t}\n\n\tT large_binom(int\
     \ n, int r) {\n\t\tif(n < r or n < 0 or r < 0) return T(0);\n\t\tassert(r < MAX);\n\
     \t\tT ret = finv[r];\n\t\tfor(int i = 1; i <= r; ++i)\n\t\t\tret *= (n + 1 - i);\n\
-    \t\treturn ret;\n\t}\n\n\tstatic void set_size(int n) {\n\t\tassert(n >= 1);\n\
-    \t\tMAX = n + 1;\n\t\tfac.resize(MAX);\n\t\tfinv.resize(MAX);\n\t\tinv.resize(MAX);\n\
+    \t\treturn ret;\n\t}\n\n\tstatic void set_size(int n) {\n\t\tMAX = (n > 1 ? n\
+    \ : 1) + 1;\n\t\tfac.resize(MAX);\n\t\tfinv.resize(MAX);\n\t\tinv.resize(MAX);\n\
     \t\tconst int MOD = T::mod();\n\t\tfac[0] = fac[1] = 1;\n\t\tfinv[0] = finv[1]\
     \ = 1;\n\t\tinv[1] = 1;\n\t\tfor(int i = 2; i < MAX; i++) {\n\t\t\tfac[i] = fac[i\
     \ - 1] * i;\n\t\t\tinv[i] = (T)MOD - inv[MOD % i] * (MOD / i);\n\t\t\tfinv[i]\
@@ -69,14 +69,14 @@ data:
     \ finv[r] * finv[n - r];\n\t}\n\n\tT large_binom(int n, int r) {\n\t\tif(n < r\
     \ or n < 0 or r < 0) return T(0);\n\t\tassert(r < MAX);\n\t\tT ret = finv[r];\n\
     \t\tfor(int i = 1; i <= r; ++i)\n\t\t\tret *= (n + 1 - i);\n\t\treturn ret;\n\t\
-    }\n\n\tstatic void set_size(int n) {\n\t\tassert(n >= 1);\n\t\tMAX = n + 1;\n\t\
-    \tfac.resize(MAX);\n\t\tfinv.resize(MAX);\n\t\tinv.resize(MAX);\n\t\tconst int\
-    \ MOD = T::mod();\n\t\tfac[0] = fac[1] = 1;\n\t\tfinv[0] = finv[1] = 1;\n\t\t\
-    inv[1] = 1;\n\t\tfor(int i = 2; i < MAX; i++) {\n\t\t\tfac[i] = fac[i - 1] * i;\n\
-    \t\t\tinv[i] = (T)MOD - inv[MOD % i] * (MOD / i);\n\t\t\tfinv[i] = finv[i - 1]\
-    \ * inv[i];\n\t\t}\n\t}\n};\ntemplate <class T>\nint factorial<T>::MAX = 0;\n\
-    template <class T>\nstd::vector<T> factorial<T>::fac;\ntemplate <class T>\nstd::vector<T>\
-    \ factorial<T>::finv;\ntemplate <class T>\nstd::vector<T> factorial<T>::inv;\n"
+    }\n\n\tstatic void set_size(int n) {\n\t\tMAX = (n > 1 ? n : 1) + 1;\n\t\tfac.resize(MAX);\n\
+    \t\tfinv.resize(MAX);\n\t\tinv.resize(MAX);\n\t\tconst int MOD = T::mod();\n\t\
+    \tfac[0] = fac[1] = 1;\n\t\tfinv[0] = finv[1] = 1;\n\t\tinv[1] = 1;\n\t\tfor(int\
+    \ i = 2; i < MAX; i++) {\n\t\t\tfac[i] = fac[i - 1] * i;\n\t\t\tinv[i] = (T)MOD\
+    \ - inv[MOD % i] * (MOD / i);\n\t\t\tfinv[i] = finv[i - 1] * inv[i];\n\t\t}\n\t\
+    }\n};\ntemplate <class T>\nint factorial<T>::MAX = 0;\ntemplate <class T>\nstd::vector<T>\
+    \ factorial<T>::fac;\ntemplate <class T>\nstd::vector<T> factorial<T>::finv;\n\
+    template <class T>\nstd::vector<T> factorial<T>::inv;\n"
   dependsOn:
   - atcoder/modint.hpp
   - atcoder/internal_math.hpp
@@ -86,8 +86,8 @@ data:
   requiredBy:
   - math/formal_power_series.hpp
   - math/multipoint_evaluation.hpp
-  timestamp: '2021-09-08 16:43:59+09:00'
-  verificationStatus: LIBRARY_SOME_WA
+  timestamp: '2021-09-08 17:07:46+09:00'
+  verificationStatus: LIBRARY_ALL_AC
   verifiedWith:
   - test/yosupo-stirling_number_of_the_second_kind.test.cpp
   - test/yosupo-division_of_polynomials.test.cpp

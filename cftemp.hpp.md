@@ -6,15 +6,15 @@ data:
   - icon: ':heavy_check_mark:'
     path: test/aoj-2397.test.cpp
     title: test/aoj-2397.test.cpp
-  - icon: ':x:'
+  - icon: ':heavy_check_mark:'
     path: test/yosupo-stirling_number_of_the_first_kind.test.cpp
     title: test/yosupo-stirling_number_of_the_first_kind.test.cpp
-  - icon: ':x:'
+  - icon: ':heavy_check_mark:'
     path: test/yosupo-stirling_number_of_the_second_kind.test.cpp
     title: test/yosupo-stirling_number_of_the_second_kind.test.cpp
-  _isVerificationFailed: true
+  _isVerificationFailed: false
   _pathExtension: hpp
-  _verificationStatusIcon: ':question:'
+  _verificationStatusIcon: ':heavy_check_mark:'
   attributes:
     links: []
   bundledCode: "#line 1 \"cftemp.hpp\"\n#include <bits/stdc++.h>\nusing namespace\
@@ -278,7 +278,7 @@ data:
   path: cftemp.hpp
   requiredBy: []
   timestamp: '2021-09-07 20:08:56+09:00'
-  verificationStatus: LIBRARY_SOME_WA
+  verificationStatus: LIBRARY_ALL_AC
   verifiedWith:
   - test/aoj-2397.test.cpp
   - test/yosupo-stirling_number_of_the_second_kind.test.cpp

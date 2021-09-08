@@ -3,7 +3,7 @@ data:
   libraryCategories:
   - name: atcoder
     pages:
-    - icon: ':question:'
+    - icon: ':heavy_check_mark:'
       path: atcoder/convolution.hpp
       title: atcoder/convolution.hpp
     - icon: ':heavy_check_mark:'
@@ -12,13 +12,13 @@ data:
     - icon: ':heavy_check_mark:'
       path: atcoder/fenwicktree.hpp
       title: atcoder/fenwicktree.hpp
-    - icon: ':question:'
+    - icon: ':heavy_check_mark:'
       path: atcoder/internal_bit.hpp
       title: atcoder/internal_bit.hpp
     - icon: ':heavy_check_mark:'
       path: atcoder/internal_csr.hpp
       title: atcoder/internal_csr.hpp
-    - icon: ':question:'
+    - icon: ':heavy_check_mark:'
       path: atcoder/internal_math.hpp
       title: atcoder/internal_math.hpp
     - icon: ':heavy_check_mark:'
@@ -27,7 +27,7 @@ data:
     - icon: ':heavy_check_mark:'
       path: atcoder/internal_scc.hpp
       title: atcoder/internal_scc.hpp
-    - icon: ':question:'
+    - icon: ':heavy_check_mark:'
       path: atcoder/internal_type_traits.hpp
       title: atcoder/internal_type_traits.hpp
     - icon: ':heavy_check_mark:'
@@ -42,7 +42,7 @@ data:
     - icon: ':heavy_check_mark:'
       path: atcoder/mincostflow.hpp
       title: atcoder/mincostflow.hpp
-    - icon: ':question:'
+    - icon: ':heavy_check_mark:'
       path: atcoder/modint.hpp
       title: atcoder/modint.hpp
     - icon: ':heavy_check_mark:'
@@ -62,7 +62,7 @@ data:
     - icon: ':warning:'
       path: cfmulti.hpp
       title: cfmulti.hpp
-    - icon: ':question:'
+    - icon: ':heavy_check_mark:'
       path: cftemp.hpp
       title: cftemp.hpp
     - icon: ':heavy_check_mark:'
@@ -134,13 +134,13 @@ data:
     - icon: ':warning:'
       path: math/bostan_mori_ll.hpp
       title: math/bostan_mori_ll.hpp
-    - icon: ':question:'
+    - icon: ':heavy_check_mark:'
       path: math/factorial.hpp
       title: math/factorial.hpp
     - icon: ':heavy_check_mark:'
       path: math/factorize.hpp
       title: math/factorize.hpp
-    - icon: ':question:'
+    - icon: ':heavy_check_mark:'
       path: math/formal_power_series.hpp
       title: math/formal_power_series.hpp
     - icon: ':warning:'
@@ -149,7 +149,7 @@ data:
     - icon: ':heavy_check_mark:'
       path: math/matrix.hpp
       title: math/matrix.hpp
-    - icon: ':x:'
+    - icon: ':heavy_check_mark:'
       path: math/modint_iostream.hpp
       title: math/modint_iostream.hpp
     - icon: ':warning:'
@@ -256,10 +256,10 @@ data:
     - icon: ':heavy_check_mark:'
       path: test/yosupo-sqrt_of_formal_power_series.test.cpp
       title: test/yosupo-sqrt_of_formal_power_series.test.cpp
-    - icon: ':x:'
+    - icon: ':heavy_check_mark:'
       path: test/yosupo-stirling_number_of_the_first_kind.test.cpp
       title: test/yosupo-stirling_number_of_the_first_kind.test.cpp
-    - icon: ':x:'
+    - icon: ':heavy_check_mark:'
       path: test/yosupo-stirling_number_of_the_second_kind.test.cpp
       title: test/yosupo-stirling_number_of_the_second_kind.test.cpp
     - icon: ':heavy_check_mark:'

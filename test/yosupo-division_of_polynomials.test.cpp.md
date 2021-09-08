@@ -1,7 +1,7 @@
 ---
 data:
   _extendedDependsOn:
-  - icon: ':question:'
+  - icon: ':heavy_check_mark:'
     path: atcoder/convolution.hpp
     title: atcoder/convolution.hpp
   - icon: ':heavy_check_mark:'
@@ -10,13 +10,13 @@ data:
   - icon: ':heavy_check_mark:'
     path: atcoder/fenwicktree.hpp
     title: atcoder/fenwicktree.hpp
-  - icon: ':question:'
+  - icon: ':heavy_check_mark:'
     path: atcoder/internal_bit.hpp
     title: atcoder/internal_bit.hpp
   - icon: ':heavy_check_mark:'
     path: atcoder/internal_csr.hpp
     title: atcoder/internal_csr.hpp
-  - icon: ':question:'
+  - icon: ':heavy_check_mark:'
     path: atcoder/internal_math.hpp
     title: atcoder/internal_math.hpp
   - icon: ':heavy_check_mark:'
@@ -25,7 +25,7 @@ data:
   - icon: ':heavy_check_mark:'
     path: atcoder/internal_scc.hpp
     title: atcoder/internal_scc.hpp
-  - icon: ':question:'
+  - icon: ':heavy_check_mark:'
     path: atcoder/internal_type_traits.hpp
     title: atcoder/internal_type_traits.hpp
   - icon: ':heavy_check_mark:'
@@ -40,7 +40,7 @@ data:
   - icon: ':heavy_check_mark:'
     path: atcoder/mincostflow.hpp
     title: atcoder/mincostflow.hpp
-  - icon: ':question:'
+  - icon: ':heavy_check_mark:'
     path: atcoder/modint.hpp
     title: atcoder/modint.hpp
   - icon: ':heavy_check_mark:'
@@ -55,10 +55,10 @@ data:
   - icon: ':heavy_check_mark:'
     path: atcoder/twosat.hpp
     title: atcoder/twosat.hpp
-  - icon: ':question:'
+  - icon: ':heavy_check_mark:'
     path: math/factorial.hpp
     title: math/factorial.hpp
-  - icon: ':question:'
+  - icon: ':heavy_check_mark:'
     path: math/formal_power_series.hpp
     title: math/formal_power_series.hpp
   - icon: ':heavy_check_mark:'
@@ -446,8 +446,8 @@ data:
     assert(n < MAX);\n\t\treturn fac[n] * finv[r] * finv[n - r];\n\t}\n\n\tT large_binom(int\
     \ n, int r) {\n\t\tif(n < r or n < 0 or r < 0) return T(0);\n\t\tassert(r < MAX);\n\
     \t\tT ret = finv[r];\n\t\tfor(int i = 1; i <= r; ++i)\n\t\t\tret *= (n + 1 - i);\n\
-    \t\treturn ret;\n\t}\n\n\tstatic void set_size(int n) {\n\t\tassert(n >= 1);\n\
-    \t\tMAX = n + 1;\n\t\tfac.resize(MAX);\n\t\tfinv.resize(MAX);\n\t\tinv.resize(MAX);\n\
+    \t\treturn ret;\n\t}\n\n\tstatic void set_size(int n) {\n\t\tMAX = (n > 1 ? n\
+    \ : 1) + 1;\n\t\tfac.resize(MAX);\n\t\tfinv.resize(MAX);\n\t\tinv.resize(MAX);\n\
     \t\tconst int MOD = T::mod();\n\t\tfac[0] = fac[1] = 1;\n\t\tfinv[0] = finv[1]\
     \ = 1;\n\t\tinv[1] = 1;\n\t\tfor(int i = 2; i < MAX; i++) {\n\t\t\tfac[i] = fac[i\
     \ - 1] * i;\n\t\t\tinv[i] = (T)MOD - inv[MOD % i] * (MOD / i);\n\t\t\tfinv[i]\
@@ -808,7 +808,7 @@ data:
   isVerificationFile: true
   path: test/yosupo-division_of_polynomials.test.cpp
   requiredBy: []
-  timestamp: '2021-09-08 16:43:59+09:00'
+  timestamp: '2021-09-08 17:07:46+09:00'
   verificationStatus: TEST_ACCEPTED
   verifiedWith: []
 documentation_of: test/yosupo-division_of_polynomials.test.cpp
