@@ -6,6 +6,7 @@
 "test/aoj-dsl-2-b.test.cpp": "2021-09-07 21:43:42 +0900",
 "test/yosupo-factorize.test.cpp": "2021-09-07 23:53:32 +0900",
 "test/yosupo-lca.test.cpp": "2021-09-08 00:32:03 +0900",
+"test/yosupo-scc.test.cpp": "2021-09-08 10:15:43 +0900",
 "test/yosupo-set_xor_min.test.cpp": "2021-09-08 10:12:28 +0900",
 "test/yosupo-tree_diameter.test.cpp": "2021-09-08 00:32:03 +0900",
 "test/yosupo-two_edge_connected_components.test.cpp": "2021-09-08 10:12:28 +0900",
