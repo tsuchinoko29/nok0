@@ -1,3 +1,5 @@
+#define PROBLEM "https://judge.yosupo.jp/problem/vertex_add_subtree_sum"
+
 #include "data_structure/binary_indexed_tree.hpp"
 #include "graph/graph.hpp"
 #include "graph/hld.hpp"
