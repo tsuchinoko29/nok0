@@ -1,11 +1,92 @@
 ---
 data:
   _extendedDependsOn: []
-  _extendedRequiredBy: []
-  _extendedVerifiedWith: []
-  _isVerificationFailed: false
+  _extendedRequiredBy:
+  - icon: ':warning:'
+    path: graph/dag_mcf.hpp
+    title: graph/dag_mcf.hpp
+  - icon: ':question:'
+    path: graph/hld.hpp
+    title: graph/hld.hpp
+  - icon: ':heavy_check_mark:'
+    path: graph/low_link.hpp
+    title: graph/low_link.hpp
+  - icon: ':warning:'
+    path: graph/namori.hpp
+    title: graph/namori.hpp
+  - icon: ':heavy_check_mark:'
+    path: graph/scc.hpp
+    title: graph/scc.hpp
+  - icon: ':heavy_check_mark:'
+    path: graph/tree_doubling.hpp
+    title: graph/tree_doubling.hpp
+  - icon: ':heavy_check_mark:'
+    path: graph/two_edge_cc.hpp
+    title: graph/two_edge_cc.hpp
+  _extendedVerifiedWith:
+  - icon: ':heavy_check_mark:'
+    path: test/aoj-grl-1-a.test.cpp
+    title: test/aoj-grl-1-a.test.cpp
+  - icon: ':heavy_check_mark:'
+    path: test/aoj-grl-1-b.test.cpp
+    title: test/aoj-grl-1-b.test.cpp
+  - icon: ':heavy_check_mark:'
+    path: test/aoj-grl-1-c.test.cpp
+    title: test/aoj-grl-1-c.test.cpp
+  - icon: ':heavy_check_mark:'
+    path: test/aoj-grl-2-a.test.cpp
+    title: test/aoj-grl-2-a.test.cpp
+  - icon: ':heavy_check_mark:'
+    path: test/aoj-grl-3-a.test.cpp
+    title: test/aoj-grl-3-a.test.cpp
+  - icon: ':heavy_check_mark:'
+    path: test/aoj-grl-3-b.test.cpp
+    title: test/aoj-grl-3-b.test.cpp
+  - icon: ':heavy_check_mark:'
+    path: test/aoj-grl-3-c.test.cpp
+    title: test/aoj-grl-3-c.test.cpp
+  - icon: ':heavy_check_mark:'
+    path: test/aoj-grl-4-a.test.cpp
+    title: test/aoj-grl-4-a.test.cpp
+  - icon: ':heavy_check_mark:'
+    path: test/aoj-grl-4-b.test.cpp
+    title: test/aoj-grl-4-b.test.cpp
+  - icon: ':heavy_check_mark:'
+    path: test/aoj-grl-5-a.test.cpp
+    title: test/aoj-grl-5-a.test.cpp
+  - icon: ':heavy_check_mark:'
+    path: test/aoj-grl-5-b.test.cpp
+    title: test/aoj-grl-5-b.test.cpp
+  - icon: ':heavy_check_mark:'
+    path: test/aoj-grl-5-c.test.cpp
+    title: test/aoj-grl-5-c.test.cpp
+  - icon: ':heavy_check_mark:'
+    path: test/aoj-grl-5-d.test.cpp
+    title: test/aoj-grl-5-d.test.cpp
+  - icon: ':heavy_check_mark:'
+    path: test/aoj-grl-5-e.test.cpp
+    title: test/aoj-grl-5-e.test.cpp
+  - icon: ':heavy_check_mark:'
+    path: test/yosupo-lca.test.cpp
+    title: test/yosupo-lca.test.cpp
+  - icon: ':heavy_check_mark:'
+    path: test/yosupo-scc.test.cpp
+    title: test/yosupo-scc.test.cpp
+  - icon: ':heavy_check_mark:'
+    path: test/yosupo-tree_diameter.test.cpp
+    title: test/yosupo-tree_diameter.test.cpp
+  - icon: ':heavy_check_mark:'
+    path: test/yosupo-two_edge_connected_components.test.cpp
+    title: test/yosupo-two_edge_connected_components.test.cpp
+  - icon: ':heavy_check_mark:'
+    path: test/yosupo-vertex_add_path_sum.test.cpp
+    title: test/yosupo-vertex_add_path_sum.test.cpp
+  - icon: ':x:'
+    path: test/yosupo-vertex_add_subtree_sum.test.cpp
+    title: test/yosupo-vertex_add_subtree_sum.test.cpp
+  _isVerificationFailed: true
   _pathExtension: hpp
-  _verificationStatusIcon: ':warning:'
+  _verificationStatusIcon: ':question:'
   attributes:
     links: []
   bundledCode: "#line 2 \"graph/graph.hpp\"\n#include <algorithm>\n#include <cassert>\n\
@@ -317,10 +398,37 @@ data:
   dependsOn: []
   isVerificationFile: false
   path: graph/graph.hpp
-  requiredBy: []
-  timestamp: '1970-01-01 00:00:00+00:00'
-  verificationStatus: LIBRARY_NO_TESTS
-  verifiedWith: []
+  requiredBy:
+  - graph/low_link.hpp
+  - graph/hld.hpp
+  - graph/two_edge_cc.hpp
+  - graph/dag_mcf.hpp
+  - graph/tree_doubling.hpp
+  - graph/namori.hpp
+  - graph/scc.hpp
+  timestamp: '2021-09-08 10:25:09+09:00'
+  verificationStatus: LIBRARY_SOME_WA
+  verifiedWith:
+  - test/yosupo-two_edge_connected_components.test.cpp
+  - test/aoj-grl-3-b.test.cpp
+  - test/aoj-grl-4-b.test.cpp
+  - test/aoj-grl-4-a.test.cpp
+  - test/yosupo-tree_diameter.test.cpp
+  - test/aoj-grl-1-a.test.cpp
+  - test/yosupo-lca.test.cpp
+  - test/aoj-grl-3-c.test.cpp
+  - test/aoj-grl-5-e.test.cpp
+  - test/aoj-grl-5-a.test.cpp
+  - test/aoj-grl-5-c.test.cpp
+  - test/aoj-grl-1-b.test.cpp
+  - test/yosupo-vertex_add_path_sum.test.cpp
+  - test/aoj-grl-3-a.test.cpp
+  - test/aoj-grl-1-c.test.cpp
+  - test/aoj-grl-5-d.test.cpp
+  - test/aoj-grl-5-b.test.cpp
+  - test/yosupo-vertex_add_subtree_sum.test.cpp
+  - test/aoj-grl-2-a.test.cpp
+  - test/yosupo-scc.test.cpp
 documentation_of: graph/graph.hpp
 layout: document
 redirect_from:

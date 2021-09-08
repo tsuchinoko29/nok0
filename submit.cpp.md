@@ -1,6 +1,12 @@
 ---
 data:
-  _extendedDependsOn: []
+  _extendedDependsOn:
+  - icon: ':heavy_check_mark:'
+    path: cftemp.hpp
+    title: cftemp.hpp
+  - icon: ':heavy_check_mark:'
+    path: math/matrix.hpp
+    title: math/matrix.hpp
   _extendedRequiredBy: []
   _extendedVerifiedWith: []
   _isVerificationFailed: false
@@ -628,11 +634,13 @@ data:
     \t\tif(v < w)\n\t\t\t\t\tdp[0][v] = 0;\n\t\t\t\telse {\n\t\t\t\t\tcout << \"Case\
     \ \" << c++ << \": \";\n\t\t\t\t\tprint(dp[0].back().val());\n\t\t\t\t}\n\t\t\t\
     }\n\t\t\tbef = val;\n\t\t}\n\t}\n}\n"
-  dependsOn: []
+  dependsOn:
+  - cftemp.hpp
+  - math/matrix.hpp
   isVerificationFile: false
   path: submit.cpp
   requiredBy: []
-  timestamp: '1970-01-01 00:00:00+00:00'
+  timestamp: '2021-09-08 00:15:53+09:00'
   verificationStatus: LIBRARY_NO_TESTS
   verifiedWith: []
 documentation_of: submit.cpp

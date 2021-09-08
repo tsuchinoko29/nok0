@@ -1,11 +1,20 @@
 ---
 data:
-  _extendedDependsOn: []
+  _extendedDependsOn:
+  - icon: ':question:'
+    path: graph/graph.hpp
+    title: graph/graph.hpp
   _extendedRequiredBy: []
-  _extendedVerifiedWith: []
+  _extendedVerifiedWith:
+  - icon: ':heavy_check_mark:'
+    path: test/aoj-grl-3-c.test.cpp
+    title: test/aoj-grl-3-c.test.cpp
+  - icon: ':heavy_check_mark:'
+    path: test/yosupo-scc.test.cpp
+    title: test/yosupo-scc.test.cpp
   _isVerificationFailed: false
   _pathExtension: hpp
-  _verificationStatusIcon: ':warning:'
+  _verificationStatusIcon: ':heavy_check_mark:'
   attributes:
     links: []
   bundledCode: "#line 2 \"graph/graph.hpp\"\n#include <algorithm>\n#include <cassert>\n\
@@ -212,13 +221,16 @@ data:
     \t\t\tfor(auto &e : graph_given[i]) graph_reversed[e.to].emplace_back(i, 1);\n\
     \t\tbuild(create_compressed_graph);\n\t}\n\n\tconst int &operator[](const int\
     \ k) { return group_number[k]; }\n};\n"
-  dependsOn: []
+  dependsOn:
+  - graph/graph.hpp
   isVerificationFile: false
   path: graph/scc.hpp
   requiredBy: []
-  timestamp: '1970-01-01 00:00:00+00:00'
-  verificationStatus: LIBRARY_NO_TESTS
-  verifiedWith: []
+  timestamp: '2021-09-08 10:25:09+09:00'
+  verificationStatus: LIBRARY_ALL_AC
+  verifiedWith:
+  - test/aoj-grl-3-c.test.cpp
+  - test/yosupo-scc.test.cpp
 documentation_of: graph/scc.hpp
 layout: document
 redirect_from:

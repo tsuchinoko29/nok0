@@ -95,7 +95,7 @@ data:
   isVerificationFile: false
   path: math/bostan_mori_ll.hpp
   requiredBy: []
-  timestamp: '1970-01-01 00:00:00+00:00'
+  timestamp: '2021-09-07 20:08:56+09:00'
   verificationStatus: LIBRARY_NO_TESTS
   verifiedWith: []
 documentation_of: math/bostan_mori_ll.hpp

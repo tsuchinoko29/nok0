@@ -1,12 +1,22 @@
 ---
 data:
-  _extendedDependsOn: []
+  _extendedDependsOn:
+  - icon: ':question:'
+    path: graph/graph.hpp
+    title: graph/graph.hpp
+  - icon: ':question:'
+    path: template.hpp
+    title: template.hpp
   _extendedRequiredBy: []
   _extendedVerifiedWith: []
-  _isVerificationFailed: true
+  _isVerificationFailed: false
   _pathExtension: cpp
-  _verificationStatusIcon: ':x:'
-  attributes: {}
+  _verificationStatusIcon: ':heavy_check_mark:'
+  attributes:
+    '*NOT_SPECIAL_COMMENTS*': ''
+    PROBLEM: https://onlinejudge.u-aizu.ac.jp/courses/library/5/GRL/all/GRL_2_A
+    links:
+    - https://onlinejudge.u-aizu.ac.jp/courses/library/5/GRL/all/GRL_2_A
   bundledCode: "#line 1 \"test/aoj-grl-2-a.test.cpp\"\n#define PROBLEM \"https://onlinejudge.u-aizu.ac.jp/courses/library/5/GRL/all/GRL_2_A\"\
     \n\n#line 2 \"graph/graph.hpp\"\n#include <algorithm>\n#include <cassert>\n#include\
     \ <deque>\n#include <iostream>\n#include <queue>\n#include <tuple>\n#include <utility>\n\
@@ -309,12 +319,14 @@ data:
     \n\n#include \"graph/graph.hpp\"\n#include \"template.hpp\"\n\nvoid main_() {\n\
     \tINT(v, e);\n\tgraph g(v, e, 1, 0, 0);\n\tauto prim = g.prim();\n\tauto kruskal\
     \ = g.kruskal();\n\tassert(prim == kruskal);\n\tprint(prim);\n}"
-  dependsOn: []
+  dependsOn:
+  - graph/graph.hpp
+  - template.hpp
   isVerificationFile: true
   path: test/aoj-grl-2-a.test.cpp
   requiredBy: []
-  timestamp: '1970-01-01 00:00:00+00:00'
-  verificationStatus: TEST_WRONG_ANSWER
+  timestamp: '2021-09-08 10:55:28+09:00'
+  verificationStatus: TEST_ACCEPTED
   verifiedWith: []
 documentation_of: test/aoj-grl-2-a.test.cpp
 layout: document

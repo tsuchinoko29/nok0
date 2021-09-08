@@ -1,6 +1,9 @@
 ---
 data:
-  _extendedDependsOn: []
+  _extendedDependsOn:
+  - icon: ':question:'
+    path: graph/graph.hpp
+    title: graph/graph.hpp
   _extendedRequiredBy: []
   _extendedVerifiedWith: []
   _isVerificationFailed: false
@@ -206,11 +209,12 @@ data:
     \ = r;\n\t\tfor(const auto &[to, cost] : g[now]) {\n\t\t\tif(dfs_used[to] or cycle_number[to]\
     \ != -1) continue;\n\t\t\tforest.add_edge(now, to, cost);\n\t\t\ttree_dfs(to,\
     \ r);\n\t\t}\n\t}\n};\n"
-  dependsOn: []
+  dependsOn:
+  - graph/graph.hpp
   isVerificationFile: false
   path: graph/namori.hpp
   requiredBy: []
-  timestamp: '1970-01-01 00:00:00+00:00'
+  timestamp: '2021-09-08 10:25:09+09:00'
   verificationStatus: LIBRARY_NO_TESTS
   verifiedWith: []
 documentation_of: graph/namori.hpp

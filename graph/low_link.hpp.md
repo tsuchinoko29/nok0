@@ -1,11 +1,26 @@
 ---
 data:
-  _extendedDependsOn: []
-  _extendedRequiredBy: []
-  _extendedVerifiedWith: []
+  _extendedDependsOn:
+  - icon: ':question:'
+    path: graph/graph.hpp
+    title: graph/graph.hpp
+  _extendedRequiredBy:
+  - icon: ':heavy_check_mark:'
+    path: graph/two_edge_cc.hpp
+    title: graph/two_edge_cc.hpp
+  _extendedVerifiedWith:
+  - icon: ':heavy_check_mark:'
+    path: test/aoj-grl-3-a.test.cpp
+    title: test/aoj-grl-3-a.test.cpp
+  - icon: ':heavy_check_mark:'
+    path: test/aoj-grl-3-b.test.cpp
+    title: test/aoj-grl-3-b.test.cpp
+  - icon: ':heavy_check_mark:'
+    path: test/yosupo-two_edge_connected_components.test.cpp
+    title: test/yosupo-two_edge_connected_components.test.cpp
   _isVerificationFailed: false
   _pathExtension: hpp
-  _verificationStatusIcon: ':warning:'
+  _verificationStatusIcon: ':heavy_check_mark:'
   attributes:
     links: []
   bundledCode: "#line 2 \"graph/low_link.hpp\"\n\n#line 2 \"graph/graph.hpp\"\n#include\
@@ -192,13 +207,18 @@ data:
     \t}\n\npublic:\n\tstd::vector<int> order, low, articulation;\n\tstd::vector<std::pair<int,\
     \ int>> bridge;\n\tlow_link() = default;\n\tlow_link(const graph &g_) : graph_given(g_)\
     \ { build(); }\n};\n"
-  dependsOn: []
+  dependsOn:
+  - graph/graph.hpp
   isVerificationFile: false
   path: graph/low_link.hpp
-  requiredBy: []
-  timestamp: '1970-01-01 00:00:00+00:00'
-  verificationStatus: LIBRARY_NO_TESTS
-  verifiedWith: []
+  requiredBy:
+  - graph/two_edge_cc.hpp
+  timestamp: '2021-09-08 10:25:09+09:00'
+  verificationStatus: LIBRARY_ALL_AC
+  verifiedWith:
+  - test/yosupo-two_edge_connected_components.test.cpp
+  - test/aoj-grl-3-b.test.cpp
+  - test/aoj-grl-3-a.test.cpp
 documentation_of: graph/low_link.hpp
 layout: document
 redirect_from:

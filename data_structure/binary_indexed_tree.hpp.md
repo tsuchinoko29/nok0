@@ -2,10 +2,22 @@
 data:
   _extendedDependsOn: []
   _extendedRequiredBy: []
-  _extendedVerifiedWith: []
-  _isVerificationFailed: false
+  _extendedVerifiedWith:
+  - icon: ':heavy_check_mark:'
+    path: test/aoj-dsl-2-b.test.cpp
+    title: test/aoj-dsl-2-b.test.cpp
+  - icon: ':heavy_check_mark:'
+    path: test/aoj-grl-5-d.test.cpp
+    title: test/aoj-grl-5-d.test.cpp
+  - icon: ':heavy_check_mark:'
+    path: test/yosupo-vertex_add_path_sum.test.cpp
+    title: test/yosupo-vertex_add_path_sum.test.cpp
+  - icon: ':x:'
+    path: test/yosupo-vertex_add_subtree_sum.test.cpp
+    title: test/yosupo-vertex_add_subtree_sum.test.cpp
+  _isVerificationFailed: true
   _pathExtension: hpp
-  _verificationStatusIcon: ':warning:'
+  _verificationStatusIcon: ':question:'
   attributes:
     links: []
   bundledCode: "#line 1 \"data_structure/binary_indexed_tree.hpp\"\n#include <vector>\n\
@@ -34,9 +46,13 @@ data:
   isVerificationFile: false
   path: data_structure/binary_indexed_tree.hpp
   requiredBy: []
-  timestamp: '1970-01-01 00:00:00+00:00'
-  verificationStatus: LIBRARY_NO_TESTS
-  verifiedWith: []
+  timestamp: '2021-09-07 20:47:04+09:00'
+  verificationStatus: LIBRARY_SOME_WA
+  verifiedWith:
+  - test/yosupo-vertex_add_path_sum.test.cpp
+  - test/aoj-dsl-2-b.test.cpp
+  - test/aoj-grl-5-d.test.cpp
+  - test/yosupo-vertex_add_subtree_sum.test.cpp
 documentation_of: data_structure/binary_indexed_tree.hpp
 layout: document
 redirect_from:

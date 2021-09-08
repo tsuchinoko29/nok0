@@ -1,7 +1,10 @@
 ---
 data:
   _extendedDependsOn: []
-  _extendedRequiredBy: []
+  _extendedRequiredBy:
+  - icon: ':warning:'
+    path: math/multipoint_evaluation.hpp
+    title: math/multipoint_evaluation.hpp
   _extendedVerifiedWith: []
   _isVerificationFailed: false
   _pathExtension: hpp
@@ -327,8 +330,9 @@ data:
   dependsOn: []
   isVerificationFile: false
   path: math/formal_power_series.hpp
-  requiredBy: []
-  timestamp: '1970-01-01 00:00:00+00:00'
+  requiredBy:
+  - math/multipoint_evaluation.hpp
+  timestamp: '2021-09-07 20:08:56+09:00'
   verificationStatus: LIBRARY_NO_TESTS
   verifiedWith: []
 documentation_of: math/formal_power_series.hpp

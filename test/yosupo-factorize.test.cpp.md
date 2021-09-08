@@ -1,12 +1,22 @@
 ---
 data:
-  _extendedDependsOn: []
+  _extendedDependsOn:
+  - icon: ':heavy_check_mark:'
+    path: math/factorize.hpp
+    title: math/factorize.hpp
+  - icon: ':heavy_check_mark:'
+    path: multi.hpp
+    title: multi.hpp
   _extendedRequiredBy: []
   _extendedVerifiedWith: []
-  _isVerificationFailed: true
+  _isVerificationFailed: false
   _pathExtension: cpp
-  _verificationStatusIcon: ':x:'
-  attributes: {}
+  _verificationStatusIcon: ':heavy_check_mark:'
+  attributes:
+    '*NOT_SPECIAL_COMMENTS*': ''
+    PROBLEM: https://judge.yosupo.jp/problem/factorize
+    links:
+    - https://judge.yosupo.jp/problem/factorize
   bundledCode: "#line 1 \"test/yosupo-factorize.test.cpp\"\n#define PROBLEM \"https://judge.yosupo.jp/problem/factorize\"\
     \n\n#line 1 \"math/factorize.hpp\"\n#include <bits/stdc++.h>\n\nnamespace inner\
     \ {\nusing u32 = uint32_t;\nusing u64 = uint64_t;\nusing i64 = int64_t;\nusing\
@@ -225,12 +235,14 @@ data:
   code: "#define PROBLEM \"https://judge.yosupo.jp/problem/factorize\"\n\n#include\
     \ \"math/factorize.hpp\"\n#include \"multi.hpp\"\n\nvoid main_() {\n\tLL(a);\n\
     \tauto vec = factorize(a);\n\tSORT(vec);\n\tprint(SZ(vec), vec);\n}"
-  dependsOn: []
+  dependsOn:
+  - math/factorize.hpp
+  - multi.hpp
   isVerificationFile: true
   path: test/yosupo-factorize.test.cpp
   requiredBy: []
-  timestamp: '1970-01-01 00:00:00+00:00'
-  verificationStatus: TEST_WRONG_ANSWER
+  timestamp: '2021-09-07 23:53:32+09:00'
+  verificationStatus: TEST_ACCEPTED
   verifiedWith: []
 documentation_of: test/yosupo-factorize.test.cpp
 layout: document
