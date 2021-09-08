@@ -25,8 +25,8 @@ void main_() {
 	while(q--) {
 		INT(type, u);
 		if(type == 0) {
-			INT(v);
-			bt.add(hld.in[u], v);
+			INT(x);
+			bt.add(hld.in[u], x);
 		}
 		if(type == 1) {
 			auto [l, r] = hld.subtree(u);
