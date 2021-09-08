@@ -1,10 +1,10 @@
 ---
 data:
   _extendedDependsOn:
-  - icon: ':heavy_check_mark:'
+  - icon: ':question:'
     path: atcoder/internal_csr.hpp
     title: atcoder/internal_csr.hpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':question:'
     path: atcoder/internal_queue.hpp
     title: atcoder/internal_queue.hpp
   _extendedRequiredBy:
@@ -14,7 +14,7 @@ data:
   - icon: ':heavy_check_mark:'
     path: multi.hpp
     title: multi.hpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':question:'
     path: template.hpp
     title: template.hpp
   _extendedVerifiedWith:
@@ -27,6 +27,9 @@ data:
   - icon: ':heavy_check_mark:'
     path: test/aoj-2703.test.cpp
     title: test/aoj-2703.test.cpp
+  - icon: ':x:'
+    path: test/aoj-alds1_5_d.test.cpp
+    title: test/aoj-alds1_5_d.test.cpp
   - icon: ':heavy_check_mark:'
     path: test/aoj-dsl-2-b.test.cpp
     title: test/aoj-dsl-2-b.test.cpp
@@ -123,9 +126,9 @@ data:
   - icon: ':heavy_check_mark:'
     path: test/yosupo-vertex_add_subtree_sum.test.cpp
     title: test/yosupo-vertex_add_subtree_sum.test.cpp
-  _isVerificationFailed: false
+  _isVerificationFailed: true
   _pathExtension: hpp
-  _verificationStatusIcon: ':heavy_check_mark:'
+  _verificationStatusIcon: ':question:'
   attributes:
     links: []
   bundledCode: "#line 1 \"atcoder/mincostflow.hpp\"\n\n\n\n#include <algorithm>\n\
@@ -345,7 +348,7 @@ data:
   - multi.hpp
   - template.hpp
   timestamp: '2021-09-08 15:21:46+09:00'
-  verificationStatus: LIBRARY_ALL_AC
+  verificationStatus: LIBRARY_SOME_WA
   verifiedWith:
   - test/yosupo-two_edge_connected_components.test.cpp
   - test/aoj-grl-3-b.test.cpp
@@ -373,6 +376,7 @@ data:
   - test/aoj-grl-3-a.test.cpp
   - test/aoj-grl-1-c.test.cpp
   - test/yosupo-pow_of_formal_power_series.test.cpp
+  - test/aoj-alds1_5_d.test.cpp
   - test/aoj-grl-5-d.test.cpp
   - test/aoj-grl-5-b.test.cpp
   - test/yosupo-vertex_add_subtree_sum.test.cpp

@@ -55,96 +55,67 @@ data:
   - icon: ':question:'
     path: atcoder/twosat.hpp
     title: atcoder/twosat.hpp
-  - icon: ':heavy_check_mark:'
-    path: data_structure/offline_dynamic_connectivity.hpp
-    title: data_structure/offline_dynamic_connectivity.hpp
-  - icon: ':heavy_check_mark:'
-    path: data_structure/undo_uf.hpp
-    title: data_structure/undo_uf.hpp
+  - icon: ':x:'
+    path: math/inversion.hpp
+    title: math/inversion.hpp
   - icon: ':question:'
     path: template.hpp
     title: template.hpp
   _extendedRequiredBy: []
   _extendedVerifiedWith: []
-  _isVerificationFailed: false
+  _isVerificationFailed: true
   _pathExtension: cpp
-  _verificationStatusIcon: ':heavy_check_mark:'
+  _verificationStatusIcon: ':x:'
   attributes:
     '*NOT_SPECIAL_COMMENTS*': ''
-    PROBLEM: https://judge.u-aizu.ac.jp/onlinejudge/description.jsp?id=2235&lang=jp
-    links:
-    - https://judge.u-aizu.ac.jp/onlinejudge/description.jsp?id=2235&lang=jp
-  bundledCode: "#line 1 \"test/aoj-2235.test.cpp\"\n#define PROBLEM \"https://judge.u-aizu.ac.jp/onlinejudge/description.jsp?id=2235&lang=jp\"\
-    \n\n#line 2 \"data_structure/offline_dynamic_connectivity.hpp\"\n#include <algorithm>\n\
-    #include <map>\n\n#line 2 \"data_structure/undo_uf.hpp\"\n#include <stack>\n#include\
-    \ <vector>\n\nstruct rollback_unionfind {\nprivate:\n\tstd::vector<int> par;\n\
-    \tstd::stack<std::pair<int, int>> history;\n\npublic:\n\trollback_unionfind()\
-    \ = default;\n\n\trollback_unionfind(size_t n) : par(n, -1) {}\n\n\tint root(int\
-    \ x) {\n\t\tif(par[x] < 0) return x;\n\t\treturn root(par[x]);\n\t}\n\n\tbool\
-    \ same(int x, int y) { return root(x) == root(y); }\n\n\tbool unite(int x, int\
-    \ y) {\n\t\tx = root(x), y = root(y);\n\t\thistory.emplace(x, par[x]);\n\t\thistory.emplace(y,\
-    \ par[y]);\n\t\tif(x == y) return false;\n\t\tif(par[x] > par[y]) std::swap(x,\
-    \ y);\n\t\tpar[x] += par[y];\n\t\tpar[y] = x;\n\t\treturn true;\n\t}\n\n\tvoid\
-    \ snapshot() {\n\t\twhile(!history.empty()) history.pop();\n\t}\n\n\tvoid undo()\
-    \ {\n\t\tfor(int i = 0; i < 2; i++) {\n\t\t\tpar[history.top().first] = history.top().second;\n\
-    \t\t\thistory.pop();\n\t\t}\n\t}\n\n\tvoid rollback() {\n\t\twhile(!history.empty())\
-    \ undo();\n\t}\n\n\tsize_t size(int x) { return -par[root(x)]; }\n};\n#line 6\
-    \ \"data_structure/offline_dynamic_connectivity.hpp\"\nstruct offline_dynamic_connectivity\
-    \ {\npublic:\n\trollback_unionfind uf;\n\n\toffline_dynamic_connectivity(int n,\
-    \ int q) : uf(n), seg(q), q(q) {}\n\n\tvoid link(int t, int u, int v) {\n\t\t\
-    std::pair e = std::minmax(u, v);\n\t\tif(!cnt[e]++) appear[e] = t;\n\t}\n\n\t\
-    void cut(int t, int u, int v) {\n\t\tstd::pair e = std::minmax(u, v);\n\t\tif(!(--cnt[e]))\
-    \ seg.set(appear[e], t, e);\n\t}\n\n\tvoid build() {\n\t\tfor(const auto &[e,\
-    \ val] : cnt)\n\t\t\tif(val) seg.set(appear[e], q, e);\n\t}\n\n\ttemplate <class\
-    \ F>\n\tvoid run(const F &f, int k = 1) {\n\t\tfor(const auto &[u, v] : seg.node[k])\n\
-    \t\t\tuf.unite(u, v);\n\t\tif(k < q)\n\t\t\trun(f, k << 1), run(f, k << 1 | 1);\n\
-    \t\telse\n\t\t\tf(k - q);\n\t\tfor(int i = 0; i < (int)seg.node[k].size(); i++)\n\
-    \t\t\tuf.undo();\n\t}\n\nprivate:\n\tint q;\n\tusing edge = std::pair<int, int>;\n\
-    \tstd::map<edge, int> appear, cnt;\n\tstd::vector<std::pair<std::pair<int, int>,\
-    \ edge>> pend;\n\n\tstruct seg {\n\tpublic:\n\t\tint n;\n\t\tstd::vector<std::vector<edge>>\
-    \ node;\n\t\tseg(int n_) : n(n_), node(n << 1) {}\n\n\t\tvoid set(int l, int r,\
-    \ edge e) {\n\t\t\tfor(l += n, r += n; l < r; l >>= 1, r >>= 1) {\n\t\t\t\tif(l\
-    \ & 1) node[l++].push_back(e);\n\t\t\t\tif(r & 1) node[--r].push_back(e);\n\t\t\
-    \t}\n\t\t}\n\t};\n\n\tseg seg;\n};\n#line 1 \"template.hpp\"\n#include <bits/stdc++.h>\n\
-    using namespace std;\n#if __has_include(<atcoder/all>)\n#include <atcoder/all>\n\
-    using namespace atcoder;\n#endif\n\n#pragma region Macros\n// rep macro\n#define\
-    \ foa(v, a) for(auto &v : a)\n#define REPname(a, b, c, d, e, ...) e\n#define REP(...)\
-    \ REPname(__VA_ARGS__, REP3, REP2, REP1, REP0)(__VA_ARGS__)\n#define REP0(x) for(int\
-    \ i = 0; i < (x); ++i)\n#define REP1(i, x) for(int i = 0; i < (x); ++i)\n#define\
-    \ REP2(i, l, r) for(int i = (l); i < (r); ++i)\n#define REP3(i, l, r, c) for(int\
-    \ i = (l); i < (r); i += (c))\n#define REPSname(a, b, c, ...) c\n#define REPS(...)\
-    \ REPSname(__VA_ARGS__, REPS1, REPS0)(__VA_ARGS__)\n#define REPS0(x) for(int i\
-    \ = 1; i <= (x); ++i)\n#define REPS1(i, x) for(int i = 1; i <= (x); ++i)\n#define\
-    \ RREPname(a, b, c, d, e, ...) e\n#define RREP(...) RREPname(__VA_ARGS__, RREP3,\
-    \ RREP2, RREP1, RREP0)(__VA_ARGS__)\n#define RREP0(x) for(int i = (x)-1; i >=\
-    \ 0; --i)\n#define RREP1(i, x) for(int i = (x)-1; i >= 0; --i)\n#define RREP2(i,\
-    \ r, l) for(int i = (r)-1; i >= (l); --i)\n#define RREP3(i, r, l, c) for(int i\
-    \ = (r)-1; i >= (l); i -= (c))\n#define RREPSname(a, b, c, ...) c\n#define RREPS(...)\
-    \ RREPSname(__VA_ARGS__, RREPS1, RREPS0)(__VA_ARGS__)\n#define RREPS0(x) for(int\
-    \ i = (x); i >= 1; --i)\n#define RREPS1(i, x) for(int i = (x); i >= 1; --i)\n\n\
-    // name macro\n#define pb push_back\n#define eb emplace_back\n#define SZ(x) ((int)(x).size())\n\
-    #define all(x) (x).begin(), (x).end()\n#define rall(x) (x).rbegin(), (x).rend()\n\
-    #define popcnt(x) __builtin_popcountll(x)\ntemplate <class T = int>\nusing V =\
-    \ std::vector<T>;\ntemplate <class T = int>\nusing VV = std::vector<std::vector<T>>;\n\
-    template <class T>\nusing pqup = std::priority_queue<T, std::vector<T>, std::greater<T>>;\n\
-    using ll = long long;\nusing ld = long double;\nusing int128 = __int128_t;\nusing\
-    \ pii = std::pair<int, int>;\nusing pll = std::pair<long long, long long>;\n\n\
-    // input macro\ntemplate <class T, class U>\nstd::istream &operator>>(std::istream\
-    \ &is, std::pair<T, U> &p) {\n\tis >> p.first >> p.second;\n\treturn is;\n}\n\
-    template <class T>\nstd::istream &operator>>(std::istream &is, std::vector<T>\
-    \ &v) {\n\tfor(T &i : v) is >> i;\n\treturn is;\n}\nstd::istream &operator>>(std::istream\
-    \ &is, __int128_t &a) {\n\tstd::string s;\n\tis >> s;\n\t__int128_t ret = 0;\n\
-    \tfor(int i = 0; i < s.length(); i++)\n\t\tif('0' <= s[i] and s[i] <= '9')\n\t\
-    \t\tret = 10 * ret + s[i] - '0';\n\ta = ret * (s[0] == '-' ? -1 : 1);\n\treturn\
-    \ is;\n}\n#if __has_include(<atcoder/all>)\nstd::istream &operator>>(std::istream\
-    \ &is, atcoder::modint998244353 &a) {\n\tlong long v;\n\tis >> v;\n\ta = v;\n\t\
-    return is;\n}\nstd::istream &operator>>(std::istream &is, atcoder::modint1000000007\
+    links: []
+  bundledCode: "#line 1 \"math/inversion.hpp\"\n#include <vector>\n\n//\u914D\u5217\
+    \u306E\u8EE2\u5012\u6570(i < j and a[i] > a[j]\u3092\u6E80\u305F\u3059\u7D44\u306E\
+    \u500B\u6570)\u3092\u8FD4\u3059\n//\u914D\u5217\u304C\u975E\u8CA0\u304B\u3064\
+    Max\u304C1e5\u307E\u3067\u7A0B\u5EA6\u306B\u5BFE\u5FDC\ntemplate <class T>\nlong\
+    \ long inversion(std::vector<T> vec) {\n\tlong long res = 0;\n\tint n = *max_element(vec.begin(),\
+    \ vec.end()) + 1;\n\tstd::vector<T> d(n + 1, 0);\n\tfor(int i = 0; i < vec.size();\
+    \ i++) {\n\t\tres += i;\n\t\tfor(int j = vec[i] + 1; j; j -= j & -j) res -= d[j];\n\
+    \t\tfor(int j = vec[i] + 1; j <= n; j += j & -j) d[j] += 1;\n\t}\n\treturn res;\n\
+    }\n#line 1 \"template.hpp\"\n#include <bits/stdc++.h>\nusing namespace std;\n\
+    #if __has_include(<atcoder/all>)\n#include <atcoder/all>\nusing namespace atcoder;\n\
+    #endif\n\n#pragma region Macros\n// rep macro\n#define foa(v, a) for(auto &v :\
+    \ a)\n#define REPname(a, b, c, d, e, ...) e\n#define REP(...) REPname(__VA_ARGS__,\
+    \ REP3, REP2, REP1, REP0)(__VA_ARGS__)\n#define REP0(x) for(int i = 0; i < (x);\
+    \ ++i)\n#define REP1(i, x) for(int i = 0; i < (x); ++i)\n#define REP2(i, l, r)\
+    \ for(int i = (l); i < (r); ++i)\n#define REP3(i, l, r, c) for(int i = (l); i\
+    \ < (r); i += (c))\n#define REPSname(a, b, c, ...) c\n#define REPS(...) REPSname(__VA_ARGS__,\
+    \ REPS1, REPS0)(__VA_ARGS__)\n#define REPS0(x) for(int i = 1; i <= (x); ++i)\n\
+    #define REPS1(i, x) for(int i = 1; i <= (x); ++i)\n#define RREPname(a, b, c, d,\
+    \ e, ...) e\n#define RREP(...) RREPname(__VA_ARGS__, RREP3, RREP2, RREP1, RREP0)(__VA_ARGS__)\n\
+    #define RREP0(x) for(int i = (x)-1; i >= 0; --i)\n#define RREP1(i, x) for(int\
+    \ i = (x)-1; i >= 0; --i)\n#define RREP2(i, r, l) for(int i = (r)-1; i >= (l);\
+    \ --i)\n#define RREP3(i, r, l, c) for(int i = (r)-1; i >= (l); i -= (c))\n#define\
+    \ RREPSname(a, b, c, ...) c\n#define RREPS(...) RREPSname(__VA_ARGS__, RREPS1,\
+    \ RREPS0)(__VA_ARGS__)\n#define RREPS0(x) for(int i = (x); i >= 1; --i)\n#define\
+    \ RREPS1(i, x) for(int i = (x); i >= 1; --i)\n\n// name macro\n#define pb push_back\n\
+    #define eb emplace_back\n#define SZ(x) ((int)(x).size())\n#define all(x) (x).begin(),\
+    \ (x).end()\n#define rall(x) (x).rbegin(), (x).rend()\n#define popcnt(x) __builtin_popcountll(x)\n\
+    template <class T = int>\nusing V = std::vector<T>;\ntemplate <class T = int>\n\
+    using VV = std::vector<std::vector<T>>;\ntemplate <class T>\nusing pqup = std::priority_queue<T,\
+    \ std::vector<T>, std::greater<T>>;\nusing ll = long long;\nusing ld = long double;\n\
+    using int128 = __int128_t;\nusing pii = std::pair<int, int>;\nusing pll = std::pair<long\
+    \ long, long long>;\n\n// input macro\ntemplate <class T, class U>\nstd::istream\
+    \ &operator>>(std::istream &is, std::pair<T, U> &p) {\n\tis >> p.first >> p.second;\n\
+    \treturn is;\n}\ntemplate <class T>\nstd::istream &operator>>(std::istream &is,\
+    \ std::vector<T> &v) {\n\tfor(T &i : v) is >> i;\n\treturn is;\n}\nstd::istream\
+    \ &operator>>(std::istream &is, __int128_t &a) {\n\tstd::string s;\n\tis >> s;\n\
+    \t__int128_t ret = 0;\n\tfor(int i = 0; i < s.length(); i++)\n\t\tif('0' <= s[i]\
+    \ and s[i] <= '9')\n\t\t\tret = 10 * ret + s[i] - '0';\n\ta = ret * (s[0] == '-'\
+    \ ? -1 : 1);\n\treturn is;\n}\n#if __has_include(<atcoder/all>)\nstd::istream\
+    \ &operator>>(std::istream &is, atcoder::modint998244353 &a) {\n\tlong long v;\n\
+    \tis >> v;\n\ta = v;\n\treturn is;\n}\nstd::istream &operator>>(std::istream &is,\
+    \ atcoder::modint1000000007 &a) {\n\tlong long v;\n\tis >> v;\n\ta = v;\n\treturn\
+    \ is;\n}\ntemplate <int m>\nstd::istream &operator>>(std::istream &is, atcoder::static_modint<m>\
     \ &a) {\n\tlong long v;\n\tis >> v;\n\ta = v;\n\treturn is;\n}\ntemplate <int\
-    \ m>\nstd::istream &operator>>(std::istream &is, atcoder::static_modint<m> &a)\
-    \ {\n\tlong long v;\n\tis >> v;\n\ta = v;\n\treturn is;\n}\ntemplate <int m>\n\
-    std::istream &operator>>(std::istream &is, atcoder::dynamic_modint<m> &a) {\n\t\
-    long long v;\n\tis >> v;\n\ta = v;\n\treturn is;\n}\n#endif\nnamespace scanner\
-    \ {\nvoid scan(int &a) { std::cin >> a; }\nvoid scan(long long &a) { std::cin\
+    \ m>\nstd::istream &operator>>(std::istream &is, atcoder::dynamic_modint<m> &a)\
+    \ {\n\tlong long v;\n\tis >> v;\n\ta = v;\n\treturn is;\n}\n#endif\nnamespace\
+    \ scanner {\nvoid scan(int &a) { std::cin >> a; }\nvoid scan(long long &a) { std::cin\
     \ >> a; }\nvoid scan(std::string &a) { std::cin >> a; }\nvoid scan(char &a) {\
     \ std::cin >> a; }\nvoid scan(char a[]) { std::scanf(\"%s\", a); }\nvoid scan(double\
     \ &a) { std::cin >> a; }\nvoid scan(long double &a) { std::cin >> a; }\ntemplate\
@@ -247,32 +218,13 @@ data:
     \ others\nstruct fast_io {\n\tfast_io() {\n\t\tios::sync_with_stdio(false);\n\t\
     \tcin.tie(nullptr);\n\t\tcout << fixed << setprecision(15);\n\t}\n} fast_io_;\n\
     const int inf = 1e9;\nconst ll INF = 1e18;\n#pragma endregion\n\nvoid main_();\n\
-    \nint main() {\n\tmain_();\n\treturn 0;\n}\n#line 5 \"test/aoj-2235.test.cpp\"\
-    \n\nvoid main_() {\n\tINT(n, q);\n\toffline_dynamic_connectivity odc(n, q);\n\n\
-    \tvector<pii> uv(q, {-1, -1});\n\n\tint t3 = 0;\n\tvector<int> id(q, -1);\n\n\t\
-    REP(i, q) {\n\t\tint type, u, v;\n\t\tcin >> type >> u >> v;\n\t\tswitch(type)\
-    \ {\n\t\t\tcase 1:\n\t\t\t\todc.link(i, u, v);\n\t\t\t\tbreak;\n\n\t\t\tcase 2:\n\
-    \t\t\t\todc.cut(i, u, v);\n\t\t\t\tbreak;\n\n\t\t\tcase 3:\n\t\t\t\tid[i] = t3++;\n\
-    \t\t\t\tuv[i] = {u, v};\n\t\t\t\tbreak;\n\n\t\t\tdefault:\n\t\t\t\tbreak;\n\t\t\
-    }\n\t}\n\n\tvector<int> res(t3);\n\n\tauto f = [&](int t) {\n\t\tif(id[t] != -1)\
-    \ {\n\t\t\tconst auto &[u, v] = uv[t];\n\t\t\tres[id[t]] = odc.uf.same(u, v);\n\
-    \t\t}\n\t};\n\n\todc.build();\n\todc.run(f);\n\n\tfor(const auto &v : res) cout\
-    \ << (v ? \"YES\\n\" : \"NO\\n\");\n}\n"
-  code: "#define PROBLEM \"https://judge.u-aizu.ac.jp/onlinejudge/description.jsp?id=2235&lang=jp\"\
-    \n\n#include \"data_structure/offline_dynamic_connectivity.hpp\"\n#include \"\
-    template.hpp\"\n\nvoid main_() {\n\tINT(n, q);\n\toffline_dynamic_connectivity\
-    \ odc(n, q);\n\n\tvector<pii> uv(q, {-1, -1});\n\n\tint t3 = 0;\n\tvector<int>\
-    \ id(q, -1);\n\n\tREP(i, q) {\n\t\tint type, u, v;\n\t\tcin >> type >> u >> v;\n\
-    \t\tswitch(type) {\n\t\t\tcase 1:\n\t\t\t\todc.link(i, u, v);\n\t\t\t\tbreak;\n\
-    \n\t\t\tcase 2:\n\t\t\t\todc.cut(i, u, v);\n\t\t\t\tbreak;\n\n\t\t\tcase 3:\n\t\
-    \t\t\tid[i] = t3++;\n\t\t\t\tuv[i] = {u, v};\n\t\t\t\tbreak;\n\n\t\t\tdefault:\n\
-    \t\t\t\tbreak;\n\t\t}\n\t}\n\n\tvector<int> res(t3);\n\n\tauto f = [&](int t)\
-    \ {\n\t\tif(id[t] != -1) {\n\t\t\tconst auto &[u, v] = uv[t];\n\t\t\tres[id[t]]\
-    \ = odc.uf.same(u, v);\n\t\t}\n\t};\n\n\todc.build();\n\todc.run(f);\n\n\tfor(const\
-    \ auto &v : res) cout << (v ? \"YES\\n\" : \"NO\\n\");\n}"
+    \nint main() {\n\tmain_();\n\treturn 0;\n}\n#line 3 \"test/aoj-alds1_5_d.test.cpp\"\
+    \n\nvoid main_() {\n\tINT(n);\n\tVEC(int, a, n);\n\tpress(a);\n\tprint(inversion(a));\n\
+    }\n"
+  code: "#include \"math/inversion.hpp\"\n#include \"template.hpp\"\n\nvoid main_()\
+    \ {\n\tINT(n);\n\tVEC(int, a, n);\n\tpress(a);\n\tprint(inversion(a));\n}"
   dependsOn:
-  - data_structure/offline_dynamic_connectivity.hpp
-  - data_structure/undo_uf.hpp
+  - math/inversion.hpp
   - template.hpp
   - atcoder/convolution.hpp
   - atcoder/internal_bit.hpp
@@ -293,15 +245,15 @@ data:
   - atcoder/string.hpp
   - atcoder/twosat.hpp
   isVerificationFile: true
-  path: test/aoj-2235.test.cpp
+  path: test/aoj-alds1_5_d.test.cpp
   requiredBy: []
-  timestamp: '2021-09-08 15:21:46+09:00'
-  verificationStatus: TEST_ACCEPTED
+  timestamp: '2021-09-08 20:50:36+09:00'
+  verificationStatus: TEST_WRONG_ANSWER
   verifiedWith: []
-documentation_of: test/aoj-2235.test.cpp
+documentation_of: test/aoj-alds1_5_d.test.cpp
 layout: document
 redirect_from:
-- /verify/test/aoj-2235.test.cpp
-- /verify/test/aoj-2235.test.cpp.html
-title: test/aoj-2235.test.cpp
+- /verify/test/aoj-alds1_5_d.test.cpp
+- /verify/test/aoj-alds1_5_d.test.cpp.html
+title: test/aoj-alds1_5_d.test.cpp
 ---
