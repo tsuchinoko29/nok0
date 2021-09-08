@@ -139,6 +139,9 @@ data:
     path: test/yosupo-set_xor_min.test.cpp
     title: test/yosupo-set_xor_min.test.cpp
   - icon: ':heavy_check_mark:'
+    path: test/yosupo-sqrt_of_formal_power_series.test.cpp
+    title: test/yosupo-sqrt_of_formal_power_series.test.cpp
+  - icon: ':heavy_check_mark:'
     path: test/yosupo-tree_diameter.test.cpp
     title: test/yosupo-tree_diameter.test.cpp
   - icon: ':heavy_check_mark:'
@@ -492,6 +495,7 @@ data:
   - test/aoj-grl-5-b.test.cpp
   - test/yosupo-vertex_add_subtree_sum.test.cpp
   - test/aoj-2600.test.cpp
+  - test/yosupo-sqrt_of_formal_power_series.test.cpp
   - test/aoj-grl-2-a.test.cpp
   - test/yosupo-exp_of_formal_power_series.test.cpp
   - test/yosupo-scc.test.cpp

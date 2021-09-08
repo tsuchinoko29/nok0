@@ -248,6 +248,9 @@ data:
       path: test/yosupo-set_xor_min.test.cpp
       title: test/yosupo-set_xor_min.test.cpp
     - icon: ':heavy_check_mark:'
+      path: test/yosupo-sqrt_of_formal_power_series.test.cpp
+      title: test/yosupo-sqrt_of_formal_power_series.test.cpp
+    - icon: ':heavy_check_mark:'
       path: test/yosupo-tree_diameter.test.cpp
       title: test/yosupo-tree_diameter.test.cpp
     - icon: ':heavy_check_mark:'
