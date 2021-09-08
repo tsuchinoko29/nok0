@@ -1,7 +1,7 @@
 ---
 data:
   _extendedDependsOn:
-  - icon: ':question:'
+  - icon: ':heavy_check_mark:'
     path: atcoder/internal_bit.hpp
     title: atcoder/internal_bit.hpp
   _extendedRequiredBy:
@@ -11,7 +11,7 @@ data:
   - icon: ':heavy_check_mark:'
     path: multi.hpp
     title: multi.hpp
-  - icon: ':question:'
+  - icon: ':heavy_check_mark:'
     path: template.hpp
     title: template.hpp
   _extendedVerifiedWith:
@@ -24,7 +24,7 @@ data:
   - icon: ':heavy_check_mark:'
     path: test/aoj-2703.test.cpp
     title: test/aoj-2703.test.cpp
-  - icon: ':x:'
+  - icon: ':heavy_check_mark:'
     path: test/aoj-alds1_5_d.test.cpp
     title: test/aoj-alds1_5_d.test.cpp
   - icon: ':heavy_check_mark:'
@@ -123,9 +123,9 @@ data:
   - icon: ':heavy_check_mark:'
     path: test/yosupo-vertex_add_subtree_sum.test.cpp
     title: test/yosupo-vertex_add_subtree_sum.test.cpp
-  _isVerificationFailed: true
+  _isVerificationFailed: false
   _pathExtension: hpp
-  _verificationStatusIcon: ':question:'
+  _verificationStatusIcon: ':heavy_check_mark:'
   attributes:
     links: []
   bundledCode: "#line 1 \"atcoder/lazysegtree.hpp\"\n\n\n\n#include <algorithm>\n\
@@ -279,7 +279,7 @@ data:
   - template.hpp
   - data_structure/permutation_tree.hpp
   timestamp: '2021-09-08 15:21:46+09:00'
-  verificationStatus: LIBRARY_SOME_WA
+  verificationStatus: LIBRARY_ALL_AC
   verifiedWith:
   - test/yosupo-two_edge_connected_components.test.cpp
   - test/aoj-grl-3-b.test.cpp

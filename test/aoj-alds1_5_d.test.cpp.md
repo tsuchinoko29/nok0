@@ -1,82 +1,85 @@
 ---
 data:
   _extendedDependsOn:
-  - icon: ':question:'
+  - icon: ':heavy_check_mark:'
     path: atcoder/convolution.hpp
     title: atcoder/convolution.hpp
-  - icon: ':question:'
+  - icon: ':heavy_check_mark:'
     path: atcoder/dsu.hpp
     title: atcoder/dsu.hpp
-  - icon: ':question:'
+  - icon: ':heavy_check_mark:'
     path: atcoder/fenwicktree.hpp
     title: atcoder/fenwicktree.hpp
-  - icon: ':question:'
+  - icon: ':heavy_check_mark:'
     path: atcoder/internal_bit.hpp
     title: atcoder/internal_bit.hpp
-  - icon: ':question:'
+  - icon: ':heavy_check_mark:'
     path: atcoder/internal_csr.hpp
     title: atcoder/internal_csr.hpp
-  - icon: ':question:'
+  - icon: ':heavy_check_mark:'
     path: atcoder/internal_math.hpp
     title: atcoder/internal_math.hpp
-  - icon: ':question:'
+  - icon: ':heavy_check_mark:'
     path: atcoder/internal_queue.hpp
     title: atcoder/internal_queue.hpp
-  - icon: ':question:'
+  - icon: ':heavy_check_mark:'
     path: atcoder/internal_scc.hpp
     title: atcoder/internal_scc.hpp
-  - icon: ':question:'
+  - icon: ':heavy_check_mark:'
     path: atcoder/internal_type_traits.hpp
     title: atcoder/internal_type_traits.hpp
-  - icon: ':question:'
+  - icon: ':heavy_check_mark:'
     path: atcoder/lazysegtree.hpp
     title: atcoder/lazysegtree.hpp
-  - icon: ':question:'
+  - icon: ':heavy_check_mark:'
     path: atcoder/math.hpp
     title: atcoder/math.hpp
-  - icon: ':question:'
+  - icon: ':heavy_check_mark:'
     path: atcoder/maxflow.hpp
     title: atcoder/maxflow.hpp
-  - icon: ':question:'
+  - icon: ':heavy_check_mark:'
     path: atcoder/mincostflow.hpp
     title: atcoder/mincostflow.hpp
-  - icon: ':question:'
+  - icon: ':heavy_check_mark:'
     path: atcoder/modint.hpp
     title: atcoder/modint.hpp
-  - icon: ':question:'
+  - icon: ':heavy_check_mark:'
     path: atcoder/scc.hpp
     title: atcoder/scc.hpp
-  - icon: ':question:'
+  - icon: ':heavy_check_mark:'
     path: atcoder/segtree.hpp
     title: atcoder/segtree.hpp
-  - icon: ':question:'
+  - icon: ':heavy_check_mark:'
     path: atcoder/string.hpp
     title: atcoder/string.hpp
-  - icon: ':question:'
+  - icon: ':heavy_check_mark:'
     path: atcoder/twosat.hpp
     title: atcoder/twosat.hpp
-  - icon: ':x:'
+  - icon: ':heavy_check_mark:'
     path: math/inversion.hpp
     title: math/inversion.hpp
-  - icon: ':question:'
+  - icon: ':heavy_check_mark:'
     path: template.hpp
     title: template.hpp
   _extendedRequiredBy: []
   _extendedVerifiedWith: []
-  _isVerificationFailed: true
+  _isVerificationFailed: false
   _pathExtension: cpp
-  _verificationStatusIcon: ':x:'
+  _verificationStatusIcon: ':heavy_check_mark:'
   attributes:
     '*NOT_SPECIAL_COMMENTS*': ''
-    links: []
-  bundledCode: "#line 1 \"math/inversion.hpp\"\n#include <vector>\n\n//\u914D\u5217\
-    \u306E\u8EE2\u5012\u6570(i < j and a[i] > a[j]\u3092\u6E80\u305F\u3059\u7D44\u306E\
-    \u500B\u6570)\u3092\u8FD4\u3059\n//\u914D\u5217\u304C\u975E\u8CA0\u304B\u3064\
-    Max\u304C1e5\u307E\u3067\u7A0B\u5EA6\u306B\u5BFE\u5FDC\ntemplate <class T>\nlong\
-    \ long inversion(std::vector<T> vec) {\n\tlong long res = 0;\n\tint n = *max_element(vec.begin(),\
-    \ vec.end()) + 1;\n\tstd::vector<T> d(n + 1, 0);\n\tfor(int i = 0; i < vec.size();\
-    \ i++) {\n\t\tres += i;\n\t\tfor(int j = vec[i] + 1; j; j -= j & -j) res -= d[j];\n\
-    \t\tfor(int j = vec[i] + 1; j <= n; j += j & -j) d[j] += 1;\n\t}\n\treturn res;\n\
+    PROBLEM: https://onlinejudge.u-aizu.ac.jp/problems/ALDS1_5_D
+    links:
+    - https://onlinejudge.u-aizu.ac.jp/problems/ALDS1_5_D
+  bundledCode: "#line 1 \"test/aoj-alds1_5_d.test.cpp\"\n#define PROBLEM \"https://onlinejudge.u-aizu.ac.jp/problems/ALDS1_5_D\"\
+    \n\n#line 1 \"math/inversion.hpp\"\n#include <vector>\n\n//\u914D\u5217\u306E\u8EE2\
+    \u5012\u6570(i < j and a[i] > a[j]\u3092\u6E80\u305F\u3059\u7D44\u306E\u500B\u6570\
+    )\u3092\u8FD4\u3059\n//\u914D\u5217\u304C\u975E\u8CA0\u304B\u3064Max\u304C1e5\u307E\
+    \u3067\u7A0B\u5EA6\u306B\u5BFE\u5FDC\ntemplate <class T>\nlong long inversion(std::vector<T>\
+    \ vec) {\n\tlong long res = 0;\n\tint n = *max_element(vec.begin(), vec.end())\
+    \ + 1;\n\tstd::vector<T> d(n + 1, 0);\n\tfor(int i = 0; i < vec.size(); i++) {\n\
+    \t\tres += i;\n\t\tfor(int j = vec[i] + 1; j; j -= j & -j) res -= d[j];\n\t\t\
+    for(int j = vec[i] + 1; j <= n; j += j & -j) d[j] += 1;\n\t}\n\treturn res;\n\
     }\n#line 1 \"template.hpp\"\n#include <bits/stdc++.h>\nusing namespace std;\n\
     #if __has_include(<atcoder/all>)\n#include <atcoder/all>\nusing namespace atcoder;\n\
     #endif\n\n#pragma region Macros\n// rep macro\n#define foa(v, a) for(auto &v :\
@@ -218,11 +221,12 @@ data:
     \ others\nstruct fast_io {\n\tfast_io() {\n\t\tios::sync_with_stdio(false);\n\t\
     \tcin.tie(nullptr);\n\t\tcout << fixed << setprecision(15);\n\t}\n} fast_io_;\n\
     const int inf = 1e9;\nconst ll INF = 1e18;\n#pragma endregion\n\nvoid main_();\n\
-    \nint main() {\n\tmain_();\n\treturn 0;\n}\n#line 3 \"test/aoj-alds1_5_d.test.cpp\"\
+    \nint main() {\n\tmain_();\n\treturn 0;\n}\n#line 5 \"test/aoj-alds1_5_d.test.cpp\"\
     \n\nvoid main_() {\n\tINT(n);\n\tVEC(int, a, n);\n\tpress(a);\n\tprint(inversion(a));\n\
     }\n"
-  code: "#include \"math/inversion.hpp\"\n#include \"template.hpp\"\n\nvoid main_()\
-    \ {\n\tINT(n);\n\tVEC(int, a, n);\n\tpress(a);\n\tprint(inversion(a));\n}"
+  code: "#define PROBLEM \"https://onlinejudge.u-aizu.ac.jp/problems/ALDS1_5_D\"\n\
+    \n#include \"math/inversion.hpp\"\n#include \"template.hpp\"\n\nvoid main_() {\n\
+    \tINT(n);\n\tVEC(int, a, n);\n\tpress(a);\n\tprint(inversion(a));\n}"
   dependsOn:
   - math/inversion.hpp
   - template.hpp
@@ -247,8 +251,8 @@ data:
   isVerificationFile: true
   path: test/aoj-alds1_5_d.test.cpp
   requiredBy: []
-  timestamp: '2021-09-08 20:50:36+09:00'
-  verificationStatus: TEST_WRONG_ANSWER
+  timestamp: '2021-09-08 20:51:58+09:00'
+  verificationStatus: TEST_ACCEPTED
   verifiedWith: []
 documentation_of: test/aoj-alds1_5_d.test.cpp
 layout: document

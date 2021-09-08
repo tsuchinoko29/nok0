@@ -1,13 +1,13 @@
 ---
 data:
   _extendedDependsOn:
-  - icon: ':question:'
+  - icon: ':heavy_check_mark:'
     path: atcoder/internal_csr.hpp
     title: atcoder/internal_csr.hpp
-  - icon: ':question:'
+  - icon: ':heavy_check_mark:'
     path: atcoder/internal_queue.hpp
     title: atcoder/internal_queue.hpp
-  - icon: ':question:'
+  - icon: ':heavy_check_mark:'
     path: atcoder/mincostflow.hpp
     title: atcoder/mincostflow.hpp
   - icon: ':heavy_check_mark:'
