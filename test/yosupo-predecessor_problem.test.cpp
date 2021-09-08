@@ -1,3 +1,5 @@
+#define PROBLEM "https://judge.yosupo.jp/problem/predecessor_problem"
+
 #include "data_structure/binary_trie.hpp"
 #include "template.hpp"
 
