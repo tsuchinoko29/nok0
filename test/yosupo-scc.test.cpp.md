@@ -1,25 +1,26 @@
 ---
 data:
   _extendedDependsOn:
-  - icon: ':question:'
+  - icon: ':heavy_check_mark:'
     path: graph/graph.hpp
     title: graph/graph.hpp
-  - icon: ':x:'
+  - icon: ':heavy_check_mark:'
     path: graph/scc.hpp
     title: graph/scc.hpp
-  - icon: ':question:'
+  - icon: ':heavy_check_mark:'
     path: template.hpp
     title: template.hpp
   _extendedRequiredBy: []
   _extendedVerifiedWith: []
-  _isVerificationFailed: true
+  _isVerificationFailed: false
   _pathExtension: cpp
-  _verificationStatusIcon: ':x:'
+  _verificationStatusIcon: ':heavy_check_mark:'
   attributes:
     '*NOT_SPECIAL_COMMENTS*': ''
+    PROBLEM: https://judge.yosupo.jp/problem/scc
     links:
     - https://judge.yosupo.jp/problem/scc
-  bundledCode: "#line 1 \"test/yosupo-scc.test.cpp\"\n#define PROBLME \"https://judge.yosupo.jp/problem/scc\"\
+  bundledCode: "#line 1 \"test/yosupo-scc.test.cpp\"\n#define PROBLEM \"https://judge.yosupo.jp/problem/scc\"\
     \n\n#line 2 \"graph/graph.hpp\"\n#include <algorithm>\n#include <cassert>\n#include\
     \ <deque>\n#include <iostream>\n#include <queue>\n#include <tuple>\n#include <utility>\n\
     #include <vector>\n\nstruct Edge {\n\tint to;\n\tlong long cost;\n\tEdge() = default;\n\
@@ -343,7 +344,7 @@ data:
     \n\nvoid main_() {\n\tINT(n, m);\n\tGraph g(n, m, 0, 1, 0);\n\tstrongly_connected_components\
     \ scc(g);\n\tprint(SZ(scc.groups));\n\tfoa(group, scc.groups)\n\t    print(SZ(group),\
     \ group);\n}\n"
-  code: "#define PROBLME \"https://judge.yosupo.jp/problem/scc\"\n\n#include \"graph/graph.hpp\"\
+  code: "#define PROBLEM \"https://judge.yosupo.jp/problem/scc\"\n\n#include \"graph/graph.hpp\"\
     \n#include \"graph/scc.hpp\"\n#include \"template.hpp\"\n\nvoid main_() {\n\t\
     INT(n, m);\n\tGraph g(n, m, 0, 1, 0);\n\tstrongly_connected_components scc(g);\n\
     \tprint(SZ(scc.groups));\n\tfoa(group, scc.groups)\n\t    print(SZ(group), group);\n\
@@ -355,8 +356,8 @@ data:
   isVerificationFile: true
   path: test/yosupo-scc.test.cpp
   requiredBy: []
-  timestamp: '2021-09-08 10:12:28+09:00'
-  verificationStatus: TEST_WRONG_ANSWER
+  timestamp: '2021-09-08 10:15:43+09:00'
+  verificationStatus: TEST_ACCEPTED
   verifiedWith: []
 documentation_of: test/yosupo-scc.test.cpp
 layout: document

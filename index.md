@@ -15,7 +15,7 @@ data:
     - icon: ':warning:'
       path: submit.cpp
       title: submit.cpp
-    - icon: ':question:'
+    - icon: ':heavy_check_mark:'
       path: template.hpp
       title: template.hpp
   - name: data_structure
@@ -52,7 +52,7 @@ data:
     - icon: ':warning:'
       path: graph/dag_mcf.hpp
       title: graph/dag_mcf.hpp
-    - icon: ':question:'
+    - icon: ':heavy_check_mark:'
       path: graph/graph.hpp
       title: graph/graph.hpp
     - icon: ':heavy_check_mark:'
@@ -67,7 +67,7 @@ data:
     - icon: ':warning:'
       path: graph/namori.hpp
       title: graph/namori.hpp
-    - icon: ':x:'
+    - icon: ':heavy_check_mark:'
       path: graph/scc.hpp
       title: graph/scc.hpp
     - icon: ':heavy_check_mark:'
@@ -128,7 +128,7 @@ data:
     - icon: ':heavy_check_mark:'
       path: test/yosupo-lca.test.cpp
       title: test/yosupo-lca.test.cpp
-    - icon: ':x:'
+    - icon: ':heavy_check_mark:'
       path: test/yosupo-scc.test.cpp
       title: test/yosupo-scc.test.cpp
     - icon: ':heavy_check_mark:'
