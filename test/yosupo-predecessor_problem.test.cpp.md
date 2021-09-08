@@ -1,22 +1,12 @@
 ---
 data:
-  _extendedDependsOn:
-  - icon: ':question:'
-    path: data_structure/binary_trie.hpp
-    title: data_structure/binary_trie.hpp
-  - icon: ':question:'
-    path: template.hpp
-    title: template.hpp
+  _extendedDependsOn: []
   _extendedRequiredBy: []
   _extendedVerifiedWith: []
   _isVerificationFailed: true
   _pathExtension: cpp
   _verificationStatusIcon: ':x:'
-  attributes:
-    '*NOT_SPECIAL_COMMENTS*': ''
-    PROBLEM: https://judge.yosupo.jp/problem/predecessor_problem
-    links:
-    - https://judge.yosupo.jp/problem/predecessor_problem
+  attributes: {}
   bundledCode: "#line 1 \"test/yosupo-predecessor_problem.test.cpp\"\n#define PROBLEM\
     \ \"https://judge.yosupo.jp/problem/predecessor_problem\"\n\n#line 1 \"data_structure/binary_trie.hpp\"\
     \n#include <algorithm>\n#include <cassert>\n#include <iostream>\n#include <memory>\n\
@@ -231,13 +221,11 @@ data:
     \ -1);\n\t\t\t\tbreak;\n\t\t\tcase 4:\n\t\t\t\td = trie.upper_bound(x) - 1;\n\t\
     \t\t\tprint(d >= 0 and d < trie.size() ? trie[d] : -1);\n\t\t\t\tbreak;\n\t\t\t\
     default:\n\t\t\t\tbreak;\n\t\t}\n\t}\n}"
-  dependsOn:
-  - data_structure/binary_trie.hpp
-  - template.hpp
+  dependsOn: []
   isVerificationFile: true
   path: test/yosupo-predecessor_problem.test.cpp
   requiredBy: []
-  timestamp: '2021-09-08 14:36:38+09:00'
+  timestamp: '1970-01-01 00:00:00+00:00'
   verificationStatus: TEST_WRONG_ANSWER
   verifiedWith: []
 documentation_of: test/yosupo-predecessor_problem.test.cpp

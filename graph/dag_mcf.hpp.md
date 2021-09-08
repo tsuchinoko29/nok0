@@ -1,9 +1,6 @@
 ---
 data:
-  _extendedDependsOn:
-  - icon: ':heavy_check_mark:'
-    path: graph/graph.hpp
-    title: graph/graph.hpp
+  _extendedDependsOn: []
   _extendedRequiredBy: []
   _extendedVerifiedWith: []
   _isVerificationFailed: false
@@ -210,12 +207,11 @@ data:
     \ {\n\t\tint from, to;\n\t\tCap cap;\n\t\tCost cost;\n\t\tedge(int from, int to,\
     \ Cap cap, Cost cost) : from(from), to(to), cap(cap), cost(cost) {}\n\t};\n\t\
     std::vector<edge> es;\n};\n"
-  dependsOn:
-  - graph/graph.hpp
+  dependsOn: []
   isVerificationFile: false
   path: graph/dag_mcf.hpp
   requiredBy: []
-  timestamp: '2021-09-08 10:25:09+09:00'
+  timestamp: '1970-01-01 00:00:00+00:00'
   verificationStatus: LIBRARY_NO_TESTS
   verifiedWith: []
 documentation_of: graph/dag_mcf.hpp

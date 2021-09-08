@@ -1,28 +1,12 @@
 ---
 data:
-  _extendedDependsOn:
-  - icon: ':heavy_check_mark:'
-    path: data_structure/rangeadd_rangesum_bit.hpp
-    title: data_structure/rangeadd_rangesum_bit.hpp
-  - icon: ':heavy_check_mark:'
-    path: graph/graph.hpp
-    title: graph/graph.hpp
-  - icon: ':heavy_check_mark:'
-    path: graph/hld.hpp
-    title: graph/hld.hpp
-  - icon: ':question:'
-    path: template.hpp
-    title: template.hpp
+  _extendedDependsOn: []
   _extendedRequiredBy: []
   _extendedVerifiedWith: []
-  _isVerificationFailed: false
+  _isVerificationFailed: true
   _pathExtension: cpp
-  _verificationStatusIcon: ':heavy_check_mark:'
-  attributes:
-    '*NOT_SPECIAL_COMMENTS*': ''
-    PROBLEM: https://onlinejudge.u-aizu.ac.jp/courses/library/5/GRL/all/GRL_5_E
-    links:
-    - https://onlinejudge.u-aizu.ac.jp/courses/library/5/GRL/all/GRL_5_E
+  _verificationStatusIcon: ':x:'
+  attributes: {}
   bundledCode: "#line 1 \"test/aoj-grl-5-e.test.cpp\"\n#define PROBLEM \"https://onlinejudge.u-aizu.ac.jp/courses/library/5/GRL/all/GRL_5_E\"\
     \n\n#line 1 \"data_structure/rangeadd_rangesum_bit.hpp\"\n#include <vector>\n\n\
     template <class T>\nstruct rangeadd_rangesum_bit {\nprivate:\n\tstd::vector<T>\
@@ -379,16 +363,12 @@ data:
     \t\tINT(type, u);\n\t\tif(type == 0) {\n\t\t\tcin >> w;\n\t\t\thld.add(0, u, upd,\
     \ 1);\n\t\t} else {\n\t\t\tprint(hld.query(0, u, 0ll, q, f, true));\n\t\t}\n\t\
     }\n}"
-  dependsOn:
-  - data_structure/rangeadd_rangesum_bit.hpp
-  - graph/graph.hpp
-  - graph/hld.hpp
-  - template.hpp
+  dependsOn: []
   isVerificationFile: true
   path: test/aoj-grl-5-e.test.cpp
   requiredBy: []
-  timestamp: '2021-09-08 10:55:28+09:00'
-  verificationStatus: TEST_ACCEPTED
+  timestamp: '1970-01-01 00:00:00+00:00'
+  verificationStatus: TEST_WRONG_ANSWER
   verifiedWith: []
 documentation_of: test/aoj-grl-5-e.test.cpp
 layout: document

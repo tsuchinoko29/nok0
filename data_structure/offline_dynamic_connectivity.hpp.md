@@ -1,17 +1,11 @@
 ---
 data:
-  _extendedDependsOn:
-  - icon: ':heavy_check_mark:'
-    path: data_structure/undo_uf.hpp
-    title: data_structure/undo_uf.hpp
+  _extendedDependsOn: []
   _extendedRequiredBy: []
-  _extendedVerifiedWith:
-  - icon: ':heavy_check_mark:'
-    path: test/aoj-2235.test.cpp
-    title: test/aoj-2235.test.cpp
+  _extendedVerifiedWith: []
   _isVerificationFailed: false
   _pathExtension: hpp
-  _verificationStatusIcon: ':heavy_check_mark:'
+  _verificationStatusIcon: ':warning:'
   attributes:
     links: []
   bundledCode: "#line 2 \"data_structure/offline_dynamic_connectivity.hpp\"\n#include\
@@ -63,15 +57,13 @@ data:
     \ += n, r += n; l < r; l >>= 1, r >>= 1) {\n\t\t\t\tif(l & 1) node[l++].push_back(e);\n\
     \t\t\t\tif(r & 1) node[--r].push_back(e);\n\t\t\t}\n\t\t}\n\t};\n\n\tseg seg;\n\
     };\n"
-  dependsOn:
-  - data_structure/undo_uf.hpp
+  dependsOn: []
   isVerificationFile: false
   path: data_structure/offline_dynamic_connectivity.hpp
   requiredBy: []
-  timestamp: '2021-09-07 20:08:56+09:00'
-  verificationStatus: LIBRARY_ALL_AC
-  verifiedWith:
-  - test/aoj-2235.test.cpp
+  timestamp: '1970-01-01 00:00:00+00:00'
+  verificationStatus: LIBRARY_NO_TESTS
+  verifiedWith: []
 documentation_of: data_structure/offline_dynamic_connectivity.hpp
 layout: document
 redirect_from:

@@ -1,9 +1,6 @@
 ---
 data:
-  _extendedDependsOn:
-  - icon: ':warning:'
-    path: math/formal_power_series.hpp
-    title: math/formal_power_series.hpp
+  _extendedDependsOn: []
   _extendedRequiredBy: []
   _extendedVerifiedWith: []
   _isVerificationFailed: false
@@ -196,12 +193,11 @@ data:
     \ 1 | 1] = rem[i] % subproducts[i << 1 | 1];\n\t\trem[i << 1 | 1].shrink();\n\t\
     }\n\tstd::vector<T> res(m);\n\tfor(int i = 0; i < m; i++) res[i] = rem[i + n][0];\n\
     \treturn res;\n}\n"
-  dependsOn:
-  - math/formal_power_series.hpp
+  dependsOn: []
   isVerificationFile: false
   path: math/multipoint_evaluation.hpp
   requiredBy: []
-  timestamp: '2021-09-07 20:08:56+09:00'
+  timestamp: '1970-01-01 00:00:00+00:00'
   verificationStatus: LIBRARY_NO_TESTS
   verifiedWith: []
 documentation_of: math/multipoint_evaluation.hpp

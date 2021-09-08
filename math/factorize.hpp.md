@@ -2,13 +2,10 @@
 data:
   _extendedDependsOn: []
   _extendedRequiredBy: []
-  _extendedVerifiedWith:
-  - icon: ':heavy_check_mark:'
-    path: test/yosupo-factorize.test.cpp
-    title: test/yosupo-factorize.test.cpp
+  _extendedVerifiedWith: []
   _isVerificationFailed: false
   _pathExtension: hpp
-  _verificationStatusIcon: ':heavy_check_mark:'
+  _verificationStatusIcon: ':warning:'
   attributes:
     links: []
   bundledCode: "#line 1 \"math/factorize.hpp\"\n#include <bits/stdc++.h>\n\nnamespace\
@@ -157,10 +154,9 @@ data:
   isVerificationFile: false
   path: math/factorize.hpp
   requiredBy: []
-  timestamp: '2021-09-07 23:53:32+09:00'
-  verificationStatus: LIBRARY_ALL_AC
-  verifiedWith:
-  - test/yosupo-factorize.test.cpp
+  timestamp: '1970-01-01 00:00:00+00:00'
+  verificationStatus: LIBRARY_NO_TESTS
+  verifiedWith: []
 documentation_of: math/factorize.hpp
 layout: document
 redirect_from:

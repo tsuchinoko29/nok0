@@ -1,25 +1,12 @@
 ---
 data:
-  _extendedDependsOn:
-  - icon: ':heavy_check_mark:'
-    path: graph/graph.hpp
-    title: graph/graph.hpp
-  - icon: ':heavy_check_mark:'
-    path: graph/tree_doubling.hpp
-    title: graph/tree_doubling.hpp
-  - icon: ':question:'
-    path: template.hpp
-    title: template.hpp
+  _extendedDependsOn: []
   _extendedRequiredBy: []
   _extendedVerifiedWith: []
-  _isVerificationFailed: false
+  _isVerificationFailed: true
   _pathExtension: cpp
-  _verificationStatusIcon: ':heavy_check_mark:'
-  attributes:
-    '*NOT_SPECIAL_COMMENTS*': ''
-    PROBLEM: https://onlinejudge.u-aizu.ac.jp/courses/library/5/GRL/all/GRL_5_C
-    links:
-    - https://onlinejudge.u-aizu.ac.jp/courses/library/5/GRL/all/GRL_5_C
+  _verificationStatusIcon: ':x:'
+  attributes: {}
   bundledCode: "#line 1 \"test/aoj-grl-5-c.test.cpp\"\n#define PROBLEM \"https://onlinejudge.u-aizu.ac.jp/courses/library/5/GRL/all/GRL_5_C\"\
     \n\n#line 2 \"graph/graph.hpp\"\n#include <algorithm>\n#include <cassert>\n#include\
     \ <deque>\n#include <iostream>\n#include <queue>\n#include <tuple>\n#include <utility>\n\
@@ -348,15 +335,12 @@ data:
     \t\tINT(k);\n\t\twhile(k--) {\n\t\t\tINT(c);\n\t\t\tg.add_edge(i, c);\n\t\t}\n\
     \t}\n\n\ttree_doubling td(g, 0);\n\n\tINT(q);\n\twhile(q--) {\n\t\tINT(u, v);\n\
     \t\tprint(td.lowest_common_ancestor(u, v));\n\t}\n}"
-  dependsOn:
-  - graph/graph.hpp
-  - graph/tree_doubling.hpp
-  - template.hpp
+  dependsOn: []
   isVerificationFile: true
   path: test/aoj-grl-5-c.test.cpp
   requiredBy: []
-  timestamp: '2021-09-08 10:55:28+09:00'
-  verificationStatus: TEST_ACCEPTED
+  timestamp: '1970-01-01 00:00:00+00:00'
+  verificationStatus: TEST_WRONG_ANSWER
   verifiedWith: []
 documentation_of: test/aoj-grl-5-c.test.cpp
 layout: document

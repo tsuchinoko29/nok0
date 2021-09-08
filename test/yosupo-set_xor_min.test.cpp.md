@@ -1,22 +1,12 @@
 ---
 data:
-  _extendedDependsOn:
-  - icon: ':question:'
-    path: data_structure/binary_trie.hpp
-    title: data_structure/binary_trie.hpp
-  - icon: ':question:'
-    path: template.hpp
-    title: template.hpp
+  _extendedDependsOn: []
   _extendedRequiredBy: []
   _extendedVerifiedWith: []
-  _isVerificationFailed: false
+  _isVerificationFailed: true
   _pathExtension: cpp
-  _verificationStatusIcon: ':heavy_check_mark:'
-  attributes:
-    '*NOT_SPECIAL_COMMENTS*': ''
-    PROBLEM: https://judge.yosupo.jp/problem/set_xor_min
-    links:
-    - https://judge.yosupo.jp/problem/set_xor_min
+  _verificationStatusIcon: ':x:'
+  attributes: {}
   bundledCode: "#line 1 \"test/yosupo-set_xor_min.test.cpp\"\n#define PROBLEM \"https://judge.yosupo.jp/problem/set_xor_min\"\
     \n\n#line 1 \"data_structure/binary_trie.hpp\"\n#include <algorithm>\n#include\
     \ <cassert>\n#include <iostream>\n#include <memory>\n\ntemplate <class T, unsigned\
@@ -223,14 +213,12 @@ data:
     \n\t\t\tcase 1:\n\t\t\t\ttrie.erase(x);\n\t\t\t\tbreak;\n\n\t\t\tcase 2:\n\t\t\
     \t\tprint(trie.xor_min(x));\n\t\t\t\tbreak;\n\n\t\t\tdefault:\n\t\t\t\tbreak;\n\
     \t\t}\n\t}\n}"
-  dependsOn:
-  - data_structure/binary_trie.hpp
-  - template.hpp
+  dependsOn: []
   isVerificationFile: true
   path: test/yosupo-set_xor_min.test.cpp
   requiredBy: []
-  timestamp: '2021-09-08 10:12:28+09:00'
-  verificationStatus: TEST_ACCEPTED
+  timestamp: '1970-01-01 00:00:00+00:00'
+  verificationStatus: TEST_WRONG_ANSWER
   verifiedWith: []
 documentation_of: test/yosupo-set_xor_min.test.cpp
 layout: document

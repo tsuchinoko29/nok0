@@ -2,16 +2,10 @@
 data:
   _extendedDependsOn: []
   _extendedRequiredBy: []
-  _extendedVerifiedWith:
-  - icon: ':x:'
-    path: test/yosupo-predecessor_problem.test.cpp
-    title: test/yosupo-predecessor_problem.test.cpp
-  - icon: ':heavy_check_mark:'
-    path: test/yosupo-set_xor_min.test.cpp
-    title: test/yosupo-set_xor_min.test.cpp
-  _isVerificationFailed: true
+  _extendedVerifiedWith: []
+  _isVerificationFailed: false
   _pathExtension: hpp
-  _verificationStatusIcon: ':question:'
+  _verificationStatusIcon: ':warning:'
   attributes:
     links: []
   bundledCode: "#line 1 \"data_structure/binary_trie.hpp\"\n#include <algorithm>\n\
@@ -119,11 +113,9 @@ data:
   isVerificationFile: false
   path: data_structure/binary_trie.hpp
   requiredBy: []
-  timestamp: '2021-09-08 10:12:28+09:00'
-  verificationStatus: LIBRARY_SOME_WA
-  verifiedWith:
-  - test/yosupo-predecessor_problem.test.cpp
-  - test/yosupo-set_xor_min.test.cpp
+  timestamp: '1970-01-01 00:00:00+00:00'
+  verificationStatus: LIBRARY_NO_TESTS
+  verifiedWith: []
 documentation_of: data_structure/binary_trie.hpp
 layout: document
 redirect_from:

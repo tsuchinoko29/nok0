@@ -1,26 +1,11 @@
 ---
 data:
-  _extendedDependsOn:
-  - icon: ':heavy_check_mark:'
-    path: graph/graph.hpp
-    title: graph/graph.hpp
+  _extendedDependsOn: []
   _extendedRequiredBy: []
-  _extendedVerifiedWith:
-  - icon: ':heavy_check_mark:'
-    path: test/aoj-grl-5-d.test.cpp
-    title: test/aoj-grl-5-d.test.cpp
-  - icon: ':heavy_check_mark:'
-    path: test/aoj-grl-5-e.test.cpp
-    title: test/aoj-grl-5-e.test.cpp
-  - icon: ':heavy_check_mark:'
-    path: test/yosupo-vertex_add_path_sum.test.cpp
-    title: test/yosupo-vertex_add_path_sum.test.cpp
-  - icon: ':heavy_check_mark:'
-    path: test/yosupo-vertex_add_subtree_sum.test.cpp
-    title: test/yosupo-vertex_add_subtree_sum.test.cpp
+  _extendedVerifiedWith: []
   _isVerificationFailed: false
   _pathExtension: hpp
-  _verificationStatusIcon: ':heavy_check_mark:'
+  _verificationStatusIcon: ':warning:'
   attributes:
     links: []
   bundledCode: "#line 2 \"graph/graph.hpp\"\n#include <algorithm>\n#include <cassert>\n\
@@ -237,18 +222,13 @@ data:
     \ in[v] + 1);\n\t\t}\n\t\tq(in[u] + edge, in[v] + 1);\n\t}\n\n\tstd::pair<int,\
     \ int> subtree(int v, bool edge = false) { return std::pair<int, int>(in[v] +\
     \ edge, out[v]); }\n};\n"
-  dependsOn:
-  - graph/graph.hpp
+  dependsOn: []
   isVerificationFile: false
   path: graph/hld.hpp
   requiredBy: []
-  timestamp: '2021-09-08 10:25:09+09:00'
-  verificationStatus: LIBRARY_ALL_AC
-  verifiedWith:
-  - test/aoj-grl-5-e.test.cpp
-  - test/yosupo-vertex_add_path_sum.test.cpp
-  - test/aoj-grl-5-d.test.cpp
-  - test/yosupo-vertex_add_subtree_sum.test.cpp
+  timestamp: '1970-01-01 00:00:00+00:00'
+  verificationStatus: LIBRARY_NO_TESTS
+  verifiedWith: []
 documentation_of: graph/hld.hpp
 layout: document
 redirect_from:

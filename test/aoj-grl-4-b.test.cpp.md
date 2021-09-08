@@ -1,22 +1,12 @@
 ---
 data:
-  _extendedDependsOn:
-  - icon: ':heavy_check_mark:'
-    path: graph/graph.hpp
-    title: graph/graph.hpp
-  - icon: ':question:'
-    path: template.hpp
-    title: template.hpp
+  _extendedDependsOn: []
   _extendedRequiredBy: []
   _extendedVerifiedWith: []
-  _isVerificationFailed: false
+  _isVerificationFailed: true
   _pathExtension: cpp
-  _verificationStatusIcon: ':heavy_check_mark:'
-  attributes:
-    '*NOT_SPECIAL_COMMENTS*': ''
-    PROBLEM: https://onlinejudge.u-aizu.ac.jp/courses/library/5/GRL/all/GRL_4_B
-    links:
-    - https://onlinejudge.u-aizu.ac.jp/courses/library/5/GRL/all/GRL_4_B
+  _verificationStatusIcon: ':x:'
+  attributes: {}
   bundledCode: "#line 1 \"test/aoj-grl-4-b.test.cpp\"\n#define PROBLEM \"https://onlinejudge.u-aizu.ac.jp/courses/library/5/GRL/all/GRL_4_B\"\
     \n\n#line 2 \"graph/graph.hpp\"\n#include <algorithm>\n#include <cassert>\n#include\
     \ <deque>\n#include <iostream>\n#include <queue>\n#include <tuple>\n#include <utility>\n\
@@ -318,14 +308,12 @@ data:
   code: "#define PROBLEM \"https://onlinejudge.u-aizu.ac.jp/courses/library/5/GRL/all/GRL_4_B\"\
     \n\n#include \"graph/graph.hpp\"\n#include \"template.hpp\"\n\nvoid main_() {\n\
     \tINT(v, e);\n\tgraph g(v, e, 0, 1, 0);\n\tprintel(g.topological_sort());\n}"
-  dependsOn:
-  - graph/graph.hpp
-  - template.hpp
+  dependsOn: []
   isVerificationFile: true
   path: test/aoj-grl-4-b.test.cpp
   requiredBy: []
-  timestamp: '2021-09-08 10:55:28+09:00'
-  verificationStatus: TEST_ACCEPTED
+  timestamp: '1970-01-01 00:00:00+00:00'
+  verificationStatus: TEST_WRONG_ANSWER
   verifiedWith: []
 documentation_of: test/aoj-grl-4-b.test.cpp
 layout: document

@@ -1,25 +1,12 @@
 ---
 data:
-  _extendedDependsOn:
-  - icon: ':heavy_check_mark:'
-    path: graph/graph.hpp
-    title: graph/graph.hpp
-  - icon: ':heavy_check_mark:'
-    path: graph/scc.hpp
-    title: graph/scc.hpp
-  - icon: ':question:'
-    path: template.hpp
-    title: template.hpp
+  _extendedDependsOn: []
   _extendedRequiredBy: []
   _extendedVerifiedWith: []
-  _isVerificationFailed: false
+  _isVerificationFailed: true
   _pathExtension: cpp
-  _verificationStatusIcon: ':heavy_check_mark:'
-  attributes:
-    '*NOT_SPECIAL_COMMENTS*': ''
-    PROBLEM: https://judge.yosupo.jp/problem/scc
-    links:
-    - https://judge.yosupo.jp/problem/scc
+  _verificationStatusIcon: ':x:'
+  attributes: {}
   bundledCode: "#line 1 \"test/yosupo-scc.test.cpp\"\n#define PROBLEM \"https://judge.yosupo.jp/problem/scc\"\
     \n\n#line 2 \"graph/graph.hpp\"\n#include <algorithm>\n#include <cassert>\n#include\
     \ <deque>\n#include <iostream>\n#include <queue>\n#include <tuple>\n#include <utility>\n\
@@ -349,15 +336,12 @@ data:
     INT(n, m);\n\tgraph g(n, m, 0, 1, 0);\n\tstrongly_connected_components scc(g);\n\
     \tprint(SZ(scc.groups));\n\tfoa(group, scc.groups)\n\t    print(SZ(group), group);\n\
     }"
-  dependsOn:
-  - graph/graph.hpp
-  - graph/scc.hpp
-  - template.hpp
+  dependsOn: []
   isVerificationFile: true
   path: test/yosupo-scc.test.cpp
   requiredBy: []
-  timestamp: '2021-09-08 10:25:09+09:00'
-  verificationStatus: TEST_ACCEPTED
+  timestamp: '1970-01-01 00:00:00+00:00'
+  verificationStatus: TEST_WRONG_ANSWER
   verifiedWith: []
 documentation_of: test/yosupo-scc.test.cpp
 layout: document

@@ -1,20 +1,11 @@
 ---
 data:
-  _extendedDependsOn:
-  - icon: ':heavy_check_mark:'
-    path: graph/graph.hpp
-    title: graph/graph.hpp
+  _extendedDependsOn: []
   _extendedRequiredBy: []
-  _extendedVerifiedWith:
-  - icon: ':heavy_check_mark:'
-    path: test/aoj-grl-5-c.test.cpp
-    title: test/aoj-grl-5-c.test.cpp
-  - icon: ':heavy_check_mark:'
-    path: test/yosupo-lca.test.cpp
-    title: test/yosupo-lca.test.cpp
+  _extendedVerifiedWith: []
   _isVerificationFailed: false
   _pathExtension: hpp
-  _verificationStatusIcon: ':heavy_check_mark:'
+  _verificationStatusIcon: ':warning:'
   attributes:
     links: []
   bundledCode: "#line 2 \"graph/graph.hpp\"\n#include <algorithm>\n#include <cassert>\n\
@@ -214,16 +205,13 @@ data:
     \ v)] * 2; }\n\n\tint level_ancestor(int v, int level) {\n\t\tassert(level >=\
     \ 0);\n\t\tfor(int jump = 0; jump < max_jump and level; jump++) {\n\t\t\tif(level\
     \ & 1) v = parent[jump][v];\n\t\t\tlevel >>= 1;\n\t\t}\n\t\treturn v;\n\t}\n};\n"
-  dependsOn:
-  - graph/graph.hpp
+  dependsOn: []
   isVerificationFile: false
   path: graph/tree_doubling.hpp
   requiredBy: []
-  timestamp: '2021-09-08 10:25:09+09:00'
-  verificationStatus: LIBRARY_ALL_AC
-  verifiedWith:
-  - test/yosupo-lca.test.cpp
-  - test/aoj-grl-5-c.test.cpp
+  timestamp: '1970-01-01 00:00:00+00:00'
+  verificationStatus: LIBRARY_NO_TESTS
+  verifiedWith: []
 documentation_of: graph/tree_doubling.hpp
 layout: document
 redirect_from:

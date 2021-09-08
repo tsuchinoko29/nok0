@@ -57,7 +57,7 @@ data:
   isVerificationFile: false
   path: data_structure/trie.hpp
   requiredBy: []
-  timestamp: '2021-09-07 20:08:56+09:00'
+  timestamp: '1970-01-01 00:00:00+00:00'
   verificationStatus: LIBRARY_NO_TESTS
   verifiedWith: []
 documentation_of: data_structure/trie.hpp

@@ -1,22 +1,12 @@
 ---
 data:
-  _extendedDependsOn:
-  - icon: ':heavy_check_mark:'
-    path: data_structure/binary_indexed_tree.hpp
-    title: data_structure/binary_indexed_tree.hpp
-  - icon: ':question:'
-    path: template.hpp
-    title: template.hpp
+  _extendedDependsOn: []
   _extendedRequiredBy: []
   _extendedVerifiedWith: []
-  _isVerificationFailed: false
+  _isVerificationFailed: true
   _pathExtension: cpp
-  _verificationStatusIcon: ':heavy_check_mark:'
-  attributes:
-    '*NOT_SPECIAL_COMMENTS*': ''
-    PROBLEM: http://judge.u-aizu.ac.jp/onlinejudge/description.jsp?id=DSL_2_B
-    links:
-    - http://judge.u-aizu.ac.jp/onlinejudge/description.jsp?id=DSL_2_B
+  _verificationStatusIcon: ':x:'
+  attributes: {}
   bundledCode: "#line 1 \"test/aoj-dsl-2-b.test.cpp\"\n#define PROBLEM \"http://judge.u-aizu.ac.jp/onlinejudge/description.jsp?id=DSL_2_B\"\
     \n\n#line 1 \"data_structure/binary_indexed_tree.hpp\"\n#include <vector>\n\n\
     template <typename T>\nstruct binary_indexed_tree {\nprivate:\n\tint n, p;\n\t\
@@ -181,14 +171,12 @@ data:
     \ bt(n);\n\twhile(q--) {\n\t\tint t, x, y;\n\t\tcin >> t >> x >> y, --x;\n\t\t\
     if(t == 0)\n\t\t\tbt.add(x, y);\n\t\telse\n\t\t\tcout << bt.sum(x, y) << '\\n';\n\
     \t}\n}"
-  dependsOn:
-  - data_structure/binary_indexed_tree.hpp
-  - template.hpp
+  dependsOn: []
   isVerificationFile: true
   path: test/aoj-dsl-2-b.test.cpp
   requiredBy: []
-  timestamp: '2021-09-08 10:25:09+09:00'
-  verificationStatus: TEST_ACCEPTED
+  timestamp: '1970-01-01 00:00:00+00:00'
+  verificationStatus: TEST_WRONG_ANSWER
   verifiedWith: []
 documentation_of: test/aoj-dsl-2-b.test.cpp
 layout: document

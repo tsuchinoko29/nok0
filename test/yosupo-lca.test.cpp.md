@@ -1,25 +1,12 @@
 ---
 data:
-  _extendedDependsOn:
-  - icon: ':heavy_check_mark:'
-    path: graph/graph.hpp
-    title: graph/graph.hpp
-  - icon: ':heavy_check_mark:'
-    path: graph/tree_doubling.hpp
-    title: graph/tree_doubling.hpp
-  - icon: ':question:'
-    path: template.hpp
-    title: template.hpp
+  _extendedDependsOn: []
   _extendedRequiredBy: []
   _extendedVerifiedWith: []
-  _isVerificationFailed: false
+  _isVerificationFailed: true
   _pathExtension: cpp
-  _verificationStatusIcon: ':heavy_check_mark:'
-  attributes:
-    '*NOT_SPECIAL_COMMENTS*': ''
-    PROBLEM: https://judge.yosupo.jp/problem/lca
-    links:
-    - https://judge.yosupo.jp/problem/lca
+  _verificationStatusIcon: ':x:'
+  attributes: {}
   bundledCode: "#line 1 \"test/yosupo-lca.test.cpp\"\n#define PROBLEM \"https://judge.yosupo.jp/problem/lca\"\
     \n\n#line 2 \"graph/graph.hpp\"\n#include <algorithm>\n#include <cassert>\n#include\
     \ <deque>\n#include <iostream>\n#include <queue>\n#include <tuple>\n#include <utility>\n\
@@ -346,15 +333,12 @@ data:
     \ {\n\tINT(n, q);\n\tgraph g(n);\n\tREP(i, n - 1) {\n\t\tINT(p);\n\t\tg.add_edge(i\
     \ + 1, p);\n\t}\n\ttree_doubling td(g, 0);\n\twhile(q--) {\n\t\tINT(u, v);\n\t\
     \tprint(td.lowest_common_ancestor(u, v));\n\t}\n}"
-  dependsOn:
-  - graph/graph.hpp
-  - graph/tree_doubling.hpp
-  - template.hpp
+  dependsOn: []
   isVerificationFile: true
   path: test/yosupo-lca.test.cpp
   requiredBy: []
-  timestamp: '2021-09-08 10:25:09+09:00'
-  verificationStatus: TEST_ACCEPTED
+  timestamp: '1970-01-01 00:00:00+00:00'
+  verificationStatus: TEST_WRONG_ANSWER
   verifiedWith: []
 documentation_of: test/yosupo-lca.test.cpp
 layout: document

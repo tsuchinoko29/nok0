@@ -2,88 +2,10 @@
 data:
   _extendedDependsOn: []
   _extendedRequiredBy: []
-  _extendedVerifiedWith:
-  - icon: ':heavy_check_mark:'
-    path: test/aoj-2235.test.cpp
-    title: test/aoj-2235.test.cpp
-  - icon: ':heavy_check_mark:'
-    path: test/aoj-2600.test.cpp
-    title: test/aoj-2600.test.cpp
-  - icon: ':heavy_check_mark:'
-    path: test/aoj-2703.test.cpp
-    title: test/aoj-2703.test.cpp
-  - icon: ':heavy_check_mark:'
-    path: test/aoj-dsl-2-b.test.cpp
-    title: test/aoj-dsl-2-b.test.cpp
-  - icon: ':heavy_check_mark:'
-    path: test/aoj-grl-1-a.test.cpp
-    title: test/aoj-grl-1-a.test.cpp
-  - icon: ':heavy_check_mark:'
-    path: test/aoj-grl-1-b.test.cpp
-    title: test/aoj-grl-1-b.test.cpp
-  - icon: ':heavy_check_mark:'
-    path: test/aoj-grl-1-c.test.cpp
-    title: test/aoj-grl-1-c.test.cpp
-  - icon: ':heavy_check_mark:'
-    path: test/aoj-grl-2-a.test.cpp
-    title: test/aoj-grl-2-a.test.cpp
-  - icon: ':heavy_check_mark:'
-    path: test/aoj-grl-3-a.test.cpp
-    title: test/aoj-grl-3-a.test.cpp
-  - icon: ':heavy_check_mark:'
-    path: test/aoj-grl-3-b.test.cpp
-    title: test/aoj-grl-3-b.test.cpp
-  - icon: ':heavy_check_mark:'
-    path: test/aoj-grl-3-c.test.cpp
-    title: test/aoj-grl-3-c.test.cpp
-  - icon: ':heavy_check_mark:'
-    path: test/aoj-grl-4-a.test.cpp
-    title: test/aoj-grl-4-a.test.cpp
-  - icon: ':heavy_check_mark:'
-    path: test/aoj-grl-4-b.test.cpp
-    title: test/aoj-grl-4-b.test.cpp
-  - icon: ':heavy_check_mark:'
-    path: test/aoj-grl-5-a.test.cpp
-    title: test/aoj-grl-5-a.test.cpp
-  - icon: ':heavy_check_mark:'
-    path: test/aoj-grl-5-b.test.cpp
-    title: test/aoj-grl-5-b.test.cpp
-  - icon: ':heavy_check_mark:'
-    path: test/aoj-grl-5-c.test.cpp
-    title: test/aoj-grl-5-c.test.cpp
-  - icon: ':heavy_check_mark:'
-    path: test/aoj-grl-5-d.test.cpp
-    title: test/aoj-grl-5-d.test.cpp
-  - icon: ':heavy_check_mark:'
-    path: test/aoj-grl-5-e.test.cpp
-    title: test/aoj-grl-5-e.test.cpp
-  - icon: ':heavy_check_mark:'
-    path: test/yosupo-lca.test.cpp
-    title: test/yosupo-lca.test.cpp
-  - icon: ':x:'
-    path: test/yosupo-predecessor_problem.test.cpp
-    title: test/yosupo-predecessor_problem.test.cpp
-  - icon: ':heavy_check_mark:'
-    path: test/yosupo-scc.test.cpp
-    title: test/yosupo-scc.test.cpp
-  - icon: ':heavy_check_mark:'
-    path: test/yosupo-set_xor_min.test.cpp
-    title: test/yosupo-set_xor_min.test.cpp
-  - icon: ':heavy_check_mark:'
-    path: test/yosupo-tree_diameter.test.cpp
-    title: test/yosupo-tree_diameter.test.cpp
-  - icon: ':heavy_check_mark:'
-    path: test/yosupo-two_edge_connected_components.test.cpp
-    title: test/yosupo-two_edge_connected_components.test.cpp
-  - icon: ':heavy_check_mark:'
-    path: test/yosupo-vertex_add_path_sum.test.cpp
-    title: test/yosupo-vertex_add_path_sum.test.cpp
-  - icon: ':heavy_check_mark:'
-    path: test/yosupo-vertex_add_subtree_sum.test.cpp
-    title: test/yosupo-vertex_add_subtree_sum.test.cpp
-  _isVerificationFailed: true
+  _extendedVerifiedWith: []
+  _isVerificationFailed: false
   _pathExtension: hpp
-  _verificationStatusIcon: ':question:'
+  _verificationStatusIcon: ':warning:'
   attributes:
     links: []
   bundledCode: "#line 1 \"template.hpp\"\n#include <bits/stdc++.h>\nusing namespace\
@@ -374,35 +296,9 @@ data:
   isVerificationFile: false
   path: template.hpp
   requiredBy: []
-  timestamp: '2021-09-07 20:08:56+09:00'
-  verificationStatus: LIBRARY_SOME_WA
-  verifiedWith:
-  - test/yosupo-two_edge_connected_components.test.cpp
-  - test/aoj-grl-3-b.test.cpp
-  - test/yosupo-predecessor_problem.test.cpp
-  - test/aoj-grl-4-b.test.cpp
-  - test/aoj-grl-4-a.test.cpp
-  - test/yosupo-tree_diameter.test.cpp
-  - test/aoj-grl-1-a.test.cpp
-  - test/yosupo-lca.test.cpp
-  - test/aoj-grl-3-c.test.cpp
-  - test/aoj-grl-5-e.test.cpp
-  - test/aoj-2703.test.cpp
-  - test/aoj-grl-5-a.test.cpp
-  - test/aoj-grl-5-c.test.cpp
-  - test/yosupo-set_xor_min.test.cpp
-  - test/aoj-grl-1-b.test.cpp
-  - test/yosupo-vertex_add_path_sum.test.cpp
-  - test/aoj-dsl-2-b.test.cpp
-  - test/aoj-2235.test.cpp
-  - test/aoj-grl-3-a.test.cpp
-  - test/aoj-grl-1-c.test.cpp
-  - test/aoj-grl-5-d.test.cpp
-  - test/aoj-grl-5-b.test.cpp
-  - test/yosupo-vertex_add_subtree_sum.test.cpp
-  - test/aoj-2600.test.cpp
-  - test/aoj-grl-2-a.test.cpp
-  - test/yosupo-scc.test.cpp
+  timestamp: '1970-01-01 00:00:00+00:00'
+  verificationStatus: LIBRARY_NO_TESTS
+  verifiedWith: []
 documentation_of: template.hpp
 layout: document
 redirect_from:

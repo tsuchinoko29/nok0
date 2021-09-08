@@ -1,28 +1,12 @@
 ---
 data:
-  _extendedDependsOn:
-  - icon: ':heavy_check_mark:'
-    path: graph/graph.hpp
-    title: graph/graph.hpp
-  - icon: ':heavy_check_mark:'
-    path: graph/low_link.hpp
-    title: graph/low_link.hpp
-  - icon: ':heavy_check_mark:'
-    path: graph/two_edge_cc.hpp
-    title: graph/two_edge_cc.hpp
-  - icon: ':question:'
-    path: template.hpp
-    title: template.hpp
+  _extendedDependsOn: []
   _extendedRequiredBy: []
   _extendedVerifiedWith: []
-  _isVerificationFailed: false
+  _isVerificationFailed: true
   _pathExtension: cpp
-  _verificationStatusIcon: ':heavy_check_mark:'
-  attributes:
-    '*NOT_SPECIAL_COMMENTS*': ''
-    PROBLEM: https://judge.yosupo.jp/problem/two_edge_connected_components
-    links:
-    - https://judge.yosupo.jp/problem/two_edge_connected_components
+  _verificationStatusIcon: ':x:'
+  attributes: {}
   bundledCode: "#line 1 \"test/yosupo-two_edge_connected_components.test.cpp\"\n#define\
     \ PROBLEM \"https://judge.yosupo.jp/problem/two_edge_connected_components\"\n\n\
     #line 2 \"graph/graph.hpp\"\n#include <algorithm>\n#include <cassert>\n#include\
@@ -359,16 +343,12 @@ data:
     \ \"template.hpp\"\n\nvoid main_() {\n\tINT(n, m);\n\tgraph g(n, m, 0, 0, 0);\n\
     \n\ttwo_edge_connected_components tecc(g);\n\tprint(SZ(tecc.groups));\n\tfoa(group,\
     \ tecc.groups) {\n\t\tprint(SZ(group), group);\n\t}\n}"
-  dependsOn:
-  - graph/graph.hpp
-  - graph/two_edge_cc.hpp
-  - graph/low_link.hpp
-  - template.hpp
+  dependsOn: []
   isVerificationFile: true
   path: test/yosupo-two_edge_connected_components.test.cpp
   requiredBy: []
-  timestamp: '2021-09-08 10:25:09+09:00'
-  verificationStatus: TEST_ACCEPTED
+  timestamp: '1970-01-01 00:00:00+00:00'
+  verificationStatus: TEST_WRONG_ANSWER
   verifiedWith: []
 documentation_of: test/yosupo-two_edge_connected_components.test.cpp
 layout: document
