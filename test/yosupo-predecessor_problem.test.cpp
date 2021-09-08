@@ -6,7 +6,7 @@
 void main_() {
 	INT(n, q);
 	STR(s);
-	binary_trie<int, 30, false> trie;
+	binary_trie<int, 24, false> trie;
 	REP(i, n) {
 		if(s[i] == '1') trie.insert(i);
 	}
