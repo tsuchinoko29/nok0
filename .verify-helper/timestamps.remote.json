@@ -25,5 +25,6 @@
 "test/yosupo-set_xor_min.test.cpp": "2021-09-08 10:12:28 +0900",
 "test/yosupo-tree_diameter.test.cpp": "2021-09-08 10:25:09 +0900",
 "test/yosupo-two_edge_connected_components.test.cpp": "2021-09-08 10:25:09 +0900",
-"test/yosupo-vertex_add_path_sum.test.cpp": "2021-09-08 10:25:09 +0900"
+"test/yosupo-vertex_add_path_sum.test.cpp": "2021-09-08 10:25:09 +0900",
+"test/yosupo-vertex_add_subtree_sum.test.cpp": "2021-09-08 15:13:47 +0900"
 }
