@@ -211,7 +211,7 @@ data:
     \tcin.tie(nullptr);\n\t\tcout << fixed << setprecision(15);\n\t}\n} fast_io_;\n\
     const int inf = 1e9;\nconst ll INF = 1e18;\n#pragma endregion\n\nvoid main_();\n\
     \nint main() {\n\tmain_();\n\treturn 0;\n}\n#line 5 \"test/yosupo-predecessor_problem.test.cpp\"\
-    \n\nvoid main_() {\n\tINT(n, q);\n\tSTR(s);\n\tbinary_trie<int, 30, false> trie;\n\
+    \n\nvoid main_() {\n\tINT(n, q);\n\tSTR(s);\n\tbinary_trie<int, 24, false> trie;\n\
     \tREP(i, n) {\n\t\tif(s[i] == '1') trie.insert(i);\n\t}\n\twhile(q--) {\n\t\t\
     INT(t, x);\n\t\tint d;\n\t\tswitch(t) {\n\t\t\tcase 0:\n\t\t\t\ttrie.insert(x);\n\
     \t\t\t\tbreak;\n\t\t\tcase 1:\n\t\t\t\ttrie.erase(x);\n\t\t\t\tbreak;\n\t\t\t\
@@ -222,7 +222,7 @@ data:
     default:\n\t\t\t\tbreak;\n\t\t}\n\t}\n}\n"
   code: "#define PROBLEM \"https://judge.yosupo.jp/problem/predecessor_problem\"\n\
     \n#include \"data_structure/binary_trie.hpp\"\n#include \"template.hpp\"\n\nvoid\
-    \ main_() {\n\tINT(n, q);\n\tSTR(s);\n\tbinary_trie<int, 30, false> trie;\n\t\
+    \ main_() {\n\tINT(n, q);\n\tSTR(s);\n\tbinary_trie<int, 24, false> trie;\n\t\
     REP(i, n) {\n\t\tif(s[i] == '1') trie.insert(i);\n\t}\n\twhile(q--) {\n\t\tINT(t,\
     \ x);\n\t\tint d;\n\t\tswitch(t) {\n\t\t\tcase 0:\n\t\t\t\ttrie.insert(x);\n\t\
     \t\t\tbreak;\n\t\t\tcase 1:\n\t\t\t\ttrie.erase(x);\n\t\t\t\tbreak;\n\t\t\tcase\
@@ -237,7 +237,7 @@ data:
   isVerificationFile: true
   path: test/yosupo-predecessor_problem.test.cpp
   requiredBy: []
-  timestamp: '2021-09-08 14:27:53+09:00'
+  timestamp: '2021-09-08 14:36:38+09:00'
   verificationStatus: TEST_WRONG_ANSWER
   verifiedWith: []
 documentation_of: test/yosupo-predecessor_problem.test.cpp
