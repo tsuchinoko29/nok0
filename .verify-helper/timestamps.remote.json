@@ -6,5 +6,7 @@
 "test/aoj-dsl-2-b.test.cpp": "2021-09-07 21:43:42 +0900",
 "test/yosupo-factorize.test.cpp": "2021-09-07 23:53:32 +0900",
 "test/yosupo-lca.test.cpp": "2021-09-08 00:32:03 +0900",
-"test/yosupo-tree_diameter.test.cpp": "2021-09-08 00:32:03 +0900"
+"test/yosupo-tree_diameter.test.cpp": "2021-09-08 00:32:03 +0900",
+"test/yosupo-vertex_add_path_sum.test.cpp": "2021-09-08 09:59:29 +0900",
+"test/yosupo-vertex_add_subtree_sum.test.cpp": "2021-09-08 09:59:29 +0900"
 }
