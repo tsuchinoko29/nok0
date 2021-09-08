@@ -7,7 +7,7 @@ data:
   - icon: ':heavy_check_mark:'
     path: graph/low_link.hpp
     title: graph/low_link.hpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':question:'
     path: template.hpp
     title: template.hpp
   _extendedRequiredBy: []

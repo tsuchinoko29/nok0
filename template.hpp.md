@@ -60,6 +60,9 @@ data:
   - icon: ':heavy_check_mark:'
     path: test/yosupo-lca.test.cpp
     title: test/yosupo-lca.test.cpp
+  - icon: ':x:'
+    path: test/yosupo-predecessor_problem.test.cpp
+    title: test/yosupo-predecessor_problem.test.cpp
   - icon: ':heavy_check_mark:'
     path: test/yosupo-scc.test.cpp
     title: test/yosupo-scc.test.cpp
@@ -78,9 +81,9 @@ data:
   - icon: ':heavy_check_mark:'
     path: test/yosupo-vertex_add_subtree_sum.test.cpp
     title: test/yosupo-vertex_add_subtree_sum.test.cpp
-  _isVerificationFailed: false
+  _isVerificationFailed: true
   _pathExtension: hpp
-  _verificationStatusIcon: ':heavy_check_mark:'
+  _verificationStatusIcon: ':question:'
   attributes:
     links: []
   bundledCode: "#line 1 \"template.hpp\"\n#include <bits/stdc++.h>\nusing namespace\
@@ -372,10 +375,11 @@ data:
   path: template.hpp
   requiredBy: []
   timestamp: '2021-09-07 20:08:56+09:00'
-  verificationStatus: LIBRARY_ALL_AC
+  verificationStatus: LIBRARY_SOME_WA
   verifiedWith:
   - test/yosupo-two_edge_connected_components.test.cpp
   - test/aoj-grl-3-b.test.cpp
+  - test/yosupo-predecessor_problem.test.cpp
   - test/aoj-grl-4-b.test.cpp
   - test/aoj-grl-4-a.test.cpp
   - test/yosupo-tree_diameter.test.cpp

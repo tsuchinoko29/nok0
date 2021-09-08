@@ -15,7 +15,7 @@ data:
     - icon: ':warning:'
       path: submit.cpp
       title: submit.cpp
-    - icon: ':heavy_check_mark:'
+    - icon: ':question:'
       path: template.hpp
       title: template.hpp
   - name: data_structure
@@ -23,7 +23,7 @@ data:
     - icon: ':heavy_check_mark:'
       path: data_structure/binary_indexed_tree.hpp
       title: data_structure/binary_indexed_tree.hpp
-    - icon: ':heavy_check_mark:'
+    - icon: ':question:'
       path: data_structure/binary_trie.hpp
       title: data_structure/binary_trie.hpp
     - icon: ':heavy_check_mark:'
@@ -170,6 +170,9 @@ data:
     - icon: ':heavy_check_mark:'
       path: test/yosupo-lca.test.cpp
       title: test/yosupo-lca.test.cpp
+    - icon: ':x:'
+      path: test/yosupo-predecessor_problem.test.cpp
+      title: test/yosupo-predecessor_problem.test.cpp
     - icon: ':heavy_check_mark:'
       path: test/yosupo-scc.test.cpp
       title: test/yosupo-scc.test.cpp
