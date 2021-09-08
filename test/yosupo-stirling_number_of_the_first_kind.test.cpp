@@ -1,3 +1,5 @@
+#define PROBLEM "https://judge.yosupo.jp/problem/stirling_number_of_the_first_kind"
+
 #include "atcoder/modint"
 #include "cftemp.hpp"
 #include "math/formal_power_series.hpp"
