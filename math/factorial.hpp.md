@@ -31,6 +31,9 @@ data:
     path: test/yosupo-log_of_formal_power_series.test.cpp
     title: test/yosupo-log_of_formal_power_series.test.cpp
   - icon: ':heavy_check_mark:'
+    path: test/yosupo-polynomial_taylor_shift.test.cpp
+    title: test/yosupo-polynomial_taylor_shift.test.cpp
+  - icon: ':heavy_check_mark:'
     path: test/yosupo-pow_of_formal_power_series.test.cpp
     title: test/yosupo-pow_of_formal_power_series.test.cpp
   - icon: ':heavy_check_mark:'
@@ -303,6 +306,7 @@ data:
   - test/yosupo-inv_of_formal_power_series.test.cpp
   - test/yosupo-log_of_formal_power_series.test.cpp
   - test/yosupo-pow_of_formal_power_series.test.cpp
+  - test/yosupo-polynomial_taylor_shift.test.cpp
   - test/yosupo-sqrt_of_formal_power_series.test.cpp
   - test/yosupo-stirling_number_of_the_first_kind.test.cpp
   - test/yosupo-exp_of_formal_power_series.test.cpp

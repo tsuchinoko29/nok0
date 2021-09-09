@@ -719,19 +719,25 @@ data:
     res = g;\n\t\t\t\tm |= 1;\n\t\t\t}\n\t\t}\n\t\t*this = res;\n\t}\n\n\tvoid stirling_second(int\
     \ n) {\n\t\tF f(n + 1), g(n + 1);\n\t\tfor(int i = 0; i <= n; i++) {\n\t\t\tf[i]\
     \ = T(i).pow(n) * fact.finv[i];\n\t\t\tg[i] = fact.finv[i] * (i % 2 ? -1 : 1);\n\
-    \t\t}\n\t\tf *= g;\n\t\t*this = f;\n\t}\n\n\tstd::vector<T> multipoint_evaluation(const\
-    \ std::vector<T> &p);\n};\n#line 2 \"math/modint_iostream.hpp\"\n\n#line 4 \"\
-    math/modint_iostream.hpp\"\ntemplate <int m>\nstd::istream &std::operator>>(std::istream\
-    \ &is, atcoder::static_modint<m> &a) {\n\tlong long v;\n\tis >> v;\n\ta = v;\n\
-    \treturn is;\n}\ntemplate <int m>\nstd::istream &std::operator>>(std::istream\
-    \ &is, atcoder::dynamic_modint<m> &a) {\n\tlong long v;\n\tis >> v;\n\ta = v;\n\
-    \treturn is;\n}\ntemplate <int m>\nstd::ostream &std::operator<<(std::ostream\
-    \ &os, const atcoder::static_modint<m> &a) { return os << a.val(); }\ntemplate\
-    \ <int m>\nstd::ostream &std::operator<<(std::ostream &os, const atcoder::dynamic_modint<m>\
-    \ &a) { return os << a.val(); }\n#line 7 \"test/yosupo-stirling_number_of_the_second_kind.test.cpp\"\
-    \n\nusing mint = atcoder::modint998244353;\nusing fps = formal_power_series<mint,\
-    \ FAST>;\n\nvoid main_() {\n\tINT(n);\n\tfactorial<mint>::set_size(n);\n\tfps\
-    \ f;\n\tf.stirling_second(n);\n\tprint(f);\n}\n"
+    \t\t}\n\t\tf *= g;\n\t\t*this = f;\n\t}\n\n\t//return f(x + c)\n\tF taylor_shift(int\
+    \ c) {\n\t\tF f(*this);\n\t\tint n = this->size();\n\t\tfor(int i = 0; i < n;\
+    \ i++) f[i] *= fact.fac[i];\n\t\treverse(f.begin(), f.end());\n\t\tF g(n, 1);\n\
+    \t\tT mul = 1;\n\t\tfor(int i = 1; i < n; i++)\n\t\t\tg[i] = (mul *= c) * fact.finv[i];\n\
+    \t\tf *= g;\n\t\treverse(f.begin(), f.end());\n\t\tfor(int i = 0; i < n; i++)\
+    \ f[i] *= fact.finv[i];\n\t\treturn f;\n\t}\n\tF taylor_shift(T c) { return taylor_shift(c.val());\
+    \ }\n\n\tstd::vector<T> multipoint_evaluation(const std::vector<T> &p);\n};\n\
+    #line 2 \"math/modint_iostream.hpp\"\n\n#line 4 \"math/modint_iostream.hpp\"\n\
+    template <int m>\nstd::istream &std::operator>>(std::istream &is, atcoder::static_modint<m>\
+    \ &a) {\n\tlong long v;\n\tis >> v;\n\ta = v;\n\treturn is;\n}\ntemplate <int\
+    \ m>\nstd::istream &std::operator>>(std::istream &is, atcoder::dynamic_modint<m>\
+    \ &a) {\n\tlong long v;\n\tis >> v;\n\ta = v;\n\treturn is;\n}\ntemplate <int\
+    \ m>\nstd::ostream &std::operator<<(std::ostream &os, const atcoder::static_modint<m>\
+    \ &a) { return os << a.val(); }\ntemplate <int m>\nstd::ostream &std::operator<<(std::ostream\
+    \ &os, const atcoder::dynamic_modint<m> &a) { return os << a.val(); }\n#line 7\
+    \ \"test/yosupo-stirling_number_of_the_second_kind.test.cpp\"\n\nusing mint =\
+    \ atcoder::modint998244353;\nusing fps = formal_power_series<mint, FAST>;\n\n\
+    void main_() {\n\tINT(n);\n\tfactorial<mint>::set_size(n);\n\tfps f;\n\tf.stirling_second(n);\n\
+    \tprint(f);\n}\n"
   code: "#define PROBLEM \"https://judge.yosupo.jp/problem/stirling_number_of_the_second_kind\"\
     \n\n#include \"atcoder/modint\"\n#include \"cftemp.hpp\"\n#include \"math/formal_power_series.hpp\"\
     \n#include \"math/modint_iostream.hpp\"\n\nusing mint = atcoder::modint998244353;\n\
@@ -751,7 +757,7 @@ data:
   isVerificationFile: true
   path: test/yosupo-stirling_number_of_the_second_kind.test.cpp
   requiredBy: []
-  timestamp: '2021-09-08 23:53:30+09:00'
+  timestamp: '2021-09-09 11:03:30+09:00'
   verificationStatus: TEST_ACCEPTED
   verifiedWith: []
 documentation_of: test/yosupo-stirling_number_of_the_second_kind.test.cpp

@@ -37,6 +37,9 @@ data:
     path: test/yosupo-log_of_formal_power_series.test.cpp
     title: test/yosupo-log_of_formal_power_series.test.cpp
   - icon: ':heavy_check_mark:'
+    path: test/yosupo-polynomial_taylor_shift.test.cpp
+    title: test/yosupo-polynomial_taylor_shift.test.cpp
+  - icon: ':heavy_check_mark:'
     path: test/yosupo-pow_of_formal_power_series.test.cpp
     title: test/yosupo-pow_of_formal_power_series.test.cpp
   - icon: ':heavy_check_mark:'
@@ -607,8 +610,13 @@ data:
     res = g;\n\t\t\t\tm |= 1;\n\t\t\t}\n\t\t}\n\t\t*this = res;\n\t}\n\n\tvoid stirling_second(int\
     \ n) {\n\t\tF f(n + 1), g(n + 1);\n\t\tfor(int i = 0; i <= n; i++) {\n\t\t\tf[i]\
     \ = T(i).pow(n) * fact.finv[i];\n\t\t\tg[i] = fact.finv[i] * (i % 2 ? -1 : 1);\n\
-    \t\t}\n\t\tf *= g;\n\t\t*this = f;\n\t}\n\n\tstd::vector<T> multipoint_evaluation(const\
-    \ std::vector<T> &p);\n};\n"
+    \t\t}\n\t\tf *= g;\n\t\t*this = f;\n\t}\n\n\t//return f(x + c)\n\tF taylor_shift(int\
+    \ c) {\n\t\tF f(*this);\n\t\tint n = this->size();\n\t\tfor(int i = 0; i < n;\
+    \ i++) f[i] *= fact.fac[i];\n\t\treverse(f.begin(), f.end());\n\t\tF g(n, 1);\n\
+    \t\tT mul = 1;\n\t\tfor(int i = 1; i < n; i++)\n\t\t\tg[i] = (mul *= c) * fact.finv[i];\n\
+    \t\tf *= g;\n\t\treverse(f.begin(), f.end());\n\t\tfor(int i = 0; i < n; i++)\
+    \ f[i] *= fact.finv[i];\n\t\treturn f;\n\t}\n\tF taylor_shift(T c) { return taylor_shift(c.val());\
+    \ }\n\n\tstd::vector<T> multipoint_evaluation(const std::vector<T> &p);\n};\n"
   code: "#pragma once\n#include <cassert>\n#include <iostream>\n#include <random>\n\
     #include <vector>\n\n#include \"atcoder/convolution\"\n#include \"math/factorial.hpp\"\
     \n\nenum Mode {\n\tFAST = 1,\n\tNAIVE = -1,\n};\ntemplate <class T, Mode mode\
@@ -784,8 +792,13 @@ data:
     res = g;\n\t\t\t\tm |= 1;\n\t\t\t}\n\t\t}\n\t\t*this = res;\n\t}\n\n\tvoid stirling_second(int\
     \ n) {\n\t\tF f(n + 1), g(n + 1);\n\t\tfor(int i = 0; i <= n; i++) {\n\t\t\tf[i]\
     \ = T(i).pow(n) * fact.finv[i];\n\t\t\tg[i] = fact.finv[i] * (i % 2 ? -1 : 1);\n\
-    \t\t}\n\t\tf *= g;\n\t\t*this = f;\n\t}\n\n\tstd::vector<T> multipoint_evaluation(const\
-    \ std::vector<T> &p);\n};\n"
+    \t\t}\n\t\tf *= g;\n\t\t*this = f;\n\t}\n\n\t//return f(x + c)\n\tF taylor_shift(int\
+    \ c) {\n\t\tF f(*this);\n\t\tint n = this->size();\n\t\tfor(int i = 0; i < n;\
+    \ i++) f[i] *= fact.fac[i];\n\t\treverse(f.begin(), f.end());\n\t\tF g(n, 1);\n\
+    \t\tT mul = 1;\n\t\tfor(int i = 1; i < n; i++)\n\t\t\tg[i] = (mul *= c) * fact.finv[i];\n\
+    \t\tf *= g;\n\t\treverse(f.begin(), f.end());\n\t\tfor(int i = 0; i < n; i++)\
+    \ f[i] *= fact.finv[i];\n\t\treturn f;\n\t}\n\tF taylor_shift(T c) { return taylor_shift(c.val());\
+    \ }\n\n\tstd::vector<T> multipoint_evaluation(const std::vector<T> &p);\n};\n"
   dependsOn:
   - atcoder/convolution.hpp
   - atcoder/internal_bit.hpp
@@ -797,7 +810,7 @@ data:
   path: math/formal_power_series.hpp
   requiredBy:
   - math/multipoint_evaluation.hpp
-  timestamp: '2021-09-08 23:53:30+09:00'
+  timestamp: '2021-09-09 11:03:30+09:00'
   verificationStatus: LIBRARY_ALL_AC
   verifiedWith:
   - test/yosupo-stirling_number_of_the_second_kind.test.cpp
@@ -805,6 +818,7 @@ data:
   - test/yosupo-inv_of_formal_power_series.test.cpp
   - test/yosupo-log_of_formal_power_series.test.cpp
   - test/yosupo-pow_of_formal_power_series.test.cpp
+  - test/yosupo-polynomial_taylor_shift.test.cpp
   - test/yosupo-sqrt_of_formal_power_series.test.cpp
   - test/yosupo-stirling_number_of_the_first_kind.test.cpp
   - test/yosupo-exp_of_formal_power_series.test.cpp

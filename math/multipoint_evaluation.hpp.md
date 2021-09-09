@@ -584,19 +584,25 @@ data:
     res = g;\n\t\t\t\tm |= 1;\n\t\t\t}\n\t\t}\n\t\t*this = res;\n\t}\n\n\tvoid stirling_second(int\
     \ n) {\n\t\tF f(n + 1), g(n + 1);\n\t\tfor(int i = 0; i <= n; i++) {\n\t\t\tf[i]\
     \ = T(i).pow(n) * fact.finv[i];\n\t\t\tg[i] = fact.finv[i] * (i % 2 ? -1 : 1);\n\
-    \t\t}\n\t\tf *= g;\n\t\t*this = f;\n\t}\n\n\tstd::vector<T> multipoint_evaluation(const\
-    \ std::vector<T> &p);\n};\n#line 6 \"math/multipoint_evaluation.hpp\"\n\ntemplate\
-    \ <class T, Mode mode>\nstd::vector<T> formal_power_series<T, mode>::multipoint_evaluation(const\
-    \ std::vector<T> &p) {\n\tusing fps = formal_power_series<T, mode>;\n\tint m =\
-    \ p.size();\n\tint n = 1 << atcoder::internal::ceil_pow2(m);\n\tstd::vector<fps>\
-    \ subproducts(2 * n, F{1}), rem(2 * n);\n\tfor(int i = n; i < n + m; i++) subproducts[i]\
-    \ = fps({-p[i - n], 1});\n\tfor(int i = n - 1; i; i--) {\n\t\tint x = subproducts[i\
-    \ << 1].size(), y = subproducts[i << 1 | 1].size();\n\t\tsubproducts[i] = subproducts[i\
-    \ << 1];\n\t\tsubproducts[i].resize(x + y - 1);\n\t\tsubproducts[i] *= subproducts[i\
-    \ << 1 | 1];\n\t}\n\trem[1] = *this;\n\tfor(int i = 1; i < n; i++) {\n\t\trem[i\
-    \ << 1] = rem[i] % subproducts[i << 1];\n\t\trem[i << 1].shrink();\n\t\trem[i\
-    \ << 1 | 1] = rem[i] % subproducts[i << 1 | 1];\n\t\trem[i << 1 | 1].shrink();\n\
-    \t}\n\tstd::vector<T> res(m);\n\tfor(int i = 0; i < m; i++) res[i] = rem[i + n][0];\n\
+    \t\t}\n\t\tf *= g;\n\t\t*this = f;\n\t}\n\n\t//return f(x + c)\n\tF taylor_shift(int\
+    \ c) {\n\t\tF f(*this);\n\t\tint n = this->size();\n\t\tfor(int i = 0; i < n;\
+    \ i++) f[i] *= fact.fac[i];\n\t\treverse(f.begin(), f.end());\n\t\tF g(n, 1);\n\
+    \t\tT mul = 1;\n\t\tfor(int i = 1; i < n; i++)\n\t\t\tg[i] = (mul *= c) * fact.finv[i];\n\
+    \t\tf *= g;\n\t\treverse(f.begin(), f.end());\n\t\tfor(int i = 0; i < n; i++)\
+    \ f[i] *= fact.finv[i];\n\t\treturn f;\n\t}\n\tF taylor_shift(T c) { return taylor_shift(c.val());\
+    \ }\n\n\tstd::vector<T> multipoint_evaluation(const std::vector<T> &p);\n};\n\
+    #line 6 \"math/multipoint_evaluation.hpp\"\n\ntemplate <class T, Mode mode>\n\
+    std::vector<T> formal_power_series<T, mode>::multipoint_evaluation(const std::vector<T>\
+    \ &p) {\n\tusing fps = formal_power_series<T, mode>;\n\tint m = p.size();\n\t\
+    int n = 1 << atcoder::internal::ceil_pow2(m);\n\tstd::vector<fps> subproducts(2\
+    \ * n, F{1}), rem(2 * n);\n\tfor(int i = n; i < n + m; i++) subproducts[i] = fps({-p[i\
+    \ - n], 1});\n\tfor(int i = n - 1; i; i--) {\n\t\tint x = subproducts[i << 1].size(),\
+    \ y = subproducts[i << 1 | 1].size();\n\t\tsubproducts[i] = subproducts[i << 1];\n\
+    \t\tsubproducts[i].resize(x + y - 1);\n\t\tsubproducts[i] *= subproducts[i <<\
+    \ 1 | 1];\n\t}\n\trem[1] = *this;\n\tfor(int i = 1; i < n; i++) {\n\t\trem[i <<\
+    \ 1] = rem[i] % subproducts[i << 1];\n\t\trem[i << 1].shrink();\n\t\trem[i <<\
+    \ 1 | 1] = rem[i] % subproducts[i << 1 | 1];\n\t\trem[i << 1 | 1].shrink();\n\t\
+    }\n\tstd::vector<T> res(m);\n\tfor(int i = 0; i < m; i++) res[i] = rem[i + n][0];\n\
     \treturn res;\n}\n"
   code: "#pragma once\n#include <atcoder/internal_bit>\n#include <vector>\n\n#include\
     \ \"math/formal_power_series.hpp\"\n\ntemplate <class T, Mode mode>\nstd::vector<T>\
@@ -623,7 +629,7 @@ data:
   isVerificationFile: false
   path: math/multipoint_evaluation.hpp
   requiredBy: []
-  timestamp: '2021-09-08 23:53:30+09:00'
+  timestamp: '2021-09-09 11:03:30+09:00'
   verificationStatus: LIBRARY_NO_TESTS
   verifiedWith: []
 documentation_of: math/multipoint_evaluation.hpp

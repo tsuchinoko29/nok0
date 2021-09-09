@@ -7,6 +7,9 @@ data:
     path: test/aoj-2397.test.cpp
     title: test/aoj-2397.test.cpp
   - icon: ':heavy_check_mark:'
+    path: test/yosupo-polynomial_taylor_shift.test.cpp
+    title: test/yosupo-polynomial_taylor_shift.test.cpp
+  - icon: ':heavy_check_mark:'
     path: test/yosupo-queue_operate_all_composite.test.cpp
     title: test/yosupo-queue_operate_all_composite.test.cpp
   - icon: ':heavy_check_mark:'
@@ -285,6 +288,7 @@ data:
   verifiedWith:
   - test/aoj-2397.test.cpp
   - test/yosupo-stirling_number_of_the_second_kind.test.cpp
+  - test/yosupo-polynomial_taylor_shift.test.cpp
   - test/yosupo-stirling_number_of_the_first_kind.test.cpp
   - test/yosupo-queue_operate_all_composite.test.cpp
 documentation_of: cftemp.hpp
