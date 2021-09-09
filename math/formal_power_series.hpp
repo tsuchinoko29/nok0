@@ -523,5 +523,22 @@ struct formal_power_series : std::vector<T> {
 		*this = f;
 	}
 
+	//return f(x + c)
+	F taylor_shift(int c) {
+		F f(*this);
+		int n = this->size();
+		for(int i = 0; i < n; i++) f[i] *= fact.fac[i];
+		reverse(f.begin(), f.end());
+		F g(n, 1);
+		T mul = 1;
+		for(int i = 1; i < n; i++)
+			g[i] = (mul *= c) * fact.finv[i];
+		f *= g;
+		reverse(f.begin(), f.end());
+		for(int i = 0; i < n; i++) f[i] *= fact.finv[i];
+		return f;
+	}
+	F taylor_shift(T c) { return taylor_shift(c.val()); }
+
 	std::vector<T> multipoint_evaluation(const std::vector<T> &p);
 };
