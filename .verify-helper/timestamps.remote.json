@@ -28,6 +28,7 @@
 "test/yosupo-log_of_formal_power_series.test.cpp": "2021-09-08 23:53:30 +0900",
 "test/yosupo-pow_of_formal_power_series.test.cpp": "2021-09-08 23:53:30 +0900",
 "test/yosupo-predecessor_problem.test.cpp": "2021-09-08 15:21:46 +0900",
+"test/yosupo-queue_operate_all_composite.test.cpp": "2021-09-09 10:43:47 +0900",
 "test/yosupo-scc.test.cpp": "2021-09-08 15:21:46 +0900",
 "test/yosupo-segment_add_get_min.test.cpp": "2021-09-08 20:41:48 +0900",
 "test/yosupo-set_xor_min.test.cpp": "2021-09-08 15:21:46 +0900",
