@@ -10,30 +10,34 @@ data:
   - icon: ':heavy_check_mark:'
     path: atcoder/modint.hpp
     title: atcoder/modint.hpp
+  - icon: ':heavy_check_mark:'
+    path: cftemp.hpp
+    title: cftemp.hpp
+  - icon: ':heavy_check_mark:'
+    path: data_structure/swag.hpp
+    title: data_structure/swag.hpp
+  - icon: ':heavy_check_mark:'
+    path: math/modint_iostream.hpp
+    title: math/modint_iostream.hpp
   _extendedRequiredBy: []
-  _extendedVerifiedWith:
-  - icon: ':heavy_check_mark:'
-    path: test/yosupo-queue_operate_all_composite.test.cpp
-    title: test/yosupo-queue_operate_all_composite.test.cpp
-  - icon: ':heavy_check_mark:'
-    path: test/yosupo-stirling_number_of_the_first_kind.test.cpp
-    title: test/yosupo-stirling_number_of_the_first_kind.test.cpp
-  - icon: ':heavy_check_mark:'
-    path: test/yosupo-stirling_number_of_the_second_kind.test.cpp
-    title: test/yosupo-stirling_number_of_the_second_kind.test.cpp
+  _extendedVerifiedWith: []
   _isVerificationFailed: false
-  _pathExtension: hpp
+  _pathExtension: cpp
   _verificationStatusIcon: ':heavy_check_mark:'
   attributes:
-    links: []
-  bundledCode: "#line 1 \"math/modint_iostream.hpp\"\n#include <iostream>\n\n#line\
-    \ 1 \"atcoder/modint.hpp\"\n\n\n\n#include <cassert>\n#include <numeric>\n#include\
-    \ <type_traits>\n\n#ifdef _MSC_VER\n#include <intrin.h>\n#endif\n\n#line 1 \"\
-    atcoder/internal_math.hpp\"\n\n\n\n#include <utility>\n\n#ifdef _MSC_VER\n#include\
-    \ <intrin.h>\n#endif\n\nnamespace atcoder {\n\nnamespace internal {\n\n// @param\
-    \ m `1 <= m`\n// @return x mod m\nconstexpr long long safe_mod(long long x, long\
-    \ long m) {\n    x %= m;\n    if (x < 0) x += m;\n    return x;\n}\n\n// Fast\
-    \ modular multiplication by barrett reduction\n// Reference: https://en.wikipedia.org/wiki/Barrett_reduction\n\
+    '*NOT_SPECIAL_COMMENTS*': ''
+    PROBLEM: https://judge.yosupo.jp/problem/queue_operate_all_composite
+    links:
+    - https://judge.yosupo.jp/problem/queue_operate_all_composite
+  bundledCode: "#line 1 \"test/yosupo-queue_operate_all_composite.test.cpp\"\n#define\
+    \ PROBLEM \"https://judge.yosupo.jp/problem/queue_operate_all_composite\"\n\n\
+    #line 1 \"atcoder/modint.hpp\"\n\n\n\n#include <cassert>\n#include <numeric>\n\
+    #include <type_traits>\n\n#ifdef _MSC_VER\n#include <intrin.h>\n#endif\n\n#line\
+    \ 1 \"atcoder/internal_math.hpp\"\n\n\n\n#include <utility>\n\n#ifdef _MSC_VER\n\
+    #include <intrin.h>\n#endif\n\nnamespace atcoder {\n\nnamespace internal {\n\n\
+    // @param m `1 <= m`\n// @return x mod m\nconstexpr long long safe_mod(long long\
+    \ x, long long m) {\n    x %= m;\n    if (x < 0) x += m;\n    return x;\n}\n\n\
+    // Fast modular multiplication by barrett reduction\n// Reference: https://en.wikipedia.org/wiki/Barrett_reduction\n\
     // NOTE: reconsider after Ice Lake\nstruct barrett {\n    unsigned int _m;\n \
     \   unsigned long long im;\n\n    // @param m `1 <= m < 2^31`\n    explicit barrett(unsigned\
     \ int m) : _m(m), im((unsigned long long)(-1) / m + 1) {}\n\n    // @return m\n\
@@ -232,39 +236,194 @@ data:
     \ntemplate <class> struct is_dynamic_modint : public std::false_type {};\ntemplate\
     \ <int id>\nstruct is_dynamic_modint<dynamic_modint<id>> : public std::true_type\
     \ {};\n\ntemplate <class T>\nusing is_dynamic_modint_t = std::enable_if_t<is_dynamic_modint<T>::value>;\n\
-    \n}  // namespace internal\n\n}  // namespace atcoder\n\n\n#line 4 \"math/modint_iostream.hpp\"\
-    \ntemplate <int m>\nstd::istream &std::operator>>(std::istream &is, atcoder::static_modint<m>\
+    \n}  // namespace internal\n\n}  // namespace atcoder\n\n\n#line 1 \"cftemp.hpp\"\
+    \n#include <bits/stdc++.h>\nusing namespace std;\n\n#pragma region Macros\n//\
+    \ rep macro\n#define foa(v, a) for(auto &v : a)\n#define REPname(a, b, c, d, e,\
+    \ ...) e\n#define REP(...) REPname(__VA_ARGS__, REP3, REP2, REP1, REP0)(__VA_ARGS__)\n\
+    #define REP0(x) for(int i = 0; i < (x); ++i)\n#define REP1(i, x) for(int i = 0;\
+    \ i < (x); ++i)\n#define REP2(i, l, r) for(int i = (l); i < (r); ++i)\n#define\
+    \ REP3(i, l, r, c) for(int i = (l); i < (r); i += (c))\n#define REPSname(a, b,\
+    \ c, ...) c\n#define REPS(...) REPSname(__VA_ARGS__, REPS1, REPS0)(__VA_ARGS__)\n\
+    #define REPS0(x) for(int i = 1; i <= (x); ++i)\n#define REPS1(i, x) for(int i\
+    \ = 1; i <= (x); ++i)\n#define RREPname(a, b, c, d, e, ...) e\n#define RREP(...)\
+    \ RREPname(__VA_ARGS__, RREP3, RREP2, RREP1, RREP0)(__VA_ARGS__)\n#define RREP0(x)\
+    \ for(int i = (x)-1; i >= 0; --i)\n#define RREP1(i, x) for(int i = (x)-1; i >=\
+    \ 0; --i)\n#define RREP2(i, r, l) for(int i = (r)-1; i >= (l); --i)\n#define RREP3(i,\
+    \ r, l, c) for(int i = (r)-1; i >= (l); i -= (c))\n#define RREPSname(a, b, c,\
+    \ ...) c\n#define RREPS(...) RREPSname(__VA_ARGS__, RREPS1, RREPS0)(__VA_ARGS__)\n\
+    #define RREPS0(x) for(int i = (x); i >= 1; --i)\n#define RREPS1(i, x) for(int\
+    \ i = (x); i >= 1; --i)\n\n// name macro\n#define pb push_back\n#define eb emplace_back\n\
+    #define SZ(x) ((int)(x).size())\n#define all(x) (x).begin(), (x).end()\n#define\
+    \ rall(x) (x).rbegin(), (x).rend()\n#define popcnt(x) __builtin_popcountll(x)\n\
+    template <class T = int>\nusing V = std::vector<T>;\ntemplate <class T = int>\n\
+    using VV = std::vector<std::vector<T>>;\ntemplate <class T>\nusing pqup = std::priority_queue<T,\
+    \ std::vector<T>, std::greater<T>>;\nusing ll = long long;\nusing ld = long double;\n\
+    using int128 = __int128_t;\nusing pii = std::pair<int, int>;\nusing pll = std::pair<long\
+    \ long, long long>;\n\n// input macro\ntemplate <class T, class U>\nstd::istream\
+    \ &operator>>(std::istream &is, std::pair<T, U> &p) {\n\tis >> p.first >> p.second;\n\
+    \treturn is;\n}\ntemplate <class T>\nstd::istream &operator>>(std::istream &is,\
+    \ std::vector<T> &v) {\n\tfor(T &i : v) is >> i;\n\treturn is;\n}\nstd::istream\
+    \ &operator>>(std::istream &is, __int128_t &a) {\n\tstd::string s;\n\tis >> s;\n\
+    \t__int128_t ret = 0;\n\tfor(int i = 0; i < s.length(); i++)\n\t\tif('0' <= s[i]\
+    \ and s[i] <= '9')\n\t\t\tret = 10 * ret + s[i] - '0';\n\ta = ret * (s[0] == '-'\
+    \ ? -1 : 1);\n\treturn is;\n}\nnamespace scanner {\nvoid scan(int &a) { std::cin\
+    \ >> a; }\nvoid scan(long long &a) { std::cin >> a; }\nvoid scan(std::string &a)\
+    \ { std::cin >> a; }\nvoid scan(char &a) { std::cin >> a; }\nvoid scan(char a[])\
+    \ { std::scanf(\"%s\", a); }\nvoid scan(double &a) { std::cin >> a; }\nvoid scan(long\
+    \ double &a) { std::cin >> a; }\ntemplate <class T, class U>\nvoid scan(std::pair<T,\
+    \ U> &p) { std::cin >> p; }\ntemplate <class T>\nvoid scan(std::vector<T> &a)\
+    \ { std::cin >> a; }\nvoid INPUT() {}\ntemplate <class Head, class... Tail>\n\
+    void INPUT(Head &head, Tail &... tail) {\n\tscan(head);\n\tINPUT(tail...);\n}\n\
+    }  // namespace scanner\n#define VEC(type, name, size)     \\\n\tstd::vector<type>\
+    \ name(size); \\\n\tscanner::INPUT(name)\n#define VVEC(type, name, h, w)     \
+    \                               \\\n\tstd::vector<std::vector<type>> name(h, std::vector<type>(w));\
+    \ \\\n\tscanner::INPUT(name)\n#define INT(...)     \\\n\tint __VA_ARGS__; \\\n\
+    \tscanner::INPUT(__VA_ARGS__)\n#define LL(...)            \\\n\tlong long __VA_ARGS__;\
+    \ \\\n\tscanner::INPUT(__VA_ARGS__)\n#define STR(...)             \\\n\tstd::string\
+    \ __VA_ARGS__; \\\n\tscanner::INPUT(__VA_ARGS__)\n#define CHAR(...)     \\\n\t\
+    char __VA_ARGS__; \\\n\tscanner::INPUT(__VA_ARGS__)\n#define DOUBLE(...)     \\\
+    \n\tdouble __VA_ARGS__; \\\n\tscanner::INPUT(__VA_ARGS__)\n#define LD(...)   \
+    \           \\\n\tlong double __VA_ARGS__; \\\n\tscanner::INPUT(__VA_ARGS__)\n\
+    \n// output-macro\ntemplate <class T, class U>\nstd::ostream &operator<<(std::ostream\
+    \ &os, const std::pair<T, U> &p) {\n\tos << p.first << \" \" << p.second;\n\t\
+    return os;\n}\ntemplate <class T>\nstd::ostream &operator<<(std::ostream &os,\
+    \ const std::vector<T> &a) {\n\tfor(int i = 0; i < int(a.size()); ++i) {\n\t\t\
+    if(i) os << \" \";\n\t\tos << a[i];\n\t}\n\treturn os;\n}\nstd::ostream &operator<<(std::ostream\
+    \ &dest, __int128_t &value) {\n\tstd::ostream::sentry s(dest);\n\tif(s) {\n\t\t\
+    __uint128_t tmp = value < 0 ? -value : value;\n\t\tchar buffer[128];\n\t\tchar\
+    \ *d = std::end(buffer);\n\t\tdo {\n\t\t\t--d;\n\t\t\t*d = \"0123456789\"[tmp\
+    \ % 10];\n\t\t\ttmp /= 10;\n\t\t} while(tmp != 0);\n\t\tif(value < 0) {\n\t\t\t\
+    --d;\n\t\t\t*d = '-';\n\t\t}\n\t\tint len = std::end(buffer) - d;\n\t\tif(dest.rdbuf()->sputn(d,\
+    \ len) != len) {\n\t\t\tdest.setstate(std::ios_base::badbit);\n\t\t}\n\t}\n\t\
+    return dest;\n}\ntemplate <class T>\nvoid print(const T a) { std::cout << a <<\
+    \ '\\n'; }\ntemplate <class Head, class... Tail>\nvoid print(Head H, Tail... T)\
+    \ {\n\tstd::cout << H << ' ';\n\tprint(T...);\n}\ntemplate <class T>\nvoid printel(const\
+    \ T a) { std::cout << a << '\\n'; }\ntemplate <class T>\nvoid printel(const std::vector<T>\
+    \ &a) {\n\tfor(const auto &v : a)\n\t\tstd::cout << v << '\\n';\n}\ntemplate <class\
+    \ Head, class... Tail>\nvoid printel(Head H, Tail... T) {\n\tstd::cout << H <<\
+    \ '\\n';\n\tprintel(T...);\n}\nvoid Yes(const bool b = true) { std::cout << (b\
+    \ ? \"Yes\\n\" : \"No\\n\"); }\nvoid No() { std::cout << \"No\\n\"; }\nvoid YES(const\
+    \ bool b = true) { std::cout << (b ? \"YES\\n\" : \"NO\\n\"); }\nvoid NO() { std::cout\
+    \ << \"NO\\n\"; }\nvoid err(const bool b = true) {\n\tif(b) {\n\t\tstd::cout <<\
+    \ \"-1\\n\", exit(0);\n\t}\n}\n\n//debug macro\nnamespace debugger {\ntemplate\
+    \ <class T>\nvoid view(const std::vector<T> &a) {\n\tstd::cerr << \"{ \";\n\t\
+    for(const auto &v : a) {\n\t\tstd::cerr << v << \", \";\n\t}\n\tstd::cerr << \"\
+    \\b\\b }\";\n}\ntemplate <class T>\nvoid view(const std::vector<std::vector<T>>\
+    \ &a) {\n\tstd::cerr << \"{\\n\";\n\tfor(const auto &v : a) {\n\t\tstd::cerr <<\
+    \ \"\\t\";\n\t\tview(v);\n\t\tstd::cerr << \"\\n\";\n\t}\n\tstd::cerr << \"}\"\
+    ;\n}\ntemplate <class T, class U>\nvoid view(const std::vector<std::pair<T, U>>\
+    \ &a) {\n\tstd::cerr << \"{\\n\";\n\tfor(const auto &p : a) std::cerr << \"\\\
+    t(\" << p.first << \", \" << p.second << \")\\n\";\n\tstd::cerr << \"}\";\n}\n\
+    template <class T, class U>\nvoid view(const std::map<T, U> &m) {\n\tstd::cerr\
+    \ << \"{\\n\";\n\tfor(const auto &p : m) std::cerr << \"\\t[\" << p.first << \"\
+    ] : \" << p.second << \"\\n\";\n\tstd::cerr << \"}\";\n}\ntemplate <class T, class\
+    \ U>\nvoid view(const std::pair<T, U> &p) { std::cerr << \"(\" << p.first << \"\
+    , \" << p.second << \")\"; }\ntemplate <class T>\nvoid view(const std::set<T>\
+    \ &s) {\n\tstd::cerr << \"{ \";\n\tfor(auto &v : s) {\n\t\tview(v);\n\t\tstd::cerr\
+    \ << \", \";\n\t}\n\tstd::cerr << \"\\b\\b }\";\n}\n\ntemplate <class T>\nvoid\
+    \ view(const T &e) { std::cerr << e; }\n}  // namespace debugger\n#ifdef LOCAL\n\
+    void debug_out() {}\ntemplate <typename Head, typename... Tail>\nvoid debug_out(Head\
+    \ H, Tail... T) {\n\tdebugger::view(H);\n\tstd::cerr << \", \";\n\tdebug_out(T...);\n\
+    }\n#define debug(...)                                                \\\n\tdo\
+    \ {                                                          \\\n\t\tstd::cerr\
+    \ << __LINE__ << \" [\" << #__VA_ARGS__ << \"] : [\"; \\\n\t\tdebug_out(__VA_ARGS__);\
+    \                                   \\\n\t\tstd::cerr << \"\\b\\b]\\n\";     \
+    \                              \\\n\t} while(false)\n#else\n#define debug(...)\
+    \ (void(0))\n#endif\n\n// vector macro\ntemplate <class T>\nint lb(const std::vector<T>\
+    \ &a, const T x) { return std::distance((a).begin(), std::lower_bound((a).begin(),\
+    \ (a).end(), (x))); }\ntemplate <class T>\nint ub(const std::vector<T> &a, const\
+    \ T x) { return std::distance((a).begin(), std::upper_bound((a).begin(), (a).end(),\
+    \ (x))); }\ntemplate <class T>\nvoid UNIQUE(std::vector<T> &a) {\n\tstd::sort(a.begin(),\
+    \ a.end());\n\ta.erase(std::unique(a.begin(), a.end()), a.end());\n}\ntemplate\
+    \ <class T>\nstd::vector<T> press(std::vector<T> &a) {\n\tauto res = a;\n\tUNIQUE(res);\n\
+    \tfor(auto &v : a)\n\t\tv = lb(res, v);\n\treturn res;\n}\n#define SORTname(a,\
+    \ b, c, ...) c\n#define SORT(...) SORTname(__VA_ARGS__, SORT1, SORT0, ...)(__VA_ARGS__)\n\
+    #define SORT0(a) std::sort((a).begin(), (a).end())\n#define SORT1(a, c) std::sort((a).begin(),\
+    \ (a).end(), [](const auto x, const auto y) { return x c y; })\ntemplate <class\
+    \ T>\nvoid ADD(std::vector<T> &a, const T x = 1) {\n\tfor(auto &v : a) v += x;\n\
+    }\ntemplate <class T>\nvoid SUB(std::vector<T> &a, const T x = 1) {\n\tfor(auto\
+    \ &v : a) v -= x;\n}\ntemplate <class T>\nvoid MUL(std::vector<T> &a, const T\
+    \ x) {\n\tfor(auto &v : a) v *= x;\n}\ntemplate <class T>\nvoid DIV(std::vector<T>\
+    \ &a, const T x) {\n\tfor(auto &v : a) v /= x;\n}\nstd::vector<std::pair<char,\
+    \ int>> rle(const string &s) {\n\tint n = s.size();\n\tstd::vector<std::pair<char,\
+    \ int>> ret;\n\tfor(int l = 0; l < n;) {\n\t\tint r = l + 1;\n\t\tfor(; r < n\
+    \ and s[l] == s[r]; r++) {}\n\t\tret.emplace_back(s[l], r - l);\n\t\tl = r;\n\t\
+    }\n\treturn ret;\n}\ntemplate <class T>\nstd::vector<std::pair<T, int>> rle(const\
+    \ std::vector<T> &v) {\n\tint n = v.size();\n\tstd::vector<std::pair<T, int>>\
+    \ ret;\n\tfor(int l = 0; l < n;) {\n\t\tint r = l + 1;\n\t\tfor(; r < n and v[l]\
+    \ == v[r]; r++) {}\n\t\tret.emplace_back(v[l], r - l);\n\t\tl = r;\n\t}\n\treturn\
+    \ ret;\n}\n\n// math macro\ntemplate <class T, class U>\ninline bool chmin(T &a,\
+    \ const U &b) { return a > b ? a = b, true : false; }\ntemplate <class T, class\
+    \ U>\ninline bool chmax(T &a, const U &b) { return a < b ? a = b, true : false;\
+    \ }\ntemplate <class T>\nT divup(T x, T y) { return (x + y - 1) / y; }\ntemplate\
+    \ <class T>\nT POW(T a, long long n) {\n\tT ret = 1;\n\twhile(n) {\n\t\tif(n &\
+    \ 1) ret *= a;\n\t\ta *= a;\n\t\tn >>= 1;\n\t}\n\treturn ret;\n}\n// modpow\n\
+    long long POW(long long a, long long n, const int mod) {\n\tlong long ret = 1;\n\
+    \ta = (a % mod + mod) % mod;\n\twhile(n) {\n\t\tif(n & 1) (ret *= a) %= mod;\n\
+    \t\t(a *= a) %= mod;\n\t\tn >>= 1;\n\t}\n\treturn ret;\n}\n\n// others\nstruct\
+    \ fast_io {\n\tfast_io() {\n\t\tios::sync_with_stdio(false);\n\t\tcin.tie(nullptr);\n\
+    \t\tcout << fixed << setprecision(15);\n\t}\n} fast_io_;\nconst int inf = 1e9;\n\
+    const ll INF = 1e18;\n#pragma endregion\n\nvoid main_();\n\nint main() {\n\tmain_();\n\
+    \treturn 0;\n}\n#line 5 \"data_structure/swag.hpp\"\n\ntemplate <class S, S (*op)(S,\
+    \ S), S (*e)()>\nstruct sliding_window_aggregation {\n\tstatic const size_t inf\
+    \ = 1e9;\n\npublic:\n\tsliding_window_aggregation(size_t size = inf) : sz(size),\
+    \ front_stack(), back_stack() {}\n\n\tbool empty() const { return front_stack.empty()\
+    \ and back_stack.empty(); }\n\n\tsize_t size() const { return front_stack.size()\
+    \ + back_stack.size(); }\n\n\tvoid resize(size_t x) { sz = x; }\n\n\tvoid pop()\
+    \ {\n\t\tassert(!empty());\n\t\tif(front_stack.empty()) {\n\t\t\tfront_stack.emplace(back_stack.top().val,\
+    \ back_stack.top().val);\n\t\t\tback_stack.pop();\n\t\t\twhile(!back_stack.empty())\
+    \ {\n\t\t\t\tS tmp = op(back_stack.top().val, front_stack.top().sum);\n\t\t\t\t\
+    front_stack.emplace(back_stack.top().val, tmp);\n\t\t\t\tback_stack.pop();\n\t\
+    \t\t}\n\t\t}\n\t\tfront_stack.pop();\n\t}\n\n\tS fold_all() {\n\t\tif(sz != inf)\
+    \ {\n\t\t\twhile(size() > sz) pop();\n\t\t}\n\t\tif(empty()) return e();\n\t\t\
+    if(front_stack.empty())\n\t\t\treturn back_stack.top().sum;\n\t\telse if(back_stack.empty())\n\
+    \t\t\treturn front_stack.top().sum;\n\t\telse\n\t\t\treturn op(front_stack.top().sum,\
+    \ back_stack.top().sum);\n\t}\n\n\tvoid push(const S x) {\n\t\tif(back_stack.empty())\n\
+    \t\t\tback_stack.emplace(x, x);\n\t\telse {\n\t\t\tS s = op(back_stack.top().sum,\
+    \ x);\n\t\t\tback_stack.emplace(x, s);\n\t\t}\n\t}\n\nprivate:\n\tstruct node\
+    \ {\n\t\tS val, sum;\n\t\tnode(const S &val, const S &sum) : val(val), sum(sum)\
+    \ {}\n\t};\n\n\tstd::stack<node> front_stack, back_stack;\n\tsize_t sz;\n};\n\
+    #line 2 \"math/modint_iostream.hpp\"\n\n#line 4 \"math/modint_iostream.hpp\"\n\
+    template <int m>\nstd::istream &std::operator>>(std::istream &is, atcoder::static_modint<m>\
     \ &a) {\n\tlong long v;\n\tis >> v;\n\ta = v;\n\treturn is;\n}\ntemplate <int\
     \ m>\nstd::istream &std::operator>>(std::istream &is, atcoder::dynamic_modint<m>\
     \ &a) {\n\tlong long v;\n\tis >> v;\n\ta = v;\n\treturn is;\n}\ntemplate <int\
     \ m>\nstd::ostream &std::operator<<(std::ostream &os, const atcoder::static_modint<m>\
     \ &a) { return os << a.val(); }\ntemplate <int m>\nstd::ostream &std::operator<<(std::ostream\
-    \ &os, const atcoder::dynamic_modint<m> &a) { return os << a.val(); }\n"
-  code: "#include <iostream>\n\n#include \"atcoder/modint\"\ntemplate <int m>\nstd::istream\
-    \ &std::operator>>(std::istream &is, atcoder::static_modint<m> &a) {\n\tlong long\
-    \ v;\n\tis >> v;\n\ta = v;\n\treturn is;\n}\ntemplate <int m>\nstd::istream &std::operator>>(std::istream\
-    \ &is, atcoder::dynamic_modint<m> &a) {\n\tlong long v;\n\tis >> v;\n\ta = v;\n\
-    \treturn is;\n}\ntemplate <int m>\nstd::ostream &std::operator<<(std::ostream\
-    \ &os, const atcoder::static_modint<m> &a) { return os << a.val(); }\ntemplate\
-    \ <int m>\nstd::ostream &std::operator<<(std::ostream &os, const atcoder::dynamic_modint<m>\
-    \ &a) { return os << a.val(); }\n"
+    \ &os, const atcoder::dynamic_modint<m> &a) { return os << a.val(); }\n#line 7\
+    \ \"test/yosupo-queue_operate_all_composite.test.cpp\"\n\nusing mint = atcoder::modint998244353;\n\
+    using S = pair<mint, mint>;\nS op(S a, S b) {\n\treturn S(a.first * b.first, b.first\
+    \ * a.second + b.second);\n}\nS e() {\n\treturn S(1, 0);\n}\n\nvoid main_() {\n\
+    \tsliding_window_aggregation<S, op, e> swag;\n\tINT(q);\n\twhile(q--) {\n\t\t\
+    INT(t);\n\t\tif(t == 0) {\n\t\t\tINT(a, b);\n\t\t\tswag.push(S(a, b));\n\t\t}\n\
+    \t\tif(t == 1) swag.pop();\n\t\tif(t == 2) {\n\t\t\tINT(x);\n\t\t\tauto [a, b]\
+    \ = swag.fold_all();\n\t\t\tprint(a * x + b);\n\t\t}\n\t}\n}\n"
+  code: "#define PROBLEM \"https://judge.yosupo.jp/problem/queue_operate_all_composite\"\
+    \n\n#include \"atcoder/modint\"\n#include \"cftemp.hpp\"\n#include \"data_structure/swag.hpp\"\
+    \n#include \"math/modint_iostream.hpp\"\n\nusing mint = atcoder::modint998244353;\n\
+    using S = pair<mint, mint>;\nS op(S a, S b) {\n\treturn S(a.first * b.first, b.first\
+    \ * a.second + b.second);\n}\nS e() {\n\treturn S(1, 0);\n}\n\nvoid main_() {\n\
+    \tsliding_window_aggregation<S, op, e> swag;\n\tINT(q);\n\twhile(q--) {\n\t\t\
+    INT(t);\n\t\tif(t == 0) {\n\t\t\tINT(a, b);\n\t\t\tswag.push(S(a, b));\n\t\t}\n\
+    \t\tif(t == 1) swag.pop();\n\t\tif(t == 2) {\n\t\t\tINT(x);\n\t\t\tauto [a, b]\
+    \ = swag.fold_all();\n\t\t\tprint(a * x + b);\n\t\t}\n\t}\n}"
   dependsOn:
   - atcoder/modint.hpp
   - atcoder/internal_math.hpp
   - atcoder/internal_type_traits.hpp
-  isVerificationFile: false
-  path: math/modint_iostream.hpp
+  - cftemp.hpp
+  - data_structure/swag.hpp
+  - math/modint_iostream.hpp
+  isVerificationFile: true
+  path: test/yosupo-queue_operate_all_composite.test.cpp
   requiredBy: []
-  timestamp: '2021-09-08 16:43:59+09:00'
-  verificationStatus: LIBRARY_ALL_AC
-  verifiedWith:
-  - test/yosupo-stirling_number_of_the_second_kind.test.cpp
-  - test/yosupo-stirling_number_of_the_first_kind.test.cpp
-  - test/yosupo-queue_operate_all_composite.test.cpp
-documentation_of: math/modint_iostream.hpp
+  timestamp: '2021-09-09 10:43:47+09:00'
+  verificationStatus: TEST_ACCEPTED
+  verifiedWith: []
+documentation_of: test/yosupo-queue_operate_all_composite.test.cpp
 layout: document
 redirect_from:
-- /library/math/modint_iostream.hpp
-- /library/math/modint_iostream.hpp.html
-title: math/modint_iostream.hpp
+- /verify/test/yosupo-queue_operate_all_composite.test.cpp
+- /verify/test/yosupo-queue_operate_all_composite.test.cpp.html
+title: test/yosupo-queue_operate_all_composite.test.cpp
 ---

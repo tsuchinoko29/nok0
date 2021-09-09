@@ -121,6 +121,9 @@ data:
     path: test/yosupo-predecessor_problem.test.cpp
     title: test/yosupo-predecessor_problem.test.cpp
   - icon: ':heavy_check_mark:'
+    path: test/yosupo-queue_operate_all_composite.test.cpp
+    title: test/yosupo-queue_operate_all_composite.test.cpp
+  - icon: ':heavy_check_mark:'
     path: test/yosupo-scc.test.cpp
     title: test/yosupo-scc.test.cpp
   - icon: ':heavy_check_mark:'
@@ -295,6 +298,7 @@ data:
   - test/aoj-2600.test.cpp
   - test/yosupo-sqrt_of_formal_power_series.test.cpp
   - test/yosupo-stirling_number_of_the_first_kind.test.cpp
+  - test/yosupo-queue_operate_all_composite.test.cpp
   - test/aoj-grl-2-a.test.cpp
   - test/yosupo-exp_of_formal_power_series.test.cpp
   - test/yosupo-factorize.test.cpp

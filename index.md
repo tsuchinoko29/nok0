@@ -100,6 +100,9 @@ data:
     - icon: ':heavy_check_mark:'
       path: data_structure/rangeadd_rangesum_bit.hpp
       title: data_structure/rangeadd_rangesum_bit.hpp
+    - icon: ':heavy_check_mark:'
+      path: data_structure/swag.hpp
+      title: data_structure/swag.hpp
     - icon: ':warning:'
       path: data_structure/trie.hpp
       title: data_structure/trie.hpp
@@ -259,6 +262,9 @@ data:
     - icon: ':heavy_check_mark:'
       path: test/yosupo-predecessor_problem.test.cpp
       title: test/yosupo-predecessor_problem.test.cpp
+    - icon: ':heavy_check_mark:'
+      path: test/yosupo-queue_operate_all_composite.test.cpp
+      title: test/yosupo-queue_operate_all_composite.test.cpp
     - icon: ':heavy_check_mark:'
       path: test/yosupo-scc.test.cpp
       title: test/yosupo-scc.test.cpp
