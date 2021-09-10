@@ -1,74 +1,74 @@
 ---
 data:
   _extendedDependsOn:
-  - icon: ':question:'
+  - icon: ':heavy_check_mark:'
     path: atcoder/convolution.hpp
     title: atcoder/convolution.hpp
-  - icon: ':question:'
+  - icon: ':heavy_check_mark:'
     path: atcoder/dsu.hpp
     title: atcoder/dsu.hpp
-  - icon: ':question:'
+  - icon: ':heavy_check_mark:'
     path: atcoder/fenwicktree.hpp
     title: atcoder/fenwicktree.hpp
-  - icon: ':question:'
+  - icon: ':heavy_check_mark:'
     path: atcoder/internal_bit.hpp
     title: atcoder/internal_bit.hpp
-  - icon: ':question:'
+  - icon: ':heavy_check_mark:'
     path: atcoder/internal_csr.hpp
     title: atcoder/internal_csr.hpp
-  - icon: ':question:'
+  - icon: ':heavy_check_mark:'
     path: atcoder/internal_math.hpp
     title: atcoder/internal_math.hpp
-  - icon: ':question:'
+  - icon: ':heavy_check_mark:'
     path: atcoder/internal_queue.hpp
     title: atcoder/internal_queue.hpp
-  - icon: ':question:'
+  - icon: ':heavy_check_mark:'
     path: atcoder/internal_scc.hpp
     title: atcoder/internal_scc.hpp
-  - icon: ':question:'
+  - icon: ':heavy_check_mark:'
     path: atcoder/internal_type_traits.hpp
     title: atcoder/internal_type_traits.hpp
-  - icon: ':question:'
+  - icon: ':heavy_check_mark:'
     path: atcoder/lazysegtree.hpp
     title: atcoder/lazysegtree.hpp
-  - icon: ':question:'
+  - icon: ':heavy_check_mark:'
     path: atcoder/math.hpp
     title: atcoder/math.hpp
-  - icon: ':question:'
+  - icon: ':heavy_check_mark:'
     path: atcoder/maxflow.hpp
     title: atcoder/maxflow.hpp
-  - icon: ':question:'
+  - icon: ':heavy_check_mark:'
     path: atcoder/mincostflow.hpp
     title: atcoder/mincostflow.hpp
-  - icon: ':question:'
+  - icon: ':heavy_check_mark:'
     path: atcoder/modint.hpp
     title: atcoder/modint.hpp
-  - icon: ':question:'
+  - icon: ':heavy_check_mark:'
     path: atcoder/scc.hpp
     title: atcoder/scc.hpp
-  - icon: ':question:'
+  - icon: ':heavy_check_mark:'
     path: atcoder/segtree.hpp
     title: atcoder/segtree.hpp
-  - icon: ':question:'
+  - icon: ':heavy_check_mark:'
     path: atcoder/string.hpp
     title: atcoder/string.hpp
-  - icon: ':question:'
+  - icon: ':heavy_check_mark:'
     path: atcoder/twosat.hpp
     title: atcoder/twosat.hpp
-  - icon: ':question:'
+  - icon: ':heavy_check_mark:'
     path: math/factorial.hpp
     title: math/factorial.hpp
-  - icon: ':question:'
+  - icon: ':heavy_check_mark:'
     path: math/formal_power_series.hpp
     title: math/formal_power_series.hpp
-  - icon: ':question:'
+  - icon: ':heavy_check_mark:'
     path: template.hpp
     title: template.hpp
   _extendedRequiredBy: []
   _extendedVerifiedWith: []
-  _isVerificationFailed: true
+  _isVerificationFailed: false
   _pathExtension: cpp
-  _verificationStatusIcon: ':x:'
+  _verificationStatusIcon: ':heavy_check_mark:'
   attributes:
     '*NOT_SPECIAL_COMMENTS*': ''
     PROBLEM: https://judge.yosupo.jp/problem/sqrt_of_formal_power_series
@@ -281,9 +281,10 @@ data:
     \ntemplate <class> struct is_dynamic_modint : public std::false_type {};\ntemplate\
     \ <int id>\nstruct is_dynamic_modint<dynamic_modint<id>> : public std::true_type\
     \ {};\n\ntemplate <class T>\nusing is_dynamic_modint_t = std::enable_if_t<is_dynamic_modint<T>::value>;\n\
-    \n}  // namespace internal\n\n}  // namespace atcoder\n\n\n#line 3 \"math/formal_power_series.hpp\"\
-    \n#include <iostream>\n#include <random>\n#include <vector>\n\n#line 1 \"atcoder/convolution.hpp\"\
-    \n\n\n\n#include <algorithm>\n#include <array>\n#line 9 \"atcoder/convolution.hpp\"\
+    \n}  // namespace internal\n\n}  // namespace atcoder\n\n\n#line 2 \"math/formal_power_series.hpp\"\
+    \n#include <algorithm>\n#line 4 \"math/formal_power_series.hpp\"\n#include <iostream>\n\
+    #include <random>\n#include <vector>\n\n#line 1 \"atcoder/convolution.hpp\"\n\n\
+    \n\n#line 5 \"atcoder/convolution.hpp\"\n#include <array>\n#line 9 \"atcoder/convolution.hpp\"\
     \n\n#line 1 \"atcoder/internal_bit.hpp\"\n\n\n\n#ifdef _MSC_VER\n#include <intrin.h>\n\
     #endif\n\nnamespace atcoder {\n\nnamespace internal {\n\n// @param n `0 <= n`\n\
     // @return minimum non-negative `x` s.t. `n <= 2**x`\nint ceil_pow2(int n) {\n\
@@ -454,7 +455,7 @@ data:
     \ - inv[MOD % i] * (MOD / i);\n\t\t\tfinv[i] = finv[i - 1] * inv[i];\n\t\t}\n\t\
     }\n};\ntemplate <class T>\nint factorial<T>::MAX = 0;\ntemplate <class T>\nstd::vector<T>\
     \ factorial<T>::fac;\ntemplate <class T>\nstd::vector<T> factorial<T>::finv;\n\
-    template <class T>\nstd::vector<T> factorial<T>::inv;\n#line 9 \"math/formal_power_series.hpp\"\
+    template <class T>\nstd::vector<T> factorial<T>::inv;\n#line 10 \"math/formal_power_series.hpp\"\
     \n\nenum Mode {\n\tFAST = 1,\n\tNAIVE = -1,\n};\ntemplate <class T, Mode mode\
     \ = FAST>\nstruct formal_power_series : std::vector<T> {\n\tfactorial<T> fact;\n\
     \tusing std::vector<T>::vector;\n\tusing std::vector<T>::size;\n\tusing std::vector<T>::resize;\n\
@@ -636,7 +637,7 @@ data:
     \ f[i] *= fact.finv[i];\n\t\treturn f;\n\t}\n\tF taylor_shift(T c) { return taylor_shift(c.val());\
     \ }\n\n\ttemplate <class U>\n\tstd::vector<T> multipoint_evaluation(const std::vector<U>\
     \ &p) {\n\t\tusing fps = formal_power_series<T, mode>;\n\t\tint m = p.size();\n\
-    \t\tint n = 1 << max(atcoder::internal::ceil_pow2(m), 1);\n\t\tstd::vector<fps>\
+    \t\tint n = 1 << std::max(atcoder::internal::ceil_pow2(m), 1);\n\t\tstd::vector<fps>\
     \ subproducts(2 * n, F{1}), rem(2 * n);\n\t\tfor(int i = n; i < n + m; i++) subproducts[i]\
     \ = fps({-p[i - n], 1});\n\t\tfor(int i = n - 1; i; i--) {\n\t\t\tint x = subproducts[i\
     \ << 1].size(), y = subproducts[i << 1 | 1].size();\n\t\t\tsubproducts[i] = subproducts[i\
@@ -821,8 +822,8 @@ data:
   isVerificationFile: true
   path: test/yosupo-sqrt_of_formal_power_series.test.cpp
   requiredBy: []
-  timestamp: '2021-09-10 17:12:08+09:00'
-  verificationStatus: TEST_WRONG_ANSWER
+  timestamp: '2021-09-10 17:23:14+09:00'
+  verificationStatus: TEST_ACCEPTED
   verifiedWith: []
 documentation_of: test/yosupo-sqrt_of_formal_power_series.test.cpp
 layout: document

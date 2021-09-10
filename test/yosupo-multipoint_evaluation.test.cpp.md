@@ -1,28 +1,28 @@
 ---
 data:
   _extendedDependsOn:
-  - icon: ':question:'
+  - icon: ':heavy_check_mark:'
     path: atcoder/convolution.hpp
     title: atcoder/convolution.hpp
-  - icon: ':question:'
+  - icon: ':heavy_check_mark:'
     path: atcoder/internal_bit.hpp
     title: atcoder/internal_bit.hpp
-  - icon: ':question:'
+  - icon: ':heavy_check_mark:'
     path: atcoder/internal_math.hpp
     title: atcoder/internal_math.hpp
-  - icon: ':question:'
+  - icon: ':heavy_check_mark:'
     path: atcoder/internal_type_traits.hpp
     title: atcoder/internal_type_traits.hpp
-  - icon: ':question:'
+  - icon: ':heavy_check_mark:'
     path: atcoder/modint.hpp
     title: atcoder/modint.hpp
   - icon: ':heavy_check_mark:'
     path: cftemp.hpp
     title: cftemp.hpp
-  - icon: ':question:'
+  - icon: ':heavy_check_mark:'
     path: math/factorial.hpp
     title: math/factorial.hpp
-  - icon: ':question:'
+  - icon: ':heavy_check_mark:'
     path: math/formal_power_series.hpp
     title: math/formal_power_series.hpp
   - icon: ':heavy_check_mark:'
@@ -373,7 +373,7 @@ data:
     \ fast_io {\n\tfast_io() {\n\t\tios::sync_with_stdio(false);\n\t\tcin.tie(nullptr);\n\
     \t\tcout << fixed << setprecision(15);\n\t}\n} fast_io_;\nconst int inf = 1e9;\n\
     const ll INF = 1e18;\n#pragma endregion\n\nvoid main_();\n\nint main() {\n\tmain_();\n\
-    \treturn 0;\n}\n#line 6 \"math/formal_power_series.hpp\"\n\n#line 1 \"atcoder/convolution.hpp\"\
+    \treturn 0;\n}\n#line 7 \"math/formal_power_series.hpp\"\n\n#line 1 \"atcoder/convolution.hpp\"\
     \n\n\n\n#line 9 \"atcoder/convolution.hpp\"\n\n#line 1 \"atcoder/internal_bit.hpp\"\
     \n\n\n\n#ifdef _MSC_VER\n#include <intrin.h>\n#endif\n\nnamespace atcoder {\n\n\
     namespace internal {\n\n// @param n `0 <= n`\n// @return minimum non-negative\
@@ -545,7 +545,7 @@ data:
     \ - inv[MOD % i] * (MOD / i);\n\t\t\tfinv[i] = finv[i - 1] * inv[i];\n\t\t}\n\t\
     }\n};\ntemplate <class T>\nint factorial<T>::MAX = 0;\ntemplate <class T>\nstd::vector<T>\
     \ factorial<T>::fac;\ntemplate <class T>\nstd::vector<T> factorial<T>::finv;\n\
-    template <class T>\nstd::vector<T> factorial<T>::inv;\n#line 9 \"math/formal_power_series.hpp\"\
+    template <class T>\nstd::vector<T> factorial<T>::inv;\n#line 10 \"math/formal_power_series.hpp\"\
     \n\nenum Mode {\n\tFAST = 1,\n\tNAIVE = -1,\n};\ntemplate <class T, Mode mode\
     \ = FAST>\nstruct formal_power_series : std::vector<T> {\n\tfactorial<T> fact;\n\
     \tusing std::vector<T>::vector;\n\tusing std::vector<T>::size;\n\tusing std::vector<T>::resize;\n\
@@ -727,7 +727,7 @@ data:
     \ f[i] *= fact.finv[i];\n\t\treturn f;\n\t}\n\tF taylor_shift(T c) { return taylor_shift(c.val());\
     \ }\n\n\ttemplate <class U>\n\tstd::vector<T> multipoint_evaluation(const std::vector<U>\
     \ &p) {\n\t\tusing fps = formal_power_series<T, mode>;\n\t\tint m = p.size();\n\
-    \t\tint n = 1 << max(atcoder::internal::ceil_pow2(m), 1);\n\t\tstd::vector<fps>\
+    \t\tint n = 1 << std::max(atcoder::internal::ceil_pow2(m), 1);\n\t\tstd::vector<fps>\
     \ subproducts(2 * n, F{1}), rem(2 * n);\n\t\tfor(int i = n; i < n + m; i++) subproducts[i]\
     \ = fps({-p[i - n], 1});\n\t\tfor(int i = n - 1; i; i--) {\n\t\t\tint x = subproducts[i\
     \ << 1].size(), y = subproducts[i << 1 | 1].size();\n\t\t\tsubproducts[i] = subproducts[i\
@@ -768,7 +768,7 @@ data:
   isVerificationFile: true
   path: test/yosupo-multipoint_evaluation.test.cpp
   requiredBy: []
-  timestamp: '2021-09-10 17:12:08+09:00'
+  timestamp: '2021-09-10 17:23:14+09:00'
   verificationStatus: TEST_ACCEPTED
   verifiedWith: []
 documentation_of: test/yosupo-multipoint_evaluation.test.cpp
