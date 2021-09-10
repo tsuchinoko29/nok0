@@ -1,58 +1,58 @@
 ---
 data:
   _extendedDependsOn:
-  - icon: ':heavy_check_mark:'
+  - icon: ':question:'
     path: atcoder/convolution.hpp
     title: atcoder/convolution.hpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':question:'
     path: atcoder/dsu.hpp
     title: atcoder/dsu.hpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':question:'
     path: atcoder/fenwicktree.hpp
     title: atcoder/fenwicktree.hpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':question:'
     path: atcoder/internal_bit.hpp
     title: atcoder/internal_bit.hpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':question:'
     path: atcoder/internal_csr.hpp
     title: atcoder/internal_csr.hpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':question:'
     path: atcoder/internal_math.hpp
     title: atcoder/internal_math.hpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':question:'
     path: atcoder/internal_queue.hpp
     title: atcoder/internal_queue.hpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':question:'
     path: atcoder/internal_scc.hpp
     title: atcoder/internal_scc.hpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':question:'
     path: atcoder/internal_type_traits.hpp
     title: atcoder/internal_type_traits.hpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':question:'
     path: atcoder/lazysegtree.hpp
     title: atcoder/lazysegtree.hpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':question:'
     path: atcoder/math.hpp
     title: atcoder/math.hpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':question:'
     path: atcoder/maxflow.hpp
     title: atcoder/maxflow.hpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':question:'
     path: atcoder/mincostflow.hpp
     title: atcoder/mincostflow.hpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':question:'
     path: atcoder/modint.hpp
     title: atcoder/modint.hpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':question:'
     path: atcoder/scc.hpp
     title: atcoder/scc.hpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':question:'
     path: atcoder/segtree.hpp
     title: atcoder/segtree.hpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':question:'
     path: atcoder/string.hpp
     title: atcoder/string.hpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':question:'
     path: atcoder/twosat.hpp
     title: atcoder/twosat.hpp
   _extendedRequiredBy: []
@@ -114,13 +114,13 @@ data:
   - icon: ':heavy_check_mark:'
     path: test/aoj-grl-5-e.test.cpp
     title: test/aoj-grl-5-e.test.cpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':x:'
     path: test/yosupo-division_of_polynomials.test.cpp
     title: test/yosupo-division_of_polynomials.test.cpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':x:'
     path: test/yosupo-exp_of_formal_power_series.test.cpp
     title: test/yosupo-exp_of_formal_power_series.test.cpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':x:'
     path: test/yosupo-inv_of_formal_power_series.test.cpp
     title: test/yosupo-inv_of_formal_power_series.test.cpp
   - icon: ':heavy_check_mark:'
@@ -129,10 +129,10 @@ data:
   - icon: ':heavy_check_mark:'
     path: test/yosupo-line_add_get_min.test.cpp
     title: test/yosupo-line_add_get_min.test.cpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':x:'
     path: test/yosupo-log_of_formal_power_series.test.cpp
     title: test/yosupo-log_of_formal_power_series.test.cpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':x:'
     path: test/yosupo-pow_of_formal_power_series.test.cpp
     title: test/yosupo-pow_of_formal_power_series.test.cpp
   - icon: ':heavy_check_mark:'
@@ -147,7 +147,7 @@ data:
   - icon: ':heavy_check_mark:'
     path: test/yosupo-set_xor_min.test.cpp
     title: test/yosupo-set_xor_min.test.cpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':x:'
     path: test/yosupo-sqrt_of_formal_power_series.test.cpp
     title: test/yosupo-sqrt_of_formal_power_series.test.cpp
   - icon: ':heavy_check_mark:'
@@ -162,9 +162,9 @@ data:
   - icon: ':heavy_check_mark:'
     path: test/yosupo-vertex_add_subtree_sum.test.cpp
     title: test/yosupo-vertex_add_subtree_sum.test.cpp
-  _isVerificationFailed: false
+  _isVerificationFailed: true
   _pathExtension: hpp
-  _verificationStatusIcon: ':heavy_check_mark:'
+  _verificationStatusIcon: ':question:'
   attributes:
     links: []
   bundledCode: "#line 1 \"template.hpp\"\n#include <bits/stdc++.h>\nusing namespace\
@@ -474,7 +474,7 @@ data:
   path: template.hpp
   requiredBy: []
   timestamp: '2021-09-08 15:21:46+09:00'
-  verificationStatus: LIBRARY_ALL_AC
+  verificationStatus: LIBRARY_SOME_WA
   verifiedWith:
   - test/yosupo-two_edge_connected_components.test.cpp
   - test/aoj-grl-3-b.test.cpp

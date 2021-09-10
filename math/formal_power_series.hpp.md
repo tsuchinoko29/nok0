@@ -1,39 +1,39 @@
 ---
 data:
   _extendedDependsOn:
-  - icon: ':heavy_check_mark:'
+  - icon: ':question:'
     path: atcoder/convolution.hpp
     title: atcoder/convolution.hpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':question:'
     path: atcoder/internal_bit.hpp
     title: atcoder/internal_bit.hpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':question:'
     path: atcoder/internal_math.hpp
     title: atcoder/internal_math.hpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':question:'
     path: atcoder/internal_type_traits.hpp
     title: atcoder/internal_type_traits.hpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':question:'
     path: atcoder/modint.hpp
     title: atcoder/modint.hpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':question:'
     path: math/factorial.hpp
     title: math/factorial.hpp
   _extendedRequiredBy:
-  - icon: ':heavy_check_mark:'
+  - icon: ':warning:'
     path: math/multipoint_evaluation.hpp
     title: math/multipoint_evaluation.hpp
   _extendedVerifiedWith:
-  - icon: ':heavy_check_mark:'
+  - icon: ':x:'
     path: test/yosupo-division_of_polynomials.test.cpp
     title: test/yosupo-division_of_polynomials.test.cpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':x:'
     path: test/yosupo-exp_of_formal_power_series.test.cpp
     title: test/yosupo-exp_of_formal_power_series.test.cpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':x:'
     path: test/yosupo-inv_of_formal_power_series.test.cpp
     title: test/yosupo-inv_of_formal_power_series.test.cpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':x:'
     path: test/yosupo-log_of_formal_power_series.test.cpp
     title: test/yosupo-log_of_formal_power_series.test.cpp
   - icon: ':heavy_check_mark:'
@@ -42,10 +42,10 @@ data:
   - icon: ':heavy_check_mark:'
     path: test/yosupo-polynomial_taylor_shift.test.cpp
     title: test/yosupo-polynomial_taylor_shift.test.cpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':x:'
     path: test/yosupo-pow_of_formal_power_series.test.cpp
     title: test/yosupo-pow_of_formal_power_series.test.cpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':x:'
     path: test/yosupo-sqrt_of_formal_power_series.test.cpp
     title: test/yosupo-sqrt_of_formal_power_series.test.cpp
   - icon: ':heavy_check_mark:'
@@ -54,9 +54,9 @@ data:
   - icon: ':heavy_check_mark:'
     path: test/yosupo-stirling_number_of_the_second_kind.test.cpp
     title: test/yosupo-stirling_number_of_the_second_kind.test.cpp
-  _isVerificationFailed: false
+  _isVerificationFailed: true
   _pathExtension: hpp
-  _verificationStatusIcon: ':heavy_check_mark:'
+  _verificationStatusIcon: ':question:'
   attributes:
     links: []
   bundledCode: "#line 2 \"math/formal_power_series.hpp\"\n#include <cassert>\n#include\
@@ -619,7 +619,19 @@ data:
     \t\tT mul = 1;\n\t\tfor(int i = 1; i < n; i++)\n\t\t\tg[i] = (mul *= c) * fact.finv[i];\n\
     \t\tf *= g;\n\t\treverse(f.begin(), f.end());\n\t\tfor(int i = 0; i < n; i++)\
     \ f[i] *= fact.finv[i];\n\t\treturn f;\n\t}\n\tF taylor_shift(T c) { return taylor_shift(c.val());\
-    \ }\n\n\tstd::vector<T> multipoint_evaluation(const std::vector<T> &p);\n};\n"
+    \ }\n\n\ttemplate <class U>\n\tstd::vector<T> multipoint_evaluation(const std::vector<U>\
+    \ &p) {\n\t\tusing fps = formal_power_series<T, mode>;\n\t\tint m = p.size();\n\
+    \t\tint n = 1 << max(atcoder::internal::ceil_pow2(m), 1);\n\t\tstd::vector<fps>\
+    \ subproducts(2 * n, F{1}), rem(2 * n);\n\t\tfor(int i = n; i < n + m; i++) subproducts[i]\
+    \ = fps({-p[i - n], 1});\n\t\tfor(int i = n - 1; i; i--) {\n\t\t\tint x = subproducts[i\
+    \ << 1].size(), y = subproducts[i << 1 | 1].size();\n\t\t\tsubproducts[i] = subproducts[i\
+    \ << 1];\n\t\t\tsubproducts[i].resize(x + y - 1);\n\t\t\tsubproducts[i] *= subproducts[i\
+    \ << 1 | 1];\n\t\t}\n\t\trem[1] = *this;\n\t\tfor(int i = 1; i < n; i++) {\n\t\
+    \t\trem[i << 1] = rem[i] % subproducts[i << 1];\n\t\t\trem[i << 1].shrink();\n\
+    \t\t\trem[i << 1 | 1] = rem[i] % subproducts[i << 1 | 1];\n\t\t\trem[i << 1 |\
+    \ 1].shrink();\n\t\t}\n\t\tstd::vector<T> res(m);\n\t\tfor(int i = 0; i < m; i++)\
+    \ res[i] = (!rem[i + n].empty() ? rem[i + n][0] : 0);\n\t\treturn res;\n\t}\n\
+    };\n"
   code: "#pragma once\n#include <cassert>\n#include <iostream>\n#include <random>\n\
     #include <vector>\n\n#include \"atcoder/convolution\"\n#include \"math/factorial.hpp\"\
     \n\nenum Mode {\n\tFAST = 1,\n\tNAIVE = -1,\n};\ntemplate <class T, Mode mode\
@@ -801,7 +813,19 @@ data:
     \t\tT mul = 1;\n\t\tfor(int i = 1; i < n; i++)\n\t\t\tg[i] = (mul *= c) * fact.finv[i];\n\
     \t\tf *= g;\n\t\treverse(f.begin(), f.end());\n\t\tfor(int i = 0; i < n; i++)\
     \ f[i] *= fact.finv[i];\n\t\treturn f;\n\t}\n\tF taylor_shift(T c) { return taylor_shift(c.val());\
-    \ }\n\n\tstd::vector<T> multipoint_evaluation(const std::vector<T> &p);\n};\n"
+    \ }\n\n\ttemplate <class U>\n\tstd::vector<T> multipoint_evaluation(const std::vector<U>\
+    \ &p) {\n\t\tusing fps = formal_power_series<T, mode>;\n\t\tint m = p.size();\n\
+    \t\tint n = 1 << max(atcoder::internal::ceil_pow2(m), 1);\n\t\tstd::vector<fps>\
+    \ subproducts(2 * n, F{1}), rem(2 * n);\n\t\tfor(int i = n; i < n + m; i++) subproducts[i]\
+    \ = fps({-p[i - n], 1});\n\t\tfor(int i = n - 1; i; i--) {\n\t\t\tint x = subproducts[i\
+    \ << 1].size(), y = subproducts[i << 1 | 1].size();\n\t\t\tsubproducts[i] = subproducts[i\
+    \ << 1];\n\t\t\tsubproducts[i].resize(x + y - 1);\n\t\t\tsubproducts[i] *= subproducts[i\
+    \ << 1 | 1];\n\t\t}\n\t\trem[1] = *this;\n\t\tfor(int i = 1; i < n; i++) {\n\t\
+    \t\trem[i << 1] = rem[i] % subproducts[i << 1];\n\t\t\trem[i << 1].shrink();\n\
+    \t\t\trem[i << 1 | 1] = rem[i] % subproducts[i << 1 | 1];\n\t\t\trem[i << 1 |\
+    \ 1].shrink();\n\t\t}\n\t\tstd::vector<T> res(m);\n\t\tfor(int i = 0; i < m; i++)\
+    \ res[i] = (!rem[i + n].empty() ? rem[i + n][0] : 0);\n\t\treturn res;\n\t}\n\
+    };\n"
   dependsOn:
   - atcoder/convolution.hpp
   - atcoder/internal_bit.hpp
@@ -813,8 +837,8 @@ data:
   path: math/formal_power_series.hpp
   requiredBy:
   - math/multipoint_evaluation.hpp
-  timestamp: '2021-09-10 16:42:54+09:00'
-  verificationStatus: LIBRARY_ALL_AC
+  timestamp: '2021-09-10 17:12:08+09:00'
+  verificationStatus: LIBRARY_SOME_WA
   verifiedWith:
   - test/yosupo-stirling_number_of_the_second_kind.test.cpp
   - test/yosupo-division_of_polynomials.test.cpp

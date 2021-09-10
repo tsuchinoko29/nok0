@@ -1,36 +1,33 @@
 ---
 data:
   _extendedDependsOn:
-  - icon: ':heavy_check_mark:'
+  - icon: ':question:'
     path: atcoder/convolution.hpp
     title: atcoder/convolution.hpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':question:'
     path: atcoder/internal_bit.hpp
     title: atcoder/internal_bit.hpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':question:'
     path: atcoder/internal_math.hpp
     title: atcoder/internal_math.hpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':question:'
     path: atcoder/internal_type_traits.hpp
     title: atcoder/internal_type_traits.hpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':question:'
     path: atcoder/modint.hpp
     title: atcoder/modint.hpp
   - icon: ':heavy_check_mark:'
     path: cftemp.hpp
     title: cftemp.hpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':question:'
     path: math/factorial.hpp
     title: math/factorial.hpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':question:'
     path: math/formal_power_series.hpp
     title: math/formal_power_series.hpp
   - icon: ':heavy_check_mark:'
     path: math/modint_iostream.hpp
     title: math/modint_iostream.hpp
-  - icon: ':heavy_check_mark:'
-    path: math/multipoint_evaluation.hpp
-    title: math/multipoint_evaluation.hpp
   _extendedRequiredBy: []
   _extendedVerifiedWith: []
   _isVerificationFailed: false
@@ -728,38 +725,36 @@ data:
     \t\tT mul = 1;\n\t\tfor(int i = 1; i < n; i++)\n\t\t\tg[i] = (mul *= c) * fact.finv[i];\n\
     \t\tf *= g;\n\t\treverse(f.begin(), f.end());\n\t\tfor(int i = 0; i < n; i++)\
     \ f[i] *= fact.finv[i];\n\t\treturn f;\n\t}\n\tF taylor_shift(T c) { return taylor_shift(c.val());\
-    \ }\n\n\tstd::vector<T> multipoint_evaluation(const std::vector<T> &p);\n};\n\
-    #line 2 \"math/modint_iostream.hpp\"\n\n#line 4 \"math/modint_iostream.hpp\"\n\
-    template <int m>\nstd::istream &std::operator>>(std::istream &is, atcoder::static_modint<m>\
+    \ }\n\n\ttemplate <class U>\n\tstd::vector<T> multipoint_evaluation(const std::vector<U>\
+    \ &p) {\n\t\tusing fps = formal_power_series<T, mode>;\n\t\tint m = p.size();\n\
+    \t\tint n = 1 << max(atcoder::internal::ceil_pow2(m), 1);\n\t\tstd::vector<fps>\
+    \ subproducts(2 * n, F{1}), rem(2 * n);\n\t\tfor(int i = n; i < n + m; i++) subproducts[i]\
+    \ = fps({-p[i - n], 1});\n\t\tfor(int i = n - 1; i; i--) {\n\t\t\tint x = subproducts[i\
+    \ << 1].size(), y = subproducts[i << 1 | 1].size();\n\t\t\tsubproducts[i] = subproducts[i\
+    \ << 1];\n\t\t\tsubproducts[i].resize(x + y - 1);\n\t\t\tsubproducts[i] *= subproducts[i\
+    \ << 1 | 1];\n\t\t}\n\t\trem[1] = *this;\n\t\tfor(int i = 1; i < n; i++) {\n\t\
+    \t\trem[i << 1] = rem[i] % subproducts[i << 1];\n\t\t\trem[i << 1].shrink();\n\
+    \t\t\trem[i << 1 | 1] = rem[i] % subproducts[i << 1 | 1];\n\t\t\trem[i << 1 |\
+    \ 1].shrink();\n\t\t}\n\t\tstd::vector<T> res(m);\n\t\tfor(int i = 0; i < m; i++)\
+    \ res[i] = (!rem[i + n].empty() ? rem[i + n][0] : 0);\n\t\treturn res;\n\t}\n\
+    };\n#line 2 \"math/modint_iostream.hpp\"\n\n#line 4 \"math/modint_iostream.hpp\"\
+    \ntemplate <int m>\nstd::istream &std::operator>>(std::istream &is, atcoder::static_modint<m>\
     \ &a) {\n\tlong long v;\n\tis >> v;\n\ta = v;\n\treturn is;\n}\ntemplate <int\
     \ m>\nstd::istream &std::operator>>(std::istream &is, atcoder::dynamic_modint<m>\
     \ &a) {\n\tlong long v;\n\tis >> v;\n\ta = v;\n\treturn is;\n}\ntemplate <int\
     \ m>\nstd::ostream &std::operator<<(std::ostream &os, const atcoder::static_modint<m>\
     \ &a) { return os << a.val(); }\ntemplate <int m>\nstd::ostream &std::operator<<(std::ostream\
-    \ &os, const atcoder::dynamic_modint<m> &a) { return os << a.val(); }\n#line 2\
-    \ \"math/multipoint_evaluation.hpp\"\n#include <atcoder/internal_bit>\n#line 4\
-    \ \"math/multipoint_evaluation.hpp\"\n\n#line 6 \"math/multipoint_evaluation.hpp\"\
-    \n\ntemplate <class T, Mode mode>\nstd::vector<T> formal_power_series<T, mode>::multipoint_evaluation(const\
-    \ std::vector<T> &p) {\n\tusing fps = formal_power_series<T, mode>;\n\tint m =\
-    \ p.size();\n\tint n = 1 << max(atcoder::internal::ceil_pow2(m), 1);\n\tstd::vector<fps>\
-    \ subproducts(2 * n, F{1}), rem(2 * n);\n\tfor(int i = n; i < n + m; i++) subproducts[i]\
-    \ = fps({-p[i - n], 1});\n\tfor(int i = n - 1; i; i--) {\n\t\tint x = subproducts[i\
-    \ << 1].size(), y = subproducts[i << 1 | 1].size();\n\t\tsubproducts[i] = subproducts[i\
-    \ << 1];\n\t\tsubproducts[i].resize(x + y - 1);\n\t\tsubproducts[i] *= subproducts[i\
-    \ << 1 | 1];\n\t}\n\trem[1] = *this;\n\tfor(int i = 1; i < n; i++) {\n\t\trem[i\
-    \ << 1] = rem[i] % subproducts[i << 1];\n\t\trem[i << 1].shrink();\n\t\trem[i\
-    \ << 1 | 1] = rem[i] % subproducts[i << 1 | 1];\n\t\trem[i << 1 | 1].shrink();\n\
-    \t}\n\tstd::vector<T> res(m);\n\tfor(int i = 0; i < m; i++) res[i] = (!rem[i +\
-    \ n].empty() ? rem[i + n][0] : 0);\n\treturn res;\n}\n#line 8 \"test/yosupo-multipoint_evaluation.test.cpp\"\
-    \n\nusing mint = atcoder::modint998244353;\nusing fps = formal_power_series<mint,\
-    \ FAST>;\nvoid main_() {\n\tINT(n, m);\n\tfps f(n);\n\tcin >> f;\n\tVEC(mint,\
-    \ p, m);\n\tauto res = f.multipoint_evaluation(p);\n\tprint(res);\n}\n"
+    \ &os, const atcoder::dynamic_modint<m> &a) { return os << a.val(); }\n#line 7\
+    \ \"test/yosupo-multipoint_evaluation.test.cpp\"\n\nusing mint = atcoder::modint998244353;\n\
+    using fps = formal_power_series<mint, FAST>;\nvoid main_() {\n\tINT(n, m);\n\t\
+    fps f(n);\n\tcin >> f;\n\tVEC(mint, p, m);\n\tauto res = f.multipoint_evaluation(p);\n\
+    \tprint(res);\n}\n"
   code: "#define PROBLEM \"https://judge.yosupo.jp/problem/multipoint_evaluation\"\
     \n\n#include \"atcoder/modint\"\n#include \"cftemp.hpp\"\n#include \"math/formal_power_series.hpp\"\
-    \n#include \"math/modint_iostream.hpp\"\n#include \"math/multipoint_evaluation.hpp\"\
-    \n\nusing mint = atcoder::modint998244353;\nusing fps = formal_power_series<mint,\
-    \ FAST>;\nvoid main_() {\n\tINT(n, m);\n\tfps f(n);\n\tcin >> f;\n\tVEC(mint,\
-    \ p, m);\n\tauto res = f.multipoint_evaluation(p);\n\tprint(res);\n}"
+    \n#include \"math/modint_iostream.hpp\"\n\nusing mint = atcoder::modint998244353;\n\
+    using fps = formal_power_series<mint, FAST>;\nvoid main_() {\n\tINT(n, m);\n\t\
+    fps f(n);\n\tcin >> f;\n\tVEC(mint, p, m);\n\tauto res = f.multipoint_evaluation(p);\n\
+    \tprint(res);\n}"
   dependsOn:
   - atcoder/modint.hpp
   - atcoder/internal_math.hpp
@@ -770,11 +765,10 @@ data:
   - atcoder/internal_bit.hpp
   - math/factorial.hpp
   - math/modint_iostream.hpp
-  - math/multipoint_evaluation.hpp
   isVerificationFile: true
   path: test/yosupo-multipoint_evaluation.test.cpp
   requiredBy: []
-  timestamp: '2021-09-10 16:42:54+09:00'
+  timestamp: '2021-09-10 17:12:08+09:00'
   verificationStatus: TEST_ACCEPTED
   verifiedWith: []
 documentation_of: test/yosupo-multipoint_evaluation.test.cpp

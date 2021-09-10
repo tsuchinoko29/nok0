@@ -1,28 +1,28 @@
 ---
 data:
   _extendedDependsOn:
-  - icon: ':heavy_check_mark:'
+  - icon: ':question:'
     path: atcoder/convolution.hpp
     title: atcoder/convolution.hpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':question:'
     path: atcoder/internal_bit.hpp
     title: atcoder/internal_bit.hpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':question:'
     path: atcoder/internal_math.hpp
     title: atcoder/internal_math.hpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':question:'
     path: atcoder/internal_type_traits.hpp
     title: atcoder/internal_type_traits.hpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':question:'
     path: atcoder/modint.hpp
     title: atcoder/modint.hpp
   - icon: ':heavy_check_mark:'
     path: cftemp.hpp
     title: cftemp.hpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':question:'
     path: math/factorial.hpp
     title: math/factorial.hpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':question:'
     path: math/formal_power_series.hpp
     title: math/formal_power_series.hpp
   - icon: ':heavy_check_mark:'
@@ -725,9 +725,20 @@ data:
     \t\tT mul = 1;\n\t\tfor(int i = 1; i < n; i++)\n\t\t\tg[i] = (mul *= c) * fact.finv[i];\n\
     \t\tf *= g;\n\t\treverse(f.begin(), f.end());\n\t\tfor(int i = 0; i < n; i++)\
     \ f[i] *= fact.finv[i];\n\t\treturn f;\n\t}\n\tF taylor_shift(T c) { return taylor_shift(c.val());\
-    \ }\n\n\tstd::vector<T> multipoint_evaluation(const std::vector<T> &p);\n};\n\
-    #line 2 \"math/modint_iostream.hpp\"\n\n#line 4 \"math/modint_iostream.hpp\"\n\
-    template <int m>\nstd::istream &std::operator>>(std::istream &is, atcoder::static_modint<m>\
+    \ }\n\n\ttemplate <class U>\n\tstd::vector<T> multipoint_evaluation(const std::vector<U>\
+    \ &p) {\n\t\tusing fps = formal_power_series<T, mode>;\n\t\tint m = p.size();\n\
+    \t\tint n = 1 << max(atcoder::internal::ceil_pow2(m), 1);\n\t\tstd::vector<fps>\
+    \ subproducts(2 * n, F{1}), rem(2 * n);\n\t\tfor(int i = n; i < n + m; i++) subproducts[i]\
+    \ = fps({-p[i - n], 1});\n\t\tfor(int i = n - 1; i; i--) {\n\t\t\tint x = subproducts[i\
+    \ << 1].size(), y = subproducts[i << 1 | 1].size();\n\t\t\tsubproducts[i] = subproducts[i\
+    \ << 1];\n\t\t\tsubproducts[i].resize(x + y - 1);\n\t\t\tsubproducts[i] *= subproducts[i\
+    \ << 1 | 1];\n\t\t}\n\t\trem[1] = *this;\n\t\tfor(int i = 1; i < n; i++) {\n\t\
+    \t\trem[i << 1] = rem[i] % subproducts[i << 1];\n\t\t\trem[i << 1].shrink();\n\
+    \t\t\trem[i << 1 | 1] = rem[i] % subproducts[i << 1 | 1];\n\t\t\trem[i << 1 |\
+    \ 1].shrink();\n\t\t}\n\t\tstd::vector<T> res(m);\n\t\tfor(int i = 0; i < m; i++)\
+    \ res[i] = (!rem[i + n].empty() ? rem[i + n][0] : 0);\n\t\treturn res;\n\t}\n\
+    };\n#line 2 \"math/modint_iostream.hpp\"\n\n#line 4 \"math/modint_iostream.hpp\"\
+    \ntemplate <int m>\nstd::istream &std::operator>>(std::istream &is, atcoder::static_modint<m>\
     \ &a) {\n\tlong long v;\n\tis >> v;\n\ta = v;\n\treturn is;\n}\ntemplate <int\
     \ m>\nstd::istream &std::operator>>(std::istream &is, atcoder::dynamic_modint<m>\
     \ &a) {\n\tlong long v;\n\tis >> v;\n\ta = v;\n\treturn is;\n}\ntemplate <int\
@@ -757,7 +768,7 @@ data:
   isVerificationFile: true
   path: test/yosupo-polynomial_taylor_shift.test.cpp
   requiredBy: []
-  timestamp: '2021-09-10 16:42:54+09:00'
+  timestamp: '2021-09-10 17:12:08+09:00'
   verificationStatus: TEST_ACCEPTED
   verifiedWith: []
 documentation_of: test/yosupo-polynomial_taylor_shift.test.cpp

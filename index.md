@@ -3,58 +3,58 @@ data:
   libraryCategories:
   - name: atcoder
     pages:
-    - icon: ':heavy_check_mark:'
+    - icon: ':question:'
       path: atcoder/convolution.hpp
       title: atcoder/convolution.hpp
-    - icon: ':heavy_check_mark:'
+    - icon: ':question:'
       path: atcoder/dsu.hpp
       title: atcoder/dsu.hpp
-    - icon: ':heavy_check_mark:'
+    - icon: ':question:'
       path: atcoder/fenwicktree.hpp
       title: atcoder/fenwicktree.hpp
-    - icon: ':heavy_check_mark:'
+    - icon: ':question:'
       path: atcoder/internal_bit.hpp
       title: atcoder/internal_bit.hpp
-    - icon: ':heavy_check_mark:'
+    - icon: ':question:'
       path: atcoder/internal_csr.hpp
       title: atcoder/internal_csr.hpp
-    - icon: ':heavy_check_mark:'
+    - icon: ':question:'
       path: atcoder/internal_math.hpp
       title: atcoder/internal_math.hpp
-    - icon: ':heavy_check_mark:'
+    - icon: ':question:'
       path: atcoder/internal_queue.hpp
       title: atcoder/internal_queue.hpp
-    - icon: ':heavy_check_mark:'
+    - icon: ':question:'
       path: atcoder/internal_scc.hpp
       title: atcoder/internal_scc.hpp
-    - icon: ':heavy_check_mark:'
+    - icon: ':question:'
       path: atcoder/internal_type_traits.hpp
       title: atcoder/internal_type_traits.hpp
-    - icon: ':heavy_check_mark:'
+    - icon: ':question:'
       path: atcoder/lazysegtree.hpp
       title: atcoder/lazysegtree.hpp
-    - icon: ':heavy_check_mark:'
+    - icon: ':question:'
       path: atcoder/math.hpp
       title: atcoder/math.hpp
-    - icon: ':heavy_check_mark:'
+    - icon: ':question:'
       path: atcoder/maxflow.hpp
       title: atcoder/maxflow.hpp
-    - icon: ':heavy_check_mark:'
+    - icon: ':question:'
       path: atcoder/mincostflow.hpp
       title: atcoder/mincostflow.hpp
-    - icon: ':heavy_check_mark:'
+    - icon: ':question:'
       path: atcoder/modint.hpp
       title: atcoder/modint.hpp
-    - icon: ':heavy_check_mark:'
+    - icon: ':question:'
       path: atcoder/scc.hpp
       title: atcoder/scc.hpp
-    - icon: ':heavy_check_mark:'
+    - icon: ':question:'
       path: atcoder/segtree.hpp
       title: atcoder/segtree.hpp
-    - icon: ':heavy_check_mark:'
+    - icon: ':question:'
       path: atcoder/string.hpp
       title: atcoder/string.hpp
-    - icon: ':heavy_check_mark:'
+    - icon: ':question:'
       path: atcoder/twosat.hpp
       title: atcoder/twosat.hpp
   - name: .
@@ -71,7 +71,7 @@ data:
     - icon: ':warning:'
       path: submit.cpp
       title: submit.cpp
-    - icon: ':heavy_check_mark:'
+    - icon: ':question:'
       path: template.hpp
       title: template.hpp
   - name: data_structure
@@ -143,13 +143,13 @@ data:
     - icon: ':warning:'
       path: math/bostan_mori_ll.hpp
       title: math/bostan_mori_ll.hpp
-    - icon: ':heavy_check_mark:'
+    - icon: ':question:'
       path: math/factorial.hpp
       title: math/factorial.hpp
     - icon: ':heavy_check_mark:'
       path: math/factorize.hpp
       title: math/factorize.hpp
-    - icon: ':heavy_check_mark:'
+    - icon: ':question:'
       path: math/formal_power_series.hpp
       title: math/formal_power_series.hpp
     - icon: ':heavy_check_mark:'
@@ -161,7 +161,7 @@ data:
     - icon: ':heavy_check_mark:'
       path: math/modint_iostream.hpp
       title: math/modint_iostream.hpp
-    - icon: ':heavy_check_mark:'
+    - icon: ':warning:'
       path: math/multipoint_evaluation.hpp
       title: math/multipoint_evaluation.hpp
     - icon: ':warning:'
@@ -235,16 +235,16 @@ data:
     - icon: ':heavy_check_mark:'
       path: test/aoj-grl-5-e.test.cpp
       title: test/aoj-grl-5-e.test.cpp
-    - icon: ':heavy_check_mark:'
+    - icon: ':x:'
       path: test/yosupo-division_of_polynomials.test.cpp
       title: test/yosupo-division_of_polynomials.test.cpp
-    - icon: ':heavy_check_mark:'
+    - icon: ':x:'
       path: test/yosupo-exp_of_formal_power_series.test.cpp
       title: test/yosupo-exp_of_formal_power_series.test.cpp
     - icon: ':heavy_check_mark:'
       path: test/yosupo-factorize.test.cpp
       title: test/yosupo-factorize.test.cpp
-    - icon: ':heavy_check_mark:'
+    - icon: ':x:'
       path: test/yosupo-inv_of_formal_power_series.test.cpp
       title: test/yosupo-inv_of_formal_power_series.test.cpp
     - icon: ':heavy_check_mark:'
@@ -253,7 +253,7 @@ data:
     - icon: ':heavy_check_mark:'
       path: test/yosupo-line_add_get_min.test.cpp
       title: test/yosupo-line_add_get_min.test.cpp
-    - icon: ':heavy_check_mark:'
+    - icon: ':x:'
       path: test/yosupo-log_of_formal_power_series.test.cpp
       title: test/yosupo-log_of_formal_power_series.test.cpp
     - icon: ':heavy_check_mark:'
@@ -262,7 +262,7 @@ data:
     - icon: ':heavy_check_mark:'
       path: test/yosupo-polynomial_taylor_shift.test.cpp
       title: test/yosupo-polynomial_taylor_shift.test.cpp
-    - icon: ':heavy_check_mark:'
+    - icon: ':x:'
       path: test/yosupo-pow_of_formal_power_series.test.cpp
       title: test/yosupo-pow_of_formal_power_series.test.cpp
     - icon: ':heavy_check_mark:'
@@ -280,7 +280,7 @@ data:
     - icon: ':heavy_check_mark:'
       path: test/yosupo-set_xor_min.test.cpp
       title: test/yosupo-set_xor_min.test.cpp
-    - icon: ':heavy_check_mark:'
+    - icon: ':x:'
       path: test/yosupo-sqrt_of_formal_power_series.test.cpp
       title: test/yosupo-sqrt_of_formal_power_series.test.cpp
     - icon: ':heavy_check_mark:'
