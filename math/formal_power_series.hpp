@@ -1,4 +1,5 @@
 #pragma once
+#include <algorithm>
 #include <cassert>
 #include <iostream>
 #include <random>
@@ -544,7 +545,7 @@ struct formal_power_series : std::vector<T> {
 	std::vector<T> multipoint_evaluation(const std::vector<U> &p) {
 		using fps = formal_power_series<T, mode>;
 		int m = p.size();
-		int n = 1 << max(atcoder::internal::ceil_pow2(m), 1);
+		int n = 1 << std::max(atcoder::internal::ceil_pow2(m), 1);
 		std::vector<fps> subproducts(2 * n, F{1}), rem(2 * n);
 		for(int i = n; i < n + m; i++) subproducts[i] = fps({-p[i - n], 1});
 		for(int i = n - 1; i; i--) {
