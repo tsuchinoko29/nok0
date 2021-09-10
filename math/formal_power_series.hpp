@@ -213,7 +213,7 @@ struct formal_power_series : std::vector<T> {
 	F pre(int d) const { return F((*this).begin(), (*this).begin() + std::min((int)(*this).size(), d)); }
 
 	F &shrink() {
-		while((int)(*this).size() > 1 and (*this).back() == T(0)) (*this).pop_back();
+		while(!(*this).empty() and (*this).back() == T(0)) (*this).pop_back();
 		return *this;
 	}
 

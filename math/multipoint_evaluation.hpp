@@ -8,7 +8,7 @@ template <class T, Mode mode>
 std::vector<T> formal_power_series<T, mode>::multipoint_evaluation(const std::vector<T> &p) {
 	using fps = formal_power_series<T, mode>;
 	int m = p.size();
-	int n = 1 << atcoder::internal::ceil_pow2(m);
+	int n = 1 << max(atcoder::internal::ceil_pow2(m), 1);
 	std::vector<fps> subproducts(2 * n, F{1}), rem(2 * n);
 	for(int i = n; i < n + m; i++) subproducts[i] = fps({-p[i - n], 1});
 	for(int i = n - 1; i; i--) {
@@ -25,6 +25,6 @@ std::vector<T> formal_power_series<T, mode>::multipoint_evaluation(const std::ve
 		rem[i << 1 | 1].shrink();
 	}
 	std::vector<T> res(m);
-	for(int i = 0; i < m; i++) res[i] = rem[i + n][0];
+	for(int i = 0; i < m; i++) res[i] = (!rem[i + n].empty() ? rem[i + n][0] : 0);
 	return res;
 }
