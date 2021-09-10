@@ -20,7 +20,7 @@ data:
     path: math/factorial.hpp
     title: math/factorial.hpp
   _extendedRequiredBy:
-  - icon: ':warning:'
+  - icon: ':heavy_check_mark:'
     path: math/multipoint_evaluation.hpp
     title: math/multipoint_evaluation.hpp
   _extendedVerifiedWith:
@@ -36,6 +36,9 @@ data:
   - icon: ':heavy_check_mark:'
     path: test/yosupo-log_of_formal_power_series.test.cpp
     title: test/yosupo-log_of_formal_power_series.test.cpp
+  - icon: ':heavy_check_mark:'
+    path: test/yosupo-multipoint_evaluation.test.cpp
+    title: test/yosupo-multipoint_evaluation.test.cpp
   - icon: ':heavy_check_mark:'
     path: test/yosupo-polynomial_taylor_shift.test.cpp
     title: test/yosupo-polynomial_taylor_shift.test.cpp
@@ -502,8 +505,8 @@ data:
     \ }\n\n\tF operator*=(const S &g) const { return F(*this) *= g; }\n\n\tF operator/=(const\
     \ S &g) const { return F(*this) /= g; }\n\n\tF pre(int d) const { return F((*this).begin(),\
     \ (*this).begin() + std::min((int)(*this).size(), d)); }\n\n\tF &shrink() {\n\t\
-    \twhile((int)(*this).size() > 1 and (*this).back() == T(0)) (*this).pop_back();\n\
-    \t\treturn *this;\n\t}\n\n\tF &rev_inplace() {\n\t\treverse((*this).begin(), (*this).end());\n\
+    \twhile(!(*this).empty() and (*this).back() == T(0)) (*this).pop_back();\n\t\t\
+    return *this;\n\t}\n\n\tF &rev_inplace() {\n\t\treverse((*this).begin(), (*this).end());\n\
     \t\treturn *this;\n\t}\n\tF rev() const { return F(*this).rev_inplace(); }\n\n\
     \t// *=(1 + cz^d)\n\tF &multiply(const int d, const T c) {\n\t\tint n = (*this).size();\n\
     \t\tif(c == T(1))\n\t\t\tfor(int i = n - d - 1; i >= 0; --i)\n\t\t\t\t(*this)[i\
@@ -684,8 +687,8 @@ data:
     \ }\n\n\tF operator*=(const S &g) const { return F(*this) *= g; }\n\n\tF operator/=(const\
     \ S &g) const { return F(*this) /= g; }\n\n\tF pre(int d) const { return F((*this).begin(),\
     \ (*this).begin() + std::min((int)(*this).size(), d)); }\n\n\tF &shrink() {\n\t\
-    \twhile((int)(*this).size() > 1 and (*this).back() == T(0)) (*this).pop_back();\n\
-    \t\treturn *this;\n\t}\n\n\tF &rev_inplace() {\n\t\treverse((*this).begin(), (*this).end());\n\
+    \twhile(!(*this).empty() and (*this).back() == T(0)) (*this).pop_back();\n\t\t\
+    return *this;\n\t}\n\n\tF &rev_inplace() {\n\t\treverse((*this).begin(), (*this).end());\n\
     \t\treturn *this;\n\t}\n\tF rev() const { return F(*this).rev_inplace(); }\n\n\
     \t// *=(1 + cz^d)\n\tF &multiply(const int d, const T c) {\n\t\tint n = (*this).size();\n\
     \t\tif(c == T(1))\n\t\t\tfor(int i = n - d - 1; i >= 0; --i)\n\t\t\t\t(*this)[i\
@@ -810,12 +813,13 @@ data:
   path: math/formal_power_series.hpp
   requiredBy:
   - math/multipoint_evaluation.hpp
-  timestamp: '2021-09-09 11:03:30+09:00'
+  timestamp: '2021-09-10 16:42:54+09:00'
   verificationStatus: LIBRARY_ALL_AC
   verifiedWith:
   - test/yosupo-stirling_number_of_the_second_kind.test.cpp
   - test/yosupo-division_of_polynomials.test.cpp
   - test/yosupo-inv_of_formal_power_series.test.cpp
+  - test/yosupo-multipoint_evaluation.test.cpp
   - test/yosupo-log_of_formal_power_series.test.cpp
   - test/yosupo-pow_of_formal_power_series.test.cpp
   - test/yosupo-polynomial_taylor_shift.test.cpp

@@ -520,8 +520,8 @@ data:
     \ }\n\n\tF operator*=(const S &g) const { return F(*this) *= g; }\n\n\tF operator/=(const\
     \ S &g) const { return F(*this) /= g; }\n\n\tF pre(int d) const { return F((*this).begin(),\
     \ (*this).begin() + std::min((int)(*this).size(), d)); }\n\n\tF &shrink() {\n\t\
-    \twhile((int)(*this).size() > 1 and (*this).back() == T(0)) (*this).pop_back();\n\
-    \t\treturn *this;\n\t}\n\n\tF &rev_inplace() {\n\t\treverse((*this).begin(), (*this).end());\n\
+    \twhile(!(*this).empty() and (*this).back() == T(0)) (*this).pop_back();\n\t\t\
+    return *this;\n\t}\n\n\tF &rev_inplace() {\n\t\treverse((*this).begin(), (*this).end());\n\
     \t\treturn *this;\n\t}\n\tF rev() const { return F(*this).rev_inplace(); }\n\n\
     \t// *=(1 + cz^d)\n\tF &multiply(const int d, const T c) {\n\t\tint n = (*this).size();\n\
     \t\tif(c == T(1))\n\t\t\tfor(int i = n - d - 1; i >= 0; --i)\n\t\t\t\t(*this)[i\
@@ -814,7 +814,7 @@ data:
   isVerificationFile: true
   path: test/yosupo-division_of_polynomials.test.cpp
   requiredBy: []
-  timestamp: '2021-09-09 11:03:30+09:00'
+  timestamp: '2021-09-10 16:42:54+09:00'
   verificationStatus: TEST_ACCEPTED
   verifiedWith: []
 documentation_of: test/yosupo-division_of_polynomials.test.cpp

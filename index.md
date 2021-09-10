@@ -161,7 +161,7 @@ data:
     - icon: ':heavy_check_mark:'
       path: math/modint_iostream.hpp
       title: math/modint_iostream.hpp
-    - icon: ':warning:'
+    - icon: ':heavy_check_mark:'
       path: math/multipoint_evaluation.hpp
       title: math/multipoint_evaluation.hpp
     - icon: ':warning:'
@@ -256,6 +256,9 @@ data:
     - icon: ':heavy_check_mark:'
       path: test/yosupo-log_of_formal_power_series.test.cpp
       title: test/yosupo-log_of_formal_power_series.test.cpp
+    - icon: ':heavy_check_mark:'
+      path: test/yosupo-multipoint_evaluation.test.cpp
+      title: test/yosupo-multipoint_evaluation.test.cpp
     - icon: ':heavy_check_mark:'
       path: test/yosupo-polynomial_taylor_shift.test.cpp
       title: test/yosupo-polynomial_taylor_shift.test.cpp

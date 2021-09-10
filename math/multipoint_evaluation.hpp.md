@@ -23,10 +23,13 @@ data:
     path: math/formal_power_series.hpp
     title: math/formal_power_series.hpp
   _extendedRequiredBy: []
-  _extendedVerifiedWith: []
+  _extendedVerifiedWith:
+  - icon: ':heavy_check_mark:'
+    path: test/yosupo-multipoint_evaluation.test.cpp
+    title: test/yosupo-multipoint_evaluation.test.cpp
   _isVerificationFailed: false
   _pathExtension: hpp
-  _verificationStatusIcon: ':warning:'
+  _verificationStatusIcon: ':heavy_check_mark:'
   attributes:
     links: []
   bundledCode: "#line 2 \"math/multipoint_evaluation.hpp\"\n#include <atcoder/internal_bit>\n\
@@ -476,8 +479,8 @@ data:
     \ }\n\n\tF operator*=(const S &g) const { return F(*this) *= g; }\n\n\tF operator/=(const\
     \ S &g) const { return F(*this) /= g; }\n\n\tF pre(int d) const { return F((*this).begin(),\
     \ (*this).begin() + std::min((int)(*this).size(), d)); }\n\n\tF &shrink() {\n\t\
-    \twhile((int)(*this).size() > 1 and (*this).back() == T(0)) (*this).pop_back();\n\
-    \t\treturn *this;\n\t}\n\n\tF &rev_inplace() {\n\t\treverse((*this).begin(), (*this).end());\n\
+    \twhile(!(*this).empty() and (*this).back() == T(0)) (*this).pop_back();\n\t\t\
+    return *this;\n\t}\n\n\tF &rev_inplace() {\n\t\treverse((*this).begin(), (*this).end());\n\
     \t\treturn *this;\n\t}\n\tF rev() const { return F(*this).rev_inplace(); }\n\n\
     \t// *=(1 + cz^d)\n\tF &multiply(const int d, const T c) {\n\t\tint n = (*this).size();\n\
     \t\tif(c == T(1))\n\t\t\tfor(int i = n - d - 1; i >= 0; --i)\n\t\t\t\t(*this)[i\
@@ -594,7 +597,7 @@ data:
     #line 6 \"math/multipoint_evaluation.hpp\"\n\ntemplate <class T, Mode mode>\n\
     std::vector<T> formal_power_series<T, mode>::multipoint_evaluation(const std::vector<T>\
     \ &p) {\n\tusing fps = formal_power_series<T, mode>;\n\tint m = p.size();\n\t\
-    int n = 1 << atcoder::internal::ceil_pow2(m);\n\tstd::vector<fps> subproducts(2\
+    int n = 1 << max(atcoder::internal::ceil_pow2(m), 1);\n\tstd::vector<fps> subproducts(2\
     \ * n, F{1}), rem(2 * n);\n\tfor(int i = n; i < n + m; i++) subproducts[i] = fps({-p[i\
     \ - n], 1});\n\tfor(int i = n - 1; i; i--) {\n\t\tint x = subproducts[i << 1].size(),\
     \ y = subproducts[i << 1 | 1].size();\n\t\tsubproducts[i] = subproducts[i << 1];\n\
@@ -602,22 +605,22 @@ data:
     \ 1 | 1];\n\t}\n\trem[1] = *this;\n\tfor(int i = 1; i < n; i++) {\n\t\trem[i <<\
     \ 1] = rem[i] % subproducts[i << 1];\n\t\trem[i << 1].shrink();\n\t\trem[i <<\
     \ 1 | 1] = rem[i] % subproducts[i << 1 | 1];\n\t\trem[i << 1 | 1].shrink();\n\t\
-    }\n\tstd::vector<T> res(m);\n\tfor(int i = 0; i < m; i++) res[i] = rem[i + n][0];\n\
-    \treturn res;\n}\n"
+    }\n\tstd::vector<T> res(m);\n\tfor(int i = 0; i < m; i++) res[i] = (!rem[i + n].empty()\
+    \ ? rem[i + n][0] : 0);\n\treturn res;\n}\n"
   code: "#pragma once\n#include <atcoder/internal_bit>\n#include <vector>\n\n#include\
     \ \"math/formal_power_series.hpp\"\n\ntemplate <class T, Mode mode>\nstd::vector<T>\
     \ formal_power_series<T, mode>::multipoint_evaluation(const std::vector<T> &p)\
     \ {\n\tusing fps = formal_power_series<T, mode>;\n\tint m = p.size();\n\tint n\
-    \ = 1 << atcoder::internal::ceil_pow2(m);\n\tstd::vector<fps> subproducts(2 *\
-    \ n, F{1}), rem(2 * n);\n\tfor(int i = n; i < n + m; i++) subproducts[i] = fps({-p[i\
+    \ = 1 << max(atcoder::internal::ceil_pow2(m), 1);\n\tstd::vector<fps> subproducts(2\
+    \ * n, F{1}), rem(2 * n);\n\tfor(int i = n; i < n + m; i++) subproducts[i] = fps({-p[i\
     \ - n], 1});\n\tfor(int i = n - 1; i; i--) {\n\t\tint x = subproducts[i << 1].size(),\
     \ y = subproducts[i << 1 | 1].size();\n\t\tsubproducts[i] = subproducts[i << 1];\n\
     \t\tsubproducts[i].resize(x + y - 1);\n\t\tsubproducts[i] *= subproducts[i <<\
     \ 1 | 1];\n\t}\n\trem[1] = *this;\n\tfor(int i = 1; i < n; i++) {\n\t\trem[i <<\
     \ 1] = rem[i] % subproducts[i << 1];\n\t\trem[i << 1].shrink();\n\t\trem[i <<\
     \ 1 | 1] = rem[i] % subproducts[i << 1 | 1];\n\t\trem[i << 1 | 1].shrink();\n\t\
-    }\n\tstd::vector<T> res(m);\n\tfor(int i = 0; i < m; i++) res[i] = rem[i + n][0];\n\
-    \treturn res;\n}\n"
+    }\n\tstd::vector<T> res(m);\n\tfor(int i = 0; i < m; i++) res[i] = (!rem[i + n].empty()\
+    \ ? rem[i + n][0] : 0);\n\treturn res;\n}\n"
   dependsOn:
   - atcoder/internal_bit.hpp
   - math/formal_power_series.hpp
@@ -629,9 +632,10 @@ data:
   isVerificationFile: false
   path: math/multipoint_evaluation.hpp
   requiredBy: []
-  timestamp: '2021-09-09 11:03:30+09:00'
-  verificationStatus: LIBRARY_NO_TESTS
-  verifiedWith: []
+  timestamp: '2021-09-10 16:42:54+09:00'
+  verificationStatus: LIBRARY_ALL_AC
+  verifiedWith:
+  - test/yosupo-multipoint_evaluation.test.cpp
 documentation_of: math/multipoint_evaluation.hpp
 layout: document
 redirect_from:

@@ -14,7 +14,7 @@ data:
   - icon: ':heavy_check_mark:'
     path: math/formal_power_series.hpp
     title: math/formal_power_series.hpp
-  - icon: ':warning:'
+  - icon: ':heavy_check_mark:'
     path: math/multipoint_evaluation.hpp
     title: math/multipoint_evaluation.hpp
   _extendedVerifiedWith:
@@ -30,6 +30,9 @@ data:
   - icon: ':heavy_check_mark:'
     path: test/yosupo-log_of_formal_power_series.test.cpp
     title: test/yosupo-log_of_formal_power_series.test.cpp
+  - icon: ':heavy_check_mark:'
+    path: test/yosupo-multipoint_evaluation.test.cpp
+    title: test/yosupo-multipoint_evaluation.test.cpp
   - icon: ':heavy_check_mark:'
     path: test/yosupo-polynomial_taylor_shift.test.cpp
     title: test/yosupo-polynomial_taylor_shift.test.cpp
@@ -304,6 +307,7 @@ data:
   - test/yosupo-stirling_number_of_the_second_kind.test.cpp
   - test/yosupo-division_of_polynomials.test.cpp
   - test/yosupo-inv_of_formal_power_series.test.cpp
+  - test/yosupo-multipoint_evaluation.test.cpp
   - test/yosupo-log_of_formal_power_series.test.cpp
   - test/yosupo-pow_of_formal_power_series.test.cpp
   - test/yosupo-polynomial_taylor_shift.test.cpp
