@@ -7,6 +7,7 @@ private:
 	size_t n;
 
 public:
+	rangeadd_rangesum_bit() = default;
 	rangeadd_rangesum_bit(size_t n_) : n(n_ + 1), vec1(n_ + 2, 0), vec2(n_ + 2, 0) {}
 
 	//add x for [l, r)
