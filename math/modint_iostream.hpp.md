@@ -13,6 +13,9 @@ data:
   _extendedRequiredBy: []
   _extendedVerifiedWith:
   - icon: ':heavy_check_mark:'
+    path: test/aoj-2397.test.cpp
+    title: test/aoj-2397.test.cpp
+  - icon: ':heavy_check_mark:'
     path: test/yosupo-multipoint_evaluation.test.cpp
     title: test/yosupo-multipoint_evaluation.test.cpp
   - icon: ':heavy_check_mark:'
@@ -264,6 +267,7 @@ data:
   timestamp: '2021-09-08 16:43:59+09:00'
   verificationStatus: LIBRARY_ALL_AC
   verifiedWith:
+  - test/aoj-2397.test.cpp
   - test/yosupo-stirling_number_of_the_second_kind.test.cpp
   - test/yosupo-multipoint_evaluation.test.cpp
   - test/yosupo-polynomial_taylor_shift.test.cpp

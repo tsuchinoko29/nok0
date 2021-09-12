@@ -19,6 +19,9 @@ data:
     title: math/multipoint_evaluation.hpp
   _extendedVerifiedWith:
   - icon: ':heavy_check_mark:'
+    path: test/aoj-2397.test.cpp
+    title: test/aoj-2397.test.cpp
+  - icon: ':heavy_check_mark:'
     path: test/yosupo-division_of_polynomials.test.cpp
     title: test/yosupo-division_of_polynomials.test.cpp
   - icon: ':heavy_check_mark:'
@@ -304,6 +307,7 @@ data:
   timestamp: '2021-09-08 23:53:30+09:00'
   verificationStatus: LIBRARY_ALL_AC
   verifiedWith:
+  - test/aoj-2397.test.cpp
   - test/yosupo-stirling_number_of_the_second_kind.test.cpp
   - test/yosupo-division_of_polynomials.test.cpp
   - test/yosupo-inv_of_formal_power_series.test.cpp
