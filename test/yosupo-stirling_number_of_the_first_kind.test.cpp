@@ -5,7 +5,6 @@
 
 using mint = atcoder::modint998244353;
 using fps = formal_power_series<mint, FAST>;
-
 void main_() {
 	INT(n);
 	factorial<mint>::set_size(n);
