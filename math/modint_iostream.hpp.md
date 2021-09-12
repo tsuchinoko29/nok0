@@ -16,14 +16,32 @@ data:
     path: test/aoj-2397.test.cpp
     title: test/aoj-2397.test.cpp
   - icon: ':heavy_check_mark:'
+    path: test/yosupo-division_of_polynomials.test.cpp
+    title: test/yosupo-division_of_polynomials.test.cpp
+  - icon: ':heavy_check_mark:'
+    path: test/yosupo-exp_of_formal_power_series.test.cpp
+    title: test/yosupo-exp_of_formal_power_series.test.cpp
+  - icon: ':heavy_check_mark:'
+    path: test/yosupo-inv_of_formal_power_series.test.cpp
+    title: test/yosupo-inv_of_formal_power_series.test.cpp
+  - icon: ':heavy_check_mark:'
+    path: test/yosupo-log_of_formal_power_series.test.cpp
+    title: test/yosupo-log_of_formal_power_series.test.cpp
+  - icon: ':heavy_check_mark:'
     path: test/yosupo-multipoint_evaluation.test.cpp
     title: test/yosupo-multipoint_evaluation.test.cpp
   - icon: ':heavy_check_mark:'
     path: test/yosupo-polynomial_taylor_shift.test.cpp
     title: test/yosupo-polynomial_taylor_shift.test.cpp
   - icon: ':heavy_check_mark:'
+    path: test/yosupo-pow_of_formal_power_series.test.cpp
+    title: test/yosupo-pow_of_formal_power_series.test.cpp
+  - icon: ':heavy_check_mark:'
     path: test/yosupo-queue_operate_all_composite.test.cpp
     title: test/yosupo-queue_operate_all_composite.test.cpp
+  - icon: ':heavy_check_mark:'
+    path: test/yosupo-sqrt_of_formal_power_series.test.cpp
+    title: test/yosupo-sqrt_of_formal_power_series.test.cpp
   - icon: ':heavy_check_mark:'
     path: test/yosupo-stirling_number_of_the_first_kind.test.cpp
     title: test/yosupo-stirling_number_of_the_first_kind.test.cpp
@@ -269,10 +287,16 @@ data:
   verifiedWith:
   - test/aoj-2397.test.cpp
   - test/yosupo-stirling_number_of_the_second_kind.test.cpp
+  - test/yosupo-division_of_polynomials.test.cpp
+  - test/yosupo-inv_of_formal_power_series.test.cpp
   - test/yosupo-multipoint_evaluation.test.cpp
+  - test/yosupo-log_of_formal_power_series.test.cpp
+  - test/yosupo-pow_of_formal_power_series.test.cpp
   - test/yosupo-polynomial_taylor_shift.test.cpp
+  - test/yosupo-sqrt_of_formal_power_series.test.cpp
   - test/yosupo-stirling_number_of_the_first_kind.test.cpp
   - test/yosupo-queue_operate_all_composite.test.cpp
+  - test/yosupo-exp_of_formal_power_series.test.cpp
 documentation_of: math/modint_iostream.hpp
 layout: document
 redirect_from:

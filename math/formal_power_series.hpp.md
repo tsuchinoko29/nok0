@@ -424,7 +424,7 @@ data:
     \     if (diff < 0) diff += MOD1;\n        static constexpr unsigned long long\
     \ offset[5] = {\n            0, 0, M1M2M3, 2 * M1M2M3, 3 * M1M2M3};\n        x\
     \ -= offset[diff % 5];\n        c[i] = x;\n    }\n\n    return c;\n}\n\n}  //\
-    \ namespace atcoder\n\n\n#line 3 \"math/factorial.hpp\"\n\n#line 5 \"math/factorial.hpp\"\
+    \ namespace atcoder\n\n\n#line 4 \"math/factorial.hpp\"\n\n#line 6 \"math/factorial.hpp\"\
     \n\ntemplate <class T>\nstruct factorial {\npublic:\n\tstatic int MAX;\n\tstatic\
     \ std::vector<T> fac, finv, inv;\n\n\tfactorial() {}\n\n\tT binom(int n, int r)\
     \ {\n\t\tif(n < r or n < 0 or r < 0) return T(0);\n\t\tassert(n < MAX);\n\t\t\
@@ -837,7 +837,7 @@ data:
   path: math/formal_power_series.hpp
   requiredBy:
   - math/multipoint_evaluation.hpp
-  timestamp: '2021-09-10 17:23:14+09:00'
+  timestamp: '2021-09-12 23:05:37+09:00'
   verificationStatus: LIBRARY_ALL_AC
   verifiedWith:
   - test/yosupo-stirling_number_of_the_second_kind.test.cpp

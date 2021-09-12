@@ -56,7 +56,7 @@ data:
   _verificationStatusIcon: ':heavy_check_mark:'
   attributes:
     links: []
-  bundledCode: "#line 1 \"math/factorial.hpp\"\n#include <cassert>\n#include <vector>\n\
+  bundledCode: "#line 2 \"math/factorial.hpp\"\n#include <cassert>\n#include <vector>\n\
     \n#line 1 \"atcoder/modint.hpp\"\n\n\n\n#line 5 \"atcoder/modint.hpp\"\n#include\
     \ <numeric>\n#include <type_traits>\n\n#ifdef _MSC_VER\n#include <intrin.h>\n\
     #endif\n\n#line 1 \"atcoder/internal_math.hpp\"\n\n\n\n#include <utility>\n\n\
@@ -263,7 +263,7 @@ data:
     \ntemplate <class> struct is_dynamic_modint : public std::false_type {};\ntemplate\
     \ <int id>\nstruct is_dynamic_modint<dynamic_modint<id>> : public std::true_type\
     \ {};\n\ntemplate <class T>\nusing is_dynamic_modint_t = std::enable_if_t<is_dynamic_modint<T>::value>;\n\
-    \n}  // namespace internal\n\n}  // namespace atcoder\n\n\n#line 5 \"math/factorial.hpp\"\
+    \n}  // namespace internal\n\n}  // namespace atcoder\n\n\n#line 6 \"math/factorial.hpp\"\
     \n\ntemplate <class T>\nstruct factorial {\npublic:\n\tstatic int MAX;\n\tstatic\
     \ std::vector<T> fac, finv, inv;\n\n\tfactorial() {}\n\n\tT binom(int n, int r)\
     \ {\n\t\tif(n < r or n < 0 or r < 0) return T(0);\n\t\tassert(n < MAX);\n\t\t\
@@ -279,22 +279,22 @@ data:
     }\n};\ntemplate <class T>\nint factorial<T>::MAX = 0;\ntemplate <class T>\nstd::vector<T>\
     \ factorial<T>::fac;\ntemplate <class T>\nstd::vector<T> factorial<T>::finv;\n\
     template <class T>\nstd::vector<T> factorial<T>::inv;\n"
-  code: "#include <cassert>\n#include <vector>\n\n#include \"atcoder/modint\"\n\n\
-    template <class T>\nstruct factorial {\npublic:\n\tstatic int MAX;\n\tstatic std::vector<T>\
-    \ fac, finv, inv;\n\n\tfactorial() {}\n\n\tT binom(int n, int r) {\n\t\tif(n <\
-    \ r or n < 0 or r < 0) return T(0);\n\t\tassert(n < MAX);\n\t\treturn fac[n] *\
-    \ finv[r] * finv[n - r];\n\t}\n\n\tT large_binom(int n, int r) {\n\t\tif(n < r\
-    \ or n < 0 or r < 0) return T(0);\n\t\tassert(r < MAX);\n\t\tT ret = finv[r];\n\
-    \t\tfor(int i = 1; i <= r; ++i)\n\t\t\tret *= (n + 1 - i);\n\t\treturn ret;\n\t\
-    }\n\n\tstatic void set_size(int n = 3000000) {\n\t\tMAX = (n > 1 ? n : 1) + 1;\n\
-    \t\tif((int)fac.size() >= MAX) return;\n\t\tfac.resize(MAX);\n\t\tfinv.resize(MAX);\n\
-    \t\tinv.resize(MAX);\n\t\tconst int MOD = T::mod();\n\t\tfac[0] = fac[1] = 1;\n\
-    \t\tfinv[0] = finv[1] = 1;\n\t\tinv[1] = 1;\n\t\tfor(int i = 2; i < MAX; i++)\
-    \ {\n\t\t\tfac[i] = fac[i - 1] * i;\n\t\t\tinv[i] = (T)MOD - inv[MOD % i] * (MOD\
-    \ / i);\n\t\t\tfinv[i] = finv[i - 1] * inv[i];\n\t\t}\n\t}\n};\ntemplate <class\
-    \ T>\nint factorial<T>::MAX = 0;\ntemplate <class T>\nstd::vector<T> factorial<T>::fac;\n\
-    template <class T>\nstd::vector<T> factorial<T>::finv;\ntemplate <class T>\nstd::vector<T>\
-    \ factorial<T>::inv;\n"
+  code: "#pragma once\n#include <cassert>\n#include <vector>\n\n#include \"atcoder/modint\"\
+    \n\ntemplate <class T>\nstruct factorial {\npublic:\n\tstatic int MAX;\n\tstatic\
+    \ std::vector<T> fac, finv, inv;\n\n\tfactorial() {}\n\n\tT binom(int n, int r)\
+    \ {\n\t\tif(n < r or n < 0 or r < 0) return T(0);\n\t\tassert(n < MAX);\n\t\t\
+    return fac[n] * finv[r] * finv[n - r];\n\t}\n\n\tT large_binom(int n, int r) {\n\
+    \t\tif(n < r or n < 0 or r < 0) return T(0);\n\t\tassert(r < MAX);\n\t\tT ret\
+    \ = finv[r];\n\t\tfor(int i = 1; i <= r; ++i)\n\t\t\tret *= (n + 1 - i);\n\t\t\
+    return ret;\n\t}\n\n\tstatic void set_size(int n = 3000000) {\n\t\tMAX = (n >\
+    \ 1 ? n : 1) + 1;\n\t\tif((int)fac.size() >= MAX) return;\n\t\tfac.resize(MAX);\n\
+    \t\tfinv.resize(MAX);\n\t\tinv.resize(MAX);\n\t\tconst int MOD = T::mod();\n\t\
+    \tfac[0] = fac[1] = 1;\n\t\tfinv[0] = finv[1] = 1;\n\t\tinv[1] = 1;\n\t\tfor(int\
+    \ i = 2; i < MAX; i++) {\n\t\t\tfac[i] = fac[i - 1] * i;\n\t\t\tinv[i] = (T)MOD\
+    \ - inv[MOD % i] * (MOD / i);\n\t\t\tfinv[i] = finv[i - 1] * inv[i];\n\t\t}\n\t\
+    }\n};\ntemplate <class T>\nint factorial<T>::MAX = 0;\ntemplate <class T>\nstd::vector<T>\
+    \ factorial<T>::fac;\ntemplate <class T>\nstd::vector<T> factorial<T>::finv;\n\
+    template <class T>\nstd::vector<T> factorial<T>::inv;\n"
   dependsOn:
   - atcoder/modint.hpp
   - atcoder/internal_math.hpp
@@ -304,7 +304,7 @@ data:
   requiredBy:
   - math/formal_power_series.hpp
   - math/multipoint_evaluation.hpp
-  timestamp: '2021-09-08 23:53:30+09:00'
+  timestamp: '2021-09-12 23:05:37+09:00'
   verificationStatus: LIBRARY_ALL_AC
   verifiedWith:
   - test/aoj-2397.test.cpp
