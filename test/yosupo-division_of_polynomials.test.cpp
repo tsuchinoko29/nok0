@@ -1,8 +1,7 @@
 #define PROBLEM "https://judge.yosupo.jp/problem/division_of_polynomials"
 
-#include "atcoder/modint"
-#include "math/formal_power_series.hpp"
-#include "template.hpp"
+#include "cftemp.hpp"
+#include "math/fps"
 
 using mint = atcoder::modint998244353;
 using fps = formal_power_series<mint, FAST>;
