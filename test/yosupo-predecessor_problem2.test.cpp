@@ -30,7 +30,7 @@ void main_() {
 					break;
 				}
 				d = st.next(x);
-				print(d < sz ? d : -1);
+				print(d < n ? d : -1);
 				break;
 			case 4:
 				if(st.contains(x)) {
@@ -38,7 +38,7 @@ void main_() {
 					break;
 				}
 				d = st.prev(x);
-				print(d < sz ? d : -1);
+				print(d < n ? d : -1);
 				break;
 			default:
 				break;
