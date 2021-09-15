@@ -55,96 +55,102 @@ data:
   - icon: ':question:'
     path: atcoder/twosat.hpp
     title: atcoder/twosat.hpp
-  - icon: ':heavy_check_mark:'
-    path: data_structure/offline_dynamic_connectivity.hpp
-    title: data_structure/offline_dynamic_connectivity.hpp
-  - icon: ':heavy_check_mark:'
-    path: data_structure/undo_uf.hpp
-    title: data_structure/undo_uf.hpp
+  - icon: ':x:'
+    path: data_structure/w_ary_tree.hpp
+    title: data_structure/w_ary_tree.hpp
   - icon: ':question:'
     path: template.hpp
     title: template.hpp
   _extendedRequiredBy: []
   _extendedVerifiedWith: []
-  _isVerificationFailed: false
+  _isVerificationFailed: true
   _pathExtension: cpp
-  _verificationStatusIcon: ':heavy_check_mark:'
+  _verificationStatusIcon: ':x:'
   attributes:
     '*NOT_SPECIAL_COMMENTS*': ''
-    PROBLEM: https://judge.u-aizu.ac.jp/onlinejudge/description.jsp?id=2235&lang=jp
+    PROBLEM: https://judge.yosupo.jp/problem/predecessor_problem
     links:
-    - https://judge.u-aizu.ac.jp/onlinejudge/description.jsp?id=2235&lang=jp
-  bundledCode: "#line 1 \"test/aoj-2235.test.cpp\"\n#define PROBLEM \"https://judge.u-aizu.ac.jp/onlinejudge/description.jsp?id=2235&lang=jp\"\
-    \n\n#line 2 \"data_structure/offline_dynamic_connectivity.hpp\"\n#include <algorithm>\n\
-    #include <map>\n\n#line 2 \"data_structure/undo_uf.hpp\"\n#include <stack>\n#include\
-    \ <vector>\n\nstruct rollback_unionfind {\nprivate:\n\tstd::vector<int> par;\n\
-    \tstd::stack<std::pair<int, int>> history;\n\npublic:\n\trollback_unionfind()\
-    \ = default;\n\n\trollback_unionfind(size_t n) : par(n, -1) {}\n\n\tint root(int\
-    \ x) {\n\t\tif(par[x] < 0) return x;\n\t\treturn root(par[x]);\n\t}\n\n\tbool\
-    \ same(int x, int y) { return root(x) == root(y); }\n\n\tbool unite(int x, int\
-    \ y) {\n\t\tx = root(x), y = root(y);\n\t\thistory.emplace(x, par[x]);\n\t\thistory.emplace(y,\
-    \ par[y]);\n\t\tif(x == y) return false;\n\t\tif(par[x] > par[y]) std::swap(x,\
-    \ y);\n\t\tpar[x] += par[y];\n\t\tpar[y] = x;\n\t\treturn true;\n\t}\n\n\tvoid\
-    \ snapshot() {\n\t\twhile(!history.empty()) history.pop();\n\t}\n\n\tvoid undo()\
-    \ {\n\t\tfor(int i = 0; i < 2; i++) {\n\t\t\tpar[history.top().first] = history.top().second;\n\
-    \t\t\thistory.pop();\n\t\t}\n\t}\n\n\tvoid rollback() {\n\t\twhile(!history.empty())\
-    \ undo();\n\t}\n\n\tsize_t size(int x) { return -par[root(x)]; }\n};\n#line 6\
-    \ \"data_structure/offline_dynamic_connectivity.hpp\"\nstruct offline_dynamic_connectivity\
-    \ {\npublic:\n\trollback_unionfind uf;\n\n\toffline_dynamic_connectivity(int n,\
-    \ int q) : uf(n), seg(q), q(q) {}\n\n\tvoid link(int t, int u, int v) {\n\t\t\
-    std::pair e = std::minmax(u, v);\n\t\tif(!cnt[e]++) appear[e] = t;\n\t}\n\n\t\
-    void cut(int t, int u, int v) {\n\t\tstd::pair e = std::minmax(u, v);\n\t\tif(!(--cnt[e]))\
-    \ seg.set(appear[e], t, e);\n\t}\n\n\tvoid build() {\n\t\tfor(const auto &[e,\
-    \ val] : cnt)\n\t\t\tif(val) seg.set(appear[e], q, e);\n\t}\n\n\ttemplate <class\
-    \ F>\n\tvoid run(const F &f, int k = 1) {\n\t\tfor(const auto &[u, v] : seg.node[k])\n\
-    \t\t\tuf.unite(u, v);\n\t\tif(k < q)\n\t\t\trun(f, k << 1), run(f, k << 1 | 1);\n\
-    \t\telse\n\t\t\tf(k - q);\n\t\tfor(int i = 0; i < (int)seg.node[k].size(); i++)\n\
-    \t\t\tuf.undo();\n\t}\n\nprivate:\n\tint q;\n\tusing edge = std::pair<int, int>;\n\
-    \tstd::map<edge, int> appear, cnt;\n\tstd::vector<std::pair<std::pair<int, int>,\
-    \ edge>> pend;\n\n\tstruct seg {\n\tpublic:\n\t\tint n;\n\t\tstd::vector<std::vector<edge>>\
-    \ node;\n\t\tseg(int n_) : n(n_), node(n << 1) {}\n\n\t\tvoid set(int l, int r,\
-    \ edge e) {\n\t\t\tfor(l += n, r += n; l < r; l >>= 1, r >>= 1) {\n\t\t\t\tif(l\
-    \ & 1) node[l++].push_back(e);\n\t\t\t\tif(r & 1) node[--r].push_back(e);\n\t\t\
-    \t}\n\t\t}\n\t};\n\n\tseg seg;\n};\n#line 1 \"template.hpp\"\n#include <bits/stdc++.h>\n\
-    using namespace std;\n#if __has_include(<atcoder/all>)\n#include <atcoder/all>\n\
-    using namespace atcoder;\n#endif\n\n#pragma region Macros\n// rep macro\n#define\
-    \ foa(v, a) for(auto &v : a)\n#define REPname(a, b, c, d, e, ...) e\n#define REP(...)\
-    \ REPname(__VA_ARGS__, REP3, REP2, REP1, REP0)(__VA_ARGS__)\n#define REP0(x) for(int\
-    \ i = 0; i < (x); ++i)\n#define REP1(i, x) for(int i = 0; i < (x); ++i)\n#define\
-    \ REP2(i, l, r) for(int i = (l); i < (r); ++i)\n#define REP3(i, l, r, c) for(int\
-    \ i = (l); i < (r); i += (c))\n#define REPSname(a, b, c, ...) c\n#define REPS(...)\
-    \ REPSname(__VA_ARGS__, REPS1, REPS0)(__VA_ARGS__)\n#define REPS0(x) for(int i\
-    \ = 1; i <= (x); ++i)\n#define REPS1(i, x) for(int i = 1; i <= (x); ++i)\n#define\
-    \ RREPname(a, b, c, d, e, ...) e\n#define RREP(...) RREPname(__VA_ARGS__, RREP3,\
-    \ RREP2, RREP1, RREP0)(__VA_ARGS__)\n#define RREP0(x) for(int i = (x)-1; i >=\
-    \ 0; --i)\n#define RREP1(i, x) for(int i = (x)-1; i >= 0; --i)\n#define RREP2(i,\
-    \ r, l) for(int i = (r)-1; i >= (l); --i)\n#define RREP3(i, r, l, c) for(int i\
-    \ = (r)-1; i >= (l); i -= (c))\n#define RREPSname(a, b, c, ...) c\n#define RREPS(...)\
-    \ RREPSname(__VA_ARGS__, RREPS1, RREPS0)(__VA_ARGS__)\n#define RREPS0(x) for(int\
-    \ i = (x); i >= 1; --i)\n#define RREPS1(i, x) for(int i = (x); i >= 1; --i)\n\n\
-    // name macro\n#define pb push_back\n#define eb emplace_back\n#define SZ(x) ((int)(x).size())\n\
-    #define all(x) (x).begin(), (x).end()\n#define rall(x) (x).rbegin(), (x).rend()\n\
-    #define popcnt(x) __builtin_popcountll(x)\ntemplate <class T = int>\nusing V =\
-    \ std::vector<T>;\ntemplate <class T = int>\nusing VV = std::vector<std::vector<T>>;\n\
-    template <class T>\nusing pqup = std::priority_queue<T, std::vector<T>, std::greater<T>>;\n\
-    using ll = long long;\nusing ld = long double;\nusing int128 = __int128_t;\nusing\
-    \ pii = std::pair<int, int>;\nusing pll = std::pair<long long, long long>;\n\n\
-    // input macro\ntemplate <class T, class U>\nstd::istream &operator>>(std::istream\
-    \ &is, std::pair<T, U> &p) {\n\tis >> p.first >> p.second;\n\treturn is;\n}\n\
-    template <class T>\nstd::istream &operator>>(std::istream &is, std::vector<T>\
-    \ &v) {\n\tfor(T &i : v) is >> i;\n\treturn is;\n}\nstd::istream &operator>>(std::istream\
-    \ &is, __int128_t &a) {\n\tstd::string s;\n\tis >> s;\n\t__int128_t ret = 0;\n\
-    \tfor(int i = 0; i < s.length(); i++)\n\t\tif('0' <= s[i] and s[i] <= '9')\n\t\
-    \t\tret = 10 * ret + s[i] - '0';\n\ta = ret * (s[0] == '-' ? -1 : 1);\n\treturn\
-    \ is;\n}\n#if __has_include(<atcoder/all>)\nstd::istream &operator>>(std::istream\
-    \ &is, atcoder::modint998244353 &a) {\n\tlong long v;\n\tis >> v;\n\ta = v;\n\t\
-    return is;\n}\nstd::istream &operator>>(std::istream &is, atcoder::modint1000000007\
+    - https://judge.yosupo.jp/problem/predecessor_problem
+  bundledCode: "#line 1 \"test/yosupo-predecessor_problem2.test.cpp\"\n#define PROBLEM\
+    \ \"https://judge.yosupo.jp/problem/predecessor_problem\"\n\n#line 1 \"data_structure/w_ary_tree.hpp\"\
+    \n#include <array>\n#include <cstdint>\n#include <vector>\n\nnamespace w_ary_tree_impl\
+    \ {\nusing u32 = uint32_t;\nusing u64 = uint64_t;\nconstexpr u32 ws = 64;\nconstexpr\
+    \ u32 calc_c(u32 n) {\n\tu32 ret = 1;\n\twhile(n > 64) ret *= ws, n /= ws;\n\t\
+    return ret;\n}\nconstexpr u32 ceil_div(u32 n, u32 k) {\n\treturn (n + k - 1) /\
+    \ k;\n}\nu32 bsf(const u64 x) { return __builtin_ctzll(x); }\nu32 bsr(const u64\
+    \ x) { return 63 - __builtin_clzll(x); }\nu64 to_bit(const u32 x) { return static_cast<u64>(1)\
+    \ << x; }\n\ntemplate <u32 N, class D = void>\nstruct w_ary_tree {\n\tstatic constexpr\
+    \ u32 C = calc_c(N);\n\tu64 map;\n\tstd::array<w_ary_tree<C>, ceil_div(N, C)>\
+    \ child;\n\npublic:\n\tw_ary_tree() : map(0), child() {}\n\n\tbool insert(const\
+    \ u32 key) {\n\t\tconst u32 pos = key / C;\n\t\tmap |= to_bit(pos);\n\t\treturn\
+    \ child[pos].insert(key % C);\n\t}\n\n\tbool erase(const u32 key) {\n\t\tconst\
+    \ u32 pos = key / C;\n\t\tconst bool ret = child[pos].erase(key % C);\n\t\tif(child[pos]._get_map()\
+    \ == 0) map ^= to_bit(pos);\n\t\treturn ret;\n\t}\n\n\tbool contains(const u32\
+    \ key) const {\n\t\treturn child[key / C].contains(key % C);\n\t}\n\n\tu32 min()\
+    \ const {\n\t\tconst u32 pos = bsf(map);\n\t\treturn pos * C + child[pos].min();\n\
+    \t}\n\n\tu32 max() const {\n\t\tconst u32 pos = bsr(map);\n\t\treturn pos * C\
+    \ + child[pos].max();\n\t}\n\n\tu32 prev(const u32 key) const {\n\t\tconst u32\
+    \ pos = key / C;\n\t\tconst u32 t = child[pos].prev(key % C);\n\t\tif(t != -1)\
+    \ return pos * C + t;\n\t\tconst u64 masked = map & ~(~static_cast<u64>(0) <<\
+    \ pos);\n\t\tif(masked) {\n\t\t\tconst u32 pos2 = bsr(masked);\n\t\t\treturn pos2\
+    \ * C + child[pos2].max();\n\t\t} else\n\t\t\treturn -1;\n\t}\n\n\tu32 next(const\
+    \ u32 key) const {\n\t\tconst u32 pos = key / C;\n\t\tconst u32 t = child[pos].next(key\
+    \ % C);\n\t\tif(t != -1) return pos * C + t;\n\t\tconst u64 masked = map & ~(~static_cast<u64>(0)\
+    \ >> (63 - pos));\n\t\tif(masked) {\n\t\t\tconst u32 pos2 = bsf(masked);\n\t\t\
+    \treturn pos2 * C + child[pos2].min();\n\t\t} else\n\t\t\treturn -1;\n\t}\n\n\t\
+    u64 _get_map() const { return map; }\n};\n\ntemplate <u32 N>\nstruct w_ary_tree<N,\
+    \ typename std::enable_if<(N <= ws)>::type> {\n\tu64 map;\n\npublic:\n\tw_ary_tree()\
+    \ : map(0) {}\n\n\tbool insert(const u32 key) {\n\t\tconst u64 bit = to_bit(key);\n\
+    \t\tif(map & bit)\n\t\t\treturn false;\n\t\telse\n\t\t\tmap |= bit;\n\t\treturn\
+    \ true;\n\t}\n\n\tbool erase(const u32 key) {\n\t\tconst u64 bit = to_bit(key);\n\
+    \t\tif(map & bit) {\n\t\t\tmap ^= bit;\n\t\t\treturn true;\n\t\t}\n\t\treturn\
+    \ false;\n\t}\n\n\tbool contains(const u32 key) const {\n\t\treturn map & to_bit(key);\n\
+    \t}\n\n\tu32 min() const { return bsf(map); }\n\tu32 max() const { return bsr(map);\
+    \ }\n\n\tu32 prev(const u32 key) const {\n\t\tconst u64 masked = map & ~(~static_cast<u64>(0)\
+    \ << key);\n\t\tif(masked)\n\t\t\treturn bsr(masked);\n\t\telse\n\t\t\treturn\
+    \ -1;\n\t}\n\n\tu32 next(const u32 key) const {\n\t\tconst u64 masked = map &\
+    \ (~static_cast<u64>(0) << key);\n\t\tif(masked)\n\t\t\treturn bsf(masked);\n\t\
+    \telse\n\t\t\treturn -1;\n\t}\n\n\tu64 _get_map() const { return map; }\n};\n\
+    }  // namespace w_ary_tree_impl\n\ntemplate <int N>\nusing w_ary_tree = w_ary_tree_impl::w_ary_tree<static_cast<uint32_t>(N)>;\n\
+    #line 1 \"template.hpp\"\n#include <bits/stdc++.h>\nusing namespace std;\n#if\
+    \ __has_include(<atcoder/all>)\n#include <atcoder/all>\nusing namespace atcoder;\n\
+    #endif\n\n#pragma region Macros\n// rep macro\n#define foa(v, a) for(auto &v :\
+    \ a)\n#define REPname(a, b, c, d, e, ...) e\n#define REP(...) REPname(__VA_ARGS__,\
+    \ REP3, REP2, REP1, REP0)(__VA_ARGS__)\n#define REP0(x) for(int i = 0; i < (x);\
+    \ ++i)\n#define REP1(i, x) for(int i = 0; i < (x); ++i)\n#define REP2(i, l, r)\
+    \ for(int i = (l); i < (r); ++i)\n#define REP3(i, l, r, c) for(int i = (l); i\
+    \ < (r); i += (c))\n#define REPSname(a, b, c, ...) c\n#define REPS(...) REPSname(__VA_ARGS__,\
+    \ REPS1, REPS0)(__VA_ARGS__)\n#define REPS0(x) for(int i = 1; i <= (x); ++i)\n\
+    #define REPS1(i, x) for(int i = 1; i <= (x); ++i)\n#define RREPname(a, b, c, d,\
+    \ e, ...) e\n#define RREP(...) RREPname(__VA_ARGS__, RREP3, RREP2, RREP1, RREP0)(__VA_ARGS__)\n\
+    #define RREP0(x) for(int i = (x)-1; i >= 0; --i)\n#define RREP1(i, x) for(int\
+    \ i = (x)-1; i >= 0; --i)\n#define RREP2(i, r, l) for(int i = (r)-1; i >= (l);\
+    \ --i)\n#define RREP3(i, r, l, c) for(int i = (r)-1; i >= (l); i -= (c))\n#define\
+    \ RREPSname(a, b, c, ...) c\n#define RREPS(...) RREPSname(__VA_ARGS__, RREPS1,\
+    \ RREPS0)(__VA_ARGS__)\n#define RREPS0(x) for(int i = (x); i >= 1; --i)\n#define\
+    \ RREPS1(i, x) for(int i = (x); i >= 1; --i)\n\n// name macro\n#define pb push_back\n\
+    #define eb emplace_back\n#define SZ(x) ((int)(x).size())\n#define all(x) (x).begin(),\
+    \ (x).end()\n#define rall(x) (x).rbegin(), (x).rend()\n#define popcnt(x) __builtin_popcountll(x)\n\
+    template <class T = int>\nusing V = std::vector<T>;\ntemplate <class T = int>\n\
+    using VV = std::vector<std::vector<T>>;\ntemplate <class T>\nusing pqup = std::priority_queue<T,\
+    \ std::vector<T>, std::greater<T>>;\nusing ll = long long;\nusing ld = long double;\n\
+    using int128 = __int128_t;\nusing pii = std::pair<int, int>;\nusing pll = std::pair<long\
+    \ long, long long>;\n\n// input macro\ntemplate <class T, class U>\nstd::istream\
+    \ &operator>>(std::istream &is, std::pair<T, U> &p) {\n\tis >> p.first >> p.second;\n\
+    \treturn is;\n}\ntemplate <class T>\nstd::istream &operator>>(std::istream &is,\
+    \ std::vector<T> &v) {\n\tfor(T &i : v) is >> i;\n\treturn is;\n}\nstd::istream\
+    \ &operator>>(std::istream &is, __int128_t &a) {\n\tstd::string s;\n\tis >> s;\n\
+    \t__int128_t ret = 0;\n\tfor(int i = 0; i < s.length(); i++)\n\t\tif('0' <= s[i]\
+    \ and s[i] <= '9')\n\t\t\tret = 10 * ret + s[i] - '0';\n\ta = ret * (s[0] == '-'\
+    \ ? -1 : 1);\n\treturn is;\n}\n#if __has_include(<atcoder/all>)\nstd::istream\
+    \ &operator>>(std::istream &is, atcoder::modint998244353 &a) {\n\tlong long v;\n\
+    \tis >> v;\n\ta = v;\n\treturn is;\n}\nstd::istream &operator>>(std::istream &is,\
+    \ atcoder::modint1000000007 &a) {\n\tlong long v;\n\tis >> v;\n\ta = v;\n\treturn\
+    \ is;\n}\ntemplate <int m>\nstd::istream &operator>>(std::istream &is, atcoder::static_modint<m>\
     \ &a) {\n\tlong long v;\n\tis >> v;\n\ta = v;\n\treturn is;\n}\ntemplate <int\
-    \ m>\nstd::istream &operator>>(std::istream &is, atcoder::static_modint<m> &a)\
-    \ {\n\tlong long v;\n\tis >> v;\n\ta = v;\n\treturn is;\n}\ntemplate <int m>\n\
-    std::istream &operator>>(std::istream &is, atcoder::dynamic_modint<m> &a) {\n\t\
-    long long v;\n\tis >> v;\n\ta = v;\n\treturn is;\n}\n#endif\nnamespace scanner\
-    \ {\nvoid scan(int &a) { std::cin >> a; }\nvoid scan(long long &a) { std::cin\
+    \ m>\nstd::istream &operator>>(std::istream &is, atcoder::dynamic_modint<m> &a)\
+    \ {\n\tlong long v;\n\tis >> v;\n\ta = v;\n\treturn is;\n}\n#endif\nnamespace\
+    \ scanner {\nvoid scan(int &a) { std::cin >> a; }\nvoid scan(long long &a) { std::cin\
     \ >> a; }\nvoid scan(std::string &a) { std::cin >> a; }\nvoid scan(char &a) {\
     \ std::cin >> a; }\nvoid scan(char a[]) { std::scanf(\"%s\", a); }\nvoid scan(double\
     \ &a) { std::cin >> a; }\nvoid scan(long double &a) { std::cin >> a; }\ntemplate\
@@ -247,32 +253,31 @@ data:
     \ others\nstruct fast_io {\n\tfast_io() {\n\t\tios::sync_with_stdio(false);\n\t\
     \tcin.tie(nullptr);\n\t\tcout << fixed << setprecision(15);\n\t}\n} fast_io_;\n\
     const int inf = 1e9;\nconst ll INF = 1e18;\n#pragma endregion\n\nvoid main_();\n\
-    \nint main() {\n\tmain_();\n\treturn 0;\n}\n#line 5 \"test/aoj-2235.test.cpp\"\
-    \n\nvoid main_() {\n\tINT(n, q);\n\toffline_dynamic_connectivity odc(n, q);\n\n\
-    \tvector<pii> uv(q, {-1, -1});\n\n\tint t3 = 0;\n\tvector<int> id(q, -1);\n\n\t\
-    REP(i, q) {\n\t\tint type, u, v;\n\t\tcin >> type >> u >> v;\n\t\tswitch(type)\
-    \ {\n\t\t\tcase 1:\n\t\t\t\todc.link(i, u, v);\n\t\t\t\tbreak;\n\n\t\t\tcase 2:\n\
-    \t\t\t\todc.cut(i, u, v);\n\t\t\t\tbreak;\n\n\t\t\tcase 3:\n\t\t\t\tid[i] = t3++;\n\
-    \t\t\t\tuv[i] = {u, v};\n\t\t\t\tbreak;\n\n\t\t\tdefault:\n\t\t\t\tbreak;\n\t\t\
-    }\n\t}\n\n\tvector<int> res(t3);\n\n\tauto f = [&](int t) {\n\t\tif(id[t] != -1)\
-    \ {\n\t\t\tconst auto &[u, v] = uv[t];\n\t\t\tres[id[t]] = odc.uf.same(u, v);\n\
-    \t\t}\n\t};\n\n\todc.build();\n\todc.run(f);\n\n\tfor(const auto &v : res) cout\
-    \ << (v ? \"YES\\n\" : \"NO\\n\");\n}\n"
-  code: "#define PROBLEM \"https://judge.u-aizu.ac.jp/onlinejudge/description.jsp?id=2235&lang=jp\"\
-    \n\n#include \"data_structure/offline_dynamic_connectivity.hpp\"\n#include \"\
-    template.hpp\"\n\nvoid main_() {\n\tINT(n, q);\n\toffline_dynamic_connectivity\
-    \ odc(n, q);\n\n\tvector<pii> uv(q, {-1, -1});\n\n\tint t3 = 0;\n\tvector<int>\
-    \ id(q, -1);\n\n\tREP(i, q) {\n\t\tint type, u, v;\n\t\tcin >> type >> u >> v;\n\
-    \t\tswitch(type) {\n\t\t\tcase 1:\n\t\t\t\todc.link(i, u, v);\n\t\t\t\tbreak;\n\
-    \n\t\t\tcase 2:\n\t\t\t\todc.cut(i, u, v);\n\t\t\t\tbreak;\n\n\t\t\tcase 3:\n\t\
-    \t\t\tid[i] = t3++;\n\t\t\t\tuv[i] = {u, v};\n\t\t\t\tbreak;\n\n\t\t\tdefault:\n\
-    \t\t\t\tbreak;\n\t\t}\n\t}\n\n\tvector<int> res(t3);\n\n\tauto f = [&](int t)\
-    \ {\n\t\tif(id[t] != -1) {\n\t\t\tconst auto &[u, v] = uv[t];\n\t\t\tres[id[t]]\
-    \ = odc.uf.same(u, v);\n\t\t}\n\t};\n\n\todc.build();\n\todc.run(f);\n\n\tfor(const\
-    \ auto &v : res) cout << (v ? \"YES\\n\" : \"NO\\n\");\n}"
+    \nint main() {\n\tmain_();\n\treturn 0;\n}\n#line 5 \"test/yosupo-predecessor_problem2.test.cpp\"\
+    \n\nconstexpr int sz = 10000000;\nvoid main_() {\n\tw_ary_tree<sz> st;\n\tINT(n,\
+    \ q);\n\tSTR(s);\n\tREP(i, n) {\n\t\tif(s[i] == '1') st.insert(i);\n\t}\n\twhile(q--)\
+    \ {\n\t\tINT(t, x);\n\t\tint d;\n\t\tswitch(t) {\n\t\t\tcase 0:\n\t\t\t\tst.insert(x);\n\
+    \t\t\t\tbreak;\n\t\t\tcase 1:\n\t\t\t\tst.erase(x);\n\t\t\t\tbreak;\n\t\t\tcase\
+    \ 2:\n\t\t\t\tprint(st.contains(x));\n\t\t\t\tbreak;\n\t\t\tcase 3:\n\t\t\t\t\
+    if(st.contains(x)) {\n\t\t\t\t\tprint(x);\n\t\t\t\t\tbreak;\n\t\t\t\t}\n\t\t\t\
+    \td = st.next(x);\n\t\t\t\tprint(d < sz ? d : -1);\n\t\t\t\tbreak;\n\t\t\tcase\
+    \ 4:\n\t\t\t\tif(st.contains(x)) {\n\t\t\t\t\tprint(x);\n\t\t\t\t\tbreak;\n\t\t\
+    \t\t}\n\t\t\t\td = st.prev(x);\n\t\t\t\tprint(d < sz ? d : -1);\n\t\t\t\tbreak;\n\
+    \t\t\tdefault:\n\t\t\t\tbreak;\n\t\t}\n\t}\n}\n"
+  code: "#define PROBLEM \"https://judge.yosupo.jp/problem/predecessor_problem\"\n\
+    \n#include \"data_structure/w_ary_tree.hpp\"\n#include \"template.hpp\"\n\nconstexpr\
+    \ int sz = 10000000;\nvoid main_() {\n\tw_ary_tree<sz> st;\n\tINT(n, q);\n\tSTR(s);\n\
+    \tREP(i, n) {\n\t\tif(s[i] == '1') st.insert(i);\n\t}\n\twhile(q--) {\n\t\tINT(t,\
+    \ x);\n\t\tint d;\n\t\tswitch(t) {\n\t\t\tcase 0:\n\t\t\t\tst.insert(x);\n\t\t\
+    \t\tbreak;\n\t\t\tcase 1:\n\t\t\t\tst.erase(x);\n\t\t\t\tbreak;\n\t\t\tcase 2:\n\
+    \t\t\t\tprint(st.contains(x));\n\t\t\t\tbreak;\n\t\t\tcase 3:\n\t\t\t\tif(st.contains(x))\
+    \ {\n\t\t\t\t\tprint(x);\n\t\t\t\t\tbreak;\n\t\t\t\t}\n\t\t\t\td = st.next(x);\n\
+    \t\t\t\tprint(d < sz ? d : -1);\n\t\t\t\tbreak;\n\t\t\tcase 4:\n\t\t\t\tif(st.contains(x))\
+    \ {\n\t\t\t\t\tprint(x);\n\t\t\t\t\tbreak;\n\t\t\t\t}\n\t\t\t\td = st.prev(x);\n\
+    \t\t\t\tprint(d < sz ? d : -1);\n\t\t\t\tbreak;\n\t\t\tdefault:\n\t\t\t\tbreak;\n\
+    \t\t}\n\t}\n}"
   dependsOn:
-  - data_structure/offline_dynamic_connectivity.hpp
-  - data_structure/undo_uf.hpp
+  - data_structure/w_ary_tree.hpp
   - template.hpp
   - atcoder/convolution.hpp
   - atcoder/internal_bit.hpp
@@ -293,15 +298,15 @@ data:
   - atcoder/string.hpp
   - atcoder/twosat.hpp
   isVerificationFile: true
-  path: test/aoj-2235.test.cpp
+  path: test/yosupo-predecessor_problem2.test.cpp
   requiredBy: []
-  timestamp: '2021-09-08 15:21:46+09:00'
-  verificationStatus: TEST_ACCEPTED
+  timestamp: '2021-09-15 13:15:23+09:00'
+  verificationStatus: TEST_WRONG_ANSWER
   verifiedWith: []
-documentation_of: test/aoj-2235.test.cpp
+documentation_of: test/yosupo-predecessor_problem2.test.cpp
 layout: document
 redirect_from:
-- /verify/test/aoj-2235.test.cpp
-- /verify/test/aoj-2235.test.cpp.html
-title: test/aoj-2235.test.cpp
+- /verify/test/yosupo-predecessor_problem2.test.cpp
+- /verify/test/yosupo-predecessor_problem2.test.cpp.html
+title: test/yosupo-predecessor_problem2.test.cpp
 ---

@@ -3,58 +3,58 @@ data:
   libraryCategories:
   - name: atcoder
     pages:
-    - icon: ':heavy_check_mark:'
+    - icon: ':question:'
       path: atcoder/convolution.hpp
       title: atcoder/convolution.hpp
-    - icon: ':heavy_check_mark:'
+    - icon: ':question:'
       path: atcoder/dsu.hpp
       title: atcoder/dsu.hpp
-    - icon: ':heavy_check_mark:'
+    - icon: ':question:'
       path: atcoder/fenwicktree.hpp
       title: atcoder/fenwicktree.hpp
-    - icon: ':heavy_check_mark:'
+    - icon: ':question:'
       path: atcoder/internal_bit.hpp
       title: atcoder/internal_bit.hpp
-    - icon: ':heavy_check_mark:'
+    - icon: ':question:'
       path: atcoder/internal_csr.hpp
       title: atcoder/internal_csr.hpp
-    - icon: ':heavy_check_mark:'
+    - icon: ':question:'
       path: atcoder/internal_math.hpp
       title: atcoder/internal_math.hpp
-    - icon: ':heavy_check_mark:'
+    - icon: ':question:'
       path: atcoder/internal_queue.hpp
       title: atcoder/internal_queue.hpp
-    - icon: ':heavy_check_mark:'
+    - icon: ':question:'
       path: atcoder/internal_scc.hpp
       title: atcoder/internal_scc.hpp
-    - icon: ':heavy_check_mark:'
+    - icon: ':question:'
       path: atcoder/internal_type_traits.hpp
       title: atcoder/internal_type_traits.hpp
-    - icon: ':heavy_check_mark:'
+    - icon: ':question:'
       path: atcoder/lazysegtree.hpp
       title: atcoder/lazysegtree.hpp
-    - icon: ':heavy_check_mark:'
+    - icon: ':question:'
       path: atcoder/math.hpp
       title: atcoder/math.hpp
-    - icon: ':heavy_check_mark:'
+    - icon: ':question:'
       path: atcoder/maxflow.hpp
       title: atcoder/maxflow.hpp
-    - icon: ':heavy_check_mark:'
+    - icon: ':question:'
       path: atcoder/mincostflow.hpp
       title: atcoder/mincostflow.hpp
-    - icon: ':heavy_check_mark:'
+    - icon: ':question:'
       path: atcoder/modint.hpp
       title: atcoder/modint.hpp
-    - icon: ':heavy_check_mark:'
+    - icon: ':question:'
       path: atcoder/scc.hpp
       title: atcoder/scc.hpp
-    - icon: ':heavy_check_mark:'
+    - icon: ':question:'
       path: atcoder/segtree.hpp
       title: atcoder/segtree.hpp
-    - icon: ':heavy_check_mark:'
+    - icon: ':question:'
       path: atcoder/string.hpp
       title: atcoder/string.hpp
-    - icon: ':heavy_check_mark:'
+    - icon: ':question:'
       path: atcoder/twosat.hpp
       title: atcoder/twosat.hpp
   - name: .
@@ -71,7 +71,7 @@ data:
     - icon: ':warning:'
       path: submit.cpp
       title: submit.cpp
-    - icon: ':heavy_check_mark:'
+    - icon: ':question:'
       path: template.hpp
       title: template.hpp
   - name: data_structure
@@ -109,6 +109,9 @@ data:
     - icon: ':heavy_check_mark:'
       path: data_structure/undo_uf.hpp
       title: data_structure/undo_uf.hpp
+    - icon: ':x:'
+      path: data_structure/w_ary_tree.hpp
+      title: data_structure/w_ary_tree.hpp
   - name: graph
     pages:
     - icon: ':warning:'
@@ -268,6 +271,9 @@ data:
     - icon: ':heavy_check_mark:'
       path: test/yosupo-predecessor_problem.test.cpp
       title: test/yosupo-predecessor_problem.test.cpp
+    - icon: ':x:'
+      path: test/yosupo-predecessor_problem2.test.cpp
+      title: test/yosupo-predecessor_problem2.test.cpp
     - icon: ':heavy_check_mark:'
       path: test/yosupo-queue_operate_all_composite.test.cpp
       title: test/yosupo-queue_operate_all_composite.test.cpp

@@ -1,14 +1,14 @@
 ---
 data:
   _extendedDependsOn:
-  - icon: ':heavy_check_mark:'
+  - icon: ':question:'
     path: atcoder/internal_math.hpp
     title: atcoder/internal_math.hpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':question:'
     path: atcoder/internal_type_traits.hpp
     title: atcoder/internal_type_traits.hpp
   _extendedRequiredBy:
-  - icon: ':heavy_check_mark:'
+  - icon: ':question:'
     path: atcoder/convolution.hpp
     title: atcoder/convolution.hpp
   - icon: ':warning:'
@@ -29,7 +29,7 @@ data:
   - icon: ':heavy_check_mark:'
     path: multi.hpp
     title: multi.hpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':question:'
     path: template.hpp
     title: template.hpp
   _extendedVerifiedWith:
@@ -126,6 +126,9 @@ data:
   - icon: ':heavy_check_mark:'
     path: test/yosupo-predecessor_problem.test.cpp
     title: test/yosupo-predecessor_problem.test.cpp
+  - icon: ':x:'
+    path: test/yosupo-predecessor_problem2.test.cpp
+    title: test/yosupo-predecessor_problem2.test.cpp
   - icon: ':heavy_check_mark:'
     path: test/yosupo-queue_operate_all_composite.test.cpp
     title: test/yosupo-queue_operate_all_composite.test.cpp
@@ -159,9 +162,9 @@ data:
   - icon: ':heavy_check_mark:'
     path: test/yosupo-vertex_add_subtree_sum.test.cpp
     title: test/yosupo-vertex_add_subtree_sum.test.cpp
-  _isVerificationFailed: false
+  _isVerificationFailed: true
   _pathExtension: hpp
-  _verificationStatusIcon: ':heavy_check_mark:'
+  _verificationStatusIcon: ':question:'
   attributes:
     links: []
   bundledCode: "#line 1 \"atcoder/modint.hpp\"\n\n\n\n#include <cassert>\n#include\
@@ -476,7 +479,7 @@ data:
   - math/bostan_mori_ll.hpp
   - template.hpp
   timestamp: '2021-09-08 15:21:46+09:00'
-  verificationStatus: LIBRARY_ALL_AC
+  verificationStatus: LIBRARY_SOME_WA
   verifiedWith:
   - test/aoj-2397.test.cpp
   - test/yosupo-stirling_number_of_the_second_kind.test.cpp
@@ -492,6 +495,7 @@ data:
   - test/yosupo-division_of_polynomials.test.cpp
   - test/yosupo-lca.test.cpp
   - test/yosupo-inv_of_formal_power_series.test.cpp
+  - test/yosupo-predecessor_problem2.test.cpp
   - test/aoj-grl-3-c.test.cpp
   - test/aoj-grl-5-e.test.cpp
   - test/aoj-2703.test.cpp
