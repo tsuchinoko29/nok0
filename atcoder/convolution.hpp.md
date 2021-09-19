@@ -20,9 +20,6 @@ data:
   - icon: ':heavy_check_mark:'
     path: math/formal_power_series.hpp
     title: math/formal_power_series.hpp
-  - icon: ':warning:'
-    path: math/multipoint_evaluation.hpp
-    title: math/multipoint_evaluation.hpp
   - icon: ':heavy_check_mark:'
     path: multi.hpp
     title: multi.hpp
@@ -681,7 +678,6 @@ data:
   - template.hpp
   - multi.hpp
   - math/formal_power_series.hpp
-  - math/multipoint_evaluation.hpp
   - math/bostan_mori_ll.hpp
   timestamp: '2021-09-08 15:21:46+09:00'
   verificationStatus: LIBRARY_ALL_AC

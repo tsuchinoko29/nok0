@@ -19,10 +19,7 @@ data:
   - icon: ':heavy_check_mark:'
     path: math/factorial.hpp
     title: math/factorial.hpp
-  _extendedRequiredBy:
-  - icon: ':warning:'
-    path: math/multipoint_evaluation.hpp
-    title: math/multipoint_evaluation.hpp
+  _extendedRequiredBy: []
   _extendedVerifiedWith:
   - icon: ':heavy_check_mark:'
     path: test/yosupo-division_of_polynomials.test.cpp
@@ -835,8 +832,7 @@ data:
   - math/factorial.hpp
   isVerificationFile: false
   path: math/formal_power_series.hpp
-  requiredBy:
-  - math/multipoint_evaluation.hpp
+  requiredBy: []
   timestamp: '2021-09-12 23:05:37+09:00'
   verificationStatus: LIBRARY_ALL_AC
   verifiedWith:

@@ -14,9 +14,6 @@ data:
   - icon: ':heavy_check_mark:'
     path: math/formal_power_series.hpp
     title: math/formal_power_series.hpp
-  - icon: ':warning:'
-    path: math/multipoint_evaluation.hpp
-    title: math/multipoint_evaluation.hpp
   _extendedVerifiedWith:
   - icon: ':heavy_check_mark:'
     path: test/aoj-2397.test.cpp
@@ -303,7 +300,6 @@ data:
   path: math/factorial.hpp
   requiredBy:
   - math/formal_power_series.hpp
-  - math/multipoint_evaluation.hpp
   timestamp: '2021-09-12 23:05:37+09:00'
   verificationStatus: LIBRARY_ALL_AC
   verifiedWith:

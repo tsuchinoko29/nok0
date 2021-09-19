@@ -168,9 +168,6 @@ data:
       path: math/modint_iostream.hpp
       title: math/modint_iostream.hpp
     - icon: ':warning:'
-      path: math/multipoint_evaluation.hpp
-      title: math/multipoint_evaluation.hpp
-    - icon: ':warning:'
       path: math/osa_k.hpp
       title: math/osa_k.hpp
   - name: random
