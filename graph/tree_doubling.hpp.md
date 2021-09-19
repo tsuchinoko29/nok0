@@ -222,8 +222,8 @@ data:
   timestamp: '2021-09-08 10:25:09+09:00'
   verificationStatus: LIBRARY_ALL_AC
   verifiedWith:
-  - test/yosupo-lca.test.cpp
   - test/aoj-grl-5-c.test.cpp
+  - test/yosupo-lca.test.cpp
 documentation_of: graph/tree_doubling.hpp
 layout: document
 redirect_from:

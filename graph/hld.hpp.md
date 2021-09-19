@@ -245,10 +245,10 @@ data:
   timestamp: '2021-09-08 10:25:09+09:00'
   verificationStatus: LIBRARY_ALL_AC
   verifiedWith:
-  - test/aoj-grl-5-e.test.cpp
-  - test/yosupo-vertex_add_path_sum.test.cpp
-  - test/aoj-grl-5-d.test.cpp
   - test/yosupo-vertex_add_subtree_sum.test.cpp
+  - test/yosupo-vertex_add_path_sum.test.cpp
+  - test/aoj-grl-5-e.test.cpp
+  - test/aoj-grl-5-d.test.cpp
 documentation_of: graph/hld.hpp
 layout: document
 redirect_from:

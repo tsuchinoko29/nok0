@@ -122,8 +122,8 @@ data:
   timestamp: '2021-09-08 10:12:28+09:00'
   verificationStatus: LIBRARY_ALL_AC
   verifiedWith:
-  - test/yosupo-predecessor_problem.test.cpp
   - test/yosupo-set_xor_min.test.cpp
+  - test/yosupo-predecessor_problem.test.cpp
 documentation_of: data_structure/binary_trie.hpp
 layout: document
 redirect_from:

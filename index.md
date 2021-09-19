@@ -101,6 +101,9 @@ data:
       path: data_structure/rangeadd_rangesum_bit.hpp
       title: data_structure/rangeadd_rangesum_bit.hpp
     - icon: ':heavy_check_mark:'
+      path: data_structure/sparse_table.hpp
+      title: data_structure/sparse_table.hpp
+    - icon: ':heavy_check_mark:'
       path: data_structure/swag.hpp
       title: data_structure/swag.hpp
     - icon: ':warning:'
@@ -289,6 +292,9 @@ data:
     - icon: ':heavy_check_mark:'
       path: test/yosupo-sqrt_of_formal_power_series.test.cpp
       title: test/yosupo-sqrt_of_formal_power_series.test.cpp
+    - icon: ':heavy_check_mark:'
+      path: test/yosupo-staticrmq.test.cpp
+      title: test/yosupo-staticrmq.test.cpp
     - icon: ':heavy_check_mark:'
       path: test/yosupo-stirling_number_of_the_first_kind.test.cpp
       title: test/yosupo-stirling_number_of_the_first_kind.test.cpp

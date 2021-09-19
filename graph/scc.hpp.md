@@ -229,8 +229,8 @@ data:
   timestamp: '2021-09-08 10:25:09+09:00'
   verificationStatus: LIBRARY_ALL_AC
   verifiedWith:
-  - test/aoj-grl-3-c.test.cpp
   - test/yosupo-scc.test.cpp
+  - test/aoj-grl-3-c.test.cpp
 documentation_of: graph/scc.hpp
 layout: document
 redirect_from:
