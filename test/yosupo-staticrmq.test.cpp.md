@@ -160,8 +160,8 @@ data:
     \    unsigned long index;\n    _BitScanForward(&index, n);\n    return index;\n\
     #else\n    return __builtin_ctz(n);\n#endif\n}\n\n}  // namespace internal\n\n\
     }  // namespace atcoder\n\n\n#line 5 \"data_structure/sparse_table.hpp\"\n\ntemplate\
-    \ <class S, S (*op)(S, S)>\nstruct sparse_table {\npublic:\n\tsparse_table() :\
-    \ sparse_table(0) {}\n\texplicit sparse_table(const std::vector<S>& v) : _n(int(v.size())),\
+    \ <class S, S (*op)(S, S)>\nstruct sparse_table {\npublic:\n\tsparse_table() =\
+    \ default;\n\texplicit sparse_table(const std::vector<S>& v) : _n(int(v.size())),\
     \ lt(int(v.size()) + 1) {\n\t\tlog = atcoder::internal::ceil_pow2(_n);\n\t\td.assign(log\
     \ + 1, std::vector<S>(_n));\n\t\tfor(int i = 0; i <= log; i++) {\n\t\t\tfor(int\
     \ j = 0; j <= _n - (1 << i); j++) {\n\t\t\t\tif(i)\n\t\t\t\t\td[i][j] = op(d[i\
@@ -187,7 +187,7 @@ data:
   isVerificationFile: true
   path: test/yosupo-staticrmq.test.cpp
   requiredBy: []
-  timestamp: '2021-09-19 12:06:20+09:00'
+  timestamp: '2021-09-20 12:04:20+09:00'
   verificationStatus: TEST_ACCEPTED
   verifiedWith: []
 documentation_of: test/yosupo-staticrmq.test.cpp
