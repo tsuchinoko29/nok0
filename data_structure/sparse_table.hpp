@@ -6,7 +6,7 @@
 template <class S, S (*op)(S, S)>
 struct sparse_table {
 public:
-	sparse_table() : sparse_table(0) {}
+	sparse_table() = default;
 	explicit sparse_table(const std::vector<S>& v) : _n(int(v.size())), lt(int(v.size()) + 1) {
 		log = atcoder::internal::ceil_pow2(_n);
 		d.assign(log + 1, std::vector<S>(_n));
