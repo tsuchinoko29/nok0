@@ -309,14 +309,6 @@ template <class T>
 void SUB(std::vector<T> &a, const T x = 1) {
 	for(auto &v : a) v -= x;
 }
-template <class T>
-void MUL(std::vector<T> &a, const T x) {
-	for(auto &v : a) v *= x;
-}
-template <class T>
-void DIV(std::vector<T> &a, const T x) {
-	for(auto &v : a) v /= x;
-}
 std::vector<std::pair<char, int>> rle(const string &s) {
 	int n = s.size();
 	std::vector<std::pair<char, int>> ret;
@@ -340,6 +332,27 @@ std::vector<std::pair<T, int>> rle(const std::vector<T> &v) {
 	}
 	return ret;
 }
+std::vector<int> iota(int n) {
+	std::vector<int> p(n);
+	std::iota(p.begin(), p.end(), 0);
+	return p;
+}
+template <class T>
+struct cum_vector {
+public:
+	cum_vector() = default;
+	template <class U>
+	cum_vector(const std::vector<U> &vec) : cum((int)vec.size() + 1) {
+		for(int i = 0; i < (int)vec.size(); i++)
+			cum[i + 1] = cum[i] + vec[i];
+	}
+	T prod(int l, int r) {
+		return cum[r] - cum[l];
+	}
+
+private:
+	std::vector<T> cum;
+};
 
 // math macro
 template <class T, class U>
@@ -368,6 +381,22 @@ long long POW(long long a, long long n, const int mod) {
 		n >>= 1;
 	}
 	return ret;
+}
+template <class T, class F>
+T bin_search(T ok, T ng, const F &f) {
+	while(abs(ok - ng) > 1) {
+		T mid = (ok + ng) >> 1;
+		(f(mid) ? ok : ng) = mid;
+	}
+	return ok;
+}
+template <class T, class F>
+T bin_search(T ok, T ng, const F &f, int loop) {
+	for(int i = 0; i < loop; i++) {
+		T mid = (ok + ng) >> 1;
+		(f(mid) ? ok : ng) = mid;
+	}
+	return ok;
 }
 
 // others
