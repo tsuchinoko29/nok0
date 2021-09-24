@@ -9,15 +9,15 @@ data:
   - icon: ':heavy_check_mark:'
     path: test/aoj-grl-5-d.test.cpp
     title: test/aoj-grl-5-d.test.cpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':x:'
     path: test/yosupo-vertex_add_path_sum.test.cpp
     title: test/yosupo-vertex_add_path_sum.test.cpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':x:'
     path: test/yosupo-vertex_add_subtree_sum.test.cpp
     title: test/yosupo-vertex_add_subtree_sum.test.cpp
-  _isVerificationFailed: false
+  _isVerificationFailed: true
   _pathExtension: hpp
-  _verificationStatusIcon: ':heavy_check_mark:'
+  _verificationStatusIcon: ':question:'
   attributes:
     links: []
   bundledCode: "#line 1 \"data_structure/binary_indexed_tree.hpp\"\n#include <vector>\n\
@@ -47,7 +47,7 @@ data:
   path: data_structure/binary_indexed_tree.hpp
   requiredBy: []
   timestamp: '2021-09-07 20:47:04+09:00'
-  verificationStatus: LIBRARY_ALL_AC
+  verificationStatus: LIBRARY_SOME_WA
   verifiedWith:
   - test/yosupo-vertex_add_subtree_sum.test.cpp
   - test/aoj-dsl-2-b.test.cpp

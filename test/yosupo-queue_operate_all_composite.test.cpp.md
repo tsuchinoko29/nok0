@@ -1,29 +1,29 @@
 ---
 data:
   _extendedDependsOn:
-  - icon: ':heavy_check_mark:'
+  - icon: ':question:'
     path: atcoder/internal_math.hpp
     title: atcoder/internal_math.hpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':question:'
     path: atcoder/internal_type_traits.hpp
     title: atcoder/internal_type_traits.hpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':question:'
     path: atcoder/modint.hpp
     title: atcoder/modint.hpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':question:'
     path: cftemp.hpp
     title: cftemp.hpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':x:'
     path: data_structure/swag.hpp
     title: data_structure/swag.hpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':question:'
     path: math/modint_iostream.hpp
     title: math/modint_iostream.hpp
   _extendedRequiredBy: []
   _extendedVerifiedWith: []
-  _isVerificationFailed: false
+  _isVerificationFailed: true
   _pathExtension: cpp
-  _verificationStatusIcon: ':heavy_check_mark:'
+  _verificationStatusIcon: ':x:'
   attributes:
     '*NOT_SPECIAL_COMMENTS*': ''
     PROBLEM: https://judge.yosupo.jp/problem/queue_operate_all_composite
@@ -342,25 +342,33 @@ data:
     \ (a).end(), [](const auto x, const auto y) { return x c y; })\ntemplate <class\
     \ T>\nvoid ADD(std::vector<T> &a, const T x = 1) {\n\tfor(auto &v : a) v += x;\n\
     }\ntemplate <class T>\nvoid SUB(std::vector<T> &a, const T x = 1) {\n\tfor(auto\
-    \ &v : a) v -= x;\n}\ntemplate <class T>\nvoid MUL(std::vector<T> &a, const T\
-    \ x) {\n\tfor(auto &v : a) v *= x;\n}\ntemplate <class T>\nvoid DIV(std::vector<T>\
-    \ &a, const T x) {\n\tfor(auto &v : a) v /= x;\n}\nstd::vector<std::pair<char,\
-    \ int>> rle(const string &s) {\n\tint n = s.size();\n\tstd::vector<std::pair<char,\
-    \ int>> ret;\n\tfor(int l = 0; l < n;) {\n\t\tint r = l + 1;\n\t\tfor(; r < n\
-    \ and s[l] == s[r]; r++) {}\n\t\tret.emplace_back(s[l], r - l);\n\t\tl = r;\n\t\
-    }\n\treturn ret;\n}\ntemplate <class T>\nstd::vector<std::pair<T, int>> rle(const\
-    \ std::vector<T> &v) {\n\tint n = v.size();\n\tstd::vector<std::pair<T, int>>\
-    \ ret;\n\tfor(int l = 0; l < n;) {\n\t\tint r = l + 1;\n\t\tfor(; r < n and v[l]\
-    \ == v[r]; r++) {}\n\t\tret.emplace_back(v[l], r - l);\n\t\tl = r;\n\t}\n\treturn\
-    \ ret;\n}\n\n// math macro\ntemplate <class T, class U>\ninline bool chmin(T &a,\
-    \ const U &b) { return a > b ? a = b, true : false; }\ntemplate <class T, class\
-    \ U>\ninline bool chmax(T &a, const U &b) { return a < b ? a = b, true : false;\
-    \ }\ntemplate <class T>\nT divup(T x, T y) { return (x + y - 1) / y; }\ntemplate\
-    \ <class T>\nT POW(T a, long long n) {\n\tT ret = 1;\n\twhile(n) {\n\t\tif(n &\
-    \ 1) ret *= a;\n\t\ta *= a;\n\t\tn >>= 1;\n\t}\n\treturn ret;\n}\n// modpow\n\
-    long long POW(long long a, long long n, const int mod) {\n\tlong long ret = 1;\n\
-    \ta = (a % mod + mod) % mod;\n\twhile(n) {\n\t\tif(n & 1) (ret *= a) %= mod;\n\
-    \t\t(a *= a) %= mod;\n\t\tn >>= 1;\n\t}\n\treturn ret;\n}\n\n// others\nstruct\
+    \ &v : a) v -= x;\n}\nstd::vector<std::pair<char, int>> rle(const string &s) {\n\
+    \tint n = s.size();\n\tstd::vector<std::pair<char, int>> ret;\n\tfor(int l = 0;\
+    \ l < n;) {\n\t\tint r = l + 1;\n\t\tfor(; r < n and s[l] == s[r]; r++) {}\n\t\
+    \tret.emplace_back(s[l], r - l);\n\t\tl = r;\n\t}\n\treturn ret;\n}\ntemplate\
+    \ <class T>\nstd::vector<std::pair<T, int>> rle(const std::vector<T> &v) {\n\t\
+    int n = v.size();\n\tstd::vector<std::pair<T, int>> ret;\n\tfor(int l = 0; l <\
+    \ n;) {\n\t\tint r = l + 1;\n\t\tfor(; r < n and v[l] == v[r]; r++) {}\n\t\tret.emplace_back(v[l],\
+    \ r - l);\n\t\tl = r;\n\t}\n\treturn ret;\n}\nstd::vector<int> iota(int n) {\n\
+    \tstd::vector<int> p(n);\n\tstd::iota(p.begin(), p.end(), 0);\n\treturn p;\n}\n\
+    template <class T>\nstruct cum_vector {\npublic:\n\tcum_vector() = default;\n\t\
+    template <class U>\n\tcum_vector(const std::vector<U> &vec) : cum((int)vec.size()\
+    \ + 1) {\n\t\tfor(int i = 0; i < (int)vec.size(); i++)\n\t\t\tcum[i + 1] = cum[i]\
+    \ + vec[i];\n\t}\n\tT prod(int l, int r) {\n\t\treturn cum[r] - cum[l];\n\t}\n\
+    \nprivate:\n\tstd::vector<T> cum;\n};\n\n// math macro\ntemplate <class T, class\
+    \ U>\ninline bool chmin(T &a, const U &b) { return a > b ? a = b, true : false;\
+    \ }\ntemplate <class T, class U>\ninline bool chmax(T &a, const U &b) { return\
+    \ a < b ? a = b, true : false; }\ntemplate <class T>\nT divup(T x, T y) { return\
+    \ (x + y - 1) / y; }\ntemplate <class T>\nT POW(T a, long long n) {\n\tT ret =\
+    \ 1;\n\twhile(n) {\n\t\tif(n & 1) ret *= a;\n\t\ta *= a;\n\t\tn >>= 1;\n\t}\n\t\
+    return ret;\n}\n// modpow\nlong long POW(long long a, long long n, const int mod)\
+    \ {\n\tlong long ret = 1;\n\ta = (a % mod + mod) % mod;\n\twhile(n) {\n\t\tif(n\
+    \ & 1) (ret *= a) %= mod;\n\t\t(a *= a) %= mod;\n\t\tn >>= 1;\n\t}\n\treturn ret;\n\
+    }\ntemplate <class T, class F>\nT bin_search(T ok, T ng, const F &f) {\n\twhile(abs(ok\
+    \ - ng) > 1) {\n\t\tT mid = (ok + ng) >> 1;\n\t\t(f(mid) ? ok : ng) = mid;\n\t\
+    }\n\treturn ok;\n}\ntemplate <class T, class F>\nT bin_search(T ok, T ng, const\
+    \ F &f, int loop) {\n\tfor(int i = 0; i < loop; i++) {\n\t\tT mid = (ok + ng)\
+    \ >> 1;\n\t\t(f(mid) ? ok : ng) = mid;\n\t}\n\treturn ok;\n}\n\n// others\nstruct\
     \ fast_io {\n\tfast_io() {\n\t\tios::sync_with_stdio(false);\n\t\tcin.tie(nullptr);\n\
     \t\tcout << fixed << setprecision(15);\n\t}\n} fast_io_;\nconst int inf = 1e9;\n\
     const ll INF = 1e18;\n#pragma endregion\n\nvoid main_();\n\nint main() {\n\tmain_();\n\
@@ -417,8 +425,8 @@ data:
   isVerificationFile: true
   path: test/yosupo-queue_operate_all_composite.test.cpp
   requiredBy: []
-  timestamp: '2021-09-09 10:43:47+09:00'
-  verificationStatus: TEST_ACCEPTED
+  timestamp: '2021-09-25 00:14:04+09:00'
+  verificationStatus: TEST_WRONG_ANSWER
   verifiedWith: []
 documentation_of: test/yosupo-queue_operate_all_composite.test.cpp
 layout: document

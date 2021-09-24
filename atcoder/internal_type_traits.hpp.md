@@ -2,31 +2,31 @@
 data:
   _extendedDependsOn: []
   _extendedRequiredBy:
-  - icon: ':heavy_check_mark:'
+  - icon: ':question:'
     path: atcoder/convolution.hpp
     title: atcoder/convolution.hpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':question:'
     path: atcoder/fenwicktree.hpp
     title: atcoder/fenwicktree.hpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':question:'
     path: atcoder/modint.hpp
     title: atcoder/modint.hpp
   - icon: ':warning:'
     path: math/bostan_mori_ll.hpp
     title: math/bostan_mori_ll.hpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':question:'
     path: math/factorial.hpp
     title: math/factorial.hpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':question:'
     path: math/formal_power_series.hpp
     title: math/formal_power_series.hpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':question:'
     path: math/modint_iostream.hpp
     title: math/modint_iostream.hpp
   - icon: ':heavy_check_mark:'
     path: multi.hpp
     title: multi.hpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':question:'
     path: template.hpp
     title: template.hpp
   _extendedVerifiedWith:
@@ -120,48 +120,48 @@ data:
   - icon: ':heavy_check_mark:'
     path: test/yosupo-pow_of_formal_power_series.test.cpp
     title: test/yosupo-pow_of_formal_power_series.test.cpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':x:'
     path: test/yosupo-predecessor_problem.test.cpp
     title: test/yosupo-predecessor_problem.test.cpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':x:'
     path: test/yosupo-predecessor_problem2.test.cpp
     title: test/yosupo-predecessor_problem2.test.cpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':x:'
     path: test/yosupo-queue_operate_all_composite.test.cpp
     title: test/yosupo-queue_operate_all_composite.test.cpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':x:'
     path: test/yosupo-scc.test.cpp
     title: test/yosupo-scc.test.cpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':x:'
     path: test/yosupo-segment_add_get_min.test.cpp
     title: test/yosupo-segment_add_get_min.test.cpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':x:'
     path: test/yosupo-set_xor_min.test.cpp
     title: test/yosupo-set_xor_min.test.cpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':x:'
     path: test/yosupo-sqrt_of_formal_power_series.test.cpp
     title: test/yosupo-sqrt_of_formal_power_series.test.cpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':x:'
     path: test/yosupo-stirling_number_of_the_first_kind.test.cpp
     title: test/yosupo-stirling_number_of_the_first_kind.test.cpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':x:'
     path: test/yosupo-stirling_number_of_the_second_kind.test.cpp
     title: test/yosupo-stirling_number_of_the_second_kind.test.cpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':x:'
     path: test/yosupo-tree_diameter.test.cpp
     title: test/yosupo-tree_diameter.test.cpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':x:'
     path: test/yosupo-two_edge_connected_components.test.cpp
     title: test/yosupo-two_edge_connected_components.test.cpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':x:'
     path: test/yosupo-vertex_add_path_sum.test.cpp
     title: test/yosupo-vertex_add_path_sum.test.cpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':x:'
     path: test/yosupo-vertex_add_subtree_sum.test.cpp
     title: test/yosupo-vertex_add_subtree_sum.test.cpp
-  _isVerificationFailed: false
+  _isVerificationFailed: true
   _pathExtension: hpp
-  _verificationStatusIcon: ':heavy_check_mark:'
+  _verificationStatusIcon: ':question:'
   attributes:
     links: []
   bundledCode: "#line 1 \"atcoder/internal_type_traits.hpp\"\n\n\n\n#include <cassert>\n\
@@ -266,7 +266,7 @@ data:
   - math/bostan_mori_ll.hpp
   - math/factorial.hpp
   timestamp: '2021-09-08 15:21:46+09:00'
-  verificationStatus: LIBRARY_ALL_AC
+  verificationStatus: LIBRARY_SOME_WA
   verifiedWith:
   - test/yosupo-vertex_add_subtree_sum.test.cpp
   - test/yosupo-segment_add_get_min.test.cpp

@@ -1,11 +1,11 @@
 ---
 data:
   _extendedDependsOn:
-  - icon: ':heavy_check_mark:'
+  - icon: ':question:'
     path: graph/graph.hpp
     title: graph/graph.hpp
   _extendedRequiredBy:
-  - icon: ':heavy_check_mark:'
+  - icon: ':x:'
     path: graph/two_edge_cc.hpp
     title: graph/two_edge_cc.hpp
   _extendedVerifiedWith:
@@ -15,12 +15,12 @@ data:
   - icon: ':heavy_check_mark:'
     path: test/aoj-grl-3-b.test.cpp
     title: test/aoj-grl-3-b.test.cpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':x:'
     path: test/yosupo-two_edge_connected_components.test.cpp
     title: test/yosupo-two_edge_connected_components.test.cpp
-  _isVerificationFailed: false
+  _isVerificationFailed: true
   _pathExtension: hpp
-  _verificationStatusIcon: ':heavy_check_mark:'
+  _verificationStatusIcon: ':question:'
   attributes:
     links: []
   bundledCode: "#line 2 \"graph/low_link.hpp\"\n\n#line 2 \"graph/graph.hpp\"\n#include\
@@ -214,7 +214,7 @@ data:
   requiredBy:
   - graph/two_edge_cc.hpp
   timestamp: '2021-09-08 10:25:09+09:00'
-  verificationStatus: LIBRARY_ALL_AC
+  verificationStatus: LIBRARY_SOME_WA
   verifiedWith:
   - test/aoj-grl-3-a.test.cpp
   - test/aoj-grl-3-b.test.cpp

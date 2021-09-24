@@ -1,64 +1,64 @@
 ---
 data:
   _extendedDependsOn:
-  - icon: ':heavy_check_mark:'
+  - icon: ':question:'
     path: atcoder/convolution.hpp
     title: atcoder/convolution.hpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':question:'
     path: atcoder/dsu.hpp
     title: atcoder/dsu.hpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':question:'
     path: atcoder/fenwicktree.hpp
     title: atcoder/fenwicktree.hpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':question:'
     path: atcoder/internal_bit.hpp
     title: atcoder/internal_bit.hpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':question:'
     path: atcoder/internal_csr.hpp
     title: atcoder/internal_csr.hpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':question:'
     path: atcoder/internal_math.hpp
     title: atcoder/internal_math.hpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':question:'
     path: atcoder/internal_queue.hpp
     title: atcoder/internal_queue.hpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':question:'
     path: atcoder/internal_scc.hpp
     title: atcoder/internal_scc.hpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':question:'
     path: atcoder/internal_type_traits.hpp
     title: atcoder/internal_type_traits.hpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':question:'
     path: atcoder/lazysegtree.hpp
     title: atcoder/lazysegtree.hpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':question:'
     path: atcoder/math.hpp
     title: atcoder/math.hpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':question:'
     path: atcoder/maxflow.hpp
     title: atcoder/maxflow.hpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':question:'
     path: atcoder/mincostflow.hpp
     title: atcoder/mincostflow.hpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':question:'
     path: atcoder/modint.hpp
     title: atcoder/modint.hpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':question:'
     path: atcoder/scc.hpp
     title: atcoder/scc.hpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':question:'
     path: atcoder/segtree.hpp
     title: atcoder/segtree.hpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':question:'
     path: atcoder/string.hpp
     title: atcoder/string.hpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':question:'
     path: atcoder/twosat.hpp
     title: atcoder/twosat.hpp
   - icon: ':heavy_check_mark:'
     path: math/inversion.hpp
     title: math/inversion.hpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':question:'
     path: template.hpp
     title: template.hpp
   _extendedRequiredBy: []
@@ -199,27 +199,35 @@ data:
     #define SORT1(a, c) std::sort((a).begin(), (a).end(), [](const auto x, const auto\
     \ y) { return x c y; })\ntemplate <class T>\nvoid ADD(std::vector<T> &a, const\
     \ T x = 1) {\n\tfor(auto &v : a) v += x;\n}\ntemplate <class T>\nvoid SUB(std::vector<T>\
-    \ &a, const T x = 1) {\n\tfor(auto &v : a) v -= x;\n}\ntemplate <class T>\nvoid\
-    \ MUL(std::vector<T> &a, const T x) {\n\tfor(auto &v : a) v *= x;\n}\ntemplate\
-    \ <class T>\nvoid DIV(std::vector<T> &a, const T x) {\n\tfor(auto &v : a) v /=\
-    \ x;\n}\nstd::vector<std::pair<char, int>> rle(const string &s) {\n\tint n = s.size();\n\
-    \tstd::vector<std::pair<char, int>> ret;\n\tfor(int l = 0; l < n;) {\n\t\tint\
-    \ r = l + 1;\n\t\tfor(; r < n and s[l] == s[r]; r++) {}\n\t\tret.emplace_back(s[l],\
-    \ r - l);\n\t\tl = r;\n\t}\n\treturn ret;\n}\ntemplate <class T>\nstd::vector<std::pair<T,\
-    \ int>> rle(const std::vector<T> &v) {\n\tint n = v.size();\n\tstd::vector<std::pair<T,\
+    \ &a, const T x = 1) {\n\tfor(auto &v : a) v -= x;\n}\nstd::vector<std::pair<char,\
+    \ int>> rle(const string &s) {\n\tint n = s.size();\n\tstd::vector<std::pair<char,\
     \ int>> ret;\n\tfor(int l = 0; l < n;) {\n\t\tint r = l + 1;\n\t\tfor(; r < n\
-    \ and v[l] == v[r]; r++) {}\n\t\tret.emplace_back(v[l], r - l);\n\t\tl = r;\n\t\
-    }\n\treturn ret;\n}\n\n// math macro\ntemplate <class T, class U>\ninline bool\
-    \ chmin(T &a, const U &b) { return a > b ? a = b, true : false; }\ntemplate <class\
-    \ T, class U>\ninline bool chmax(T &a, const U &b) { return a < b ? a = b, true\
-    \ : false; }\ntemplate <class T>\nT divup(T x, T y) { return (x + y - 1) / y;\
-    \ }\ntemplate <class T>\nT POW(T a, long long n) {\n\tT ret = 1;\n\twhile(n) {\n\
-    \t\tif(n & 1) ret *= a;\n\t\ta *= a;\n\t\tn >>= 1;\n\t}\n\treturn ret;\n}\n//\
-    \ modpow\nlong long POW(long long a, long long n, const int mod) {\n\tlong long\
-    \ ret = 1;\n\ta = (a % mod + mod) % mod;\n\twhile(n) {\n\t\tif(n & 1) (ret *=\
-    \ a) %= mod;\n\t\t(a *= a) %= mod;\n\t\tn >>= 1;\n\t}\n\treturn ret;\n}\n\n//\
-    \ others\nstruct fast_io {\n\tfast_io() {\n\t\tios::sync_with_stdio(false);\n\t\
-    \tcin.tie(nullptr);\n\t\tcout << fixed << setprecision(15);\n\t}\n} fast_io_;\n\
+    \ and s[l] == s[r]; r++) {}\n\t\tret.emplace_back(s[l], r - l);\n\t\tl = r;\n\t\
+    }\n\treturn ret;\n}\ntemplate <class T>\nstd::vector<std::pair<T, int>> rle(const\
+    \ std::vector<T> &v) {\n\tint n = v.size();\n\tstd::vector<std::pair<T, int>>\
+    \ ret;\n\tfor(int l = 0; l < n;) {\n\t\tint r = l + 1;\n\t\tfor(; r < n and v[l]\
+    \ == v[r]; r++) {}\n\t\tret.emplace_back(v[l], r - l);\n\t\tl = r;\n\t}\n\treturn\
+    \ ret;\n}\nstd::vector<int> iota(int n) {\n\tstd::vector<int> p(n);\n\tstd::iota(p.begin(),\
+    \ p.end(), 0);\n\treturn p;\n}\ntemplate <class T>\nstruct cum_vector {\npublic:\n\
+    \tcum_vector() = default;\n\ttemplate <class U>\n\tcum_vector(const std::vector<U>\
+    \ &vec) : cum((int)vec.size() + 1) {\n\t\tfor(int i = 0; i < (int)vec.size();\
+    \ i++)\n\t\t\tcum[i + 1] = cum[i] + vec[i];\n\t}\n\tT prod(int l, int r) {\n\t\
+    \treturn cum[r] - cum[l];\n\t}\n\nprivate:\n\tstd::vector<T> cum;\n};\n\n// math\
+    \ macro\ntemplate <class T, class U>\ninline bool chmin(T &a, const U &b) { return\
+    \ a > b ? a = b, true : false; }\ntemplate <class T, class U>\ninline bool chmax(T\
+    \ &a, const U &b) { return a < b ? a = b, true : false; }\ntemplate <class T>\n\
+    T divup(T x, T y) { return (x + y - 1) / y; }\ntemplate <class T>\nT POW(T a,\
+    \ long long n) {\n\tT ret = 1;\n\twhile(n) {\n\t\tif(n & 1) ret *= a;\n\t\ta *=\
+    \ a;\n\t\tn >>= 1;\n\t}\n\treturn ret;\n}\n// modpow\nlong long POW(long long\
+    \ a, long long n, const int mod) {\n\tlong long ret = 1;\n\ta = (a % mod + mod)\
+    \ % mod;\n\twhile(n) {\n\t\tif(n & 1) (ret *= a) %= mod;\n\t\t(a *= a) %= mod;\n\
+    \t\tn >>= 1;\n\t}\n\treturn ret;\n}\ntemplate <class T, class F>\nT bin_search(T\
+    \ ok, T ng, const F &f) {\n\twhile(abs(ok - ng) > 1) {\n\t\tT mid = (ok + ng)\
+    \ >> 1;\n\t\t(f(mid) ? ok : ng) = mid;\n\t}\n\treturn ok;\n}\ntemplate <class\
+    \ T, class F>\nT bin_search(T ok, T ng, const F &f, int loop) {\n\tfor(int i =\
+    \ 0; i < loop; i++) {\n\t\tT mid = (ok + ng) >> 1;\n\t\t(f(mid) ? ok : ng) = mid;\n\
+    \t}\n\treturn ok;\n}\n\n// others\nstruct fast_io {\n\tfast_io() {\n\t\tios::sync_with_stdio(false);\n\
+    \t\tcin.tie(nullptr);\n\t\tcout << fixed << setprecision(15);\n\t}\n} fast_io_;\n\
     const int inf = 1e9;\nconst ll INF = 1e18;\n#pragma endregion\n\nvoid main_();\n\
     \nint main() {\n\tmain_();\n\treturn 0;\n}\n#line 5 \"test/aoj-alds1_5_d.test.cpp\"\
     \n\nvoid main_() {\n\tINT(n);\n\tVEC(int, a, n);\n\tpress(a);\n\tprint(inversion(a));\n\
@@ -251,7 +259,7 @@ data:
   isVerificationFile: true
   path: test/aoj-alds1_5_d.test.cpp
   requiredBy: []
-  timestamp: '2021-09-08 20:51:58+09:00'
+  timestamp: '2021-09-25 00:14:04+09:00'
   verificationStatus: TEST_ACCEPTED
   verifiedWith: []
 documentation_of: test/aoj-alds1_5_d.test.cpp
