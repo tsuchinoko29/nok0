@@ -51,8 +51,9 @@ public:
 
 	int level_ancestor(int v, int level) {
 		assert(level >= 0);
+		if(level >= (1 << max_jump)) return -1;
 		for(int jump = 0; jump < max_jump and level; jump++) {
-			if(level & 1) v = parent[jump][v];
+			if(level & 1 and v != -1) v = parent[jump][v];
 			level >>= 1;
 		}
 		return v;
