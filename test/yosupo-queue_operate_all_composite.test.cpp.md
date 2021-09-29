@@ -1,29 +1,29 @@
 ---
 data:
   _extendedDependsOn:
-  - icon: ':question:'
+  - icon: ':heavy_check_mark:'
     path: atcoder/internal_math.hpp
     title: atcoder/internal_math.hpp
-  - icon: ':question:'
+  - icon: ':heavy_check_mark:'
     path: atcoder/internal_type_traits.hpp
     title: atcoder/internal_type_traits.hpp
-  - icon: ':question:'
+  - icon: ':heavy_check_mark:'
     path: atcoder/modint.hpp
     title: atcoder/modint.hpp
-  - icon: ':question:'
+  - icon: ':heavy_check_mark:'
     path: cftemp.hpp
     title: cftemp.hpp
-  - icon: ':x:'
+  - icon: ':heavy_check_mark:'
     path: data_structure/swag.hpp
     title: data_structure/swag.hpp
-  - icon: ':question:'
+  - icon: ':heavy_check_mark:'
     path: math/modint_iostream.hpp
     title: math/modint_iostream.hpp
   _extendedRequiredBy: []
   _extendedVerifiedWith: []
-  _isVerificationFailed: true
+  _isVerificationFailed: false
   _pathExtension: cpp
-  _verificationStatusIcon: ':x:'
+  _verificationStatusIcon: ':heavy_check_mark:'
   attributes:
     '*NOT_SPECIAL_COMMENTS*': ''
     PROBLEM: https://judge.yosupo.jp/problem/queue_operate_all_composite
@@ -426,7 +426,7 @@ data:
   path: test/yosupo-queue_operate_all_composite.test.cpp
   requiredBy: []
   timestamp: '2021-09-25 00:14:04+09:00'
-  verificationStatus: TEST_WRONG_ANSWER
+  verificationStatus: TEST_ACCEPTED
   verifiedWith: []
 documentation_of: test/yosupo-queue_operate_all_composite.test.cpp
 layout: document

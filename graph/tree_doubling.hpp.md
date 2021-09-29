@@ -1,7 +1,7 @@
 ---
 data:
   _extendedDependsOn:
-  - icon: ':question:'
+  - icon: ':heavy_check_mark:'
     path: graph/graph.hpp
     title: graph/graph.hpp
   _extendedRequiredBy: []
@@ -189,9 +189,10 @@ data:
     \ != parent[i][v]) u = parent[i][u], v = parent[i][v];\n\t\treturn parent[0][u];\n\
     \t}\n\n\tlong long length_of_path(const int u, const int v) { return dist[u] +\
     \ dist[v] - dist[lowest_common_ancestor(u, v)] * 2; }\n\n\tint level_ancestor(int\
-    \ v, int level) {\n\t\tassert(level >= 0);\n\t\tfor(int jump = 0; jump < max_jump\
-    \ and level; jump++) {\n\t\t\tif(level & 1) v = parent[jump][v];\n\t\t\tlevel\
-    \ >>= 1;\n\t\t}\n\t\treturn v;\n\t}\n};\n"
+    \ v, int level) {\n\t\tassert(level >= 0);\n\t\tif(level >= (1 << max_jump)) return\
+    \ -1;\n\t\tfor(int jump = 0; jump < max_jump and level; jump++) {\n\t\t\tif(level\
+    \ & 1 and v != -1) v = parent[jump][v];\n\t\t\tlevel >>= 1;\n\t\t}\n\t\treturn\
+    \ v;\n\t}\n};\n"
   code: "#pragma once\n#include \"graph/graph.hpp\"\n\nstruct tree_doubling {\nprivate:\n\
     \tstd::vector<std::vector<int>> parent;\n\tstd::vector<int> depth;\n\tstd::vector<long\
     \ long> dist;\n\tint max_jump = 1;\n\n\tvoid build() {\n\t\tfor(int i = 0; i <\
@@ -212,14 +213,15 @@ data:
     \ u = parent[i][u], v = parent[i][v];\n\t\treturn parent[0][u];\n\t}\n\n\tlong\
     \ long length_of_path(const int u, const int v) { return dist[u] + dist[v] - dist[lowest_common_ancestor(u,\
     \ v)] * 2; }\n\n\tint level_ancestor(int v, int level) {\n\t\tassert(level >=\
-    \ 0);\n\t\tfor(int jump = 0; jump < max_jump and level; jump++) {\n\t\t\tif(level\
-    \ & 1) v = parent[jump][v];\n\t\t\tlevel >>= 1;\n\t\t}\n\t\treturn v;\n\t}\n};\n"
+    \ 0);\n\t\tif(level >= (1 << max_jump)) return -1;\n\t\tfor(int jump = 0; jump\
+    \ < max_jump and level; jump++) {\n\t\t\tif(level & 1 and v != -1) v = parent[jump][v];\n\
+    \t\t\tlevel >>= 1;\n\t\t}\n\t\treturn v;\n\t}\n};\n"
   dependsOn:
   - graph/graph.hpp
   isVerificationFile: false
   path: graph/tree_doubling.hpp
   requiredBy: []
-  timestamp: '2021-09-08 10:25:09+09:00'
+  timestamp: '2021-09-29 21:47:26+09:00'
   verificationStatus: LIBRARY_ALL_AC
   verifiedWith:
   - test/aoj-grl-5-c.test.cpp
