@@ -21,11 +21,8 @@ public:
 			for(const auto &[to, cost] : g[idx])
 				potential[to] = std::min(potential[to], potential[idx] + cost);
 
-		for(auto &v : potential) std::cout << v << " ";
-		std::cout << std::endl;
-
 		for(const auto &[from, to, cap, cost] : es)
-			mcf.add_edge(from, to, cap, potential[to] - potential[from] - cost);
+			mcf.add_edge(from, to, cap, potential[from] - potential[to] + cost);
 
 		auto [rescap, rescost] = mcf.flow(s, t);
 		return {rescap, potential[t] * rescap - rescost};
