@@ -181,21 +181,20 @@ data:
     \t\tstd::vector<int> t_sort = g.topological_sort();\n\t\tpotential[s] = 0;\n\t\
     \tfor(const auto &idx : t_sort)\n\t\t\tfor(const auto &[to, cost] : g[idx])\n\t\
     \t\t\tpotential[to] = std::min(potential[to], potential[idx] + cost);\n\n\t\t\
-    for(auto &v : potential) std::cout << v << \" \";\n\t\tstd::cout << std::endl;\n\
-    \n\t\tfor(const auto &[from, to, cap, cost] : es)\n\t\t\tmcf.add_edge(from, to,\
-    \ cap, potential[to] - potential[from] - cost);\n\n\t\tauto [rescap, rescost]\
-    \ = mcf.flow(s, t);\n\t\treturn {rescap, potential[t] * rescap - rescost};\n\t\
-    }\n\n\tstd::pair<Cap, Cost> flow(int s, int t, int k) {\n\t\tstd::vector<Cost>\
-    \ potential(g.size());\n\t\tstd::vector<int> t_sort = g.topological_sort();\n\t\
-    \tpotential[s] = 0;\n\t\tfor(const auto &idx : t_sort)\n\t\t\tfor(const auto &[to,\
-    \ cost] : g[idx])\n\t\t\t\tpotential[to] = std::min(potential[to], potential[idx]\
-    \ + cost);\n\n\t\tfor(const auto &[from, to, cap, cost] : es)\n\t\t\tmcf.add_edge(from,\
-    \ to, cap, potential[from] - potential[to] + cost);\n\n\t\tauto [rescap, rescost]\
-    \ = mcf.flow(s, t, k);\n\t\treturn {rescap, potential[t] * rescap + rescost};\n\
-    \t}\n\nprivate:\n\tgraph g;\n\tatcoder::mcf_graph<Cap, Cost> mcf;\n\tstruct edge\
-    \ {\n\t\tint from, to;\n\t\tCap cap;\n\t\tCost cost;\n\t\tedge(int from, int to,\
-    \ Cap cap, Cost cost) : from(from), to(to), cap(cap), cost(cost) {}\n\t};\n\t\
-    std::vector<edge> es;\n};\n"
+    for(const auto &[from, to, cap, cost] : es)\n\t\t\tmcf.add_edge(from, to, cap,\
+    \ potential[from] - potential[to] + cost);\n\n\t\tauto [rescap, rescost] = mcf.flow(s,\
+    \ t);\n\t\treturn {rescap, potential[t] * rescap - rescost};\n\t}\n\n\tstd::pair<Cap,\
+    \ Cost> flow(int s, int t, int k) {\n\t\tstd::vector<Cost> potential(g.size());\n\
+    \t\tstd::vector<int> t_sort = g.topological_sort();\n\t\tpotential[s] = 0;\n\t\
+    \tfor(const auto &idx : t_sort)\n\t\t\tfor(const auto &[to, cost] : g[idx])\n\t\
+    \t\t\tpotential[to] = std::min(potential[to], potential[idx] + cost);\n\n\t\t\
+    for(const auto &[from, to, cap, cost] : es)\n\t\t\tmcf.add_edge(from, to, cap,\
+    \ potential[from] - potential[to] + cost);\n\n\t\tauto [rescap, rescost] = mcf.flow(s,\
+    \ t, k);\n\t\treturn {rescap, potential[t] * rescap + rescost};\n\t}\n\nprivate:\n\
+    \tgraph g;\n\tatcoder::mcf_graph<Cap, Cost> mcf;\n\tstruct edge {\n\t\tint from,\
+    \ to;\n\t\tCap cap;\n\t\tCost cost;\n\t\tedge(int from, int to, Cap cap, Cost\
+    \ cost) : from(from), to(to), cap(cap), cost(cost) {}\n\t};\n\tstd::vector<edge>\
+    \ es;\n};\n"
   code: "#include <atcoder/mincostflow>\n#include <iostream>\n\n#include \"graph/graph.hpp\"\
     \n\ntemplate <class Cap, class Cost>\nstruct dag_mcf {\npublic:\n\tdag_mcf(int\
     \ n) : mcf(n), g(n) {}\n\n\tvoid add_edge(int from, int to, Cap cap, Cost cost)\
@@ -204,21 +203,20 @@ data:
     \t\tstd::vector<int> t_sort = g.topological_sort();\n\t\tpotential[s] = 0;\n\t\
     \tfor(const auto &idx : t_sort)\n\t\t\tfor(const auto &[to, cost] : g[idx])\n\t\
     \t\t\tpotential[to] = std::min(potential[to], potential[idx] + cost);\n\n\t\t\
-    for(auto &v : potential) std::cout << v << \" \";\n\t\tstd::cout << std::endl;\n\
-    \n\t\tfor(const auto &[from, to, cap, cost] : es)\n\t\t\tmcf.add_edge(from, to,\
-    \ cap, potential[to] - potential[from] - cost);\n\n\t\tauto [rescap, rescost]\
-    \ = mcf.flow(s, t);\n\t\treturn {rescap, potential[t] * rescap - rescost};\n\t\
-    }\n\n\tstd::pair<Cap, Cost> flow(int s, int t, int k) {\n\t\tstd::vector<Cost>\
-    \ potential(g.size());\n\t\tstd::vector<int> t_sort = g.topological_sort();\n\t\
-    \tpotential[s] = 0;\n\t\tfor(const auto &idx : t_sort)\n\t\t\tfor(const auto &[to,\
-    \ cost] : g[idx])\n\t\t\t\tpotential[to] = std::min(potential[to], potential[idx]\
-    \ + cost);\n\n\t\tfor(const auto &[from, to, cap, cost] : es)\n\t\t\tmcf.add_edge(from,\
-    \ to, cap, potential[from] - potential[to] + cost);\n\n\t\tauto [rescap, rescost]\
-    \ = mcf.flow(s, t, k);\n\t\treturn {rescap, potential[t] * rescap + rescost};\n\
-    \t}\n\nprivate:\n\tgraph g;\n\tatcoder::mcf_graph<Cap, Cost> mcf;\n\tstruct edge\
-    \ {\n\t\tint from, to;\n\t\tCap cap;\n\t\tCost cost;\n\t\tedge(int from, int to,\
-    \ Cap cap, Cost cost) : from(from), to(to), cap(cap), cost(cost) {}\n\t};\n\t\
-    std::vector<edge> es;\n};\n"
+    for(const auto &[from, to, cap, cost] : es)\n\t\t\tmcf.add_edge(from, to, cap,\
+    \ potential[from] - potential[to] + cost);\n\n\t\tauto [rescap, rescost] = mcf.flow(s,\
+    \ t);\n\t\treturn {rescap, potential[t] * rescap - rescost};\n\t}\n\n\tstd::pair<Cap,\
+    \ Cost> flow(int s, int t, int k) {\n\t\tstd::vector<Cost> potential(g.size());\n\
+    \t\tstd::vector<int> t_sort = g.topological_sort();\n\t\tpotential[s] = 0;\n\t\
+    \tfor(const auto &idx : t_sort)\n\t\t\tfor(const auto &[to, cost] : g[idx])\n\t\
+    \t\t\tpotential[to] = std::min(potential[to], potential[idx] + cost);\n\n\t\t\
+    for(const auto &[from, to, cap, cost] : es)\n\t\t\tmcf.add_edge(from, to, cap,\
+    \ potential[from] - potential[to] + cost);\n\n\t\tauto [rescap, rescost] = mcf.flow(s,\
+    \ t, k);\n\t\treturn {rescap, potential[t] * rescap + rescost};\n\t}\n\nprivate:\n\
+    \tgraph g;\n\tatcoder::mcf_graph<Cap, Cost> mcf;\n\tstruct edge {\n\t\tint from,\
+    \ to;\n\t\tCap cap;\n\t\tCost cost;\n\t\tedge(int from, int to, Cap cap, Cost\
+    \ cost) : from(from), to(to), cap(cap), cost(cost) {}\n\t};\n\tstd::vector<edge>\
+    \ es;\n};\n"
   dependsOn:
   - atcoder/mincostflow.hpp
   - atcoder/internal_csr.hpp
@@ -227,7 +225,7 @@ data:
   isVerificationFile: false
   path: graph/dag_mcf.hpp
   requiredBy: []
-  timestamp: '2021-09-08 15:21:46+09:00'
+  timestamp: '2021-09-29 23:17:57+09:00'
   verificationStatus: LIBRARY_NO_TESTS
   verifiedWith: []
 documentation_of: graph/dag_mcf.hpp
