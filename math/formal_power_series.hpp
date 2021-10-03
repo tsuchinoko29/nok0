@@ -211,6 +211,10 @@ struct formal_power_series : std::vector<T> {
 
 	F operator/=(const S &g) const { return F(*this) /= g; }
 
+	F operator<<(const int sz) const { return F(*this) <<= sz; }
+
+	F operator>>(const int sz) const { return F(*this) >>= sz; }
+
 	F pre(int d) const { return F((*this).begin(), (*this).begin() + std::min((int)(*this).size(), d)); }
 
 	F &shrink() {
