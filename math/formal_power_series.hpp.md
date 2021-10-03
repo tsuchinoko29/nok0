@@ -500,31 +500,33 @@ data:
     \ F &g) const { return F(*this) /= g; }\n\n\tF operator/(const T &t) const { return\
     \ F(*this) /= t; }\n\n\tF operator%(const F &g) const { return F(*this) %= g;\
     \ }\n\n\tF operator*=(const S &g) const { return F(*this) *= g; }\n\n\tF operator/=(const\
-    \ S &g) const { return F(*this) /= g; }\n\n\tF pre(int d) const { return F((*this).begin(),\
-    \ (*this).begin() + std::min((int)(*this).size(), d)); }\n\n\tF &shrink() {\n\t\
-    \twhile(!(*this).empty() and (*this).back() == T(0)) (*this).pop_back();\n\t\t\
-    return *this;\n\t}\n\n\tF &rev_inplace() {\n\t\treverse((*this).begin(), (*this).end());\n\
-    \t\treturn *this;\n\t}\n\tF rev() const { return F(*this).rev_inplace(); }\n\n\
-    \t// *=(1 + cz^d)\n\tF &multiply(const int d, const T c) {\n\t\tint n = (*this).size();\n\
-    \t\tif(c == T(1))\n\t\t\tfor(int i = n - d - 1; i >= 0; --i)\n\t\t\t\t(*this)[i\
-    \ + d] += (*this)[i];\n\t\telse if(c == T(-1))\n\t\t\tfor(int i = n - d - 1; i\
-    \ >= 0; --i)\n\t\t\t\t(*this)[i + d] -= (*this)[i];\n\t\telse\n\t\t\tfor(int i\
-    \ = n - d - 1; i >= 0; --i)\n\t\t\t\t(*this)[i + d] += (*this)[i] * c;\n\t\treturn\
-    \ *this;\n\t}\n\t// /=(1 + cz^d)\n\tF &divide(const int d, const T c) {\n\t\t\
-    int n = (*this).size();\n\t\tif(c == T(1))\n\t\t\tfor(int i = 0; i < n - d; ++i)\
-    \ (*this)[i + d] -= (*this)[i];\n\t\telse if(c == T(-1))\n\t\t\tfor(int i = 0;\
-    \ i < n - d; ++i) (*this)[i + d] += (*this)[i];\n\t\telse\n\t\t\tfor(int i = 0;\
-    \ i < n - d; ++i) (*this)[i + d] -= (*this)[i] * c;\n\t\treturn *this;\n\t}\n\n\
-    \t//\u039F(N)\n\tT eval(const T &t) const {\n\t\tint n = (*this).size();\n\t\t\
-    T res = 0, tmp = 1;\n\t\tfor(int i = 0; i < n; ++i) res += (*this)[i] * tmp, tmp\
-    \ *= t;\n\t\treturn res;\n\t}\n\n\tF inv(int deg = -1) const {\n\t\tint n = (*this).size();\n\
-    \t\tassert(mode == FAST and n and (*this)[0] != 0);\n\t\tif(deg == -1) deg = n;\n\
-    \t\tassert(deg > 0);\n\t\tF res{(*this)[0].inv()};\n\t\twhile(int(res.size())\
-    \ < deg) {\n\t\t\tint m = res.size();\n\t\t\tF f((*this).begin(), (*this).begin()\
-    \ + std::min(n, m * 2)), r(res);\n\t\t\tf.resize(m * 2), atcoder::internal::butterfly(f);\n\
-    \t\t\tr.resize(m * 2), atcoder::internal::butterfly(r);\n\t\t\tfor(int i = 0;\
-    \ i < m * 2; ++i) f[i] *= r[i];\n\t\t\tatcoder::internal::butterfly_inv(f);\n\t\
-    \t\tf.erase(f.begin(), f.begin() + m);\n\t\t\tf.resize(m * 2), atcoder::internal::butterfly(f);\n\
+    \ S &g) const { return F(*this) /= g; }\n\n\tF operator<<(const int sz) const\
+    \ { return F(*this) <<= sz; }\n\n\tF operator>>(const int sz) const { return F(*this)\
+    \ >>= sz; }\n\n\tF pre(int d) const { return F((*this).begin(), (*this).begin()\
+    \ + std::min((int)(*this).size(), d)); }\n\n\tF &shrink() {\n\t\twhile(!(*this).empty()\
+    \ and (*this).back() == T(0)) (*this).pop_back();\n\t\treturn *this;\n\t}\n\n\t\
+    F &rev_inplace() {\n\t\treverse((*this).begin(), (*this).end());\n\t\treturn *this;\n\
+    \t}\n\tF rev() const { return F(*this).rev_inplace(); }\n\n\t// *=(1 + cz^d)\n\
+    \tF &multiply(const int d, const T c) {\n\t\tint n = (*this).size();\n\t\tif(c\
+    \ == T(1))\n\t\t\tfor(int i = n - d - 1; i >= 0; --i)\n\t\t\t\t(*this)[i + d]\
+    \ += (*this)[i];\n\t\telse if(c == T(-1))\n\t\t\tfor(int i = n - d - 1; i >= 0;\
+    \ --i)\n\t\t\t\t(*this)[i + d] -= (*this)[i];\n\t\telse\n\t\t\tfor(int i = n -\
+    \ d - 1; i >= 0; --i)\n\t\t\t\t(*this)[i + d] += (*this)[i] * c;\n\t\treturn *this;\n\
+    \t}\n\t// /=(1 + cz^d)\n\tF &divide(const int d, const T c) {\n\t\tint n = (*this).size();\n\
+    \t\tif(c == T(1))\n\t\t\tfor(int i = 0; i < n - d; ++i) (*this)[i + d] -= (*this)[i];\n\
+    \t\telse if(c == T(-1))\n\t\t\tfor(int i = 0; i < n - d; ++i) (*this)[i + d] +=\
+    \ (*this)[i];\n\t\telse\n\t\t\tfor(int i = 0; i < n - d; ++i) (*this)[i + d] -=\
+    \ (*this)[i] * c;\n\t\treturn *this;\n\t}\n\n\t//\u039F(N)\n\tT eval(const T &t)\
+    \ const {\n\t\tint n = (*this).size();\n\t\tT res = 0, tmp = 1;\n\t\tfor(int i\
+    \ = 0; i < n; ++i) res += (*this)[i] * tmp, tmp *= t;\n\t\treturn res;\n\t}\n\n\
+    \tF inv(int deg = -1) const {\n\t\tint n = (*this).size();\n\t\tassert(mode ==\
+    \ FAST and n and (*this)[0] != 0);\n\t\tif(deg == -1) deg = n;\n\t\tassert(deg\
+    \ > 0);\n\t\tF res{(*this)[0].inv()};\n\t\twhile(int(res.size()) < deg) {\n\t\t\
+    \tint m = res.size();\n\t\t\tF f((*this).begin(), (*this).begin() + std::min(n,\
+    \ m * 2)), r(res);\n\t\t\tf.resize(m * 2), atcoder::internal::butterfly(f);\n\t\
+    \t\tr.resize(m * 2), atcoder::internal::butterfly(r);\n\t\t\tfor(int i = 0; i\
+    \ < m * 2; ++i) f[i] *= r[i];\n\t\t\tatcoder::internal::butterfly_inv(f);\n\t\t\
+    \tf.erase(f.begin(), f.begin() + m);\n\t\t\tf.resize(m * 2), atcoder::internal::butterfly(f);\n\
     \t\t\tfor(int i = 0; i < m * 2; ++i) f[i] *= r[i];\n\t\t\tatcoder::internal::butterfly_inv(f);\n\
     \t\t\tT iz = T(m * 2).inv();\n\t\t\tiz *= -iz;\n\t\t\tfor(int i = 0; i < m; ++i)\
     \ f[i] *= iz;\n\t\t\tres.insert(res.end(), f.begin(), f.begin() + m);\n\t\t}\n\
@@ -694,31 +696,33 @@ data:
     \ F &g) const { return F(*this) /= g; }\n\n\tF operator/(const T &t) const { return\
     \ F(*this) /= t; }\n\n\tF operator%(const F &g) const { return F(*this) %= g;\
     \ }\n\n\tF operator*=(const S &g) const { return F(*this) *= g; }\n\n\tF operator/=(const\
-    \ S &g) const { return F(*this) /= g; }\n\n\tF pre(int d) const { return F((*this).begin(),\
-    \ (*this).begin() + std::min((int)(*this).size(), d)); }\n\n\tF &shrink() {\n\t\
-    \twhile(!(*this).empty() and (*this).back() == T(0)) (*this).pop_back();\n\t\t\
-    return *this;\n\t}\n\n\tF &rev_inplace() {\n\t\treverse((*this).begin(), (*this).end());\n\
-    \t\treturn *this;\n\t}\n\tF rev() const { return F(*this).rev_inplace(); }\n\n\
-    \t// *=(1 + cz^d)\n\tF &multiply(const int d, const T c) {\n\t\tint n = (*this).size();\n\
-    \t\tif(c == T(1))\n\t\t\tfor(int i = n - d - 1; i >= 0; --i)\n\t\t\t\t(*this)[i\
-    \ + d] += (*this)[i];\n\t\telse if(c == T(-1))\n\t\t\tfor(int i = n - d - 1; i\
-    \ >= 0; --i)\n\t\t\t\t(*this)[i + d] -= (*this)[i];\n\t\telse\n\t\t\tfor(int i\
-    \ = n - d - 1; i >= 0; --i)\n\t\t\t\t(*this)[i + d] += (*this)[i] * c;\n\t\treturn\
-    \ *this;\n\t}\n\t// /=(1 + cz^d)\n\tF &divide(const int d, const T c) {\n\t\t\
-    int n = (*this).size();\n\t\tif(c == T(1))\n\t\t\tfor(int i = 0; i < n - d; ++i)\
-    \ (*this)[i + d] -= (*this)[i];\n\t\telse if(c == T(-1))\n\t\t\tfor(int i = 0;\
-    \ i < n - d; ++i) (*this)[i + d] += (*this)[i];\n\t\telse\n\t\t\tfor(int i = 0;\
-    \ i < n - d; ++i) (*this)[i + d] -= (*this)[i] * c;\n\t\treturn *this;\n\t}\n\n\
-    \t//\u039F(N)\n\tT eval(const T &t) const {\n\t\tint n = (*this).size();\n\t\t\
-    T res = 0, tmp = 1;\n\t\tfor(int i = 0; i < n; ++i) res += (*this)[i] * tmp, tmp\
-    \ *= t;\n\t\treturn res;\n\t}\n\n\tF inv(int deg = -1) const {\n\t\tint n = (*this).size();\n\
-    \t\tassert(mode == FAST and n and (*this)[0] != 0);\n\t\tif(deg == -1) deg = n;\n\
-    \t\tassert(deg > 0);\n\t\tF res{(*this)[0].inv()};\n\t\twhile(int(res.size())\
-    \ < deg) {\n\t\t\tint m = res.size();\n\t\t\tF f((*this).begin(), (*this).begin()\
-    \ + std::min(n, m * 2)), r(res);\n\t\t\tf.resize(m * 2), atcoder::internal::butterfly(f);\n\
-    \t\t\tr.resize(m * 2), atcoder::internal::butterfly(r);\n\t\t\tfor(int i = 0;\
-    \ i < m * 2; ++i) f[i] *= r[i];\n\t\t\tatcoder::internal::butterfly_inv(f);\n\t\
-    \t\tf.erase(f.begin(), f.begin() + m);\n\t\t\tf.resize(m * 2), atcoder::internal::butterfly(f);\n\
+    \ S &g) const { return F(*this) /= g; }\n\n\tF operator<<(const int sz) const\
+    \ { return F(*this) <<= sz; }\n\n\tF operator>>(const int sz) const { return F(*this)\
+    \ >>= sz; }\n\n\tF pre(int d) const { return F((*this).begin(), (*this).begin()\
+    \ + std::min((int)(*this).size(), d)); }\n\n\tF &shrink() {\n\t\twhile(!(*this).empty()\
+    \ and (*this).back() == T(0)) (*this).pop_back();\n\t\treturn *this;\n\t}\n\n\t\
+    F &rev_inplace() {\n\t\treverse((*this).begin(), (*this).end());\n\t\treturn *this;\n\
+    \t}\n\tF rev() const { return F(*this).rev_inplace(); }\n\n\t// *=(1 + cz^d)\n\
+    \tF &multiply(const int d, const T c) {\n\t\tint n = (*this).size();\n\t\tif(c\
+    \ == T(1))\n\t\t\tfor(int i = n - d - 1; i >= 0; --i)\n\t\t\t\t(*this)[i + d]\
+    \ += (*this)[i];\n\t\telse if(c == T(-1))\n\t\t\tfor(int i = n - d - 1; i >= 0;\
+    \ --i)\n\t\t\t\t(*this)[i + d] -= (*this)[i];\n\t\telse\n\t\t\tfor(int i = n -\
+    \ d - 1; i >= 0; --i)\n\t\t\t\t(*this)[i + d] += (*this)[i] * c;\n\t\treturn *this;\n\
+    \t}\n\t// /=(1 + cz^d)\n\tF &divide(const int d, const T c) {\n\t\tint n = (*this).size();\n\
+    \t\tif(c == T(1))\n\t\t\tfor(int i = 0; i < n - d; ++i) (*this)[i + d] -= (*this)[i];\n\
+    \t\telse if(c == T(-1))\n\t\t\tfor(int i = 0; i < n - d; ++i) (*this)[i + d] +=\
+    \ (*this)[i];\n\t\telse\n\t\t\tfor(int i = 0; i < n - d; ++i) (*this)[i + d] -=\
+    \ (*this)[i] * c;\n\t\treturn *this;\n\t}\n\n\t//\u039F(N)\n\tT eval(const T &t)\
+    \ const {\n\t\tint n = (*this).size();\n\t\tT res = 0, tmp = 1;\n\t\tfor(int i\
+    \ = 0; i < n; ++i) res += (*this)[i] * tmp, tmp *= t;\n\t\treturn res;\n\t}\n\n\
+    \tF inv(int deg = -1) const {\n\t\tint n = (*this).size();\n\t\tassert(mode ==\
+    \ FAST and n and (*this)[0] != 0);\n\t\tif(deg == -1) deg = n;\n\t\tassert(deg\
+    \ > 0);\n\t\tF res{(*this)[0].inv()};\n\t\twhile(int(res.size()) < deg) {\n\t\t\
+    \tint m = res.size();\n\t\t\tF f((*this).begin(), (*this).begin() + std::min(n,\
+    \ m * 2)), r(res);\n\t\t\tf.resize(m * 2), atcoder::internal::butterfly(f);\n\t\
+    \t\tr.resize(m * 2), atcoder::internal::butterfly(r);\n\t\t\tfor(int i = 0; i\
+    \ < m * 2; ++i) f[i] *= r[i];\n\t\t\tatcoder::internal::butterfly_inv(f);\n\t\t\
+    \tf.erase(f.begin(), f.begin() + m);\n\t\t\tf.resize(m * 2), atcoder::internal::butterfly(f);\n\
     \t\t\tfor(int i = 0; i < m * 2; ++i) f[i] *= r[i];\n\t\t\tatcoder::internal::butterfly_inv(f);\n\
     \t\t\tT iz = T(m * 2).inv();\n\t\t\tiz *= -iz;\n\t\t\tfor(int i = 0; i < m; ++i)\
     \ f[i] *= iz;\n\t\t\tres.insert(res.end(), f.begin(), f.begin() + m);\n\t\t}\n\
@@ -833,7 +837,7 @@ data:
   isVerificationFile: false
   path: math/formal_power_series.hpp
   requiredBy: []
-  timestamp: '2021-09-12 23:05:37+09:00'
+  timestamp: '2021-10-03 16:45:05+09:00'
   verificationStatus: LIBRARY_ALL_AC
   verifiedWith:
   - test/yosupo-inv_of_formal_power_series.test.cpp
