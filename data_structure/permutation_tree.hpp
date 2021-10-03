@@ -1,7 +1,8 @@
-#include <atcoder/lazysegtree>
 #include <iostream>
 #include <stack>
 #include <vector>
+
+#include "atcoder/lazysegtree"
 
 namespace monoid {
 using S = int;
