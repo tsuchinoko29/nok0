@@ -29,7 +29,7 @@ class graph {
 		F f;
 		rec_lambda(F &&f_) : f(std::forward<F>(f_)) {}
 		template <class... Args>
-		auto operator()(Args &&... args) const {
+		auto operator()(Args &&...args) const {
 			return f(*this, std::forward<Args>(args)...);
 		}
 	};
@@ -356,6 +356,34 @@ public:
 		for(auto &e : Edges)
 			if(unite(std::get<0>(e), std::get<1>(e))) ret += std::get<2>(e);
 		return ret;
+	}
+
+	graph build_mst() {
+		std::vector<std::tuple<int, int, long long>> Edges;
+		for(int i = 0; i < int(size()); i++)
+			for(auto &e : edges[i]) Edges.emplace_back(i, e.to, e.cost);
+		std::sort(Edges.begin(), Edges.end(), [](const std::tuple<int, int, long long> &a, const std::tuple<int, int, long long> &b) {
+			return std::get<2>(a) < std::get<2>(b);
+		});
+		std::vector<int> uf_data(size(), -1);
+		auto root = [&uf_data](auto self, int x) -> int {
+			if(uf_data[x] < 0) return x;
+			return uf_data[x] = self(self, uf_data[x]);
+		};
+		auto unite = [&uf_data, &root](int u, int v) -> bool {
+			u = root(root, u), v = root(root, v);
+			if(u == v) return false;
+			if(uf_data[u] > uf_data[v]) std::swap(u, v);
+			uf_data[u] += uf_data[v];
+			uf_data[v] = u;
+			return true;
+		};
+		graph g(this->size());
+		for(auto &e : Edges)
+			if(unite(std::get<0>(e), std::get<1>(e))) {
+				g.add_edge(std::get<0>(e), std::get<1>(e), std::get<2>(e));
+			}
+		return g;
 	}
 
 	// O(V)
