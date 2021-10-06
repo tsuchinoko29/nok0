@@ -27,8 +27,8 @@ data:
     \ s;\n\t}\n};\n\nclass graph {\n\tstd::vector<std::vector<Edge>> edges;\n\n\t\
     template <class F>\n\tstruct rec_lambda {\n\t\tF f;\n\t\trec_lambda(F &&f_) :\
     \ f(std::forward<F>(f_)) {}\n\t\ttemplate <class... Args>\n\t\tauto operator()(Args\
-    \ &&... args) const {\n\t\t\treturn f(*this, std::forward<Args>(args)...);\n\t\
-    \t}\n\t};\n\npublic:\n\tinline const std::vector<Edge> &operator[](int k) const\
+    \ &&...args) const {\n\t\t\treturn f(*this, std::forward<Args>(args)...);\n\t\t\
+    }\n\t};\n\npublic:\n\tinline const std::vector<Edge> &operator[](int k) const\
     \ { return edges[k]; }\n\tinline std::vector<Edge> &operator[](int k) { return\
     \ edges[k]; }\n\n\tint size() const { return edges.size(); }\n\tvoid resize(const\
     \ int n) { edges.resize(n); }\n\n\tgraph() = default;\n\tgraph(int n) : edges(n)\
@@ -150,45 +150,59 @@ data:
     \ > uf_data[v]) std::swap(u, v);\n\t\t\tuf_data[u] += uf_data[v];\n\t\t\tuf_data[v]\
     \ = u;\n\t\t\treturn true;\n\t\t};\n\t\tlong long ret = 0;\n\t\tfor(auto &e :\
     \ Edges)\n\t\t\tif(unite(std::get<0>(e), std::get<1>(e))) ret += std::get<2>(e);\n\
-    \t\treturn ret;\n\t}\n\n\t// O(V)\n\tstd::vector<int> centroid() {\n\t\tint n\
-    \ = size();\n\t\tstd::vector<int> centroid, sz(n);\n\t\tauto dfs = [&](auto self,\
-    \ int now, int per) -> void {\n\t\t\tsz[now] = 1;\n\t\t\tbool is_centroid = true;\n\
-    \t\t\tfor(auto &e : edges[now]) {\n\t\t\t\tif(e.to != per) {\n\t\t\t\t\tself(self,\
-    \ e.to, now);\n\t\t\t\t\tsz[now] += sz[e.to];\n\t\t\t\t\tif(sz[e.to] > n / 2)\
-    \ is_centroid = false;\n\t\t\t\t}\n\t\t\t}\n\t\t\tif(n - sz[now] > n / 2) is_centroid\
-    \ = false;\n\t\t\tif(is_centroid) centroid.push_back(now);\n\t\t};\n\t\tdfs(dfs,\
-    \ 0, -1);\n\t\treturn centroid;\n\t}\n\n\t// \u039F(V+E)\n\t// directed graph\
-    \ from root to leaf\n\tgraph root_to_leaf(int root = 0) {\n\t\tgraph res(size());\n\
-    \t\tstd::vector<int> chk(size(), 0);\n\t\tchk[root] = 1;\n\t\tauto dfs = [&](auto\
+    \t\treturn ret;\n\t}\n\n\tgraph build_mst() {\n\t\tstd::vector<std::tuple<int,\
+    \ int, long long>> Edges;\n\t\tfor(int i = 0; i < int(size()); i++)\n\t\t\tfor(auto\
+    \ &e : edges[i]) Edges.emplace_back(i, e.to, e.cost);\n\t\tstd::sort(Edges.begin(),\
+    \ Edges.end(), [](const std::tuple<int, int, long long> &a, const std::tuple<int,\
+    \ int, long long> &b) {\n\t\t\treturn std::get<2>(a) < std::get<2>(b);\n\t\t});\n\
+    \t\tstd::vector<int> uf_data(size(), -1);\n\t\tauto root = [&uf_data](auto self,\
+    \ int x) -> int {\n\t\t\tif(uf_data[x] < 0) return x;\n\t\t\treturn uf_data[x]\
+    \ = self(self, uf_data[x]);\n\t\t};\n\t\tauto unite = [&uf_data, &root](int u,\
+    \ int v) -> bool {\n\t\t\tu = root(root, u), v = root(root, v);\n\t\t\tif(u ==\
+    \ v) return false;\n\t\t\tif(uf_data[u] > uf_data[v]) std::swap(u, v);\n\t\t\t\
+    uf_data[u] += uf_data[v];\n\t\t\tuf_data[v] = u;\n\t\t\treturn true;\n\t\t};\n\
+    \t\tgraph g(this->size());\n\t\tfor(auto &e : Edges)\n\t\t\tif(unite(std::get<0>(e),\
+    \ std::get<1>(e))) {\n\t\t\t\tg.add_edge(std::get<0>(e), std::get<1>(e), std::get<2>(e));\n\
+    \t\t\t}\n\t\treturn g;\n\t}\n\n\t// O(V)\n\tstd::vector<int> centroid() {\n\t\t\
+    int n = size();\n\t\tstd::vector<int> centroid, sz(n);\n\t\tauto dfs = [&](auto\
+    \ self, int now, int per) -> void {\n\t\t\tsz[now] = 1;\n\t\t\tbool is_centroid\
+    \ = true;\n\t\t\tfor(auto &e : edges[now]) {\n\t\t\t\tif(e.to != per) {\n\t\t\t\
+    \t\tself(self, e.to, now);\n\t\t\t\t\tsz[now] += sz[e.to];\n\t\t\t\t\tif(sz[e.to]\
+    \ > n / 2) is_centroid = false;\n\t\t\t\t}\n\t\t\t}\n\t\t\tif(n - sz[now] > n\
+    \ / 2) is_centroid = false;\n\t\t\tif(is_centroid) centroid.push_back(now);\n\t\
+    \t};\n\t\tdfs(dfs, 0, -1);\n\t\treturn centroid;\n\t}\n\n\t// \u039F(V+E)\n\t\
+    // directed graph from root to leaf\n\tgraph root_to_leaf(int root = 0) {\n\t\t\
+    graph res(size());\n\t\tstd::vector<int> chk(size(), 0);\n\t\tchk[root] = 1;\n\
+    \t\tauto dfs = [&](auto self, int now) -> void {\n\t\t\tfor(auto &e : edges[now])\
+    \ {\n\t\t\t\tif(chk[e.to] == 1) continue;\n\t\t\t\tchk[e.to] = 1;\n\t\t\t\tres.add_edge(now,\
+    \ e.to, e.cost, 1, 0);\n\t\t\t\tself(self, e.to);\n\t\t\t}\n\t\t};\n\t\tdfs(dfs,\
+    \ root);\n\t\treturn res;\n\t}\n\n\t// \u039F(V+E)\n\t// directed graph from leaf\
+    \ to root\n\tgraph leaf_to_root(int root = 0) {\n\t\tgraph res(size());\n\t\t\
+    std::vector<int> chk(size(), 0);\n\t\tchk[root] = 1;\n\t\tauto dfs = [&](auto\
     \ self, int now) -> void {\n\t\t\tfor(auto &e : edges[now]) {\n\t\t\t\tif(chk[e.to]\
-    \ == 1) continue;\n\t\t\t\tchk[e.to] = 1;\n\t\t\t\tres.add_edge(now, e.to, e.cost,\
+    \ == 1) continue;\n\t\t\t\tchk[e.to] = 1;\n\t\t\t\tres.add_edge(e.to, now, e.cost,\
     \ 1, 0);\n\t\t\t\tself(self, e.to);\n\t\t\t}\n\t\t};\n\t\tdfs(dfs, root);\n\t\t\
-    return res;\n\t}\n\n\t// \u039F(V+E)\n\t// directed graph from leaf to root\n\t\
-    graph leaf_to_root(int root = 0) {\n\t\tgraph res(size());\n\t\tstd::vector<int>\
-    \ chk(size(), 0);\n\t\tchk[root] = 1;\n\t\tauto dfs = [&](auto self, int now)\
-    \ -> void {\n\t\t\tfor(auto &e : edges[now]) {\n\t\t\t\tif(chk[e.to] == 1) continue;\n\
-    \t\t\t\tchk[e.to] = 1;\n\t\t\t\tres.add_edge(e.to, now, e.cost, 1, 0);\n\t\t\t\
-    \tself(self, e.to);\n\t\t\t}\n\t\t};\n\t\tdfs(dfs, root);\n\t\treturn res;\n\t\
-    }\n\n\t// long long Chu_Liu_Edmonds(int root = 0) {}\n};\n#line 3 \"graph/scc.hpp\"\
-    \n\nstruct strongly_connected_components {\nprivate:\n\tenum { CHECKED = -1,\n\
-    \t\t   UNCHECKED = -2 };\n\tconst graph &graph_given;\n\tgraph graph_reversed;\n\
-    \tstd::vector<int> order, group_number; /* at the beginning of the building, 'group_number'\
-    \ is used as 'checked' */\n\n\tvoid dfs(int now) {\n\t\tif(group_number[now] !=\
-    \ UNCHECKED) return;\n\t\tgroup_number[now] = CHECKED;\n\t\tfor(auto &e : graph_given[now])\
-    \ dfs(e.to);\n\t\torder.push_back(now);\n\t}\n\n\tvoid rdfs(int now, int group_count)\
-    \ {\n\t\tif(group_number[now] != UNCHECKED) return;\n\t\tgroup_number[now] = group_count;\n\
-    \t\tfor(auto &e : graph_reversed[now]) rdfs(e.to, group_count);\n\t}\n\n\tvoid\
-    \ build(bool create_compressed_graph) {\n\t\tfor(int i = 0; i < (int)graph_given.size();\
-    \ i++) dfs(i);\n\t\treverse(order.begin(), order.end());\n\t\tgroup_number.assign(graph_given.size(),\
-    \ UNCHECKED);\n\t\tint group = 0;\n\t\tfor(auto &i : order)\n\t\t\tif(group_number[i]\
-    \ == UNCHECKED) rdfs(i, group), group++;\n\t\tgraph_compressed.resize(group);\n\
-    \t\tgroups.resize(group);\n\t\tfor(int i = 0; i < (int)graph_given.size(); i++)\
-    \ groups[group_number[i]].push_back(i);\n\t\tif(create_compressed_graph) {\n\t\
-    \t\tstd::vector<int> edges(group, -1);\n\t\t\tfor(int i = 0; i < group; i++)\n\
-    \t\t\t\tfor(auto &vertex : groups[i])\n\t\t\t\t\tfor(auto &e : graph_given[vertex])\n\
-    \t\t\t\t\t\tif(group_number[e.to] != i and edges[group_number[e.to]] != i) {\n\
-    \t\t\t\t\t\t\tedges[group_number[e.to]] = i;\n\t\t\t\t\t\t\tgraph_compressed[i].emplace_back(group_number[e.to],\
-    \ 1);\n\t\t\t\t\t\t}\n\t\t}\n\t\treturn;\n\t}\n\npublic:\n\tstd::vector<std::vector<int>>\
+    return res;\n\t}\n\n\t// long long Chu_Liu_Edmonds(int root = 0) {}\n};\n#line\
+    \ 3 \"graph/scc.hpp\"\n\nstruct strongly_connected_components {\nprivate:\n\t\
+    enum { CHECKED = -1,\n\t\t   UNCHECKED = -2 };\n\tconst graph &graph_given;\n\t\
+    graph graph_reversed;\n\tstd::vector<int> order, group_number; /* at the beginning\
+    \ of the building, 'group_number' is used as 'checked' */\n\n\tvoid dfs(int now)\
+    \ {\n\t\tif(group_number[now] != UNCHECKED) return;\n\t\tgroup_number[now] = CHECKED;\n\
+    \t\tfor(auto &e : graph_given[now]) dfs(e.to);\n\t\torder.push_back(now);\n\t\
+    }\n\n\tvoid rdfs(int now, int group_count) {\n\t\tif(group_number[now] != UNCHECKED)\
+    \ return;\n\t\tgroup_number[now] = group_count;\n\t\tfor(auto &e : graph_reversed[now])\
+    \ rdfs(e.to, group_count);\n\t}\n\n\tvoid build(bool create_compressed_graph)\
+    \ {\n\t\tfor(int i = 0; i < (int)graph_given.size(); i++) dfs(i);\n\t\treverse(order.begin(),\
+    \ order.end());\n\t\tgroup_number.assign(graph_given.size(), UNCHECKED);\n\t\t\
+    int group = 0;\n\t\tfor(auto &i : order)\n\t\t\tif(group_number[i] == UNCHECKED)\
+    \ rdfs(i, group), group++;\n\t\tgraph_compressed.resize(group);\n\t\tgroups.resize(group);\n\
+    \t\tfor(int i = 0; i < (int)graph_given.size(); i++) groups[group_number[i]].push_back(i);\n\
+    \t\tif(create_compressed_graph) {\n\t\t\tstd::vector<int> edges(group, -1);\n\t\
+    \t\tfor(int i = 0; i < group; i++)\n\t\t\t\tfor(auto &vertex : groups[i])\n\t\t\
+    \t\t\tfor(auto &e : graph_given[vertex])\n\t\t\t\t\t\tif(group_number[e.to] !=\
+    \ i and edges[group_number[e.to]] != i) {\n\t\t\t\t\t\t\tedges[group_number[e.to]]\
+    \ = i;\n\t\t\t\t\t\t\tgraph_compressed[i].emplace_back(group_number[e.to], 1);\n\
+    \t\t\t\t\t\t}\n\t\t}\n\t\treturn;\n\t}\n\npublic:\n\tstd::vector<std::vector<int>>\
     \ groups;\n\tgraph graph_compressed;\n\n\tstrongly_connected_components(const\
     \ graph &g_, bool create_compressed_graph = false)\n\t  : graph_given(g_), graph_reversed(g_.size()),\
     \ group_number(g_.size(), UNCHECKED) {\n\t\tfor(size_t i = 0; i < g_.size(); i++)\n\
@@ -226,7 +240,7 @@ data:
   isVerificationFile: false
   path: graph/scc.hpp
   requiredBy: []
-  timestamp: '2021-09-08 10:25:09+09:00'
+  timestamp: '2021-10-06 20:07:39+09:00'
   verificationStatus: LIBRARY_ALL_AC
   verifiedWith:
   - test/yosupo-scc.test.cpp

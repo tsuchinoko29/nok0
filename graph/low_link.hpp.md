@@ -33,18 +33,18 @@ data:
     to: \" << a.to << \", cost: \" << a.cost;\n\t\treturn s;\n\t}\n};\n\nclass graph\
     \ {\n\tstd::vector<std::vector<Edge>> edges;\n\n\ttemplate <class F>\n\tstruct\
     \ rec_lambda {\n\t\tF f;\n\t\trec_lambda(F &&f_) : f(std::forward<F>(f_)) {}\n\
-    \t\ttemplate <class... Args>\n\t\tauto operator()(Args &&... args) const {\n\t\
-    \t\treturn f(*this, std::forward<Args>(args)...);\n\t\t}\n\t};\n\npublic:\n\t\
-    inline const std::vector<Edge> &operator[](int k) const { return edges[k]; }\n\
-    \tinline std::vector<Edge> &operator[](int k) { return edges[k]; }\n\n\tint size()\
-    \ const { return edges.size(); }\n\tvoid resize(const int n) { edges.resize(n);\
-    \ }\n\n\tgraph() = default;\n\tgraph(int n) : edges(n) {}\n\tgraph(int n, int\
-    \ e, bool weight = 0, bool directed = 0, int idx = 1) : edges(n) { input(e, weight,\
-    \ directed, idx); }\n\tconst long long INF = 3e18;\n\n\tvoid input(int e = -1,\
-    \ bool weight = 0, bool directed = false, int idx = 1) {\n\t\tif(e == -1) e =\
-    \ size() - 1;\n\t\twhile(e--) {\n\t\t\tint u, v;\n\t\t\tlong long cost = 1;\n\t\
-    \t\tstd::cin >> u >> v;\n\t\t\tif(weight) std::cin >> cost;\n\t\t\tu -= idx, v\
-    \ -= idx;\n\t\t\tedges[u].emplace_back(v, cost);\n\t\t\tif(!directed) edges[v].emplace_back(u,\
+    \t\ttemplate <class... Args>\n\t\tauto operator()(Args &&...args) const {\n\t\t\
+    \treturn f(*this, std::forward<Args>(args)...);\n\t\t}\n\t};\n\npublic:\n\tinline\
+    \ const std::vector<Edge> &operator[](int k) const { return edges[k]; }\n\tinline\
+    \ std::vector<Edge> &operator[](int k) { return edges[k]; }\n\n\tint size() const\
+    \ { return edges.size(); }\n\tvoid resize(const int n) { edges.resize(n); }\n\n\
+    \tgraph() = default;\n\tgraph(int n) : edges(n) {}\n\tgraph(int n, int e, bool\
+    \ weight = 0, bool directed = 0, int idx = 1) : edges(n) { input(e, weight, directed,\
+    \ idx); }\n\tconst long long INF = 3e18;\n\n\tvoid input(int e = -1, bool weight\
+    \ = 0, bool directed = false, int idx = 1) {\n\t\tif(e == -1) e = size() - 1;\n\
+    \t\twhile(e--) {\n\t\t\tint u, v;\n\t\t\tlong long cost = 1;\n\t\t\tstd::cin >>\
+    \ u >> v;\n\t\t\tif(weight) std::cin >> cost;\n\t\t\tu -= idx, v -= idx;\n\t\t\
+    \tedges[u].emplace_back(v, cost);\n\t\t\tif(!directed) edges[v].emplace_back(u,\
     \ cost);\n\t\t}\n\t}\n\n\tvoid add_edge(int u, int v, long long cost = 1, bool\
     \ directed = false, int idx = 0) {\n\t\tu -= idx, v -= idx;\n\t\tedges[u].emplace_back(v,\
     \ cost);\n\t\tif(!directed) edges[v].emplace_back(u, cost);\n\t}\n\n\t// \u039F\
@@ -156,41 +156,54 @@ data:
     \ > uf_data[v]) std::swap(u, v);\n\t\t\tuf_data[u] += uf_data[v];\n\t\t\tuf_data[v]\
     \ = u;\n\t\t\treturn true;\n\t\t};\n\t\tlong long ret = 0;\n\t\tfor(auto &e :\
     \ Edges)\n\t\t\tif(unite(std::get<0>(e), std::get<1>(e))) ret += std::get<2>(e);\n\
-    \t\treturn ret;\n\t}\n\n\t// O(V)\n\tstd::vector<int> centroid() {\n\t\tint n\
-    \ = size();\n\t\tstd::vector<int> centroid, sz(n);\n\t\tauto dfs = [&](auto self,\
-    \ int now, int per) -> void {\n\t\t\tsz[now] = 1;\n\t\t\tbool is_centroid = true;\n\
-    \t\t\tfor(auto &e : edges[now]) {\n\t\t\t\tif(e.to != per) {\n\t\t\t\t\tself(self,\
-    \ e.to, now);\n\t\t\t\t\tsz[now] += sz[e.to];\n\t\t\t\t\tif(sz[e.to] > n / 2)\
-    \ is_centroid = false;\n\t\t\t\t}\n\t\t\t}\n\t\t\tif(n - sz[now] > n / 2) is_centroid\
-    \ = false;\n\t\t\tif(is_centroid) centroid.push_back(now);\n\t\t};\n\t\tdfs(dfs,\
-    \ 0, -1);\n\t\treturn centroid;\n\t}\n\n\t// \u039F(V+E)\n\t// directed graph\
-    \ from root to leaf\n\tgraph root_to_leaf(int root = 0) {\n\t\tgraph res(size());\n\
-    \t\tstd::vector<int> chk(size(), 0);\n\t\tchk[root] = 1;\n\t\tauto dfs = [&](auto\
+    \t\treturn ret;\n\t}\n\n\tgraph build_mst() {\n\t\tstd::vector<std::tuple<int,\
+    \ int, long long>> Edges;\n\t\tfor(int i = 0; i < int(size()); i++)\n\t\t\tfor(auto\
+    \ &e : edges[i]) Edges.emplace_back(i, e.to, e.cost);\n\t\tstd::sort(Edges.begin(),\
+    \ Edges.end(), [](const std::tuple<int, int, long long> &a, const std::tuple<int,\
+    \ int, long long> &b) {\n\t\t\treturn std::get<2>(a) < std::get<2>(b);\n\t\t});\n\
+    \t\tstd::vector<int> uf_data(size(), -1);\n\t\tauto root = [&uf_data](auto self,\
+    \ int x) -> int {\n\t\t\tif(uf_data[x] < 0) return x;\n\t\t\treturn uf_data[x]\
+    \ = self(self, uf_data[x]);\n\t\t};\n\t\tauto unite = [&uf_data, &root](int u,\
+    \ int v) -> bool {\n\t\t\tu = root(root, u), v = root(root, v);\n\t\t\tif(u ==\
+    \ v) return false;\n\t\t\tif(uf_data[u] > uf_data[v]) std::swap(u, v);\n\t\t\t\
+    uf_data[u] += uf_data[v];\n\t\t\tuf_data[v] = u;\n\t\t\treturn true;\n\t\t};\n\
+    \t\tgraph g(this->size());\n\t\tfor(auto &e : Edges)\n\t\t\tif(unite(std::get<0>(e),\
+    \ std::get<1>(e))) {\n\t\t\t\tg.add_edge(std::get<0>(e), std::get<1>(e), std::get<2>(e));\n\
+    \t\t\t}\n\t\treturn g;\n\t}\n\n\t// O(V)\n\tstd::vector<int> centroid() {\n\t\t\
+    int n = size();\n\t\tstd::vector<int> centroid, sz(n);\n\t\tauto dfs = [&](auto\
+    \ self, int now, int per) -> void {\n\t\t\tsz[now] = 1;\n\t\t\tbool is_centroid\
+    \ = true;\n\t\t\tfor(auto &e : edges[now]) {\n\t\t\t\tif(e.to != per) {\n\t\t\t\
+    \t\tself(self, e.to, now);\n\t\t\t\t\tsz[now] += sz[e.to];\n\t\t\t\t\tif(sz[e.to]\
+    \ > n / 2) is_centroid = false;\n\t\t\t\t}\n\t\t\t}\n\t\t\tif(n - sz[now] > n\
+    \ / 2) is_centroid = false;\n\t\t\tif(is_centroid) centroid.push_back(now);\n\t\
+    \t};\n\t\tdfs(dfs, 0, -1);\n\t\treturn centroid;\n\t}\n\n\t// \u039F(V+E)\n\t\
+    // directed graph from root to leaf\n\tgraph root_to_leaf(int root = 0) {\n\t\t\
+    graph res(size());\n\t\tstd::vector<int> chk(size(), 0);\n\t\tchk[root] = 1;\n\
+    \t\tauto dfs = [&](auto self, int now) -> void {\n\t\t\tfor(auto &e : edges[now])\
+    \ {\n\t\t\t\tif(chk[e.to] == 1) continue;\n\t\t\t\tchk[e.to] = 1;\n\t\t\t\tres.add_edge(now,\
+    \ e.to, e.cost, 1, 0);\n\t\t\t\tself(self, e.to);\n\t\t\t}\n\t\t};\n\t\tdfs(dfs,\
+    \ root);\n\t\treturn res;\n\t}\n\n\t// \u039F(V+E)\n\t// directed graph from leaf\
+    \ to root\n\tgraph leaf_to_root(int root = 0) {\n\t\tgraph res(size());\n\t\t\
+    std::vector<int> chk(size(), 0);\n\t\tchk[root] = 1;\n\t\tauto dfs = [&](auto\
     \ self, int now) -> void {\n\t\t\tfor(auto &e : edges[now]) {\n\t\t\t\tif(chk[e.to]\
-    \ == 1) continue;\n\t\t\t\tchk[e.to] = 1;\n\t\t\t\tres.add_edge(now, e.to, e.cost,\
+    \ == 1) continue;\n\t\t\t\tchk[e.to] = 1;\n\t\t\t\tres.add_edge(e.to, now, e.cost,\
     \ 1, 0);\n\t\t\t\tself(self, e.to);\n\t\t\t}\n\t\t};\n\t\tdfs(dfs, root);\n\t\t\
-    return res;\n\t}\n\n\t// \u039F(V+E)\n\t// directed graph from leaf to root\n\t\
-    graph leaf_to_root(int root = 0) {\n\t\tgraph res(size());\n\t\tstd::vector<int>\
-    \ chk(size(), 0);\n\t\tchk[root] = 1;\n\t\tauto dfs = [&](auto self, int now)\
-    \ -> void {\n\t\t\tfor(auto &e : edges[now]) {\n\t\t\t\tif(chk[e.to] == 1) continue;\n\
-    \t\t\t\tchk[e.to] = 1;\n\t\t\t\tres.add_edge(e.to, now, e.cost, 1, 0);\n\t\t\t\
-    \tself(self, e.to);\n\t\t\t}\n\t\t};\n\t\tdfs(dfs, root);\n\t\treturn res;\n\t\
-    }\n\n\t// long long Chu_Liu_Edmonds(int root = 0) {}\n};\n#line 4 \"graph/low_link.hpp\"\
-    \n\nstruct low_link {\nprivate:\n\tconst graph &graph_given;\n\tint order_next;\n\
-    \n\tvoid build() {\n\t\tint n = graph_given.size();\n\t\torder.resize(n, -1);\n\
-    \t\tlow.resize(n);\n\t\torder_next = 0;\n\t\tfor(int i = 0; i < n; i++)\n\t\t\t\
-    if(order[i] == -1) dfs(i);\n\t}\n\n\tvoid dfs(int now, int par = -1) {\n\t\tlow[now]\
-    \ = order[now] = order_next++;\n\t\tbool is_articulation = false;\n\t\tint cnt\
-    \ = 0, cnt_par = 0;\n\t\tfor(const auto &ed : graph_given[now]) {\n\t\t\tconst\
-    \ int &nxt = ed.to;\n\t\t\tif(order[nxt] == -1) {\n\t\t\t\tcnt++;\n\t\t\t\tdfs(nxt,\
-    \ now);\n\t\t\t\tif(order[now] < low[nxt]) bridge.push_back(std::minmax(now, nxt));\n\
-    \t\t\t\tif(order[now] <= low[nxt]) is_articulation = true;\n\t\t\t\tlow[now] =\
-    \ std::min(low[now], low[nxt]);\n\t\t\t} else if(nxt != par or cnt_par++ == 1)\
-    \ {\n\t\t\t\tlow[now] = std::min(low[now], order[nxt]);\n\t\t\t}\n\t\t}\n\t\t\
-    if(par == -1 and cnt < 2) is_articulation = false;\n\t\tif(is_articulation) articulation.push_back(now);\n\
-    \t\treturn;\n\t}\n\npublic:\n\tstd::vector<int> order, low, articulation;\n\t\
-    std::vector<std::pair<int, int>> bridge;\n\tlow_link() = default;\n\tlow_link(const\
-    \ graph &g_) : graph_given(g_) { build(); }\n};\n"
+    return res;\n\t}\n\n\t// long long Chu_Liu_Edmonds(int root = 0) {}\n};\n#line\
+    \ 4 \"graph/low_link.hpp\"\n\nstruct low_link {\nprivate:\n\tconst graph &graph_given;\n\
+    \tint order_next;\n\n\tvoid build() {\n\t\tint n = graph_given.size();\n\t\torder.resize(n,\
+    \ -1);\n\t\tlow.resize(n);\n\t\torder_next = 0;\n\t\tfor(int i = 0; i < n; i++)\n\
+    \t\t\tif(order[i] == -1) dfs(i);\n\t}\n\n\tvoid dfs(int now, int par = -1) {\n\
+    \t\tlow[now] = order[now] = order_next++;\n\t\tbool is_articulation = false;\n\
+    \t\tint cnt = 0, cnt_par = 0;\n\t\tfor(const auto &ed : graph_given[now]) {\n\t\
+    \t\tconst int &nxt = ed.to;\n\t\t\tif(order[nxt] == -1) {\n\t\t\t\tcnt++;\n\t\t\
+    \t\tdfs(nxt, now);\n\t\t\t\tif(order[now] < low[nxt]) bridge.push_back(std::minmax(now,\
+    \ nxt));\n\t\t\t\tif(order[now] <= low[nxt]) is_articulation = true;\n\t\t\t\t\
+    low[now] = std::min(low[now], low[nxt]);\n\t\t\t} else if(nxt != par or cnt_par++\
+    \ == 1) {\n\t\t\t\tlow[now] = std::min(low[now], order[nxt]);\n\t\t\t}\n\t\t}\n\
+    \t\tif(par == -1 and cnt < 2) is_articulation = false;\n\t\tif(is_articulation)\
+    \ articulation.push_back(now);\n\t\treturn;\n\t}\n\npublic:\n\tstd::vector<int>\
+    \ order, low, articulation;\n\tstd::vector<std::pair<int, int>> bridge;\n\tlow_link()\
+    \ = default;\n\tlow_link(const graph &g_) : graph_given(g_) { build(); }\n};\n"
   code: "#pragma once\n\n#include \"graph/graph.hpp\"\n\nstruct low_link {\nprivate:\n\
     \tconst graph &graph_given;\n\tint order_next;\n\n\tvoid build() {\n\t\tint n\
     \ = graph_given.size();\n\t\torder.resize(n, -1);\n\t\tlow.resize(n);\n\t\torder_next\
@@ -213,7 +226,7 @@ data:
   path: graph/low_link.hpp
   requiredBy:
   - graph/two_edge_cc.hpp
-  timestamp: '2021-09-08 10:25:09+09:00'
+  timestamp: '2021-10-06 20:07:39+09:00'
   verificationStatus: LIBRARY_ALL_AC
   verifiedWith:
   - test/aoj-grl-3-a.test.cpp

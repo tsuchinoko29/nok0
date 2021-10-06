@@ -33,8 +33,8 @@ data:
     \ s;\n\t}\n};\n\nclass graph {\n\tstd::vector<std::vector<Edge>> edges;\n\n\t\
     template <class F>\n\tstruct rec_lambda {\n\t\tF f;\n\t\trec_lambda(F &&f_) :\
     \ f(std::forward<F>(f_)) {}\n\t\ttemplate <class... Args>\n\t\tauto operator()(Args\
-    \ &&... args) const {\n\t\t\treturn f(*this, std::forward<Args>(args)...);\n\t\
-    \t}\n\t};\n\npublic:\n\tinline const std::vector<Edge> &operator[](int k) const\
+    \ &&...args) const {\n\t\t\treturn f(*this, std::forward<Args>(args)...);\n\t\t\
+    }\n\t};\n\npublic:\n\tinline const std::vector<Edge> &operator[](int k) const\
     \ { return edges[k]; }\n\tinline std::vector<Edge> &operator[](int k) { return\
     \ edges[k]; }\n\n\tint size() const { return edges.size(); }\n\tvoid resize(const\
     \ int n) { edges.resize(n); }\n\n\tgraph() = default;\n\tgraph(int n) : edges(n)\
@@ -156,56 +156,70 @@ data:
     \ > uf_data[v]) std::swap(u, v);\n\t\t\tuf_data[u] += uf_data[v];\n\t\t\tuf_data[v]\
     \ = u;\n\t\t\treturn true;\n\t\t};\n\t\tlong long ret = 0;\n\t\tfor(auto &e :\
     \ Edges)\n\t\t\tif(unite(std::get<0>(e), std::get<1>(e))) ret += std::get<2>(e);\n\
-    \t\treturn ret;\n\t}\n\n\t// O(V)\n\tstd::vector<int> centroid() {\n\t\tint n\
-    \ = size();\n\t\tstd::vector<int> centroid, sz(n);\n\t\tauto dfs = [&](auto self,\
-    \ int now, int per) -> void {\n\t\t\tsz[now] = 1;\n\t\t\tbool is_centroid = true;\n\
-    \t\t\tfor(auto &e : edges[now]) {\n\t\t\t\tif(e.to != per) {\n\t\t\t\t\tself(self,\
-    \ e.to, now);\n\t\t\t\t\tsz[now] += sz[e.to];\n\t\t\t\t\tif(sz[e.to] > n / 2)\
-    \ is_centroid = false;\n\t\t\t\t}\n\t\t\t}\n\t\t\tif(n - sz[now] > n / 2) is_centroid\
-    \ = false;\n\t\t\tif(is_centroid) centroid.push_back(now);\n\t\t};\n\t\tdfs(dfs,\
-    \ 0, -1);\n\t\treturn centroid;\n\t}\n\n\t// \u039F(V+E)\n\t// directed graph\
-    \ from root to leaf\n\tgraph root_to_leaf(int root = 0) {\n\t\tgraph res(size());\n\
-    \t\tstd::vector<int> chk(size(), 0);\n\t\tchk[root] = 1;\n\t\tauto dfs = [&](auto\
+    \t\treturn ret;\n\t}\n\n\tgraph build_mst() {\n\t\tstd::vector<std::tuple<int,\
+    \ int, long long>> Edges;\n\t\tfor(int i = 0; i < int(size()); i++)\n\t\t\tfor(auto\
+    \ &e : edges[i]) Edges.emplace_back(i, e.to, e.cost);\n\t\tstd::sort(Edges.begin(),\
+    \ Edges.end(), [](const std::tuple<int, int, long long> &a, const std::tuple<int,\
+    \ int, long long> &b) {\n\t\t\treturn std::get<2>(a) < std::get<2>(b);\n\t\t});\n\
+    \t\tstd::vector<int> uf_data(size(), -1);\n\t\tauto root = [&uf_data](auto self,\
+    \ int x) -> int {\n\t\t\tif(uf_data[x] < 0) return x;\n\t\t\treturn uf_data[x]\
+    \ = self(self, uf_data[x]);\n\t\t};\n\t\tauto unite = [&uf_data, &root](int u,\
+    \ int v) -> bool {\n\t\t\tu = root(root, u), v = root(root, v);\n\t\t\tif(u ==\
+    \ v) return false;\n\t\t\tif(uf_data[u] > uf_data[v]) std::swap(u, v);\n\t\t\t\
+    uf_data[u] += uf_data[v];\n\t\t\tuf_data[v] = u;\n\t\t\treturn true;\n\t\t};\n\
+    \t\tgraph g(this->size());\n\t\tfor(auto &e : Edges)\n\t\t\tif(unite(std::get<0>(e),\
+    \ std::get<1>(e))) {\n\t\t\t\tg.add_edge(std::get<0>(e), std::get<1>(e), std::get<2>(e));\n\
+    \t\t\t}\n\t\treturn g;\n\t}\n\n\t// O(V)\n\tstd::vector<int> centroid() {\n\t\t\
+    int n = size();\n\t\tstd::vector<int> centroid, sz(n);\n\t\tauto dfs = [&](auto\
+    \ self, int now, int per) -> void {\n\t\t\tsz[now] = 1;\n\t\t\tbool is_centroid\
+    \ = true;\n\t\t\tfor(auto &e : edges[now]) {\n\t\t\t\tif(e.to != per) {\n\t\t\t\
+    \t\tself(self, e.to, now);\n\t\t\t\t\tsz[now] += sz[e.to];\n\t\t\t\t\tif(sz[e.to]\
+    \ > n / 2) is_centroid = false;\n\t\t\t\t}\n\t\t\t}\n\t\t\tif(n - sz[now] > n\
+    \ / 2) is_centroid = false;\n\t\t\tif(is_centroid) centroid.push_back(now);\n\t\
+    \t};\n\t\tdfs(dfs, 0, -1);\n\t\treturn centroid;\n\t}\n\n\t// \u039F(V+E)\n\t\
+    // directed graph from root to leaf\n\tgraph root_to_leaf(int root = 0) {\n\t\t\
+    graph res(size());\n\t\tstd::vector<int> chk(size(), 0);\n\t\tchk[root] = 1;\n\
+    \t\tauto dfs = [&](auto self, int now) -> void {\n\t\t\tfor(auto &e : edges[now])\
+    \ {\n\t\t\t\tif(chk[e.to] == 1) continue;\n\t\t\t\tchk[e.to] = 1;\n\t\t\t\tres.add_edge(now,\
+    \ e.to, e.cost, 1, 0);\n\t\t\t\tself(self, e.to);\n\t\t\t}\n\t\t};\n\t\tdfs(dfs,\
+    \ root);\n\t\treturn res;\n\t}\n\n\t// \u039F(V+E)\n\t// directed graph from leaf\
+    \ to root\n\tgraph leaf_to_root(int root = 0) {\n\t\tgraph res(size());\n\t\t\
+    std::vector<int> chk(size(), 0);\n\t\tchk[root] = 1;\n\t\tauto dfs = [&](auto\
     \ self, int now) -> void {\n\t\t\tfor(auto &e : edges[now]) {\n\t\t\t\tif(chk[e.to]\
-    \ == 1) continue;\n\t\t\t\tchk[e.to] = 1;\n\t\t\t\tres.add_edge(now, e.to, e.cost,\
+    \ == 1) continue;\n\t\t\t\tchk[e.to] = 1;\n\t\t\t\tres.add_edge(e.to, now, e.cost,\
     \ 1, 0);\n\t\t\t\tself(self, e.to);\n\t\t\t}\n\t\t};\n\t\tdfs(dfs, root);\n\t\t\
-    return res;\n\t}\n\n\t// \u039F(V+E)\n\t// directed graph from leaf to root\n\t\
-    graph leaf_to_root(int root = 0) {\n\t\tgraph res(size());\n\t\tstd::vector<int>\
-    \ chk(size(), 0);\n\t\tchk[root] = 1;\n\t\tauto dfs = [&](auto self, int now)\
-    \ -> void {\n\t\t\tfor(auto &e : edges[now]) {\n\t\t\t\tif(chk[e.to] == 1) continue;\n\
-    \t\t\t\tchk[e.to] = 1;\n\t\t\t\tres.add_edge(e.to, now, e.cost, 1, 0);\n\t\t\t\
-    \tself(self, e.to);\n\t\t\t}\n\t\t};\n\t\tdfs(dfs, root);\n\t\treturn res;\n\t\
-    }\n\n\t// long long Chu_Liu_Edmonds(int root = 0) {}\n};\n#line 3 \"graph/hld.hpp\"\
-    \n\nstruct heavy_light_decomposition {\npublic:\n\tstd::vector<int> sz, in, out,\
-    \ head, rev, par;\n\nprivate:\n\tgraph &g;\n\n\tvoid dfs_sz(int v, int p = -1)\
-    \ {\n\t\tpar[v] = p;\n\t\tif(!g[v].empty() and g[v].front().to == p) std::swap(g[v].front(),\
-    \ g[v].back());\n\t\tfor(auto &e : g[v]) {\n\t\t\tif(e.to == p) continue;\n\t\t\
-    \tdfs_sz(e.to, v);\n\t\t\tsz[v] += sz[e.to];\n\t\t\tif(sz[g[v].front().to] < sz[e.to])\
-    \ std::swap(g[v].front(), e);\n\t\t}\n\t}\n\n\tvoid dfs_hld(int v, int &t, int\
-    \ p = -1) {\n\t\tin[v] = t++;\n\t\trev[in[v]] = v;\n\t\tfor(auto &e : g[v]) {\n\
-    \t\t\tif(e.to == p) continue;\n\t\t\thead[e.to] = (g[v].front().to == e.to ? head[v]\
-    \ : e.to);\n\t\t\tdfs_hld(e.to, t, v);\n\t\t}\n\t\tout[v] = t;\n\t}\n\n\tvoid\
-    \ build(int root = 0) {\n\t\tdfs_sz(root);\n\t\tint t = 0;\n\t\thead[root] = root;\n\
-    \t\tdfs_hld(root, t);\n\t}\n\npublic:\n\theavy_light_decomposition(graph &g_,\
-    \ int root = 0) : g(g_) {\n\t\tint n = g.size();\n\t\tsz.resize(n, 1);\n\t\tin.resize(n);\n\
-    \t\tout.resize(n);\n\t\thead.resize(n);\n\t\trev.resize(n);\n\t\tpar.resize(n);\n\
-    \t\tbuild(root);\n\t}\n\n\tint level_ancestor(int v, int level) {\n\t\twhile(true)\
-    \ {\n\t\t\tint u = head[v];\n\t\t\tif(in[v] - level >= in[u]) return rev[in[v]\
-    \ - level];\n\t\t\tlevel -= in[v] - in[u] + 1;\n\t\t\tv = par[u];\n\t\t}\n\t}\n\
-    \n\tint lowest_common_ancestor(int u, int v) {\n\t\tfor(;; v = par[head[v]]) {\n\
-    \t\t\tif(in[u] > in[v]) std::swap(u, v);\n\t\t\tif(head[u] == head[v]) return\
-    \ u;\n\t\t}\n\t}\n\n\t// u, v: vertex, unit: unit, q: query on a path, f: binary\
-    \ operation ((T, T) -> T)\n\ttemplate <typename T, typename Q, typename F>\n\t\
-    T query(int u, int v, const T &unit, const Q &q, const F &f, bool edge = false)\
-    \ {\n\t\tT l = unit, r = unit;\n\t\tfor(;; v = par[head[v]]) {\n\t\t\tif(in[u]\
-    \ > in[v]) std::swap(u, v), std::swap(l, r);\n\t\t\tif(head[u] == head[v]) break;\n\
-    \t\t\tl = f(q(in[head[v]], in[v] + 1), l);\n\t\t}\n\t\treturn f(f(q(in[u] + edge,\
-    \ in[v] + 1), l), r);\n\t}\n\n\t// u, v: vertex, q: update query\n\ttemplate <typename\
-    \ Q>\n\tvoid add(int u, int v, const Q &q, bool edge = false) {\n\t\tfor(;; v\
-    \ = par[head[v]]) {\n\t\t\tif(in[u] > in[v]) std::swap(u, v);\n\t\t\tif(head[u]\
-    \ == head[v]) break;\n\t\t\tq(in[head[v]], in[v] + 1);\n\t\t}\n\t\tq(in[u] + edge,\
-    \ in[v] + 1);\n\t}\n\n\tstd::pair<int, int> subtree(int v, bool edge = false)\
-    \ { return std::pair<int, int>(in[v] + edge, out[v]); }\n};\n"
+    return res;\n\t}\n\n\t// long long Chu_Liu_Edmonds(int root = 0) {}\n};\n#line\
+    \ 3 \"graph/hld.hpp\"\n\nstruct heavy_light_decomposition {\npublic:\n\tstd::vector<int>\
+    \ sz, in, out, head, rev, par;\n\nprivate:\n\tgraph &g;\n\n\tvoid dfs_sz(int v,\
+    \ int p = -1) {\n\t\tpar[v] = p;\n\t\tif(!g[v].empty() and g[v].front().to ==\
+    \ p) std::swap(g[v].front(), g[v].back());\n\t\tfor(auto &e : g[v]) {\n\t\t\t\
+    if(e.to == p) continue;\n\t\t\tdfs_sz(e.to, v);\n\t\t\tsz[v] += sz[e.to];\n\t\t\
+    \tif(sz[g[v].front().to] < sz[e.to]) std::swap(g[v].front(), e);\n\t\t}\n\t}\n\
+    \n\tvoid dfs_hld(int v, int &t, int p = -1) {\n\t\tin[v] = t++;\n\t\trev[in[v]]\
+    \ = v;\n\t\tfor(auto &e : g[v]) {\n\t\t\tif(e.to == p) continue;\n\t\t\thead[e.to]\
+    \ = (g[v].front().to == e.to ? head[v] : e.to);\n\t\t\tdfs_hld(e.to, t, v);\n\t\
+    \t}\n\t\tout[v] = t;\n\t}\n\n\tvoid build(int root = 0) {\n\t\tdfs_sz(root);\n\
+    \t\tint t = 0;\n\t\thead[root] = root;\n\t\tdfs_hld(root, t);\n\t}\n\npublic:\n\
+    \theavy_light_decomposition(graph &g_, int root = 0) : g(g_) {\n\t\tint n = g.size();\n\
+    \t\tsz.resize(n, 1);\n\t\tin.resize(n);\n\t\tout.resize(n);\n\t\thead.resize(n);\n\
+    \t\trev.resize(n);\n\t\tpar.resize(n);\n\t\tbuild(root);\n\t}\n\n\tint level_ancestor(int\
+    \ v, int level) {\n\t\twhile(true) {\n\t\t\tint u = head[v];\n\t\t\tif(in[v] -\
+    \ level >= in[u]) return rev[in[v] - level];\n\t\t\tlevel -= in[v] - in[u] + 1;\n\
+    \t\t\tv = par[u];\n\t\t}\n\t}\n\n\tint lowest_common_ancestor(int u, int v) {\n\
+    \t\tfor(;; v = par[head[v]]) {\n\t\t\tif(in[u] > in[v]) std::swap(u, v);\n\t\t\
+    \tif(head[u] == head[v]) return u;\n\t\t}\n\t}\n\n\t// u, v: vertex, unit: unit,\
+    \ q: query on a path, f: binary operation ((T, T) -> T)\n\ttemplate <typename\
+    \ T, typename Q, typename F>\n\tT query(int u, int v, const T &unit, const Q &q,\
+    \ const F &f, bool edge = false) {\n\t\tT l = unit, r = unit;\n\t\tfor(;; v =\
+    \ par[head[v]]) {\n\t\t\tif(in[u] > in[v]) std::swap(u, v), std::swap(l, r);\n\
+    \t\t\tif(head[u] == head[v]) break;\n\t\t\tl = f(q(in[head[v]], in[v] + 1), l);\n\
+    \t\t}\n\t\treturn f(f(q(in[u] + edge, in[v] + 1), l), r);\n\t}\n\n\t// u, v: vertex,\
+    \ q: update query\n\ttemplate <typename Q>\n\tvoid add(int u, int v, const Q &q,\
+    \ bool edge = false) {\n\t\tfor(;; v = par[head[v]]) {\n\t\t\tif(in[u] > in[v])\
+    \ std::swap(u, v);\n\t\t\tif(head[u] == head[v]) break;\n\t\t\tq(in[head[v]],\
+    \ in[v] + 1);\n\t\t}\n\t\tq(in[u] + edge, in[v] + 1);\n\t}\n\n\tstd::pair<int,\
+    \ int> subtree(int v, bool edge = false) { return std::pair<int, int>(in[v] +\
+    \ edge, out[v]); }\n};\n"
   code: "#pragma once\n#include \"graph/graph.hpp\"\n\nstruct heavy_light_decomposition\
     \ {\npublic:\n\tstd::vector<int> sz, in, out, head, rev, par;\n\nprivate:\n\t\
     graph &g;\n\n\tvoid dfs_sz(int v, int p = -1) {\n\t\tpar[v] = p;\n\t\tif(!g[v].empty()\
@@ -242,7 +256,7 @@ data:
   isVerificationFile: false
   path: graph/hld.hpp
   requiredBy: []
-  timestamp: '2021-09-08 10:25:09+09:00'
+  timestamp: '2021-10-06 20:07:39+09:00'
   verificationStatus: LIBRARY_ALL_AC
   verifiedWith:
   - test/yosupo-vertex_add_subtree_sum.test.cpp

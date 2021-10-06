@@ -85,8 +85,8 @@ data:
     \ s;\n\t}\n};\n\nclass graph {\n\tstd::vector<std::vector<Edge>> edges;\n\n\t\
     template <class F>\n\tstruct rec_lambda {\n\t\tF f;\n\t\trec_lambda(F &&f_) :\
     \ f(std::forward<F>(f_)) {}\n\t\ttemplate <class... Args>\n\t\tauto operator()(Args\
-    \ &&... args) const {\n\t\t\treturn f(*this, std::forward<Args>(args)...);\n\t\
-    \t}\n\t};\n\npublic:\n\tinline const std::vector<Edge> &operator[](int k) const\
+    \ &&...args) const {\n\t\t\treturn f(*this, std::forward<Args>(args)...);\n\t\t\
+    }\n\t};\n\npublic:\n\tinline const std::vector<Edge> &operator[](int k) const\
     \ { return edges[k]; }\n\tinline std::vector<Edge> &operator[](int k) { return\
     \ edges[k]; }\n\n\tint size() const { return edges.size(); }\n\tvoid resize(const\
     \ int n) { edges.resize(n); }\n\n\tgraph() = default;\n\tgraph(int n) : edges(n)\
@@ -208,31 +208,44 @@ data:
     \ > uf_data[v]) std::swap(u, v);\n\t\t\tuf_data[u] += uf_data[v];\n\t\t\tuf_data[v]\
     \ = u;\n\t\t\treturn true;\n\t\t};\n\t\tlong long ret = 0;\n\t\tfor(auto &e :\
     \ Edges)\n\t\t\tif(unite(std::get<0>(e), std::get<1>(e))) ret += std::get<2>(e);\n\
-    \t\treturn ret;\n\t}\n\n\t// O(V)\n\tstd::vector<int> centroid() {\n\t\tint n\
-    \ = size();\n\t\tstd::vector<int> centroid, sz(n);\n\t\tauto dfs = [&](auto self,\
-    \ int now, int per) -> void {\n\t\t\tsz[now] = 1;\n\t\t\tbool is_centroid = true;\n\
-    \t\t\tfor(auto &e : edges[now]) {\n\t\t\t\tif(e.to != per) {\n\t\t\t\t\tself(self,\
-    \ e.to, now);\n\t\t\t\t\tsz[now] += sz[e.to];\n\t\t\t\t\tif(sz[e.to] > n / 2)\
-    \ is_centroid = false;\n\t\t\t\t}\n\t\t\t}\n\t\t\tif(n - sz[now] > n / 2) is_centroid\
-    \ = false;\n\t\t\tif(is_centroid) centroid.push_back(now);\n\t\t};\n\t\tdfs(dfs,\
-    \ 0, -1);\n\t\treturn centroid;\n\t}\n\n\t// \u039F(V+E)\n\t// directed graph\
-    \ from root to leaf\n\tgraph root_to_leaf(int root = 0) {\n\t\tgraph res(size());\n\
-    \t\tstd::vector<int> chk(size(), 0);\n\t\tchk[root] = 1;\n\t\tauto dfs = [&](auto\
+    \t\treturn ret;\n\t}\n\n\tgraph build_mst() {\n\t\tstd::vector<std::tuple<int,\
+    \ int, long long>> Edges;\n\t\tfor(int i = 0; i < int(size()); i++)\n\t\t\tfor(auto\
+    \ &e : edges[i]) Edges.emplace_back(i, e.to, e.cost);\n\t\tstd::sort(Edges.begin(),\
+    \ Edges.end(), [](const std::tuple<int, int, long long> &a, const std::tuple<int,\
+    \ int, long long> &b) {\n\t\t\treturn std::get<2>(a) < std::get<2>(b);\n\t\t});\n\
+    \t\tstd::vector<int> uf_data(size(), -1);\n\t\tauto root = [&uf_data](auto self,\
+    \ int x) -> int {\n\t\t\tif(uf_data[x] < 0) return x;\n\t\t\treturn uf_data[x]\
+    \ = self(self, uf_data[x]);\n\t\t};\n\t\tauto unite = [&uf_data, &root](int u,\
+    \ int v) -> bool {\n\t\t\tu = root(root, u), v = root(root, v);\n\t\t\tif(u ==\
+    \ v) return false;\n\t\t\tif(uf_data[u] > uf_data[v]) std::swap(u, v);\n\t\t\t\
+    uf_data[u] += uf_data[v];\n\t\t\tuf_data[v] = u;\n\t\t\treturn true;\n\t\t};\n\
+    \t\tgraph g(this->size());\n\t\tfor(auto &e : Edges)\n\t\t\tif(unite(std::get<0>(e),\
+    \ std::get<1>(e))) {\n\t\t\t\tg.add_edge(std::get<0>(e), std::get<1>(e), std::get<2>(e));\n\
+    \t\t\t}\n\t\treturn g;\n\t}\n\n\t// O(V)\n\tstd::vector<int> centroid() {\n\t\t\
+    int n = size();\n\t\tstd::vector<int> centroid, sz(n);\n\t\tauto dfs = [&](auto\
+    \ self, int now, int per) -> void {\n\t\t\tsz[now] = 1;\n\t\t\tbool is_centroid\
+    \ = true;\n\t\t\tfor(auto &e : edges[now]) {\n\t\t\t\tif(e.to != per) {\n\t\t\t\
+    \t\tself(self, e.to, now);\n\t\t\t\t\tsz[now] += sz[e.to];\n\t\t\t\t\tif(sz[e.to]\
+    \ > n / 2) is_centroid = false;\n\t\t\t\t}\n\t\t\t}\n\t\t\tif(n - sz[now] > n\
+    \ / 2) is_centroid = false;\n\t\t\tif(is_centroid) centroid.push_back(now);\n\t\
+    \t};\n\t\tdfs(dfs, 0, -1);\n\t\treturn centroid;\n\t}\n\n\t// \u039F(V+E)\n\t\
+    // directed graph from root to leaf\n\tgraph root_to_leaf(int root = 0) {\n\t\t\
+    graph res(size());\n\t\tstd::vector<int> chk(size(), 0);\n\t\tchk[root] = 1;\n\
+    \t\tauto dfs = [&](auto self, int now) -> void {\n\t\t\tfor(auto &e : edges[now])\
+    \ {\n\t\t\t\tif(chk[e.to] == 1) continue;\n\t\t\t\tchk[e.to] = 1;\n\t\t\t\tres.add_edge(now,\
+    \ e.to, e.cost, 1, 0);\n\t\t\t\tself(self, e.to);\n\t\t\t}\n\t\t};\n\t\tdfs(dfs,\
+    \ root);\n\t\treturn res;\n\t}\n\n\t// \u039F(V+E)\n\t// directed graph from leaf\
+    \ to root\n\tgraph leaf_to_root(int root = 0) {\n\t\tgraph res(size());\n\t\t\
+    std::vector<int> chk(size(), 0);\n\t\tchk[root] = 1;\n\t\tauto dfs = [&](auto\
     \ self, int now) -> void {\n\t\t\tfor(auto &e : edges[now]) {\n\t\t\t\tif(chk[e.to]\
-    \ == 1) continue;\n\t\t\t\tchk[e.to] = 1;\n\t\t\t\tres.add_edge(now, e.to, e.cost,\
+    \ == 1) continue;\n\t\t\t\tchk[e.to] = 1;\n\t\t\t\tres.add_edge(e.to, now, e.cost,\
     \ 1, 0);\n\t\t\t\tself(self, e.to);\n\t\t\t}\n\t\t};\n\t\tdfs(dfs, root);\n\t\t\
-    return res;\n\t}\n\n\t// \u039F(V+E)\n\t// directed graph from leaf to root\n\t\
-    graph leaf_to_root(int root = 0) {\n\t\tgraph res(size());\n\t\tstd::vector<int>\
-    \ chk(size(), 0);\n\t\tchk[root] = 1;\n\t\tauto dfs = [&](auto self, int now)\
-    \ -> void {\n\t\t\tfor(auto &e : edges[now]) {\n\t\t\t\tif(chk[e.to] == 1) continue;\n\
-    \t\t\t\tchk[e.to] = 1;\n\t\t\t\tres.add_edge(e.to, now, e.cost, 1, 0);\n\t\t\t\
-    \tself(self, e.to);\n\t\t\t}\n\t\t};\n\t\tdfs(dfs, root);\n\t\treturn res;\n\t\
-    }\n\n\t// long long Chu_Liu_Edmonds(int root = 0) {}\n};\n#line 3 \"graph/tree_doubling.hpp\"\
-    \n\nstruct tree_doubling {\nprivate:\n\tstd::vector<std::vector<int>> parent;\n\
-    \tstd::vector<int> depth;\n\tstd::vector<long long> dist;\n\tint max_jump = 1;\n\
-    \n\tvoid build() {\n\t\tfor(int i = 0; i < max_jump - 1; i++) {\n\t\t\tfor(int\
-    \ v = 0; v < (int)dist.size(); v++) {\n\t\t\t\tif(parent[i][v] == -1)\n\t\t\t\t\
-    \tparent[i + 1][v] = -1;\n\t\t\t\telse\n\t\t\t\t\tparent[i + 1][v] = parent[i][parent[i][v]];\n\
+    return res;\n\t}\n\n\t// long long Chu_Liu_Edmonds(int root = 0) {}\n};\n#line\
+    \ 3 \"graph/tree_doubling.hpp\"\n\nstruct tree_doubling {\nprivate:\n\tstd::vector<std::vector<int>>\
+    \ parent;\n\tstd::vector<int> depth;\n\tstd::vector<long long> dist;\n\tint max_jump\
+    \ = 1;\n\n\tvoid build() {\n\t\tfor(int i = 0; i < max_jump - 1; i++) {\n\t\t\t\
+    for(int v = 0; v < (int)dist.size(); v++) {\n\t\t\t\tif(parent[i][v] == -1)\n\t\
+    \t\t\t\tparent[i + 1][v] = -1;\n\t\t\t\telse\n\t\t\t\t\tparent[i + 1][v] = parent[i][parent[i][v]];\n\
     \t\t\t}\n\t\t}\n\t}\n\npublic:\n\ttree_doubling() = default;\n\ttree_doubling(const\
     \ graph &g, const int root = 0) : dist(g.size()), depth(g.size()) {\n\t\tint n\
     \ = g.size();\n\t\twhile((1 << max_jump) < n) max_jump++;\n\t\tparent.assign(max_jump,\
@@ -435,7 +448,7 @@ data:
   isVerificationFile: true
   path: test/aoj-grl-5-c.test.cpp
   requiredBy: []
-  timestamp: '2021-09-29 21:47:26+09:00'
+  timestamp: '2021-10-06 20:07:39+09:00'
   verificationStatus: TEST_ACCEPTED
   verifiedWith: []
 documentation_of: test/aoj-grl-5-c.test.cpp
