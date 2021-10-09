@@ -15,6 +15,9 @@ data:
     path: data_structure/sparse_table.hpp
     title: data_structure/sparse_table.hpp
   - icon: ':warning:'
+    path: math/bostan_mori.hpp
+    title: math/bostan_mori.hpp
+  - icon: ':warning:'
     path: math/bostan_mori_ll.hpp
     title: math/bostan_mori_ll.hpp
   - icon: ':heavy_check_mark:'
@@ -185,6 +188,7 @@ data:
   isVerificationFile: false
   path: atcoder/internal_bit.hpp
   requiredBy:
+  - math/bostan_mori.hpp
   - math/formal_power_series.hpp
   - math/bostan_mori_ll.hpp
   - atcoder/lazysegtree.hpp

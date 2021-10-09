@@ -11,6 +11,9 @@ data:
     path: atcoder/modint.hpp
     title: atcoder/modint.hpp
   _extendedRequiredBy:
+  - icon: ':warning:'
+    path: math/bostan_mori.hpp
+    title: math/bostan_mori.hpp
   - icon: ':heavy_check_mark:'
     path: math/formal_power_series.hpp
     title: math/formal_power_series.hpp
@@ -299,6 +302,7 @@ data:
   isVerificationFile: false
   path: math/factorial.hpp
   requiredBy:
+  - math/bostan_mori.hpp
   - math/formal_power_series.hpp
   timestamp: '2021-09-12 23:05:37+09:00'
   verificationStatus: LIBRARY_ALL_AC

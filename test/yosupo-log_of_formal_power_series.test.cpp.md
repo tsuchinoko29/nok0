@@ -747,7 +747,7 @@ data:
     \t\t\trem[i << 1 | 1] = rem[i] % subproducts[i << 1 | 1];\n\t\t\trem[i << 1 |\
     \ 1].shrink();\n\t\t}\n\t\tstd::vector<T> res(m);\n\t\tfor(int i = 0; i < m; i++)\
     \ res[i] = (!rem[i + n].empty() ? rem[i + n][0] : 0);\n\t\treturn res;\n\t}\n\
-    };\n#line 2 \"math/modint_iostream.hpp\"\n\n#line 4 \"math/modint_iostream.hpp\"\
+    };\n#line 3 \"math/modint_iostream.hpp\"\n\n#line 5 \"math/modint_iostream.hpp\"\
     \ntemplate <int m>\nstd::istream &std::operator>>(std::istream &is, atcoder::static_modint<m>\
     \ &a) {\n\tlong long v;\n\tis >> v;\n\ta = v;\n\treturn is;\n}\ntemplate <int\
     \ m>\nstd::istream &std::operator>>(std::istream &is, atcoder::dynamic_modint<m>\
@@ -775,7 +775,7 @@ data:
   isVerificationFile: true
   path: test/yosupo-log_of_formal_power_series.test.cpp
   requiredBy: []
-  timestamp: '2021-10-03 16:45:05+09:00'
+  timestamp: '2021-10-09 11:22:16+09:00'
   verificationStatus: TEST_ACCEPTED
   verifiedWith: []
 documentation_of: test/yosupo-log_of_formal_power_series.test.cpp

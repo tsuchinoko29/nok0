@@ -53,7 +53,7 @@ data:
   _verificationStatusIcon: ':heavy_check_mark:'
   attributes:
     links: []
-  bundledCode: "#line 1 \"math/modint_iostream.hpp\"\n#include <iostream>\n\n#line\
+  bundledCode: "#line 2 \"math/modint_iostream.hpp\"\n#include <iostream>\n\n#line\
     \ 1 \"atcoder/modint.hpp\"\n\n\n\n#include <cassert>\n#include <numeric>\n#include\
     \ <type_traits>\n\n#ifdef _MSC_VER\n#include <intrin.h>\n#endif\n\n#line 1 \"\
     atcoder/internal_math.hpp\"\n\n\n\n#include <utility>\n\n#ifdef _MSC_VER\n#include\
@@ -259,7 +259,7 @@ data:
     \ntemplate <class> struct is_dynamic_modint : public std::false_type {};\ntemplate\
     \ <int id>\nstruct is_dynamic_modint<dynamic_modint<id>> : public std::true_type\
     \ {};\n\ntemplate <class T>\nusing is_dynamic_modint_t = std::enable_if_t<is_dynamic_modint<T>::value>;\n\
-    \n}  // namespace internal\n\n}  // namespace atcoder\n\n\n#line 4 \"math/modint_iostream.hpp\"\
+    \n}  // namespace internal\n\n}  // namespace atcoder\n\n\n#line 5 \"math/modint_iostream.hpp\"\
     \ntemplate <int m>\nstd::istream &std::operator>>(std::istream &is, atcoder::static_modint<m>\
     \ &a) {\n\tlong long v;\n\tis >> v;\n\ta = v;\n\treturn is;\n}\ntemplate <int\
     \ m>\nstd::istream &std::operator>>(std::istream &is, atcoder::dynamic_modint<m>\
@@ -267,14 +267,14 @@ data:
     \ m>\nstd::ostream &std::operator<<(std::ostream &os, const atcoder::static_modint<m>\
     \ &a) { return os << a.val(); }\ntemplate <int m>\nstd::ostream &std::operator<<(std::ostream\
     \ &os, const atcoder::dynamic_modint<m> &a) { return os << a.val(); }\n"
-  code: "#include <iostream>\n\n#include \"atcoder/modint\"\ntemplate <int m>\nstd::istream\
-    \ &std::operator>>(std::istream &is, atcoder::static_modint<m> &a) {\n\tlong long\
-    \ v;\n\tis >> v;\n\ta = v;\n\treturn is;\n}\ntemplate <int m>\nstd::istream &std::operator>>(std::istream\
-    \ &is, atcoder::dynamic_modint<m> &a) {\n\tlong long v;\n\tis >> v;\n\ta = v;\n\
-    \treturn is;\n}\ntemplate <int m>\nstd::ostream &std::operator<<(std::ostream\
-    \ &os, const atcoder::static_modint<m> &a) { return os << a.val(); }\ntemplate\
-    \ <int m>\nstd::ostream &std::operator<<(std::ostream &os, const atcoder::dynamic_modint<m>\
-    \ &a) { return os << a.val(); }\n"
+  code: "#pragma once\n#include <iostream>\n\n#include \"atcoder/modint\"\ntemplate\
+    \ <int m>\nstd::istream &std::operator>>(std::istream &is, atcoder::static_modint<m>\
+    \ &a) {\n\tlong long v;\n\tis >> v;\n\ta = v;\n\treturn is;\n}\ntemplate <int\
+    \ m>\nstd::istream &std::operator>>(std::istream &is, atcoder::dynamic_modint<m>\
+    \ &a) {\n\tlong long v;\n\tis >> v;\n\ta = v;\n\treturn is;\n}\ntemplate <int\
+    \ m>\nstd::ostream &std::operator<<(std::ostream &os, const atcoder::static_modint<m>\
+    \ &a) { return os << a.val(); }\ntemplate <int m>\nstd::ostream &std::operator<<(std::ostream\
+    \ &os, const atcoder::dynamic_modint<m> &a) { return os << a.val(); }\n"
   dependsOn:
   - atcoder/modint.hpp
   - atcoder/internal_math.hpp
@@ -282,7 +282,7 @@ data:
   isVerificationFile: false
   path: math/modint_iostream.hpp
   requiredBy: []
-  timestamp: '2021-09-08 16:43:59+09:00'
+  timestamp: '2021-10-09 11:22:16+09:00'
   verificationStatus: LIBRARY_ALL_AC
   verifiedWith:
   - test/yosupo-queue_operate_all_composite.test.cpp

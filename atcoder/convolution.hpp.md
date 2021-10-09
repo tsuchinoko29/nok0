@@ -15,6 +15,9 @@ data:
     title: atcoder/modint.hpp
   _extendedRequiredBy:
   - icon: ':warning:'
+    path: math/bostan_mori.hpp
+    title: math/bostan_mori.hpp
+  - icon: ':warning:'
     path: math/bostan_mori_ll.hpp
     title: math/bostan_mori_ll.hpp
   - icon: ':heavy_check_mark:'
@@ -675,6 +678,7 @@ data:
   isVerificationFile: false
   path: atcoder/convolution.hpp
   requiredBy:
+  - math/bostan_mori.hpp
   - math/formal_power_series.hpp
   - math/bostan_mori_ll.hpp
   - multi.hpp

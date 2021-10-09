@@ -144,6 +144,9 @@ data:
   - name: math
     pages:
     - icon: ':warning:'
+      path: math/bostan_mori.hpp
+      title: math/bostan_mori.hpp
+    - icon: ':warning:'
       path: math/bostan_mori_ll.hpp
       title: math/bostan_mori_ll.hpp
     - icon: ':heavy_check_mark:'

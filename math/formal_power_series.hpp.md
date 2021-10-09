@@ -19,7 +19,10 @@ data:
   - icon: ':heavy_check_mark:'
     path: math/factorial.hpp
     title: math/factorial.hpp
-  _extendedRequiredBy: []
+  _extendedRequiredBy:
+  - icon: ':warning:'
+    path: math/bostan_mori.hpp
+    title: math/bostan_mori.hpp
   _extendedVerifiedWith:
   - icon: ':heavy_check_mark:'
     path: test/yosupo-division_of_polynomials.test.cpp
@@ -836,7 +839,8 @@ data:
   - math/factorial.hpp
   isVerificationFile: false
   path: math/formal_power_series.hpp
-  requiredBy: []
+  requiredBy:
+  - math/bostan_mori.hpp
   timestamp: '2021-10-03 16:45:05+09:00'
   verificationStatus: LIBRARY_ALL_AC
   verifiedWith:

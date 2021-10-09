@@ -391,7 +391,7 @@ data:
     \ x);\n\t\t\tback_stack.emplace(x, s);\n\t\t}\n\t}\n\nprivate:\n\tstruct node\
     \ {\n\t\tS val, sum;\n\t\tnode(const S &val, const S &sum) : val(val), sum(sum)\
     \ {}\n\t};\n\n\tstd::stack<node> front_stack, back_stack;\n\tsize_t sz;\n};\n\
-    #line 2 \"math/modint_iostream.hpp\"\n\n#line 4 \"math/modint_iostream.hpp\"\n\
+    #line 3 \"math/modint_iostream.hpp\"\n\n#line 5 \"math/modint_iostream.hpp\"\n\
     template <int m>\nstd::istream &std::operator>>(std::istream &is, atcoder::static_modint<m>\
     \ &a) {\n\tlong long v;\n\tis >> v;\n\ta = v;\n\treturn is;\n}\ntemplate <int\
     \ m>\nstd::istream &std::operator>>(std::istream &is, atcoder::dynamic_modint<m>\
@@ -425,7 +425,7 @@ data:
   isVerificationFile: true
   path: test/yosupo-queue_operate_all_composite.test.cpp
   requiredBy: []
-  timestamp: '2021-09-25 00:14:04+09:00'
+  timestamp: '2021-10-09 11:22:16+09:00'
   verificationStatus: TEST_ACCEPTED
   verifiedWith: []
 documentation_of: test/yosupo-queue_operate_all_composite.test.cpp

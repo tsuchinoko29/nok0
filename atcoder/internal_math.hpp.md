@@ -12,6 +12,9 @@ data:
     path: atcoder/modint.hpp
     title: atcoder/modint.hpp
   - icon: ':warning:'
+    path: math/bostan_mori.hpp
+    title: math/bostan_mori.hpp
+  - icon: ':warning:'
     path: math/bostan_mori_ll.hpp
     title: math/bostan_mori_ll.hpp
   - icon: ':heavy_check_mark:'
@@ -321,6 +324,7 @@ data:
   requiredBy:
   - math/factorial.hpp
   - math/modint_iostream.hpp
+  - math/bostan_mori.hpp
   - math/formal_power_series.hpp
   - math/bostan_mori_ll.hpp
   - atcoder/modint.hpp
