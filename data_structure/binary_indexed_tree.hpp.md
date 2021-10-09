@@ -49,10 +49,10 @@ data:
   timestamp: '2021-09-07 20:47:04+09:00'
   verificationStatus: LIBRARY_ALL_AC
   verifiedWith:
-  - test/yosupo-vertex_add_subtree_sum.test.cpp
   - test/aoj-dsl-2-b.test.cpp
-  - test/yosupo-vertex_add_path_sum.test.cpp
   - test/aoj-grl-5-d.test.cpp
+  - test/yosupo-vertex_add_path_sum.test.cpp
+  - test/yosupo-vertex_add_subtree_sum.test.cpp
 documentation_of: data_structure/binary_indexed_tree.hpp
 layout: document
 redirect_from:

@@ -91,9 +91,6 @@ data:
     - icon: ':heavy_check_mark:'
       path: data_structure/offline_dynamic_connectivity.hpp
       title: data_structure/offline_dynamic_connectivity.hpp
-    - icon: ':warning:'
-      path: data_structure/permutation_tree.hpp
-      title: data_structure/permutation_tree.hpp
     - icon: ':heavy_check_mark:'
       path: data_structure/range_set.hpp
       title: data_structure/range_set.hpp

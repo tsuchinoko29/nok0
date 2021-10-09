@@ -303,17 +303,17 @@ data:
   timestamp: '2021-09-12 23:05:37+09:00'
   verificationStatus: LIBRARY_ALL_AC
   verifiedWith:
-  - test/yosupo-inv_of_formal_power_series.test.cpp
+  - test/yosupo-multipoint_evaluation.test.cpp
   - test/aoj-2397.test.cpp
-  - test/yosupo-polynomial_taylor_shift.test.cpp
-  - test/yosupo-exp_of_formal_power_series.test.cpp
-  - test/yosupo-stirling_number_of_the_second_kind.test.cpp
-  - test/yosupo-pow_of_formal_power_series.test.cpp
   - test/yosupo-stirling_number_of_the_first_kind.test.cpp
+  - test/yosupo-inv_of_formal_power_series.test.cpp
   - test/yosupo-sqrt_of_formal_power_series.test.cpp
   - test/yosupo-log_of_formal_power_series.test.cpp
+  - test/yosupo-pow_of_formal_power_series.test.cpp
+  - test/yosupo-stirling_number_of_the_second_kind.test.cpp
+  - test/yosupo-exp_of_formal_power_series.test.cpp
   - test/yosupo-division_of_polynomials.test.cpp
-  - test/yosupo-multipoint_evaluation.test.cpp
+  - test/yosupo-polynomial_taylor_shift.test.cpp
 documentation_of: math/factorial.hpp
 layout: document
 redirect_from:
