@@ -79,7 +79,7 @@ template <class T>
 void scan(std::vector<T> &a) { std::cin >> a; }
 void INPUT() {}
 template <class Head, class... Tail>
-void INPUT(Head &head, Tail &... tail) {
+void INPUT(Head &head, Tail &...tail) {
 	scan(head);
 	INPUT(tail...);
 }
@@ -353,7 +353,7 @@ T bin_search(T ok, T ng, const F &f) {
 template <class T, class F>
 T bin_search(T ok, T ng, const F &f, int loop) {
 	for(int i = 0; i < loop; i++) {
-		T mid = (ok + ng) >> 1;
+		T mid = (ok + ng) / 2;
 		(f(mid) ? ok : ng) = mid;
 	}
 	return ok;
