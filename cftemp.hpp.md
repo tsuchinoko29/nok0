@@ -27,24 +27,24 @@ data:
   - icon: ':heavy_check_mark:'
     path: test/yosupo-pow_of_formal_power_series.test.cpp
     title: test/yosupo-pow_of_formal_power_series.test.cpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':x:'
     path: test/yosupo-queue_operate_all_composite.test.cpp
     title: test/yosupo-queue_operate_all_composite.test.cpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':x:'
     path: test/yosupo-sqrt_of_formal_power_series.test.cpp
     title: test/yosupo-sqrt_of_formal_power_series.test.cpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':x:'
     path: test/yosupo-staticrmq.test.cpp
     title: test/yosupo-staticrmq.test.cpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':x:'
     path: test/yosupo-stirling_number_of_the_first_kind.test.cpp
     title: test/yosupo-stirling_number_of_the_first_kind.test.cpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':x:'
     path: test/yosupo-stirling_number_of_the_second_kind.test.cpp
     title: test/yosupo-stirling_number_of_the_second_kind.test.cpp
-  _isVerificationFailed: false
+  _isVerificationFailed: true
   _pathExtension: hpp
-  _verificationStatusIcon: ':heavy_check_mark:'
+  _verificationStatusIcon: ':question:'
   attributes:
     links: []
   bundledCode: "#line 1 \"cftemp.hpp\"\n#include <bits/stdc++.h>\nusing namespace\
@@ -83,7 +83,7 @@ data:
     \ double &a) { std::cin >> a; }\ntemplate <class T, class U>\nvoid scan(std::pair<T,\
     \ U> &p) { std::cin >> p; }\ntemplate <class T>\nvoid scan(std::vector<T> &a)\
     \ { std::cin >> a; }\nvoid INPUT() {}\ntemplate <class Head, class... Tail>\n\
-    void INPUT(Head &head, Tail &... tail) {\n\tscan(head);\n\tINPUT(tail...);\n}\n\
+    void INPUT(Head &head, Tail &...tail) {\n\tscan(head);\n\tINPUT(tail...);\n}\n\
     }  // namespace scanner\n#define VEC(type, name, size)     \\\n\tstd::vector<type>\
     \ name(size); \\\n\tscanner::INPUT(name)\n#define VVEC(type, name, h, w)     \
     \                               \\\n\tstd::vector<std::vector<type>> name(h, std::vector<type>(w));\
@@ -178,7 +178,7 @@ data:
     \ - ng) > 1) {\n\t\tT mid = (ok + ng) >> 1;\n\t\t(f(mid) ? ok : ng) = mid;\n\t\
     }\n\treturn ok;\n}\ntemplate <class T, class F>\nT bin_search(T ok, T ng, const\
     \ F &f, int loop) {\n\tfor(int i = 0; i < loop; i++) {\n\t\tT mid = (ok + ng)\
-    \ >> 1;\n\t\t(f(mid) ? ok : ng) = mid;\n\t}\n\treturn ok;\n}\n\n// others\nstruct\
+    \ / 2;\n\t\t(f(mid) ? ok : ng) = mid;\n\t}\n\treturn ok;\n}\n\n// others\nstruct\
     \ fast_io {\n\tfast_io() {\n\t\tios::sync_with_stdio(false);\n\t\tcin.tie(nullptr);\n\
     \t\tcout << fixed << setprecision(15);\n\t}\n} fast_io_;\nconst int inf = 1e9;\n\
     const ll INF = 1e18;\n#pragma endregion\n\nvoid main_();\n\nint main() {\n\tmain_();\n\
@@ -219,7 +219,7 @@ data:
     \ double &a) { std::cin >> a; }\ntemplate <class T, class U>\nvoid scan(std::pair<T,\
     \ U> &p) { std::cin >> p; }\ntemplate <class T>\nvoid scan(std::vector<T> &a)\
     \ { std::cin >> a; }\nvoid INPUT() {}\ntemplate <class Head, class... Tail>\n\
-    void INPUT(Head &head, Tail &... tail) {\n\tscan(head);\n\tINPUT(tail...);\n}\n\
+    void INPUT(Head &head, Tail &...tail) {\n\tscan(head);\n\tINPUT(tail...);\n}\n\
     }  // namespace scanner\n#define VEC(type, name, size)     \\\n\tstd::vector<type>\
     \ name(size); \\\n\tscanner::INPUT(name)\n#define VVEC(type, name, h, w)     \
     \                               \\\n\tstd::vector<std::vector<type>> name(h, std::vector<type>(w));\
@@ -314,7 +314,7 @@ data:
     \ - ng) > 1) {\n\t\tT mid = (ok + ng) >> 1;\n\t\t(f(mid) ? ok : ng) = mid;\n\t\
     }\n\treturn ok;\n}\ntemplate <class T, class F>\nT bin_search(T ok, T ng, const\
     \ F &f, int loop) {\n\tfor(int i = 0; i < loop; i++) {\n\t\tT mid = (ok + ng)\
-    \ >> 1;\n\t\t(f(mid) ? ok : ng) = mid;\n\t}\n\treturn ok;\n}\n\n// others\nstruct\
+    \ / 2;\n\t\t(f(mid) ? ok : ng) = mid;\n\t}\n\treturn ok;\n}\n\n// others\nstruct\
     \ fast_io {\n\tfast_io() {\n\t\tios::sync_with_stdio(false);\n\t\tcin.tie(nullptr);\n\
     \t\tcout << fixed << setprecision(15);\n\t}\n} fast_io_;\nconst int inf = 1e9;\n\
     const ll INF = 1e18;\n#pragma endregion\n\nvoid main_();\n\nint main() {\n\tmain_();\n\
@@ -323,8 +323,8 @@ data:
   isVerificationFile: false
   path: cftemp.hpp
   requiredBy: []
-  timestamp: '2021-09-25 00:14:04+09:00'
-  verificationStatus: LIBRARY_ALL_AC
+  timestamp: '2021-10-18 14:59:50+09:00'
+  verificationStatus: LIBRARY_SOME_WA
   verifiedWith:
   - test/yosupo-queue_operate_all_composite.test.cpp
   - test/yosupo-multipoint_evaluation.test.cpp

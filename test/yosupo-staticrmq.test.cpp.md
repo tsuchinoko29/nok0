@@ -1,20 +1,20 @@
 ---
 data:
   _extendedDependsOn:
-  - icon: ':heavy_check_mark:'
+  - icon: ':question:'
     path: atcoder/internal_bit.hpp
     title: atcoder/internal_bit.hpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':question:'
     path: cftemp.hpp
     title: cftemp.hpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':x:'
     path: data_structure/sparse_table.hpp
     title: data_structure/sparse_table.hpp
   _extendedRequiredBy: []
   _extendedVerifiedWith: []
-  _isVerificationFailed: false
+  _isVerificationFailed: true
   _pathExtension: cpp
-  _verificationStatusIcon: ':heavy_check_mark:'
+  _verificationStatusIcon: ':x:'
   attributes:
     '*NOT_SPECIAL_COMMENTS*': ''
     PROBLEM: https://judge.yosupo.jp/problem/staticrmq
@@ -57,7 +57,7 @@ data:
     \ double &a) { std::cin >> a; }\ntemplate <class T, class U>\nvoid scan(std::pair<T,\
     \ U> &p) { std::cin >> p; }\ntemplate <class T>\nvoid scan(std::vector<T> &a)\
     \ { std::cin >> a; }\nvoid INPUT() {}\ntemplate <class Head, class... Tail>\n\
-    void INPUT(Head &head, Tail &... tail) {\n\tscan(head);\n\tINPUT(tail...);\n}\n\
+    void INPUT(Head &head, Tail &...tail) {\n\tscan(head);\n\tINPUT(tail...);\n}\n\
     }  // namespace scanner\n#define VEC(type, name, size)     \\\n\tstd::vector<type>\
     \ name(size); \\\n\tscanner::INPUT(name)\n#define VVEC(type, name, h, w)     \
     \                               \\\n\tstd::vector<std::vector<type>> name(h, std::vector<type>(w));\
@@ -152,7 +152,7 @@ data:
     \ - ng) > 1) {\n\t\tT mid = (ok + ng) >> 1;\n\t\t(f(mid) ? ok : ng) = mid;\n\t\
     }\n\treturn ok;\n}\ntemplate <class T, class F>\nT bin_search(T ok, T ng, const\
     \ F &f, int loop) {\n\tfor(int i = 0; i < loop; i++) {\n\t\tT mid = (ok + ng)\
-    \ >> 1;\n\t\t(f(mid) ? ok : ng) = mid;\n\t}\n\treturn ok;\n}\n\n// others\nstruct\
+    \ / 2;\n\t\t(f(mid) ? ok : ng) = mid;\n\t}\n\treturn ok;\n}\n\n// others\nstruct\
     \ fast_io {\n\tfast_io() {\n\t\tios::sync_with_stdio(false);\n\t\tcin.tie(nullptr);\n\
     \t\tcout << fixed << setprecision(15);\n\t}\n} fast_io_;\nconst int inf = 1e9;\n\
     const ll INF = 1e18;\n#pragma endregion\n\nvoid main_();\n\nint main() {\n\tmain_();\n\
@@ -195,8 +195,8 @@ data:
   isVerificationFile: true
   path: test/yosupo-staticrmq.test.cpp
   requiredBy: []
-  timestamp: '2021-09-25 00:14:04+09:00'
-  verificationStatus: TEST_ACCEPTED
+  timestamp: '2021-10-18 14:59:50+09:00'
+  verificationStatus: TEST_WRONG_ANSWER
   verifiedWith: []
 documentation_of: test/yosupo-staticrmq.test.cpp
 layout: document

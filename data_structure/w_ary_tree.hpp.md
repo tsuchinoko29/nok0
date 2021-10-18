@@ -3,12 +3,12 @@ data:
   _extendedDependsOn: []
   _extendedRequiredBy: []
   _extendedVerifiedWith:
-  - icon: ':heavy_check_mark:'
+  - icon: ':x:'
     path: test/yosupo-predecessor_problem2.test.cpp
     title: test/yosupo-predecessor_problem2.test.cpp
-  _isVerificationFailed: false
+  _isVerificationFailed: true
   _pathExtension: hpp
-  _verificationStatusIcon: ':heavy_check_mark:'
+  _verificationStatusIcon: ':x:'
   attributes:
     links: []
   bundledCode: "#line 1 \"data_structure/w_ary_tree.hpp\"\n#include <array>\n#include\
@@ -95,7 +95,7 @@ data:
   path: data_structure/w_ary_tree.hpp
   requiredBy: []
   timestamp: '2021-09-15 13:15:23+09:00'
-  verificationStatus: LIBRARY_ALL_AC
+  verificationStatus: LIBRARY_ALL_WA
   verifiedWith:
   - test/yosupo-predecessor_problem2.test.cpp
 documentation_of: data_structure/w_ary_tree.hpp
