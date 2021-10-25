@@ -1,7 +1,10 @@
 ---
 data:
   _extendedDependsOn: []
-  _extendedRequiredBy: []
+  _extendedRequiredBy:
+  - icon: ':warning:'
+    path: math/gauss_jordan.hpp
+    title: math/gauss_jordan.hpp
   _extendedVerifiedWith:
   - icon: ':heavy_check_mark:'
     path: test/aoj-2397.test.cpp
@@ -130,7 +133,8 @@ data:
   dependsOn: []
   isVerificationFile: false
   path: math/matrix.hpp
-  requiredBy: []
+  requiredBy:
+  - math/gauss_jordan.hpp
   timestamp: '2021-09-07 20:08:56+09:00'
   verificationStatus: LIBRARY_ALL_AC
   verifiedWith:
