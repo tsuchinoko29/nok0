@@ -165,6 +165,9 @@ data:
       path: math/inversion.hpp
       title: math/inversion.hpp
     - icon: ':heavy_check_mark:'
+      path: math/lis.hpp
+      title: math/lis.hpp
+    - icon: ':heavy_check_mark:'
       path: math/matrix.hpp
       title: math/matrix.hpp
     - icon: ':heavy_check_mark:'
@@ -196,6 +199,9 @@ data:
     - icon: ':heavy_check_mark:'
       path: test/aoj-alds1_5_d.test.cpp
       title: test/aoj-alds1_5_d.test.cpp
+    - icon: ':heavy_check_mark:'
+      path: test/aoj-dpl-1-d.test.cpp
+      title: test/aoj-dpl-1-d.test.cpp
     - icon: ':heavy_check_mark:'
       path: test/aoj-dsl-2-b.test.cpp
       title: test/aoj-dsl-2-b.test.cpp

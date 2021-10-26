@@ -6,6 +6,9 @@ data:
     title: atcoder/internal_bit.hpp
   _extendedRequiredBy:
   - icon: ':heavy_check_mark:'
+    path: math/lis.hpp
+    title: math/lis.hpp
+  - icon: ':heavy_check_mark:'
     path: multi.hpp
     title: multi.hpp
   - icon: ':heavy_check_mark:'
@@ -24,6 +27,9 @@ data:
   - icon: ':heavy_check_mark:'
     path: test/aoj-alds1_5_d.test.cpp
     title: test/aoj-alds1_5_d.test.cpp
+  - icon: ':heavy_check_mark:'
+    path: test/aoj-dpl-1-d.test.cpp
+    title: test/aoj-dpl-1-d.test.cpp
   - icon: ':heavy_check_mark:'
     path: test/aoj-dsl-2-b.test.cpp
     title: test/aoj-dsl-2-b.test.cpp
@@ -206,6 +212,7 @@ data:
   isVerificationFile: false
   path: atcoder/segtree.hpp
   requiredBy:
+  - math/lis.hpp
   - multi.hpp
   - template.hpp
   timestamp: '2021-09-08 15:21:46+09:00'
@@ -217,6 +224,7 @@ data:
   - test/aoj-2235.test.cpp
   - test/aoj-grl-5-b.test.cpp
   - test/aoj-2600.test.cpp
+  - test/aoj-dpl-1-d.test.cpp
   - test/aoj-grl-1-c.test.cpp
   - test/aoj-alds1_5_d.test.cpp
   - test/aoj-grl-3-a.test.cpp
