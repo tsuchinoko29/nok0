@@ -31,4 +31,6 @@ public:
 
 	//return sum[l, r)
 	T sum(int l, int r) { return sum(r) - sum(l); }
+
+	T operator[](int x) { return sum(x, x + 1); }
 };

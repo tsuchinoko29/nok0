@@ -189,4 +189,38 @@ public:
 		}
 		return ret;
 	}
+
+	matrix inv() {
+		int n = height();
+		if(determinant() == T(0)) return matrix(0);
+		matrix a(*(this)), l = I(n), u(n);
+		for(int j = 0; j < n; j++) u[0][j] = a[0][j];
+		for(int j = 1; j < n; j++) l[j][0] = a[j][0] / u[0][0];
+		for(int k = 1; k < n; k++) {
+			for(int j = k; j < n; j++)
+				for(int i = 0; i < k; i++) a[j][k] -= l[j][i] * u[i][k];
+			u[k][k] = a[k][k];
+			for(int j = k + 1; j < n; j++) {
+				u[k][j] = a[k][j];
+				for(int i = 0; i < k; i++)
+					u[k][j] -= l[k][i] * u[i][j];
+			}
+			for(int j = k + 1; j < n; j++) l[j][k] = a[j][k] / u[k][k];
+		}
+		matrix x(n), y = I(n);
+		for(int i = 0; i < n; i++)
+			for(int j = 0; j < n; j++) {
+				for(int k = 0; k < j; k++) y[j][i] -= l[j][k] * y[k][i];
+			}
+		T sigma;
+		for(int h = 0; h < n; h++)
+			for(int i = n - 1; i >= 0; i--) {
+				sigma = y[i][h];
+				for(int j = i + 1; j < n; j++) {
+					sigma -= u[i][j] * x[j][h];
+				}
+				x[i][h] = sigma / u[i][i];
+			}
+		return move(x);
+	}
 };

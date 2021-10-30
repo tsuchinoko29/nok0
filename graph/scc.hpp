@@ -49,7 +49,7 @@ public:
 	std::vector<std::vector<int>> groups;
 	graph graph_compressed;
 
-	strongly_connected_components(const graph &g_, bool create_compressed_graph = false)
+	strongly_connected_components(const graph &g_, bool create_compressed_graph = true)
 	  : graph_given(g_), graph_reversed(g_.size()), group_number(g_.size(), UNCHECKED) {
 		for(size_t i = 0; i < g_.size(); i++)
 			for(auto &e : graph_given[i]) graph_reversed[e.to].emplace_back(i, 1);
