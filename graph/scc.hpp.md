@@ -204,7 +204,7 @@ data:
     \ = i;\n\t\t\t\t\t\t\tgraph_compressed[i].emplace_back(group_number[e.to], 1);\n\
     \t\t\t\t\t\t}\n\t\t}\n\t\treturn;\n\t}\n\npublic:\n\tstd::vector<std::vector<int>>\
     \ groups;\n\tgraph graph_compressed;\n\n\tstrongly_connected_components(const\
-    \ graph &g_, bool create_compressed_graph = false)\n\t  : graph_given(g_), graph_reversed(g_.size()),\
+    \ graph &g_, bool create_compressed_graph = true)\n\t  : graph_given(g_), graph_reversed(g_.size()),\
     \ group_number(g_.size(), UNCHECKED) {\n\t\tfor(size_t i = 0; i < g_.size(); i++)\n\
     \t\t\tfor(auto &e : graph_given[i]) graph_reversed[e.to].emplace_back(i, 1);\n\
     \t\tbuild(create_compressed_graph);\n\t}\n\n\tconst int &operator[](const int\
@@ -230,7 +230,7 @@ data:
     \t\t\t\t\t\t\tedges[group_number[e.to]] = i;\n\t\t\t\t\t\t\tgraph_compressed[i].emplace_back(group_number[e.to],\
     \ 1);\n\t\t\t\t\t\t}\n\t\t}\n\t\treturn;\n\t}\n\npublic:\n\tstd::vector<std::vector<int>>\
     \ groups;\n\tgraph graph_compressed;\n\n\tstrongly_connected_components(const\
-    \ graph &g_, bool create_compressed_graph = false)\n\t  : graph_given(g_), graph_reversed(g_.size()),\
+    \ graph &g_, bool create_compressed_graph = true)\n\t  : graph_given(g_), graph_reversed(g_.size()),\
     \ group_number(g_.size(), UNCHECKED) {\n\t\tfor(size_t i = 0; i < g_.size(); i++)\n\
     \t\t\tfor(auto &e : graph_given[i]) graph_reversed[e.to].emplace_back(i, 1);\n\
     \t\tbuild(create_compressed_graph);\n\t}\n\n\tconst int &operator[](const int\
@@ -240,7 +240,7 @@ data:
   isVerificationFile: false
   path: graph/scc.hpp
   requiredBy: []
-  timestamp: '2021-10-06 20:07:39+09:00'
+  timestamp: '2021-10-30 20:59:52+09:00'
   verificationStatus: LIBRARY_ALL_AC
   verifiedWith:
   - test/aoj-grl-3-c.test.cpp

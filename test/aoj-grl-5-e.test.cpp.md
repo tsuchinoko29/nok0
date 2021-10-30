@@ -89,43 +89,43 @@ data:
     \ x;\n\t}\n\n\t//return sum[0, r)\n\tT sum(int r) {\n\t\tr += 1;\n\t\tT ret =\
     \ 0;\n\t\tfor(int x = r; x > 0; x -= x & -x) ret += vec1[x];\n\t\tfor(int x =\
     \ r; x > 0; x -= x & -x) ret += vec2[x] * r;\n\t\treturn ret;\n\t}\n\n\t//return\
-    \ sum[l, r)\n\tT sum(int l, int r) { return sum(r) - sum(l); }\n};\n#line 2 \"\
-    graph/graph.hpp\"\n#include <algorithm>\n#include <cassert>\n#include <deque>\n\
-    #include <iostream>\n#include <queue>\n#include <tuple>\n#include <utility>\n\
-    #line 10 \"graph/graph.hpp\"\n\nstruct Edge {\n\tint to;\n\tlong long cost;\n\t\
-    Edge() = default;\n\tEdge(int to_, long long cost_) : to(to_), cost(cost_) {}\n\
-    \tbool operator<(const Edge &a) const { return cost < a.cost; }\n\tbool operator>(const\
-    \ Edge &a) const { return cost > a.cost; }\n\tfriend std::ostream &operator<<(std::ostream\
-    \ &s, Edge &a) {\n\t\ts << \"to: \" << a.to << \", cost: \" << a.cost;\n\t\treturn\
-    \ s;\n\t}\n};\n\nclass graph {\n\tstd::vector<std::vector<Edge>> edges;\n\n\t\
-    template <class F>\n\tstruct rec_lambda {\n\t\tF f;\n\t\trec_lambda(F &&f_) :\
-    \ f(std::forward<F>(f_)) {}\n\t\ttemplate <class... Args>\n\t\tauto operator()(Args\
-    \ &&...args) const {\n\t\t\treturn f(*this, std::forward<Args>(args)...);\n\t\t\
-    }\n\t};\n\npublic:\n\tinline const std::vector<Edge> &operator[](int k) const\
-    \ { return edges[k]; }\n\tinline std::vector<Edge> &operator[](int k) { return\
-    \ edges[k]; }\n\n\tint size() const { return edges.size(); }\n\tvoid resize(const\
-    \ int n) { edges.resize(n); }\n\n\tgraph() = default;\n\tgraph(int n) : edges(n)\
-    \ {}\n\tgraph(int n, int e, bool weight = 0, bool directed = 0, int idx = 1) :\
-    \ edges(n) { input(e, weight, directed, idx); }\n\tconst long long INF = 3e18;\n\
-    \n\tvoid input(int e = -1, bool weight = 0, bool directed = false, int idx = 1)\
-    \ {\n\t\tif(e == -1) e = size() - 1;\n\t\twhile(e--) {\n\t\t\tint u, v;\n\t\t\t\
-    long long cost = 1;\n\t\t\tstd::cin >> u >> v;\n\t\t\tif(weight) std::cin >> cost;\n\
-    \t\t\tu -= idx, v -= idx;\n\t\t\tedges[u].emplace_back(v, cost);\n\t\t\tif(!directed)\
-    \ edges[v].emplace_back(u, cost);\n\t\t}\n\t}\n\n\tvoid add_edge(int u, int v,\
-    \ long long cost = 1, bool directed = false, int idx = 0) {\n\t\tu -= idx, v -=\
-    \ idx;\n\t\tedges[u].emplace_back(v, cost);\n\t\tif(!directed) edges[v].emplace_back(u,\
-    \ cost);\n\t}\n\n\t// \u039F(V+E)\n\tstd::vector<long long> bfs(int s) {\n\t\t\
-    std::vector<long long> dist(size(), INF);\n\t\tstd::queue<int> que;\n\t\tdist[s]\
-    \ = 0;\n\t\tque.push(s);\n\t\twhile(!que.empty()) {\n\t\t\tint v = que.front();\n\
-    \t\t\tque.pop();\n\t\t\tfor(auto &e : edges[v]) {\n\t\t\t\tif(dist[e.to] != INF)\
-    \ continue;\n\t\t\t\tdist[e.to] = dist[v] + e.cost;\n\t\t\t\tque.push(e.to);\n\
-    \t\t\t}\n\t\t}\n\t\treturn dist;\n\t}\n\n\t// \u039F(V+E)\n\t// constraint: cost\
-    \ of each edge is zero or one\n\tstd::vector<long long> zero_one_bfs(int s) {\n\
-    \t\tstd::vector<long long> dist(size(), INF);\n\t\tstd::deque<int> deq;\n\t\t\
-    dist[s] = 0;\n\t\tdeq.push_back(s);\n\t\twhile(!deq.empty()) {\n\t\t\tint v =\
-    \ deq.front();\n\t\t\tdeq.pop_front();\n\t\t\tfor(auto &e : edges[v]) {\n\t\t\t\
-    \tassert(0LL <= e.cost and e.cost < 2LL);\n\t\t\t\tif(e.cost and dist[e.to] >\
-    \ dist[v] + 1) {\n\t\t\t\t\tdist[e.to] = dist[v] + 1;\n\t\t\t\t\tdeq.push_back(e.to);\n\
+    \ sum[l, r)\n\tT sum(int l, int r) { return sum(r) - sum(l); }\n\n\tT operator[](int\
+    \ x) { return sum(x, x + 1); }\n};\n#line 2 \"graph/graph.hpp\"\n#include <algorithm>\n\
+    #include <cassert>\n#include <deque>\n#include <iostream>\n#include <queue>\n\
+    #include <tuple>\n#include <utility>\n#line 10 \"graph/graph.hpp\"\n\nstruct Edge\
+    \ {\n\tint to;\n\tlong long cost;\n\tEdge() = default;\n\tEdge(int to_, long long\
+    \ cost_) : to(to_), cost(cost_) {}\n\tbool operator<(const Edge &a) const { return\
+    \ cost < a.cost; }\n\tbool operator>(const Edge &a) const { return cost > a.cost;\
+    \ }\n\tfriend std::ostream &operator<<(std::ostream &s, Edge &a) {\n\t\ts << \"\
+    to: \" << a.to << \", cost: \" << a.cost;\n\t\treturn s;\n\t}\n};\n\nclass graph\
+    \ {\n\tstd::vector<std::vector<Edge>> edges;\n\n\ttemplate <class F>\n\tstruct\
+    \ rec_lambda {\n\t\tF f;\n\t\trec_lambda(F &&f_) : f(std::forward<F>(f_)) {}\n\
+    \t\ttemplate <class... Args>\n\t\tauto operator()(Args &&...args) const {\n\t\t\
+    \treturn f(*this, std::forward<Args>(args)...);\n\t\t}\n\t};\n\npublic:\n\tinline\
+    \ const std::vector<Edge> &operator[](int k) const { return edges[k]; }\n\tinline\
+    \ std::vector<Edge> &operator[](int k) { return edges[k]; }\n\n\tint size() const\
+    \ { return edges.size(); }\n\tvoid resize(const int n) { edges.resize(n); }\n\n\
+    \tgraph() = default;\n\tgraph(int n) : edges(n) {}\n\tgraph(int n, int e, bool\
+    \ weight = 0, bool directed = 0, int idx = 1) : edges(n) { input(e, weight, directed,\
+    \ idx); }\n\tconst long long INF = 3e18;\n\n\tvoid input(int e = -1, bool weight\
+    \ = 0, bool directed = false, int idx = 1) {\n\t\tif(e == -1) e = size() - 1;\n\
+    \t\twhile(e--) {\n\t\t\tint u, v;\n\t\t\tlong long cost = 1;\n\t\t\tstd::cin >>\
+    \ u >> v;\n\t\t\tif(weight) std::cin >> cost;\n\t\t\tu -= idx, v -= idx;\n\t\t\
+    \tedges[u].emplace_back(v, cost);\n\t\t\tif(!directed) edges[v].emplace_back(u,\
+    \ cost);\n\t\t}\n\t}\n\n\tvoid add_edge(int u, int v, long long cost = 1, bool\
+    \ directed = false, int idx = 0) {\n\t\tu -= idx, v -= idx;\n\t\tedges[u].emplace_back(v,\
+    \ cost);\n\t\tif(!directed) edges[v].emplace_back(u, cost);\n\t}\n\n\t// \u039F\
+    (V+E)\n\tstd::vector<long long> bfs(int s) {\n\t\tstd::vector<long long> dist(size(),\
+    \ INF);\n\t\tstd::queue<int> que;\n\t\tdist[s] = 0;\n\t\tque.push(s);\n\t\twhile(!que.empty())\
+    \ {\n\t\t\tint v = que.front();\n\t\t\tque.pop();\n\t\t\tfor(auto &e : edges[v])\
+    \ {\n\t\t\t\tif(dist[e.to] != INF) continue;\n\t\t\t\tdist[e.to] = dist[v] + e.cost;\n\
+    \t\t\t\tque.push(e.to);\n\t\t\t}\n\t\t}\n\t\treturn dist;\n\t}\n\n\t// \u039F\
+    (V+E)\n\t// constraint: cost of each edge is zero or one\n\tstd::vector<long long>\
+    \ zero_one_bfs(int s) {\n\t\tstd::vector<long long> dist(size(), INF);\n\t\tstd::deque<int>\
+    \ deq;\n\t\tdist[s] = 0;\n\t\tdeq.push_back(s);\n\t\twhile(!deq.empty()) {\n\t\
+    \t\tint v = deq.front();\n\t\t\tdeq.pop_front();\n\t\t\tfor(auto &e : edges[v])\
+    \ {\n\t\t\t\tassert(0LL <= e.cost and e.cost < 2LL);\n\t\t\t\tif(e.cost and dist[e.to]\
+    \ > dist[v] + 1) {\n\t\t\t\t\tdist[e.to] = dist[v] + 1;\n\t\t\t\t\tdeq.push_back(e.to);\n\
     \t\t\t\t} else if(!e.cost and dist[e.to] > dist[v]) {\n\t\t\t\t\tdist[e.to] =\
     \ dist[v];\n\t\t\t\t\tdeq.push_front(e.to);\n\t\t\t\t}\n\t\t\t}\n\t\t}\n\t\treturn\
     \ dist;\n\t}\n\n\t// \u039F((E+V)logV)\n\t// cannot reach: INF\n\tstd::vector<long\
@@ -482,7 +482,7 @@ data:
   isVerificationFile: true
   path: test/aoj-grl-5-e.test.cpp
   requiredBy: []
-  timestamp: '2021-10-18 14:59:50+09:00'
+  timestamp: '2021-10-30 20:59:52+09:00'
   verificationStatus: TEST_ACCEPTED
   verifiedWith: []
 documentation_of: test/aoj-grl-5-e.test.cpp

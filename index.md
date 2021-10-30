@@ -97,6 +97,9 @@ data:
     - icon: ':heavy_check_mark:'
       path: data_structure/rangeadd_rangesum_bit.hpp
       title: data_structure/rangeadd_rangesum_bit.hpp
+    - icon: ':warning:'
+      path: data_structure/rolling_hash.hpp
+      title: data_structure/rolling_hash.hpp
     - icon: ':heavy_check_mark:'
       path: data_structure/sparse_table.hpp
       title: data_structure/sparse_table.hpp
@@ -127,11 +130,17 @@ data:
       path: graph/low_link.hpp
       title: graph/low_link.hpp
     - icon: ':warning:'
+      path: graph/maximum_independent_set.hpp
+      title: graph/maximum_independent_set.hpp
+    - icon: ':warning:'
       path: graph/mincost_b_flow.hpp
       title: graph/mincost_b_flow.hpp
     - icon: ':warning:'
       path: graph/namori.hpp
       title: graph/namori.hpp
+    - icon: ':warning:'
+      path: graph/project_selection_problem.hpp
+      title: graph/project_selection_problem.hpp
     - icon: ':heavy_check_mark:'
       path: graph/scc.hpp
       title: graph/scc.hpp

@@ -68,33 +68,63 @@ data:
     \ B[idx]);\n\t\t\t}\n\t\t\tret *= B[i][i];\n\t\t\tT vv = B[i][i];\n\t\t\tfor(int\
     \ j = 0; j < n; j++) B[i][j] /= vv;\n\t\t\tfor(int j = i + 1; j < n; j++) {\n\t\
     \t\t\tT a = B[j][i];\n\t\t\t\tfor(int k = 0; k < n; k++) {\n\t\t\t\t\tB[j][k]\
-    \ -= B[i][k] * a;\n\t\t\t\t}\n\t\t\t}\n\t\t}\n\t\treturn ret;\n\t}\n};\n#line\
-    \ 3 \"math/gauss_jordan.hpp\"\n\ntemplate <class T>\nvoid gauss_elimination(matrix<T>\
-    \ &mat) {\n\tconstexpr T eps = 1e-8;\n\tconst int h = mat.height(), w = mat.width();\n\
-    \tint rank = 0;\n\tfor(int j = 0; j < w; j++) {\n\t\tint pivot = -1;\n\t\tT mx\
-    \ = eps;\n\t\tfor(int i = rank; i < h; i++) {\n\t\t\tif(mx < abs(mat[i][j])) {\n\
-    \t\t\t\tmx = abs(mat[i][j]);\n\t\t\t\tpivot = i;\n\t\t\t}\n\t\t}\n\t\tif(pivot\
-    \ == -1) continue;\n\t\tswap(mat[rank], mat[pivot]);\n\n\t\tconst auto cur = T(1)\
-    \ / mat[rank][j];\n\n\t\tfor(int i = rank + 1; i < n; i++) {\n\t\t\tif(abs(mat[i][j])\
-    \ > eps) {\n\t\t\t\tauto tmp = mat[i][j] * cur;\n\t\t\t\tfor(int j2 = i + 1; j2\
-    \ < n; j2++)\n\t\t\t\t\tmat[i][j2] -= tmp * mat[rank][j2];\n\t\t\t}\n\t\t}\n\t\
-    }\n}\n"
-  code: "#pragma once\n#include \"math/matrix.hpp\"\n\ntemplate <class T>\nvoid gauss_elimination(matrix<T>\
-    \ &mat) {\n\tconstexpr T eps = 1e-8;\n\tconst int h = mat.height(), w = mat.width();\n\
-    \tint rank = 0;\n\tfor(int j = 0; j < w; j++) {\n\t\tint pivot = -1;\n\t\tT mx\
-    \ = eps;\n\t\tfor(int i = rank; i < h; i++) {\n\t\t\tif(mx < abs(mat[i][j])) {\n\
-    \t\t\t\tmx = abs(mat[i][j]);\n\t\t\t\tpivot = i;\n\t\t\t}\n\t\t}\n\t\tif(pivot\
-    \ == -1) continue;\n\t\tswap(mat[rank], mat[pivot]);\n\n\t\tconst auto cur = T(1)\
-    \ / mat[rank][j];\n\n\t\tfor(int i = rank + 1; i < n; i++) {\n\t\t\tif(abs(mat[i][j])\
-    \ > eps) {\n\t\t\t\tauto tmp = mat[i][j] * cur;\n\t\t\t\tfor(int j2 = i + 1; j2\
-    \ < n; j2++)\n\t\t\t\t\tmat[i][j2] -= tmp * mat[rank][j2];\n\t\t\t}\n\t\t}\n\t\
-    }\n}"
+    \ -= B[i][k] * a;\n\t\t\t\t}\n\t\t\t}\n\t\t}\n\t\treturn ret;\n\t}\n\n\tmatrix\
+    \ inv() {\n\t\tint n = height();\n\t\tif(determinant() == T(0)) return matrix(0);\n\
+    \t\tmatrix a(*(this)), l = I(n), u(n);\n\t\tfor(int j = 0; j < n; j++) u[0][j]\
+    \ = a[0][j];\n\t\tfor(int j = 1; j < n; j++) l[j][0] = a[j][0] / u[0][0];\n\t\t\
+    for(int k = 1; k < n; k++) {\n\t\t\tfor(int j = k; j < n; j++)\n\t\t\t\tfor(int\
+    \ i = 0; i < k; i++) a[j][k] -= l[j][i] * u[i][k];\n\t\t\tu[k][k] = a[k][k];\n\
+    \t\t\tfor(int j = k + 1; j < n; j++) {\n\t\t\t\tu[k][j] = a[k][j];\n\t\t\t\tfor(int\
+    \ i = 0; i < k; i++)\n\t\t\t\t\tu[k][j] -= l[k][i] * u[i][j];\n\t\t\t}\n\t\t\t\
+    for(int j = k + 1; j < n; j++) l[j][k] = a[j][k] / u[k][k];\n\t\t}\n\t\tmatrix\
+    \ x(n), y = I(n);\n\t\tfor(int i = 0; i < n; i++)\n\t\t\tfor(int j = 0; j < n;\
+    \ j++) {\n\t\t\t\tfor(int k = 0; k < j; k++) y[j][i] -= l[j][k] * y[k][i];\n\t\
+    \t\t}\n\t\tT sigma;\n\t\tfor(int h = 0; h < n; h++)\n\t\t\tfor(int i = n - 1;\
+    \ i >= 0; i--) {\n\t\t\t\tsigma = y[i][h];\n\t\t\t\tfor(int j = i + 1; j < n;\
+    \ j++) {\n\t\t\t\t\tsigma -= u[i][j] * x[j][h];\n\t\t\t\t}\n\t\t\t\tx[i][h] =\
+    \ sigma / u[i][i];\n\t\t\t}\n\t\treturn move(x);\n\t}\n};\n#line 3 \"math/gauss_jordan.hpp\"\
+    \n\ntemplate <class T>\nint gauss_elimination_mint(matrix<T> &mat, bool is_extended\
+    \ = false) {\n\tconst int h = mat.height(), w = mat.width();\n\tint rank = 0;\n\
+    \tfor(int j = 0; j < w; j++) {\n\t\tif(is_extended and j == w - 1) break;\n\t\t\
+    int pivot = -1;\n\t\tfor(int i = rank; i < h; i++) {\n\t\t\tif(mat[i][j] != T(0))\
+    \ {\n\t\t\t\tpivot = i;\n\t\t\t\tbreak;\n\t\t\t}\n\t\t}\n\t\tif(pivot == -1) continue;\n\
+    \t\tswap(mat[rank], mat[pivot]);\n\n\t\tconst auto cur = T(1) / mat[rank][j];\n\
+    \n\t\tfor(int j2 = 0; j2 < w; j2++) mat[rank][j2] *= cur;\n\n\t\tfor(int i = 0;\
+    \ i < h; i++) {\n\t\t\tif(i != rank and mat[i][j] != T(0)) {\n\t\t\t\tauto fac\
+    \ = mat[i][j];\n\t\t\t\tfor(int j2 = 0; j2 < w; j2++)\n\t\t\t\t\tmat[i][j2] -=\
+    \ mat[rank][j2] * fac;\n\t\t\t}\n\t\t}\n\t\trank++;\n\t}\n\treturn rank;\n}\n\n\
+    //return {x, rank} s.t. ax = b\n//if no solution, return empty x\ntemplate <class\
+    \ T>\nstd::pair<std::vector<T>, int> linear_equation_mint(const matrix<T> &a,\
+    \ const std::vector<T> &b) {\n\tint h = a.height(), w = a.width();\n\tmatrix<T>\
+    \ eq(h, w + 1);\n\tfor(int i = 0; i < h; i++) {\n\t\tfor(int j = 0; j < w; j++)\
+    \ eq[i][j] = a[i][j];\n\t\teq[i][w] = b[i];\n\t}\n\tint rank = gauss_elimination_mint(eq,\
+    \ true);\n\n\tfor(int i = rank; i < h; i++)\n\t\tif(eq[i].back() != T(0)) return\
+    \ std::pair(vector<T>{}, -1);\n\n\tstd::vector<T> res(h);\n\tfor(int i = 0; i\
+    \ < h; i++) res[i] = eq[i].back();\n\n\treturn std::pair(res, rank);\n}\n"
+  code: "#pragma once\n#include \"math/matrix.hpp\"\n\ntemplate <class T>\nint gauss_elimination_mint(matrix<T>\
+    \ &mat, bool is_extended = false) {\n\tconst int h = mat.height(), w = mat.width();\n\
+    \tint rank = 0;\n\tfor(int j = 0; j < w; j++) {\n\t\tif(is_extended and j == w\
+    \ - 1) break;\n\t\tint pivot = -1;\n\t\tfor(int i = rank; i < h; i++) {\n\t\t\t\
+    if(mat[i][j] != T(0)) {\n\t\t\t\tpivot = i;\n\t\t\t\tbreak;\n\t\t\t}\n\t\t}\n\t\
+    \tif(pivot == -1) continue;\n\t\tswap(mat[rank], mat[pivot]);\n\n\t\tconst auto\
+    \ cur = T(1) / mat[rank][j];\n\n\t\tfor(int j2 = 0; j2 < w; j2++) mat[rank][j2]\
+    \ *= cur;\n\n\t\tfor(int i = 0; i < h; i++) {\n\t\t\tif(i != rank and mat[i][j]\
+    \ != T(0)) {\n\t\t\t\tauto fac = mat[i][j];\n\t\t\t\tfor(int j2 = 0; j2 < w; j2++)\n\
+    \t\t\t\t\tmat[i][j2] -= mat[rank][j2] * fac;\n\t\t\t}\n\t\t}\n\t\trank++;\n\t\
+    }\n\treturn rank;\n}\n\n//return {x, rank} s.t. ax = b\n//if no solution, return\
+    \ empty x\ntemplate <class T>\nstd::pair<std::vector<T>, int> linear_equation_mint(const\
+    \ matrix<T> &a, const std::vector<T> &b) {\n\tint h = a.height(), w = a.width();\n\
+    \tmatrix<T> eq(h, w + 1);\n\tfor(int i = 0; i < h; i++) {\n\t\tfor(int j = 0;\
+    \ j < w; j++) eq[i][j] = a[i][j];\n\t\teq[i][w] = b[i];\n\t}\n\tint rank = gauss_elimination_mint(eq,\
+    \ true);\n\n\tfor(int i = rank; i < h; i++)\n\t\tif(eq[i].back() != T(0)) return\
+    \ std::pair(vector<T>{}, -1);\n\n\tstd::vector<T> res(h);\n\tfor(int i = 0; i\
+    \ < h; i++) res[i] = eq[i].back();\n\n\treturn std::pair(res, rank);\n}"
   dependsOn:
   - math/matrix.hpp
   isVerificationFile: false
   path: math/gauss_jordan.hpp
   requiredBy: []
-  timestamp: '2021-10-25 23:54:22+09:00'
+  timestamp: '2021-10-30 20:59:52+09:00'
   verificationStatus: LIBRARY_NO_TESTS
   verifiedWith: []
 documentation_of: math/gauss_jordan.hpp

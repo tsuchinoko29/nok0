@@ -22,7 +22,8 @@ data:
     \ x;\n\t}\n\n\t//return sum[0, r)\n\tT sum(int r) {\n\t\tr += 1;\n\t\tT ret =\
     \ 0;\n\t\tfor(int x = r; x > 0; x -= x & -x) ret += vec1[x];\n\t\tfor(int x =\
     \ r; x > 0; x -= x & -x) ret += vec2[x] * r;\n\t\treturn ret;\n\t}\n\n\t//return\
-    \ sum[l, r)\n\tT sum(int l, int r) { return sum(r) - sum(l); }\n};\n"
+    \ sum[l, r)\n\tT sum(int l, int r) { return sum(r) - sum(l); }\n\n\tT operator[](int\
+    \ x) { return sum(x, x + 1); }\n};\n"
   code: "#include <vector>\n\ntemplate <class T>\nstruct rangeadd_rangesum_bit {\n\
     private:\n\tstd::vector<T> vec1, vec2;\n\tsize_t n;\n\npublic:\n\trangeadd_rangesum_bit()\
     \ = default;\n\trangeadd_rangesum_bit(size_t n_) : n(n_ + 1), vec1(n_ + 2, 0),\
@@ -34,12 +35,12 @@ data:
     \ 1;\n\t\tT ret = 0;\n\t\tfor(int x = r; x > 0; x -= x & -x) ret += vec1[x];\n\
     \t\tfor(int x = r; x > 0; x -= x & -x) ret += vec2[x] * r;\n\t\treturn ret;\n\t\
     }\n\n\t//return sum[l, r)\n\tT sum(int l, int r) { return sum(r) - sum(l); }\n\
-    };\n"
+    \n\tT operator[](int x) { return sum(x, x + 1); }\n};\n"
   dependsOn: []
   isVerificationFile: false
   path: data_structure/rangeadd_rangesum_bit.hpp
   requiredBy: []
-  timestamp: '2021-09-11 17:12:44+09:00'
+  timestamp: '2021-10-30 20:59:52+09:00'
   verificationStatus: LIBRARY_ALL_AC
   verifiedWith:
   - test/aoj-grl-5-e.test.cpp

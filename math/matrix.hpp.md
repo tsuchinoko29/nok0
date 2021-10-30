@@ -71,7 +71,21 @@ data:
     \ B[idx]);\n\t\t\t}\n\t\t\tret *= B[i][i];\n\t\t\tT vv = B[i][i];\n\t\t\tfor(int\
     \ j = 0; j < n; j++) B[i][j] /= vv;\n\t\t\tfor(int j = i + 1; j < n; j++) {\n\t\
     \t\t\tT a = B[j][i];\n\t\t\t\tfor(int k = 0; k < n; k++) {\n\t\t\t\t\tB[j][k]\
-    \ -= B[i][k] * a;\n\t\t\t\t}\n\t\t\t}\n\t\t}\n\t\treturn ret;\n\t}\n};\n"
+    \ -= B[i][k] * a;\n\t\t\t\t}\n\t\t\t}\n\t\t}\n\t\treturn ret;\n\t}\n\n\tmatrix\
+    \ inv() {\n\t\tint n = height();\n\t\tif(determinant() == T(0)) return matrix(0);\n\
+    \t\tmatrix a(*(this)), l = I(n), u(n);\n\t\tfor(int j = 0; j < n; j++) u[0][j]\
+    \ = a[0][j];\n\t\tfor(int j = 1; j < n; j++) l[j][0] = a[j][0] / u[0][0];\n\t\t\
+    for(int k = 1; k < n; k++) {\n\t\t\tfor(int j = k; j < n; j++)\n\t\t\t\tfor(int\
+    \ i = 0; i < k; i++) a[j][k] -= l[j][i] * u[i][k];\n\t\t\tu[k][k] = a[k][k];\n\
+    \t\t\tfor(int j = k + 1; j < n; j++) {\n\t\t\t\tu[k][j] = a[k][j];\n\t\t\t\tfor(int\
+    \ i = 0; i < k; i++)\n\t\t\t\t\tu[k][j] -= l[k][i] * u[i][j];\n\t\t\t}\n\t\t\t\
+    for(int j = k + 1; j < n; j++) l[j][k] = a[j][k] / u[k][k];\n\t\t}\n\t\tmatrix\
+    \ x(n), y = I(n);\n\t\tfor(int i = 0; i < n; i++)\n\t\t\tfor(int j = 0; j < n;\
+    \ j++) {\n\t\t\t\tfor(int k = 0; k < j; k++) y[j][i] -= l[j][k] * y[k][i];\n\t\
+    \t\t}\n\t\tT sigma;\n\t\tfor(int h = 0; h < n; h++)\n\t\t\tfor(int i = n - 1;\
+    \ i >= 0; i--) {\n\t\t\t\tsigma = y[i][h];\n\t\t\t\tfor(int j = i + 1; j < n;\
+    \ j++) {\n\t\t\t\t\tsigma -= u[i][j] * x[j][h];\n\t\t\t\t}\n\t\t\t\tx[i][h] =\
+    \ sigma / u[i][i];\n\t\t\t}\n\t\treturn move(x);\n\t}\n};\n"
   code: "#pragma once\n#include <cassert>\n#include <iostream>\n#include <vector>\n\
     \ntemplate <class T>\nstruct matrix {\nprivate:\n\tstd::vector<std::vector<T>>\
     \ A;\n\n\tstatic matrix I(size_t n) {\n\t\tmatrix mat(n);\n\t\tfor(int i = 0;\
@@ -129,13 +143,27 @@ data:
     \ B[idx]);\n\t\t\t}\n\t\t\tret *= B[i][i];\n\t\t\tT vv = B[i][i];\n\t\t\tfor(int\
     \ j = 0; j < n; j++) B[i][j] /= vv;\n\t\t\tfor(int j = i + 1; j < n; j++) {\n\t\
     \t\t\tT a = B[j][i];\n\t\t\t\tfor(int k = 0; k < n; k++) {\n\t\t\t\t\tB[j][k]\
-    \ -= B[i][k] * a;\n\t\t\t\t}\n\t\t\t}\n\t\t}\n\t\treturn ret;\n\t}\n};\n"
+    \ -= B[i][k] * a;\n\t\t\t\t}\n\t\t\t}\n\t\t}\n\t\treturn ret;\n\t}\n\n\tmatrix\
+    \ inv() {\n\t\tint n = height();\n\t\tif(determinant() == T(0)) return matrix(0);\n\
+    \t\tmatrix a(*(this)), l = I(n), u(n);\n\t\tfor(int j = 0; j < n; j++) u[0][j]\
+    \ = a[0][j];\n\t\tfor(int j = 1; j < n; j++) l[j][0] = a[j][0] / u[0][0];\n\t\t\
+    for(int k = 1; k < n; k++) {\n\t\t\tfor(int j = k; j < n; j++)\n\t\t\t\tfor(int\
+    \ i = 0; i < k; i++) a[j][k] -= l[j][i] * u[i][k];\n\t\t\tu[k][k] = a[k][k];\n\
+    \t\t\tfor(int j = k + 1; j < n; j++) {\n\t\t\t\tu[k][j] = a[k][j];\n\t\t\t\tfor(int\
+    \ i = 0; i < k; i++)\n\t\t\t\t\tu[k][j] -= l[k][i] * u[i][j];\n\t\t\t}\n\t\t\t\
+    for(int j = k + 1; j < n; j++) l[j][k] = a[j][k] / u[k][k];\n\t\t}\n\t\tmatrix\
+    \ x(n), y = I(n);\n\t\tfor(int i = 0; i < n; i++)\n\t\t\tfor(int j = 0; j < n;\
+    \ j++) {\n\t\t\t\tfor(int k = 0; k < j; k++) y[j][i] -= l[j][k] * y[k][i];\n\t\
+    \t\t}\n\t\tT sigma;\n\t\tfor(int h = 0; h < n; h++)\n\t\t\tfor(int i = n - 1;\
+    \ i >= 0; i--) {\n\t\t\t\tsigma = y[i][h];\n\t\t\t\tfor(int j = i + 1; j < n;\
+    \ j++) {\n\t\t\t\t\tsigma -= u[i][j] * x[j][h];\n\t\t\t\t}\n\t\t\t\tx[i][h] =\
+    \ sigma / u[i][i];\n\t\t\t}\n\t\treturn move(x);\n\t}\n};\n"
   dependsOn: []
   isVerificationFile: false
   path: math/matrix.hpp
   requiredBy:
   - math/gauss_jordan.hpp
-  timestamp: '2021-09-07 20:08:56+09:00'
+  timestamp: '2021-10-30 20:59:52+09:00'
   verificationStatus: LIBRARY_ALL_AC
   verifiedWith:
   - test/aoj-2397.test.cpp
