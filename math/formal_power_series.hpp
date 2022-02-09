@@ -295,7 +295,7 @@ struct formal_power_series : std::vector<T> {
 		(*this)[n - 1] = 0;
 		return *this;
 	}
-	F diff() const { F(*this).diff_inplace(); }
+	F diff() const { return F(*this).diff_inplace(); }
 
 	//Ο(N)
 	F &integral_inplace() {
